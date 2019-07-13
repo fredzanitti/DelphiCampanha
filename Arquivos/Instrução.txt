@@ -1,0 +1,76 @@
+===========================================================
+ CAMPANHA DO SEU CLUBE ANO A ANO - VERSÃO 6.1 - JUN/2019
+===========================================================
+
+Desenvolvido por: FREDERICO ZANITTI SILVA
+ACESSEM: http://www.zanitti.com.br
+
+ATENÇÃO: ANTES DE INSTALAR O SOFTWARE CAMPANHA ANO A ANO
+		 DEVERÁ SER INSTALADO O BANDO DE DADOS MYSQL
+		 O BANCO DE DADOS PODE SER BAIXADO ATRAVÉS DO 
+		 ENDEREÇO: http://dev.mysql.com/downloads/installer/
+
+
+
+Requisítos: - Sistema Operacional Windows XP/7/8/10
+			- Instalação do mysql-installer-community-5.7.10.0
+            - Resolução de vídeo de 1024x768
+
+Descrição : - Sistema de gerência de jogos para um clube específico
+            - Relatórios e filtros diversos
+
+========
+Atenção:
+========
+  O suporte ao produto é exclusivamente via e-mail.
+
+
+===========================================================
+                 OTIMIZAÇÕES DO SOFTWARE
+===========================================================
+
+---------------------------------------
+JULHO/2015
+---------------------------------------
+- VERSÃO 3.0 - Mudança da base de FIREBIRD para MYSQL
+  Mais estabilidade, segurança e integridade dos dados.
+- Reestruturação do código, consistências de tabelas, 
+  e migração do Delphi 7 para o Delphi XE7.
+
+---------------------------------------
+MARÇO/2016
+---------------------------------------
+- Inclusão do cadastro de fornecedores de material 
+  esportivo, patrocinadores e uniformes.
+
+---------------------------------------
+MAIO/2016
+---------------------------------------
+- Inclusão do bandeira mostrando a nacionalidade do
+  jogador quando da visualização da súmula.
+- Relatório de jogos por camisa;
+
+---------------------------------------
+AGOSTO/2017
+---------------------------------------
+- Relatório de jogos por fornecedor de material esportivo;
+
+---------------------------------------
+JULHO/2018
+---------------------------------------
+- Inserido relatório de quantidade de hattricks por jogador;
+- Correção para não aparecer o "Seu time" quando da escolha de adversários;
+- Inserido relatório de aniversariantes do dia;
+
+---------------------------------------
+OUTUBRO/2018
+---------------------------------------
+- Inserido relatóiro de quantidade de jogos de um jogador com determinado técnico;
+- Inserido checkbox na pesquisa de jogadores para que seja possível selecionar apenas técnicos;
+
+
+SUGESTÕES OU DÚVIDAS
+frederico@zanitti.com.br
+
+Bom divertimento!
+2018©Frederico Zanitti
