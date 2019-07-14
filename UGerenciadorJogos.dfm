@@ -264,6 +264,7 @@ object frmGerenciadorJogos: TfrmGerenciadorJogos
           Top = 4
           Width = 11
           Height = 12
+          Cursor = crHandPoint
           Anchors = [akTop]
           Caption = 'p'
           Font.Charset = SYMBOL_CHARSET
@@ -280,6 +281,7 @@ object frmGerenciadorJogos: TfrmGerenciadorJogos
           Top = 4
           Width = 147
           Height = 13
+          Cursor = crHandPoint
           AutoSize = False
           Caption = 'Advers'#225'rio'
           Font.Charset = DEFAULT_CHARSET
@@ -341,6 +343,7 @@ object frmGerenciadorJogos: TfrmGerenciadorJogos
           Top = 4
           Width = 11
           Height = 12
+          Cursor = crHandPoint
           Anchors = [akTop]
           Caption = 'p'
           Font.Charset = SYMBOL_CHARSET
@@ -357,6 +360,7 @@ object frmGerenciadorJogos: TfrmGerenciadorJogos
           Top = 4
           Width = 147
           Height = 13
+          Cursor = crHandPoint
           AutoSize = False
           Caption = 'Jogo'
           Font.Charset = DEFAULT_CHARSET
@@ -421,6 +425,7 @@ object frmGerenciadorJogos: TfrmGerenciadorJogos
           Top = 4
           Width = 11
           Height = 12
+          Cursor = crHandPoint
           Anchors = [akTop]
           Caption = 'p'
           Font.Charset = SYMBOL_CHARSET
@@ -437,6 +442,7 @@ object frmGerenciadorJogos: TfrmGerenciadorJogos
           Top = 4
           Width = 147
           Height = 13
+          Cursor = crHandPoint
           AutoSize = False
           Caption = 'Est'#225'dio'
           Font.Charset = DEFAULT_CHARSET
@@ -498,6 +504,7 @@ object frmGerenciadorJogos: TfrmGerenciadorJogos
           Top = 4
           Width = 11
           Height = 12
+          Cursor = crHandPoint
           Anchors = [akTop]
           Caption = 'p'
           Font.Charset = SYMBOL_CHARSET
@@ -514,6 +521,7 @@ object frmGerenciadorJogos: TfrmGerenciadorJogos
           Top = 4
           Width = 147
           Height = 13
+          Cursor = crHandPoint
           AutoSize = False
           Caption = 'Per'#237'odo'
           Font.Charset = DEFAULT_CHARSET
@@ -599,6 +607,7 @@ object frmGerenciadorJogos: TfrmGerenciadorJogos
           Top = 4
           Width = 11
           Height = 12
+          Cursor = crHandPoint
           Anchors = [akTop]
           Caption = 'p'
           Font.Charset = SYMBOL_CHARSET
@@ -615,6 +624,7 @@ object frmGerenciadorJogos: TfrmGerenciadorJogos
           Top = 4
           Width = 147
           Height = 13
+          Cursor = crHandPoint
           AutoSize = False
           Caption = 'Campeonatos'
           Font.Charset = DEFAULT_CHARSET
@@ -676,6 +686,7 @@ object frmGerenciadorJogos: TfrmGerenciadorJogos
           Top = 4
           Width = 11
           Height = 12
+          Cursor = crHandPoint
           Anchors = [akTop]
           Caption = 'p'
           Font.Charset = SYMBOL_CHARSET
@@ -692,6 +703,7 @@ object frmGerenciadorJogos: TfrmGerenciadorJogos
           Top = 4
           Width = 147
           Height = 13
+          Cursor = crHandPoint
           AutoSize = False
           Caption = 'Rivais'
           Font.Charset = DEFAULT_CHARSET
