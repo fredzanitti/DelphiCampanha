@@ -414,7 +414,13 @@ begin
     end;
 
     f_gerais.infIniciais(LblTemp, LblJogos, LblJogad, LblTecn);
-    fraGrafico.PreencherGrafico(StrToInt(LblCodigo.Caption));
+    if LblCodigo.Caption = EmptyStr then
+        fraGrafico.Visible := False
+    else
+    begin
+        fraGrafico.Visible := True;
+        fraGrafico.PreencherGrafico(StrToInt(LblCodigo.Caption));
+    end;
   end;
 end;
 
