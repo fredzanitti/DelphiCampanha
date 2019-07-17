@@ -15,6 +15,7 @@ object CA_ARBIT: TCA_ARBIT
   Menu = MainMenu
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnActivate = FormActivate
   OnClose = FormClose
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
@@ -78,9 +79,7 @@ object CA_ARBIT: TCA_ARBIT
     ExplicitLeft = 28
     ExplicitTop = 168
     inherited BtnCancelar: TBitBtn
-      Left = 384
       OnClick = fraBotoesBtnCancelarClick
-      ExplicitLeft = 384
     end
     inherited BtnExcluir: TBitBtn
       OnClick = fraBotoesBtnExcluirClick

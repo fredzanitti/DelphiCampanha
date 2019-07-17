@@ -45,6 +45,7 @@ type
     procedure fraBotoesBtnGravarClick(Sender: TObject);
     procedure fraBotoesBtnCancelarClick(Sender: TObject);
     procedure fraBotoesBtnPesquisarClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
 
   private
     { Private declarations }
@@ -92,6 +93,11 @@ begin
     EdtNome.Enabled := true;
     EdtNome.SetFocus;
   end;
+end;
+
+procedure TCA_ARBIT.FormActivate(Sender: TObject);
+begin
+     fraBotoes.estadoDosBotoesdeCadastro(FrmDm.DtsArbitros.DataSet.State);
 end;
 
 procedure TCA_ARBIT.FormClose(Sender: TObject; var Action: TCloseAction);

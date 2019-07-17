@@ -46,6 +46,7 @@ type
     procedure fraBotoes1BtnGravarClick(Sender: TObject);
     procedure fraBotoes1BtnCancelarClick(Sender: TObject);
     procedure fraBotoes1BtnPesquisarClick(Sender: TObject);
+    procedure FormActivate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -96,6 +97,12 @@ begin
     EdtCompExtenso.Clear;
     EdtAno.SetFocus;
   end;
+end;
+
+procedure TES_TITULOS.FormActivate(Sender: TObject);
+begin
+  fraBotoes1BtnCancelarClick(Self);
+  fraBotoes1.estadoDosBotoesdeCadastro(FrmDm.DtsTitulos.DataSet.State);
 end;
 
 procedure TES_TITULOS.FormClose(Sender: TObject; var Action: TCloseAction);

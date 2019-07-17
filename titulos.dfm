@@ -15,6 +15,7 @@ object ES_TITULOS: TES_TITULOS
   Menu = MainMenu
   OldCreateOrder = False
   Position = poMainFormCenter
+  OnActivate = FormActivate
   OnClose = FormClose
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
