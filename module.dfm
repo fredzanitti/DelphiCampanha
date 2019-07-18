@@ -287,7 +287,6 @@ object FrmDm: TFrmDm
   end
   object TblJogadores: TFDTable
     Active = True
-    IndexFieldNames = 'nome;codjogador'
     Connection = BDMySQL
     Transaction = TransacaoSQL
     UpdateOptions.UpdateTableName = 'zanittic_software.CA_JOGAD'

@@ -82,8 +82,7 @@ begin
   begin
     FrmDm.TblJogadores.First;
 
-    while FrmDm.TblJogadorescodjogador.AsInteger <> DbGridJogadores.Columns[0]
-      .Field.AsInteger do
+    while FrmDm.TblJogadorescodjogador.AsInteger <> StrToInt(codjogador) do
     begin
       FrmDm.TblJogadores.Next;
     end;

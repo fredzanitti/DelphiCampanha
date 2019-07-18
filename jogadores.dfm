@@ -977,7 +977,9 @@ object CA_JOGAD: TCA_JOGAD
       OnClick = fraBotoes1BtnGravarClick
     end
     inherited BtnPesquisar: TBitBtn
+      Width = 38
       OnClick = fraBotoesBtnPesquisarClick
+      ExplicitWidth = 38
     end
   end
   object BtnExcel: TBitBtn
