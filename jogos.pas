@@ -41,7 +41,6 @@ type
     GroupBox5: TGroupBox;
     DbGridReservas: TDBGrid;
     BtnSubstituicao: TBitBtn;
-    BtnEditaSubstituicao: TBitBtn;
     CbEscalacoDisp: TCheckBox;
     BtnExcluirJogadores: TBitBtn;
     BtnExcluirReservas: TBitBtn;
@@ -109,7 +108,6 @@ type
     procedure BtnExcluirJogadoresClick(Sender: TObject);
     procedure BtnExcluirReservasClick(Sender: TObject);
     procedure BtnEditaTitularClick(Sender: TObject);
-    procedure BtnEditaSubstituicaoClick(Sender: TObject);
     procedure CbEscalacoDispClick(Sender: TObject);
     procedure EdtDataExit(Sender: TObject);
     procedure EdtDataEnter(Sender: TObject);
@@ -182,12 +180,6 @@ begin
   f_gerais.pesquisacompeticao(h_competicao.DbGridCompeticao, 'TODOS');
   h_competicao.identificacao := 'CA_JOGOS';
   h_competicao.ShowModal;
-end;
-
-procedure TCA_JOGOS.BtnEditaSubstituicaoClick(Sender: TObject);
-begin
-  f_gerais.limpaTelaEditaEscalacao();
-  f_gerais.preencherTelaEdtiaEscalacao('R', EdtCodigo.Text);
 end;
 
 procedure TCA_JOGOS.BtnEditaTitularClick(Sender: TObject);
@@ -306,23 +298,22 @@ begin
       if f_gerais.contRegComUmParametro('es_reser', 'codjogo', EdtCodigo.Text) > 0
       then
       begin
+        h_substituicoes.CodigoJogo := StrToInt(EdtCodigo.Text);
+        {
         msg := 'Já existem substituições realizadas para este jogo!' + #13 +
           'Caso queira alterar dados como gols ou cartões, clique no botão' +
           #13 + 'EDITAR SUBSTITUIÇÕES.' + #13 +
           'Caso deseje alterar jogadores que entraram, deve-se' + #13 +
           'excluir as alterações e cadastrá-las novamente';
         Application.MessageBox(Pchar(msg), 'ATENÇÃO',
-          MB_OK + MB_ICONEXCLAMATION);
-      end
-      else
-      begin
-        f_gerais.jogadoresASubstituir(h_substituicoes.DbGridAsubstituir,
-          EdtCodigo.Text);
-        f_gerais.jogadoresDisponiveis(h_substituicoes.DbGridDisponiveis,
-          EdtCodigo.Text, CA_JOGOS.Name, EmptyStr);
-        f_gerais.limpaTelaJogadoresNosJogos(11);
-        h_substituicoes.ShowModal;
+          MB_OK + MB_ICONEXCLAMATION);}
       end;
+      f_gerais.jogadoresASubstituir(h_substituicoes.DbGridAsubstituir,
+        EdtCodigo.Text);
+      f_gerais.jogadoresDisponiveis(h_substituicoes.DbGridDisponiveis,
+        EdtCodigo.Text, CA_JOGOS.Name, EmptyStr);
+      f_gerais.limpaTelaJogadoresNosJogos(11);
+      h_substituicoes.ShowModal;
     end;
   end;
 end;
@@ -343,7 +334,6 @@ begin
     BtnEditaTitular.Enabled := false;
     BtnExcluirJogadores.Enabled := false;
     BtnSubstituicao.Enabled := false;
-    BtnEditaSubstituicao.Enabled := false;
     BtnExcluirReservas.Enabled := false;
     EdtWo.Text := '1';
   end
@@ -353,7 +343,6 @@ begin
     BtnEditaTitular.Enabled := true;
     BtnExcluirJogadores.Enabled := true;
     BtnSubstituicao.Enabled := true;
-    BtnEditaSubstituicao.Enabled := true;
     BtnExcluirReservas.Enabled := true;
     EdtWo.Text := '0';
   end;
@@ -503,8 +492,8 @@ end;
 
 procedure TCA_JOGOS.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
-//  f_gerais.infIniciais(FrmPrincipal.LblTemp, FrmPrincipal.LblJogos,
-//    FrmPrincipal.LblJogad, FrmPrincipal.LblTecn);
+  // f_gerais.infIniciais(FrmPrincipal.LblTemp, FrmPrincipal.LblJogos,
+  // FrmPrincipal.LblJogad, FrmPrincipal.LblTecn);
   FrmPrincipal.InformacoesIniciais;
 end;
 
@@ -556,16 +545,9 @@ begin
     estadoDosBotoesdeCadastro();
     if f_gerais.contRegComUmParametro('es_reser', 'codjogo', EdtCodigo.Text) = 0
     then
-    begin
-      BtnEditaSubstituicao.Enabled := false;
-      BtnExcluirReservas.Enabled := false;
-    end
+      BtnExcluirReservas.Enabled := false
     else
-    begin
-      BtnEditaSubstituicao.Enabled := true;
       BtnExcluirReservas.Enabled := true;
-    end;
-
   end
   else
     Application.MessageBox('A tabela está vazia!', 'ATENÇÃO',
@@ -823,7 +805,8 @@ begin
                       FrmDm.QrGeral.Close;
                       FrmDm.QrGeral.sql.Clear;
                       FrmDm.QrGeral.sql.Add(sql);
-                      FrmDm.QrGeral.Params.ParamByName('CODJOGO').AsInteger := codigojogo;
+                      FrmDm.QrGeral.Params.ParamByName('CODJOGO').AsInteger :=
+                        codigojogo;
                       FrmDm.QrGeral.Params.ParamByName('ANO').AsInteger := ano;
                       FrmDm.QrGeral.ExecSQL;
 
@@ -832,7 +815,8 @@ begin
                       FrmDm.QrGeral.Close;
                       FrmDm.QrGeral.sql.Clear;
                       FrmDm.QrGeral.sql.Add(sql);
-                      FrmDm.QrGeral.Params.ParamByName('CODJOGO').AsInteger := codigojogo;
+                      FrmDm.QrGeral.Params.ParamByName('CODJOGO').AsInteger :=
+                        codigojogo;
                       FrmDm.QrGeral.Params.ParamByName('ANO').AsInteger := ano;
                       FrmDm.QrGeral.ExecSQL;
 
@@ -915,15 +899,9 @@ begin
 
   if f_gerais.contRegComUmParametro('es_reser', 'codjogo',
     CA_JOGOS.EdtCodigo.Text) = 0 then
-  begin
-    BtnEditaSubstituicao.Enabled := false;
-    BtnExcluirReservas.Enabled := false;
-  end
+    BtnExcluirReservas.Enabled := false
   else
-  begin
-    BtnEditaSubstituicao.Enabled := true;
     BtnExcluirReservas.Enabled := true;
-  end;
 end;
 
 procedure TCA_JOGOS.estadoDosBotoesdeCadastro();
@@ -945,7 +923,6 @@ begin
     BtnJogador.Enabled := false;
     BtnEditaTitular.Enabled := false;
     BtnSubstituicao.Enabled := false;
-    BtnEditaSubstituicao.Enabled := false;
     BtnExcluirJogadores.Enabled := false;
     BtnExcluirReservas.Enabled := false;
     BtnUniforme.Enabled := false;
@@ -986,7 +963,6 @@ begin
     BtnJogador.Enabled := true;
     BtnEditaTitular.Enabled := true;
     BtnSubstituicao.Enabled := true;
-    BtnEditaSubstituicao.Enabled := true;
     BtnExcluirJogadores.Enabled := true;
     BtnExcluirReservas.Enabled := true;
     BtnUniforme.Enabled := true;

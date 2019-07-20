@@ -2889,4 +2889,82 @@ object h_substituicoes: Th_substituicoes
     TabOrder = 1
     OnKeyUp = EdtPesquisaKeyUp
   end
+  object qrySubstituicoes: TFDQuery
+    Connection = FrmDm.BDMySQL
+    SQL.Strings = (
+      'SELECT e.coditem,'
+      #9'     e.codjogo,'
+      #9'     e.codjogador AS codJogadorEntrou,'
+      
+        '       CONCAT(je.nome, " ( ", pe.abreviatura, " )" ) AS nomeJoga' +
+        'dorEntrou,'
+      '       e.codjogadorsaiu,'
+      
+        '       CONCAT(js.nome, " ( ", ps.abreviatura, " )" ) AS nomeJoga' +
+        'dorSaiu,'
+      '       e.gols,'
+      '       e.camarelo,'
+      '       e.cvermelho'
+      'FROM es_reser AS e'
+      'INNER JOIN ca_jogad AS je ON je.codjogador = e.codjogador'
+      'INNER JOIN ca_jogad AS js ON js.codjogador = e.codjogadorsaiu'
+      'INNER JOIN ca_posic AS pe ON pe.codposicao = je.codposicao'
+      'INNER JOIN ca_posic AS ps ON ps.codposicao = js.codposicao'
+      'WHERE e.codjogo = :CodigoJogo'
+      'ORDER BY e.coditem')
+    Left = 328
+    Top = 408
+    ParamData = <
+      item
+        Name = 'CODIGOJOGO'
+        DataType = ftInteger
+        ParamType = ptInput
+      end>
+    object qrySubstituicoescodjogo: TIntegerField
+      FieldName = 'codjogo'
+      Origin = 'codjogo'
+      Required = True
+    end
+    object qrySubstituicoescodJogadorEntrou: TIntegerField
+      FieldName = 'codJogadorEntrou'
+      Origin = 'codjogador'
+      Required = True
+    end
+    object qrySubstituicoesnomeJogadorEntrou: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'nomeJogadorEntrou'
+      Origin = 'nome'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object qrySubstituicoescodjogadorsaiu: TIntegerField
+      FieldName = 'codjogadorsaiu'
+      Origin = 'codjogadorsaiu'
+      Required = True
+    end
+    object qrySubstituicoesnomeJogadorSaiu: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'nomeJogadorSaiu'
+      Origin = 'nome'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object qrySubstituicoesgols: TIntegerField
+      FieldName = 'gols'
+      Origin = 'gols'
+      Required = True
+    end
+    object qrySubstituicoescamarelo: TIntegerField
+      FieldName = 'camarelo'
+      Origin = 'camarelo'
+      Required = True
+    end
+    object qrySubstituicoescvermelho: TIntegerField
+      FieldName = 'cvermelho'
+      Origin = 'cvermelho'
+      Required = True
+    end
+  end
 end

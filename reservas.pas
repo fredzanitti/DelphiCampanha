@@ -121,6 +121,15 @@ type
     BtnDesbloqJogador: TBitBtn;
     BtnIncluir: TBitBtn;
     EdtPesquisa: TEdit;
+    qrySubstituicoes: TFDQuery;
+    qrySubstituicoescodjogo: TIntegerField;
+    qrySubstituicoescodJogadorEntrou: TIntegerField;
+    qrySubstituicoesnomeJogadorEntrou: TWideStringField;
+    qrySubstituicoescodjogadorsaiu: TIntegerField;
+    qrySubstituicoesnomeJogadorSaiu: TWideStringField;
+    qrySubstituicoesgols: TIntegerField;
+    qrySubstituicoescamarelo: TIntegerField;
+    qrySubstituicoescvermelho: TIntegerField;
     procedure DbGridAsubstituirCellClick(Column: TColumn);
     procedure DbGridDisponiveisCellClick(Column: TColumn);
     procedure BtnSubstituirClick(Sender: TObject);
@@ -143,7 +152,9 @@ type
     { Private declarations }
   public
     { Public declarations }
+    CodigoJogo: Integer;
     function sequenciaMaxima(): Integer;
+    procedure substitutosJaInclusos;
   end;
 
 var
@@ -160,6 +171,57 @@ procedure Th_substituicoes.BtnDesbloqJogadorClick(Sender: TObject);
 begin
   f_gerais.liberaJogadores('TODOS');
   h_liberarjogador.ShowModal;
+end;
+
+procedure Th_substituicoes.substitutosJaInclusos;
+var
+  item: Integer;
+begin
+  item := 1;
+  if qrySubstituicoes.Active then
+    qrySubstituicoes.Close;
+  qrySubstituicoes.Params.ParamByName('CodigoJogo').DataType := ftInteger;
+  qrySubstituicoes.Params.ParamByName('CodigoJogo').Value := CodigoJogo;
+  qrySubstituicoes.Open;
+  qrySubstituicoes.First;
+  if qrySubstituicoes.RecordCount > 0 then
+  begin
+    while not qrySubstituicoes.Eof do
+    begin
+      (TLabel(FindComponent('LblCodigo' + IntToStr(item)))).Caption :=
+        qrySubstituicoescodjogadorsaiu.AsString;
+      (TLabel(FindComponent('LblNome' + IntToStr(item)))).Caption :=
+        qrySubstituicoesnomeJogadorSaiu.Value;
+      (TLabel(FindComponent('LblNome' + IntToStr(item)))).Visible := True;
+
+      (TLabel(FindComponent('LblCodEntrou' + IntToStr(item)))).Caption :=
+        qrySubstituicoescodJogadorEntrou.AsString;
+      (TLabel(FindComponent('LblEntrou' + IntToStr(item)))).Caption :=
+        qrySubstituicoesnomeJogadorEntrou.Value;
+      (TLabel(FindComponent('LblEntrou' + IntToStr(item)))).Visible := True;
+
+      (TComboBox(FindComponent('CbxGols' + IntToStr(item)))).ItemIndex :=
+        qrySubstituicoesgols.Value;
+      (TComboBox(FindComponent('CbxGols' + IntToStr(item)))).Visible := True;
+
+      if qrySubstituicoescamarelo.Value = 0 then
+        (TCheckBox(FindComponent('CbCa' + IntToStr(item)))).Checked := false
+      else
+        (TCheckBox(FindComponent('CbCa' + IntToStr(item)))).Checked := True;
+      (TCheckBox(FindComponent('CbCa' + IntToStr(item)))).Visible := True;
+
+      if qrySubstituicoescvermelho.Value = 0 then
+        (TCheckBox(FindComponent('CbCv' + IntToStr(item)))).Checked := false
+      else
+        (TCheckBox(FindComponent('CbCv' + IntToStr(item)))).Checked := True;
+      (TCheckBox(FindComponent('CbCv' + IntToStr(item)))).Visible := True;
+
+      (TLabel(FindComponent('LblSeq' + IntToStr(item)))).Caption := IntToStr(item);
+
+      qrySubstituicoes.Next;
+      Inc(item);
+    end;
+  end;
 end;
 
 procedure Th_substituicoes.BtnCancelarClick(Sender: TObject);
@@ -225,7 +287,7 @@ begin
   for i := 1 to 11 do
   begin
     if (FindComponent('LblSeq' + IntToStr(i)) as TLabel).Caption <> '0' then
-      houvesubstituicao := true;
+      houvesubstituicao := True;
   end;
 
   if houvesubstituicao then
@@ -324,7 +386,7 @@ begin
         if DbGridDisponiveis.Columns[0].Field.AsString =
           (TLabel(FindComponent('LblCodEntrou' + IntToStr(i)))).Caption then
         begin
-          verificacao := true;
+          verificacao := True;
         end;
       end;
       if verificacao then
@@ -338,19 +400,19 @@ begin
         (TLabel(FindComponent('LblNome' + IntToStr(maximo)))).Caption :=
           DbGridAsubstituir.Columns[1].Field.AsString + ' ( ' +
           DbGridAsubstituir.Columns[2].Field.AsString + ' )';
-        (TLabel(FindComponent('LblNome' + IntToStr(maximo)))).Visible := true;
+        (TLabel(FindComponent('LblNome' + IntToStr(maximo)))).Visible := True;
         // jogador substituto
         (TLabel(FindComponent('LblCodEntrou' + IntToStr(maximo)))).Caption :=
           DbGridDisponiveis.Columns[0].Field.AsString;
         (TLabel(FindComponent('LblEntrou' + IntToStr(maximo)))).Caption :=
           DbGridDisponiveis.Columns[1].Field.AsString + ' ( ' +
           DbGridDisponiveis.Columns[2].Field.AsString + ' )';
-        (TLabel(FindComponent('LblEntrou' + IntToStr(maximo)))).Visible := true;
+        (TLabel(FindComponent('LblEntrou' + IntToStr(maximo)))).Visible := True;
 
         (TComboBox(FindComponent('CbxGols' + IntToStr(maximo))))
-          .Visible := true;
-        (TCheckBox(FindComponent('CbCa' + IntToStr(maximo)))).Visible := true;
-        (TCheckBox(FindComponent('CbCv' + IntToStr(maximo)))).Visible := true;
+          .Visible := True;
+        (TCheckBox(FindComponent('CbCa' + IntToStr(maximo)))).Visible := True;
+        (TCheckBox(FindComponent('CbCv' + IntToStr(maximo)))).Visible := True;
 
         (TLabel(FindComponent('LblSeq' + IntToStr(maximo)))).Caption :=
           IntToStr(maximo);
@@ -439,7 +501,7 @@ begin
         f_gerais.jogadoresDisponiveis(DbGridDisponiveis,
           CA_JOGOS.EdtCodigo.Text, h_substituicoes.Name, EmptyStr);
 
-          EdtPesquisa.Text := EmptyStr;
+        EdtPesquisa.Text := EmptyStr;
 
       end;
     end
@@ -499,6 +561,8 @@ begin
   saiu := 0;
   entrou := 0;
   EdtPesquisa.Text := EmptyStr;
+  if CodigoJogo > 0 then
+    substitutosJaInclusos;
 end;
 
 procedure Th_substituicoes.FormKeyDown(Sender: TObject; var Key: Word;
@@ -513,7 +577,3 @@ begin
 end;
 
 end.
-
-
-
-
