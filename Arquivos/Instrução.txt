@@ -1,5 +1,5 @@
 ===========================================================
- CAMPANHA DO SEU CLUBE ANO A ANO - VERSÃO 6.1 - JUN/2019
+ CAMPANHA DO SEU CLUBE ANO A ANO - VERSÃO 6.2 - JUL/2019
 ===========================================================
 
 Desenvolvido por: FREDERICO ZANITTI SILVA
@@ -67,6 +67,11 @@ OUTUBRO/2018
 ---------------------------------------
 - Inserido relatóiro de quantidade de jogos de um jogador com determinado técnico;
 - Inserido checkbox na pesquisa de jogadores para que seja possível selecionar apenas técnicos;
+
+---------------------------------------
+JULHO/2019
+---------------------------------------
+- Permitir incluir/alterar substituições mesmo depois de gravar o jogo;
 
 
 SUGESTÕES OU DÚVIDAS

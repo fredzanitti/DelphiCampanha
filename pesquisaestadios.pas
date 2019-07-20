@@ -93,7 +93,7 @@ begin
   begin
 
     // guardar o número do forumlário na label
-    r_jogospadrao.numerorelatorio := '7';
+    r_jogospadrao.numerorelatorio := '8';
     codtime := r_jogospadrao.codauxiliar1;
 
     // contar a quantidade de registros retornados na pesquisa
