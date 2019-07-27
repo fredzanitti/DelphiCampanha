@@ -92,6 +92,8 @@ type
     CbxGols11: TComboBox;
     BtnEliminarUltimo: TBitBtn;
     BtnIncluir: TBitBtn;
+    CbCa12: TCheckBox;
+    CbCv12: TCheckBox;
     procedure DbGridAtivoDblClick(Sender: TObject);
     procedure EdtPesquisaKeyUp(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -193,9 +195,9 @@ begin
     begin
       (FindComponent('CbxGols' + IntToStr(ultimo)) as TComboBox)
         .Visible := false;
-      (FindComponent('CbCa' + IntToStr(ultimo)) as TCheckBox).Visible := false;
-      (FindComponent('CbCv' + IntToStr(ultimo)) as TCheckBox).Visible := false;
     end;
+    (FindComponent('CbCa' + IntToStr(ultimo)) as TCheckBox).Visible := false;
+    (FindComponent('CbCv' + IntToStr(ultimo)) as TCheckBox).Visible := false;
   end;
   EdtPesquisa.SetFocus;
 end;
@@ -256,32 +258,23 @@ begin
       codjogador := StrToInt(TLabel(FindComponent('LblCodigo' + IntToStr(i))
         ).Caption);
 
-      if i = 12 then
-      begin
-        gols := 0;
-        ca := 0;
-        cv := 0;
-      end
+      // gols
+      if (TComboBox(FindComponent('CbxGols' + IntToStr(i))).Text = EmptyStr) or
+        (i = 12) then
+        gols := 0
       else
-      begin
-        // gols
-        if TComboBox(FindComponent('CbxGols' + IntToStr(i))).Text = EmptyStr
-        then
-          gols := 0
-        else
-          gols := StrToInt
-            (TComboBox(FindComponent('CbxGols' + IntToStr(i))).Text);
-        // cartões amarelos
-        if TCheckBox(FindComponent('CbCa' + IntToStr(i))).Checked then
-          ca := 1
-        else
-          ca := 0;
-        // cartões vermelhos
-        if TCheckBox(FindComponent('CbCv' + IntToStr(i))).Checked then
-          cv := 1
-        else
-          cv := 0;
-      end;
+        gols := StrToInt
+          (TComboBox(FindComponent('CbxGols' + IntToStr(i))).Text);
+      // cartões amarelos
+      if TCheckBox(FindComponent('CbCa' + IntToStr(i))).Checked then
+        ca := 1
+      else
+        ca := 0;
+      // cartões vermelhos
+      if TCheckBox(FindComponent('CbCv' + IntToStr(i))).Checked then
+        cv := 1
+      else
+        cv := 0;
 
       FrmDm.QrGeral.Close;
       FrmDm.QrGeral.sql.Clear;
@@ -373,6 +366,16 @@ begin
             .Visible := true;
           (TCheckBox(FindComponent('CbCa' + IntToStr(maximo)))).Visible := true;
           (TCheckBox(FindComponent('CbCv' + IntToStr(maximo)))).Visible := true;
+        end
+        else
+        begin
+          if maximo = 12 then
+          begin
+            (TCheckBox(FindComponent('CbCa' + IntToStr(maximo))))
+              .Visible := true;
+            (TCheckBox(FindComponent('CbCv' + IntToStr(maximo))))
+              .Visible := true;
+          end;
         end;
       end;
     end;
@@ -388,7 +391,7 @@ end;
 procedure Th_jogadoresativos.DbGridAtivoDrawColumnCell(Sender: TObject;
   const Rect: TRect; DataCol: Integer; Column: TColumn; State: TGridDrawState);
 begin
-  ShowScrollBar(TDBGrid(Sender).Handle, SB_HORZ, False);
+  ShowScrollBar(TDBGrid(Sender).Handle, SB_HORZ, false);
   // Remove barra Horizontal
 end;
 

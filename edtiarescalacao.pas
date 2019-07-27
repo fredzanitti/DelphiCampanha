@@ -82,6 +82,11 @@ type
     CbxGols11: TComboBox;
     BtnCancelar: TBitBtn;
     BtnGravar: TBitBtn;
+    LblCodigo12: TLabel;
+    LblNome12: TLabel;
+    CbCa12: TCheckBox;
+    CbCv12: TCheckBox;
+    LblSeq12: TLabel;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure BtnCancelarClick(Sender: TObject);
     procedure BtnGravarClick(Sender: TObject);
@@ -114,19 +119,23 @@ var
 begin
   codjogo := StrToInt(CA_JOGOS.EdtCodigo.Text);
 
-  for i := 1 to 11 do
+  for i := 1 to 12 do
   begin
     if TLabel(FindComponent('LblCodigo' + IntToStr(i))).Caption <> EmptyStr then
     begin
       codjogador := StrToInt(TLabel(FindComponent('LblCodigo' + IntToStr(i))
         ).Caption);
 
-      // gols
-      if TComboBox(FindComponent('CbxGols' + IntToStr(i))).Text = EmptyStr then
-        gols := 0
-      else
-        gols := StrToInt
-          (TComboBox(FindComponent('CbxGols' + IntToStr(i))).Text);
+      if i < 12 then
+      begin
+        // gols
+        if TComboBox(FindComponent('CbxGols' + IntToStr(i))).Text = EmptyStr
+        then
+          gols := 0
+        else
+          gols := StrToInt
+            (TComboBox(FindComponent('CbxGols' + IntToStr(i))).Text);
+      end;
 
       // cartões amarelos
       if TCheckBox(FindComponent('CbCa' + IntToStr(i))).Checked then

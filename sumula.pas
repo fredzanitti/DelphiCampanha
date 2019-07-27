@@ -194,6 +194,7 @@ type
     Image3: TImage;
     Image1: TImage;
     Image2: TImage;
+    ShCa12: TShape;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure LblNome1Click(Sender: TObject);
     procedure LblNome2Click(Sender: TObject);

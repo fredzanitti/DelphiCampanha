@@ -20,9 +20,9 @@ object h_editaescalacao: Th_editaescalacao
   TextHeight = 13
   object GroupBox1: TGroupBox
     Left = 26
-    Top = 21
+    Top = 20
     Width = 401
-    Height = 388
+    Height = 404
     Caption = '    ESCALA'#199#195'O DOS TITULARES    '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
@@ -574,6 +574,50 @@ object h_editaescalacao: Th_editaescalacao
       ParentFont = False
       Visible = False
     end
+    object LblCodigo12: TLabel
+      Left = 7
+      Top = 369
+      Width = 20
+      Height = 13
+      AutoSize = False
+      Caption = 'LblCodigo1'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Visible = False
+    end
+    object LblNome12: TLabel
+      Left = 20
+      Top = 369
+      Width = 217
+      Height = 21
+      AutoSize = False
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
+    object LblSeq12: TLabel
+      Left = 366
+      Top = 373
+      Width = 27
+      Height = 13
+      Alignment = taRightJustify
+      AutoSize = False
+      Caption = '0'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      Visible = False
+    end
     object CbCa1: TCheckBox
       Left = 311
       Top = 65
@@ -970,10 +1014,26 @@ object h_editaescalacao: Th_editaescalacao
         '8'
         '9')
     end
+    object CbCa12: TCheckBox
+      Left = 311
+      Top = 373
+      Width = 17
+      Height = 17
+      TabOrder = 33
+      Visible = False
+    end
+    object CbCv12: TCheckBox
+      Left = 347
+      Top = 373
+      Width = 17
+      Height = 17
+      TabOrder = 34
+      Visible = False
+    end
   end
   object BtnCancelar: TBitBtn
     Left = 382
-    Top = 415
+    Top = 431
     Width = 45
     Height = 45
     Hint = 'Cancelar Escala'#231#227'o'
@@ -1180,7 +1240,7 @@ object h_editaescalacao: Th_editaescalacao
   end
   object BtnGravar: TBitBtn
     Left = 339
-    Top = 415
+    Top = 431
     Width = 45
     Height = 45
     Hint = 'Confirmar Escala'#231#227'o'

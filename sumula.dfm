@@ -2983,6 +2983,14 @@ object r_sumula: Tr_sumula
       E883915369AC5A0000000049454E44AE426082}
     Stretch = True
   end
+  object ShCa12: TShape
+    Left = 330
+    Top = 616
+    Width = 12
+    Height = 18
+    Brush.Color = clYellow
+    Pen.Color = clOlive
+  end
   object GbxPatrocinios: TGroupBox
     Left = 840
     Top = 139

@@ -1750,6 +1750,20 @@ object h_jogadoresativos: Th_jogadoresativos
         '8'
         '9')
     end
+    object CbCa12: TCheckBox
+      Left = 311
+      Top = 357
+      Width = 17
+      Height = 17
+      TabOrder = 33
+    end
+    object CbCv12: TCheckBox
+      Left = 347
+      Top = 357
+      Width = 17
+      Height = 17
+      TabOrder = 34
+    end
   end
   object BtnEliminarUltimo: TBitBtn
     Left = 338

@@ -183,7 +183,7 @@ type
     function Mascara(edt: string; str: string): string;
     function verificaTecnico(codjogador: String): boolean;
     function RemoveAcento(const pText: string): string;
-    function InsereAspasSimples(Texto: string): string;
+    function InsereAspasSimples(texto: string): string;
   end;
 
 var
@@ -205,14 +205,14 @@ uses module, pesquisaJogadoresAtivos, reservas, edtiarescalacao, jogos,
   Função para envolver um texto entre aspas
   =======================================================
 }
-function Tf_gerais.InsereAspasSimples(Texto: string): string;
+function Tf_gerais.InsereAspasSimples(texto: string): string;
 var
- Campo: String;
+  campo: String;
 begin
-     Campo := #39 + StringReplace(Trim(Texto),#39,#39+#39,[rfReplaceAll]) + #39;
-     Result := Campo;
+  campo := #39 + StringReplace(Trim(texto), #39, #39 + #39,
+    [rfReplaceAll]) + #39;
+  Result := campo;
 end;
-
 
 {
   =======================================================
@@ -1970,17 +1970,17 @@ begin
       begin
         (h_jogadoresativos.FindComponent('CbxGols' + IntToStr(i)) as TComboBox)
           .ItemIndex := -1;
-        (h_jogadoresativos.FindComponent('CbCa' + IntToStr(i)) as TCheckBox)
-          .Checked := false;
-        (h_jogadoresativos.FindComponent('CbCv' + IntToStr(i)) as TCheckBox)
-          .Checked := false;
         (h_jogadoresativos.FindComponent('CbxGols' + IntToStr(i)) as TComboBox)
           .Visible := false;
-        (h_jogadoresativos.FindComponent('CbCa' + IntToStr(i)) as TCheckBox)
-          .Visible := false;
-        (h_jogadoresativos.FindComponent('CbCv' + IntToStr(i)) as TCheckBox)
-          .Visible := false;
       end;
+      (h_jogadoresativos.FindComponent('CbCa' + IntToStr(i)) as TCheckBox)
+        .Checked := false;
+      (h_jogadoresativos.FindComponent('CbCv' + IntToStr(i)) as TCheckBox)
+        .Checked := false;
+      (h_jogadoresativos.FindComponent('CbCa' + IntToStr(i)) as TCheckBox)
+        .Visible := false;
+      (h_jogadoresativos.FindComponent('CbCv' + IntToStr(i)) as TCheckBox)
+        .Visible := false;
     end // fim se limite = 12
     else
     begin
@@ -2034,7 +2034,7 @@ var
     =======================================================
   }
 begin
-  for i := 1 to 11 do
+  for i := 1 to 12 do
   begin
     // codigo do jogador
     (h_editaescalacao.FindComponent('LblCodigo' + IntToStr(i)) as TLabel)
@@ -2043,8 +2043,9 @@ begin
     (h_editaescalacao.FindComponent('LblNome' + IntToStr(i)) as TLabel).Caption
       := EmptyStr;
     // gols marcados
-    (h_editaescalacao.FindComponent('CbxGols' + IntToStr(i)) as TComboBox)
-      .ItemIndex := -1;
+    if i < 12 then
+      (h_editaescalacao.FindComponent('CbxGols' + IntToStr(i)) as TComboBox)
+        .ItemIndex := -1;
     // cartão amarelo
     (h_editaescalacao.FindComponent('CbCa' + IntToStr(i)) as TCheckBox)
       .Checked := false;
@@ -2150,16 +2151,17 @@ begin
   QrEditaEscalacao.Open;
   QrEditaEscalacao.First;
 
-  for i := 1 to 11 do
+  for i := 1 to 12 do
   begin
     if QrEditaEscalacao.Eof then
     begin
       // nome do jogador
       (h_editaescalacao.FindComponent('LblNome' + IntToStr(i)) as TLabel)
         .Visible := false;
-      // gols marcados
-      (h_editaescalacao.FindComponent('CbxGols' + IntToStr(i)) as TComboBox)
-        .Visible := false;
+      if i < 12 then
+        // gols marcados
+        (h_editaescalacao.FindComponent('CbxGols' + IntToStr(i)) as TComboBox)
+          .Visible := false;
       // cartão amarelo
       (h_editaescalacao.FindComponent('CbCa' + IntToStr(i)) as TCheckBox)
         .Visible := false;
@@ -2173,9 +2175,10 @@ begin
       // nome do jogador
       (h_editaescalacao.FindComponent('LblNome' + IntToStr(i)) as TLabel)
         .Visible := true;
-      // gols marcados
-      (h_editaescalacao.FindComponent('CbxGols' + IntToStr(i)) as TComboBox)
-        .Visible := true;
+      if i < 12 then
+        // gols marcados
+        (h_editaescalacao.FindComponent('CbxGols' + IntToStr(i)) as TComboBox)
+          .Visible := true;
       // cartão amarelo
       (h_editaescalacao.FindComponent('CbCa' + IntToStr(i)) as TCheckBox)
         .Visible := true;
@@ -2192,14 +2195,16 @@ begin
       (h_editaescalacao.FindComponent('LblNome' + IntToStr(i)) as TLabel)
         .Caption := QrEditaEscalacao.Fields[1].AsString;
 
-      // gols marcados
-      if QrEditaEscalacao.Fields[2].AsInteger = 0 then
-        (h_editaescalacao.FindComponent('CbxGols' + IntToStr(i)) as TComboBox)
-          .ItemIndex := -1
-      else
-        (h_editaescalacao.FindComponent('CbxGols' + IntToStr(i)) as TComboBox)
-          .ItemIndex := QrEditaEscalacao.Fields[2].AsInteger;
-
+      if i < 12 then
+      begin
+        // gols marcados
+        if QrEditaEscalacao.Fields[2].AsInteger = 0 then
+          (h_editaescalacao.FindComponent('CbxGols' + IntToStr(i)) as TComboBox)
+            .ItemIndex := -1
+        else
+          (h_editaescalacao.FindComponent('CbxGols' + IntToStr(i)) as TComboBox)
+            .ItemIndex := QrEditaEscalacao.Fields[2].AsInteger;
+      end;
       // cartão amarelo
       if QrEditaEscalacao.Fields[3].AsInteger = 0 then
         (h_editaescalacao.FindComponent('CbCa' + IntToStr(i)) as TCheckBox)
@@ -3855,37 +3860,35 @@ begin
     buscaBandJogador((r_sumula.FindComponent('ImgBandJog' + IntToStr(i))
       as TImage), QrTitulares.Fields[0].AsString);
 
-    if i < 12 then
+    // cartão vermelho
+    if QrTitulares.Fields[2].AsInteger = 0 then
     begin
-      // cartão vermelho
-      if QrTitulares.Fields[2].AsInteger = 0 then
+      // cartão amarelo
+      if QrTitulares.Fields[1].AsInteger = 0 then
       begin
-        // cartão amarelo
-        if QrTitulares.Fields[1].AsInteger = 0 then
-        begin
-          (r_sumula.FindComponent('ShCa' + IntToStr(i)) as TShape)
-            .Visible := false;
-        end
-        else
-        begin
-          (r_sumula.FindComponent('ShCa' + IntToStr(i)) as TShape).Brush.Color
-            := clYellow;
-          (r_sumula.FindComponent('ShCa' + IntToStr(i)) as TShape).Pen.Color
-            := clOlive;
-          (r_sumula.FindComponent('ShCa' + IntToStr(i)) as TShape)
-            .Visible := true;
-        end;
+        (r_sumula.FindComponent('ShCa' + IntToStr(i)) as TShape)
+          .Visible := false;
       end
       else
       begin
-        (r_sumula.FindComponent('ShCa' + IntToStr(i)) as TShape)
-          .Brush.Color := clRed;
+        (r_sumula.FindComponent('ShCa' + IntToStr(i)) as TShape).Brush.Color
+          := clYellow;
         (r_sumula.FindComponent('ShCa' + IntToStr(i)) as TShape).Pen.Color
-          := clMaroon;
+          := clOlive;
         (r_sumula.FindComponent('ShCa' + IntToStr(i)) as TShape)
           .Visible := true;
       end;
-
+    end
+    else
+    begin
+      (r_sumula.FindComponent('ShCa' + IntToStr(i)) as TShape)
+        .Brush.Color := clRed;
+      (r_sumula.FindComponent('ShCa' + IntToStr(i)) as TShape).Pen.Color
+        := clMaroon;
+      (r_sumula.FindComponent('ShCa' + IntToStr(i)) as TShape).Visible := true;
+    end;
+    if i < 12 then
+    begin
       // gols
       if QrTitulares.Fields[3].AsInteger = 0 then
         (r_sumula.FindComponent('ImgBola' + IntToStr(i)) as TImage)
