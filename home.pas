@@ -10,7 +10,8 @@ uses
   FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, VclTee.TeeGDIPlus, VclTee.TeEngine,
-  VclTee.TeeProcs, VclTee.Chart, VclTee.DBChart, VclTee.Series, frameGrafico;
+  VclTee.TeeProcs, VclTee.Chart, VclTee.DBChart, VclTee.Series, frameGrafico,
+  System.Actions, Vcl.ActnList;
 
 type
   TFrmPrincipal = class(TForm)
@@ -278,6 +279,7 @@ type
     procedure FormShow(Sender: TObject);
     procedure MnAtualizarClick(Sender: TObject);
     procedure Gerenciadordejogos1Click(Sender: TObject);
+    procedure actCadastroJogosExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -421,6 +423,14 @@ begin
         fraGrafico.Visible := True;
         fraGrafico.PreencherGrafico(StrToInt(LblCodigo.Caption));
     end;
+  end;
+end;
+
+procedure TFrmPrincipal.actCadastroJogosExecute(Sender: TObject);
+begin
+  if not f_gerais.verifJogParaCadastroJogos() then
+  begin
+    CA_JOGOS.ShowModal;
   end;
 end;
 

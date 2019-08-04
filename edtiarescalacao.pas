@@ -135,7 +135,9 @@ begin
         else
           gols := StrToInt
             (TComboBox(FindComponent('CbxGols' + IntToStr(i))).Text);
-      end;
+      end
+      else
+        gols := 0;
 
       // cartões amarelos
       if TCheckBox(FindComponent('CbCa' + IntToStr(i))).Checked then
