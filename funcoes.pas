@@ -11,7 +11,7 @@ uses
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.DBGrids, Vcl.StdCtrls,
   jpeg, UProgresso, SHDocVw, ActiveX, ComObj,
   DateUtils, IdHashMessageDigest, DBXJSON, Character,
-  IdCoder, IdCoder3to4, IdCoderMIME, XSBuiltIns;
+  IdCoder, IdCoder3to4, IdCoderMIME, XSBuiltIns,ComCtrls;
 
 type
   Tf_gerais = class(TForm)
@@ -117,8 +117,6 @@ type
     procedure jogadoresDisponiveis(grid: TDBGrid;
       codigodojogo, nomeform, nomejogador: String);
     procedure liberaJogadores(ano: String);
-    procedure limparLiberaJogadores();
-    procedure marcarDesmarcarTodos(x: integer; status: boolean);
     procedure atualizaSituacao(situacao: integer);
     procedure atualizaSituacaoGeral(situacao: integer);
     procedure preenchimentoTelaPadraoJogos(sqlcode: String; corte: integer;
@@ -2504,7 +2502,7 @@ end;
 
 procedure Tf_gerais.liberaJogadores(ano: String);
 var
-  i: integer;
+  Item: TListItem;
   {
     =======================================================
     Liberar jogadores
@@ -2540,66 +2538,48 @@ begin
   if ano <> 'TODOS' then
     QrFunctions.Params.ParamByName('ANOATUA').AsString := ano;
   QrFunctions.Open;
-  QrFunctions.First;
-  limparLiberaJogadores();
 
-  for i := 1 to 45 do
-  begin
-    if not QrFunctions.Eof then
-    begin
-      (h_liberarjogador.FindComponent('LblCodigo' + IntToStr(i)) as TLabel)
-        .Caption := QrFunctions.Fields[0].AsString;
-      (h_liberarjogador.FindComponent('LblNome' + IntToStr(i)) as TLabel)
-        .Caption := QrFunctions.Fields[1].AsString;
+  h_liberarjogador.lsvJogadores.Items.Clear;
+  try
+     frmProgresso := TfrmProgresso.Create(Self);
+     try
+            frmProgresso.gauProgresso.MaxValue := QrFunctions.RecordCount;
+            frmProgresso.gauProgresso.MinValue := 0;
+            frmProgresso.gauProgresso.Progress := 0;
+            frmProgresso.Show;
+            frmProgresso.lblMensagem.Caption := 'Processando informações...';
+            frmProgresso.lblMensagem.Update;
 
-      // visualizar componente
-      (h_liberarjogador.FindComponent('LblNome' + IntToStr(i)) as TLabel)
-        .Visible := true;
-      (h_liberarjogador.FindComponent('CbLiberar' + IntToStr(i)) as TCheckBox)
-        .Visible := true;
-    end;
-    QrFunctions.Next;
+            // Carrega listview
+            h_liberarjogador.lsvJogadores.Items.BeginUpdate;
+            QrFunctions.First;
+            while not QrFunctions.Eof do
+            begin
+                 Application.ProcessMessages;
+                 frmProgresso.gauProgresso.Progress := I;
+
+                 Item := h_liberarjogador.lsvJogadores.Items.Add;
+                 Item.Caption := QrFunctions.Fields[0].AsString;
+                 Item.SubItems.Add(QrFunctions.Fields[1].AsString);
+                 QrFunctions.Next;
+            end;
+     finally
+            if Assigned(frmProgresso) then
+                 frmProgresso.Free;
+     end;
+  finally
+       h_liberarjogador.lsvJogadores.Items.EndUpdate;
   end;
   FrmDm.DtsJogadores.DataSet.Refresh;
-end;
-
-procedure Tf_gerais.limparLiberaJogadores();
-var
-  i: integer;
-begin
-  for i := 1 to 45 do
-  begin
-    (h_liberarjogador.FindComponent('LblCodigo' + IntToStr(i)) as TLabel)
-      .Caption := EmptyStr;
-    (h_liberarjogador.FindComponent('LblNome' + IntToStr(i)) as TLabel).Caption
-      := EmptyStr;
-    (h_liberarjogador.FindComponent('CbLiberar' + IntToStr(i)) as TCheckBox)
-      .Checked := false;
-
-    (h_liberarjogador.FindComponent('LblCodigo' + IntToStr(i)) as TLabel)
-      .Visible := false;
-    (h_liberarjogador.FindComponent('LblNome' + IntToStr(i)) as TLabel)
-      .Visible := false;
-    (h_liberarjogador.FindComponent('CbLiberar' + IntToStr(i)) as TCheckBox)
-      .Visible := false;
-  end;
-end;
-
-procedure Tf_gerais.marcarDesmarcarTodos(x: integer; status: boolean);
-begin
-  if (h_liberarjogador.FindComponent('LblCodigo' + IntToStr(x)) as TLabel)
-    .Caption <> EmptyStr then
-    (h_liberarjogador.FindComponent('CbLiberar' + IntToStr(x)) as TCheckBox)
-      .Checked := status;
 end;
 
 procedure Tf_gerais.atualizaSituacao(situacao: integer);
 var
   i: integer;
 begin
-  for i := 1 to 45 do
+  for I := 0 to h_liberarjogador.lsvJogadores.Items.Count - 1 do
   begin
-    if (h_liberarjogador.FindComponent('CbLiberar' + IntToStr(i)) as TCheckBox).Checked
+    if (h_liberarjogador.lsvJogadores.Items[I].Checked)
     then
     begin
       sql := 'update ca_jogad set situacao = :SIT where codjogador = :CODIGO';
@@ -2608,8 +2588,7 @@ begin
       FrmDm.QrGeral.sql.Add(sql);
       FrmDm.QrGeral.Params.ParamByName('SIT').AsInteger := situacao;
       FrmDm.QrGeral.Params.ParamByName('CODIGO').AsString :=
-        (h_liberarjogador.FindComponent('LblCodigo' + IntToStr(i))
-        as TLabel).Caption;
+        h_liberarjogador.lsvJogadores.Items[I].Caption;
 
       FrmDm.QrGeral.ExecSQL;
     end;
