@@ -11,7 +11,7 @@ uses
   FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, VclTee.TeeGDIPlus, VclTee.TeEngine,
   VclTee.TeeProcs, VclTee.Chart, VclTee.DBChart, VclTee.Series, frameGrafico,
-  System.Actions, Vcl.ActnList;
+  System.Actions, Vcl.ActnList, Vcl.ImgList;
 
 type
   TFrmPrincipal = class(TForm)
@@ -162,10 +162,21 @@ type
     Gerenciadordejogos1: TMenuItem;
     N2: TMenuItem;
     fraGrafico: TfraGrafico;
+    actListIcons: TActionList;
+    imgIcons: TImageList;
+    actCadastroClubes: TAction;
+    actCadastroJogos: TAction;
+    actCadastroJogador: TAction;
+    actCadastroEstadios: TAction;
+    actCadastroUniformes: TAction;
+    actCadastroArbitros: TAction;
+    actCadastroTitulos: TAction;
+    actBackup: TAction;
+    actCadastroCidades: TAction;
+    actCadastroUsuarios: TAction;
+    actRestore: TAction;
     procedure FormActivate(Sender: TObject);
     procedure MnClubesClick(Sender: TObject);
-    procedure MnJogadoresClick(Sender: TObject);
-    procedure MnEstadiosClick(Sender: TObject);
     procedure BtnCadJogosMouseEnter(Sender: TObject);
     procedure BtnCadJogosMouseLeave(Sender: TObject);
     procedure BtnCadTitulosMouseEnter(Sender: TObject);
@@ -184,13 +195,10 @@ type
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure MnSairClick(Sender: TObject);
-    procedure MnArbitrosClick(Sender: TObject);
     procedure BtnCadArbitrosClick(Sender: TObject);
-    procedure MnTitulosClick(Sender: TObject);
     procedure BtnCadTitulosClick(Sender: TObject);
     procedure MnFasesClick(Sender: TObject);
     procedure MnCompeticaoClick(Sender: TObject);
-    procedure MnJogosClick(Sender: TObject);
     procedure BtnCadJogosClick(Sender: TObject);
     procedure MnTaticaClick(Sender: TObject);
     procedure MnBloquearClick(Sender: TObject);
@@ -232,7 +240,6 @@ type
     procedure MnJogadores6Click(Sender: TObject);
     procedure MnJogadores7Click(Sender: TObject);
     procedure MnJogadores8Click(Sender: TObject);
-    procedure MnCidadesClick(Sender: TObject);
     procedure Os10Mais1Click(Sender: TObject);
     procedure Os10Mais2Click(Sender: TObject);
     procedure Os10Mais3Click(Sender: TObject);
@@ -243,17 +250,13 @@ type
     procedure MnCampanhaClick(Sender: TObject);
     procedure MnRelTitulosClick(Sender: TObject);
     procedure Timer1Timer(Sender: TObject);
-    procedure MnUsuarioClick(Sender: TObject);
     procedure MnSobreClick(Sender: TObject);
-    procedure MnBackupClick(Sender: TObject);
     procedure BtnBackupClick(Sender: TObject);
     procedure BtnBackupMouseEnter(Sender: TObject);
     procedure BtnBackupMouseLeave(Sender: TObject);
-    procedure MnRestoreClick(Sender: TObject);
     procedure Os10Mais7Click(Sender: TObject);
     procedure MnPatrocClick(Sender: TObject);
     procedure Fornecedores1Click(Sender: TObject);
-    procedure MnUniformesClick(Sender: TObject);
     procedure PorCamisa1Click(Sender: TObject);
     procedure MnPublicoMenorClick(Sender: TObject);
     procedure Mn10UltimosJogosClick(Sender: TObject);
@@ -280,6 +283,16 @@ type
     procedure MnAtualizarClick(Sender: TObject);
     procedure Gerenciadordejogos1Click(Sender: TObject);
     procedure actCadastroJogosExecute(Sender: TObject);
+    procedure actCadastroClubesExecute(Sender: TObject);
+    procedure actCadastroJogadorExecute(Sender: TObject);
+    procedure actCadastroEstadiosExecute(Sender: TObject);
+    procedure actCadastroUniformesExecute(Sender: TObject);
+    procedure actCadastroArbitrosExecute(Sender: TObject);
+    procedure actCadastroTitulosExecute(Sender: TObject);
+    procedure actBackupExecute(Sender: TObject);
+    procedure actCadastroCidadesExecute(Sender: TObject);
+    procedure actCadastroUsuariosExecute(Sender: TObject);
+    procedure actRestoreExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -426,12 +439,68 @@ begin
   end;
 end;
 
+procedure TFrmPrincipal.actBackupExecute(Sender: TObject);
+begin
+  FrmBackup.MemScript.Clear;
+  FrmBackup.MemScript.Visible := false;
+  FrmBackup.ShowModal;
+end;
+
+procedure TFrmPrincipal.actCadastroArbitrosExecute(Sender: TObject);
+begin
+  CA_ARBIT.ShowModal;
+end;
+
+procedure TFrmPrincipal.actCadastroCidadesExecute(Sender: TObject);
+begin
+  // preencher grid da pesquisa de cidades
+  f_gerais.pesquisaCidade(h_cidades.DbGridCidades, 'TODOS');
+  h_cidades.ShowModal;
+end;
+
+procedure TFrmPrincipal.actCadastroClubesExecute(Sender: TObject);
+begin
+  CA_ADVER.ShowModal;
+end;
+
+procedure TFrmPrincipal.actCadastroEstadiosExecute(Sender: TObject);
+begin
+    CA_ESTAD.ShowModal;
+end;
+
+procedure TFrmPrincipal.actCadastroJogadorExecute(Sender: TObject);
+begin
+    CA_JOGAD.ShowModal;
+end;
+
 procedure TFrmPrincipal.actCadastroJogosExecute(Sender: TObject);
 begin
   if not f_gerais.verifJogParaCadastroJogos() then
   begin
     CA_JOGOS.ShowModal;
   end;
+end;
+
+procedure TFrmPrincipal.actCadastroTitulosExecute(Sender: TObject);
+begin
+  ES_TITULOS.ShowModal;
+end;
+
+procedure TFrmPrincipal.actCadastroUniformesExecute(Sender: TObject);
+begin
+  CA_UNIFORMES.ShowModal;
+end;
+
+procedure TFrmPrincipal.actCadastroUsuariosExecute(Sender: TObject);
+begin
+  CA_USER.ShowModal;
+end;
+
+procedure TFrmPrincipal.actRestoreExecute(Sender: TObject);
+begin
+  FrmRestore.MemScript.Clear;
+  FrmRestore.MemScript.Visible := false;
+  FrmRestore.ShowModal;
 end;
 
 procedure TFrmPrincipal.BitBtn1Click(Sender: TObject);
@@ -441,7 +510,7 @@ end;
 
 procedure TFrmPrincipal.BtnBackupClick(Sender: TObject);
 begin
-  MnBackupClick(Self);
+  actBackup.Execute;
 end;
 
 procedure TFrmPrincipal.BtnBackupMouseEnter(Sender: TObject);
@@ -456,7 +525,7 @@ end;
 
 procedure TFrmPrincipal.BtnCadArbitrosClick(Sender: TObject);
 begin
-  MnArbitrosClick(Self);
+  actCadastroArbitros.Execute;
 end;
 
 procedure TFrmPrincipal.BtnCadArbitrosMouseEnter(Sender: TObject);
@@ -471,7 +540,7 @@ end;
 
 procedure TFrmPrincipal.BtnCadClubesClick(Sender: TObject);
 begin
-  MnClubesClick(Self);
+  actCadastroClubes.Execute;
 end;
 
 procedure TFrmPrincipal.BtnCadClubesMouseEnter(Sender: TObject);
@@ -486,7 +555,7 @@ end;
 
 procedure TFrmPrincipal.BtnCadEstadiosClick(Sender: TObject);
 begin
-  MnEstadiosClick(Self);
+  actCadastroEstadios.Execute;
 end;
 
 procedure TFrmPrincipal.BtnCadEstadiosMouseEnter(Sender: TObject);
@@ -501,7 +570,7 @@ end;
 
 procedure TFrmPrincipal.BtnCadJogadoresClick(Sender: TObject);
 begin
-  MnJogadoresClick(Self);
+  actCadastroJogador.Execute;
 end;
 
 procedure TFrmPrincipal.BtnCadJogadoresMouseEnter(Sender: TObject);
@@ -516,7 +585,7 @@ end;
 
 procedure TFrmPrincipal.BtnCadJogosClick(Sender: TObject);
 begin
-  MnJogosClick(Self);
+  actCadastroJogos.Execute;
 end;
 
 procedure TFrmPrincipal.BtnCadJogosMouseEnter(Sender: TObject);
@@ -531,7 +600,7 @@ end;
 
 procedure TFrmPrincipal.BtnCadTitulosClick(Sender: TObject);
 begin
-  MnTitulosClick(Self);
+  actCadastroTitulos.Execute;
 end;
 
 procedure TFrmPrincipal.BtnCadTitulosMouseEnter(Sender: TObject);
@@ -546,7 +615,7 @@ end;
 
 procedure TFrmPrincipal.BtnUniformesClick(Sender: TObject);
 begin
-  MnUniformesClick(Self);
+  actCadastroUniformes.Execute;
 end;
 
 procedure TFrmPrincipal.BtnUniformesMouseEnter(Sender: TObject);
@@ -723,21 +792,9 @@ begin
   h_clubes.ShowModal;
 end;
 
-procedure TFrmPrincipal.MnArbitrosClick(Sender: TObject);
-begin
-  CA_ARBIT.ShowModal;
-end;
-
 procedure TFrmPrincipal.MnAtualizarClick(Sender: TObject);
 begin
   InformacoesIniciais;
-end;
-
-procedure TFrmPrincipal.MnBackupClick(Sender: TObject);
-begin
-  FrmBackup.MemScript.Clear;
-  FrmBackup.MemScript.Visible := false;
-  FrmBackup.ShowModal;
 end;
 
 procedure TFrmPrincipal.MnBloquearClick(Sender: TObject);
@@ -758,13 +815,6 @@ begin
   r_campanhageral.ShowModal;
 end;
 
-procedure TFrmPrincipal.MnCidadesClick(Sender: TObject);
-begin
-  // preencher grid da pesquisa de cidades
-  f_gerais.pesquisaCidade(h_cidades.DbGridCidades, 'TODOS');
-  h_cidades.ShowModal;
-end;
-
 procedure TFrmPrincipal.MnClubesClick(Sender: TObject);
 begin
   CA_ADVER.ShowModal;
@@ -778,11 +828,6 @@ end;
 procedure TFrmPrincipal.MnCompeticaoClick(Sender: TObject);
 begin
   CA_COMPE.ShowModal;
-end;
-
-procedure TFrmPrincipal.MnEstadiosClick(Sender: TObject);
-begin
-  CA_ESTAD.ShowModal;
 end;
 
 procedure TFrmPrincipal.MnEstGeraisClick(Sender: TObject);
@@ -1202,11 +1247,6 @@ begin
   end;
 end;
 
-procedure TFrmPrincipal.MnJogadoresClick(Sender: TObject);
-begin
-  CA_JOGAD.ShowModal;
-end;
-
 procedure TFrmPrincipal.MnJogosAnoClick(Sender: TObject);
 begin
   f_gerais.anocompeticao := 'MnJogosAno';
@@ -1220,14 +1260,6 @@ begin
   f_gerais.pesquisaArbitro(h_arbitros.DbGridArbitro, 'TODOS');
   h_arbitros.identificacao := 'MnJogosArbitro';
   h_arbitros.ShowModal;
-end;
-
-procedure TFrmPrincipal.MnJogosClick(Sender: TObject);
-begin
-  if not f_gerais.verifJogParaCadastroJogos() then
-  begin
-    CA_JOGOS.ShowModal;
-  end;
 end;
 
 procedure TFrmPrincipal.MnJogosEstadioClick(Sender: TObject);
@@ -1440,13 +1472,6 @@ begin
   r_titulos.ShowModal;
 end;
 
-procedure TFrmPrincipal.MnRestoreClick(Sender: TObject);
-begin
-  FrmRestore.MemScript.Clear;
-  FrmRestore.MemScript.Visible := false;
-  FrmRestore.ShowModal;
-end;
-
 procedure TFrmPrincipal.MnRivaisClick(Sender: TObject);
 begin
   f_gerais.anocompeticao := 'MnRivais';
@@ -1467,11 +1492,6 @@ end;
 procedure TFrmPrincipal.MnTaticaClick(Sender: TObject);
 begin
   CA_TATIC.ShowModal;
-end;
-
-procedure TFrmPrincipal.MnTitulosClick(Sender: TObject);
-begin
-  ES_TITULOS.ShowModal;
 end;
 
 procedure TFrmPrincipal.MnUltimosJogosClick(Sender: TObject);
@@ -1527,11 +1547,6 @@ begin
     'ca_adver', 'codadver', '0');
   // mostara a consulta finalizada
   r_jogospadrao.ShowModal;
-end;
-
-procedure TFrmPrincipal.MnUsuarioClick(Sender: TObject);
-begin
-  CA_USER.ShowModal;
 end;
 
 procedure TFrmPrincipal.Os10Mais1Click(Sender: TObject);
@@ -1910,11 +1925,6 @@ begin
   StbSistema.Panels[0].Text :=
     FormatDateTime('dddd", "dd" de "mmmm" de "yyyy', date);
   Timer1.Interval := 1000;
-end;
-
-procedure TFrmPrincipal.MnUniformesClick(Sender: TObject);
-begin
-  CA_UNIFORMES.ShowModal;
 end;
 
 procedure TFrmPrincipal.MnJogosCampeonato1Click(Sender: TObject);
