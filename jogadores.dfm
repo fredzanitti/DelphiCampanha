@@ -386,6 +386,8 @@ object CA_JOGAD: TCA_JOGAD
       ParentShowHint = False
       ShowHint = True
       OnDblClick = ImgFotoDblClick
+      OnMouseEnter = ImgFotoMouseEnter
+      OnMouseLeave = ImgFotoMouseLeave
     end
     object Label9: TLabel
       Left = 343

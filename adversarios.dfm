@@ -118,7 +118,11 @@ object CA_ADVER: TCA_ADVER
       Top = 29
       Width = 73
       Height = 73
+      CustomHint = FrmPrincipal.BalloonHint1
       Stretch = True
+      OnDblClick = ImgLogoAdverDblClick
+      OnMouseEnter = ImgLogoAdverMouseEnter
+      OnMouseLeave = ImgLogoAdverMouseLeave
     end
     object EdtCodigo: TDBEdit
       Left = 109

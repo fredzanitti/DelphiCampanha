@@ -91,6 +91,8 @@ type
     procedure BtnRelatorioClick(Sender: TObject);
     procedure btnCarreiraClick(Sender: TObject);
     procedure btnIndividualClick(Sender: TObject);
+    procedure ImgFotoMouseEnter(Sender: TObject);
+    procedure ImgFotoMouseLeave(Sender: TObject);
   private
     { Private declarations }
   public
@@ -497,7 +499,6 @@ procedure TCA_JOGAD.ImgFotoDblClick(Sender: TObject);
 var
   consultaJogador: String;
 begin
-
   if (EdtNome.Text <> EmptyStr) or (EdtNomeCompleto.Text <> EmptyStr) then
   begin
     consultaJogador := 'https://www.google.com.br/search?q=' + EdtNome.Text +
@@ -516,6 +517,23 @@ begin
     ImgFoto.ShowHint := False;
     ImgFoto.DragCursor := crDefault;
   end;
+end;
+
+procedure TCA_JOGAD.ImgFotoMouseEnter(Sender: TObject);
+begin
+  if (EdtNome.Text <> EmptyStr) or (EdtNomeCompleto.Text <> EmptyStr) then
+  begin
+    ImgFoto.Hint :=
+      'Clique duplo neste espaço para buscar a foto do jogador na internet';
+    ImgFoto.ShowHint := True;
+    ImgFoto.DragCursor := crHandPoint;
+  end;
+end;
+
+procedure TCA_JOGAD.ImgFotoMouseLeave(Sender: TObject);
+begin
+    ImgFoto.ShowHint := False;
+    ImgFoto.DragCursor := crDefault;
 end;
 
 procedure TCA_JOGAD.MnCadastrarClick(Sender: TObject);

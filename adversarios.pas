@@ -4,7 +4,7 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
-  System.Classes, Vcl.Graphics,
+  System.Classes, Vcl.Graphics, ShellAPI,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, FireDAC.Stan.Intf, FireDAC.Stan.Option,
   FireDAC.Stan.Error, FireDAC.UI.Intf, FireDAC.Phys.Intf, FireDAC.Stan.Def,
   FireDAC.Stan.Pool, FireDAC.Stan.Async, FireDAC.Phys, FireDAC.Phys.MySQL,
@@ -65,6 +65,9 @@ type
     procedure fraBotoesBtnCancelarClick(Sender: TObject);
     procedure fraBotoesBtnPesquisarClick(Sender: TObject);
     procedure BtnRelatorioClick(Sender: TObject);
+    procedure ImgLogoAdverDblClick(Sender: TObject);
+    procedure ImgLogoAdverMouseEnter(Sender: TObject);
+    procedure ImgLogoAdverMouseLeave(Sender: TObject);
   private
     { Private declarations }
   public
@@ -344,6 +347,46 @@ procedure TCA_ADVER.fraCidades1BtnLocCidadeClick(Sender: TObject);
 begin
   fraCidades.formulario := 'CA_ADVER';
   fraCidades.BtnLocCidadeClick(Self);
+end;
+
+procedure TCA_ADVER.ImgLogoAdverDblClick(Sender: TObject);
+var
+  consultaAdversario: String;
+begin
+  if (EdtNomeAdver.Text <> EmptyStr) then
+  begin
+    consultaAdversario := 'https://www.google.com.br/search?q=' + EdtNomeAdver.Text +
+      ' ' + fraCidades.LblPais.Caption + ' ' + 'escudo' +
+      '&biw=1280&bih=899&source=lnms&tbm=isch&sa=X&ei=gbamVNP6N4enNr79g5gI&ved=0CAYQ_AUoAQ';
+
+    ShellExecute(Handle, 'open', PChar(consultaAdversario), '', '', 1);
+    ImgLogoAdver.Hint :=
+      'Clique duplo neste espaço para buscar o escudo do time na internet';
+    ImgLogoAdver.ShowHint := True;
+    ImgLogoAdver.DragCursor := crHandPoint;
+  end
+  else
+  begin
+    ImgLogoAdver.ShowHint := False;
+    ImgLogoAdver.DragCursor := crDefault;
+  end;
+end;
+
+procedure TCA_ADVER.ImgLogoAdverMouseEnter(Sender: TObject);
+begin
+  if (EdtNomeAdver.Text <> EmptyStr) then
+  begin
+    ImgLogoAdver.Hint :=
+      'Clique duplo neste espaço para buscar o escudo do time na internet';
+    ImgLogoAdver.ShowHint := True;
+    ImgLogoAdver.DragCursor := crHandPoint;
+  end;
+end;
+
+procedure TCA_ADVER.ImgLogoAdverMouseLeave(Sender: TObject);
+begin
+    ImgLogoAdver.ShowHint := False;
+    ImgLogoAdver.DragCursor := crDefault;
 end;
 
 procedure TCA_ADVER.MnCadastrarClick(Sender: TObject);
