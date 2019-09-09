@@ -162,8 +162,8 @@ type
     Gerenciadordejogos1: TMenuItem;
     N2: TMenuItem;
     fraGrafico: TfraGrafico;
-    actListIcons: TActionList;
-    imgIcons: TImageList;
+    actMenus: TActionList;
+    imgIcons16: TImageList;
     actCadastroClubes: TAction;
     actCadastroJogos: TAction;
     actCadastroJogador: TAction;
@@ -175,6 +175,10 @@ type
     actCadastroCidades: TAction;
     actCadastroUsuarios: TAction;
     actRestore: TAction;
+    btnEstatisticas: TBitBtn;
+    imgIcons32: TImageList;
+    actBotoes32: TActionList;
+    actEstatisticasGeraisTimes: TAction;
     procedure FormActivate(Sender: TObject);
     procedure MnClubesClick(Sender: TObject);
     procedure BtnCadJogosMouseEnter(Sender: TObject);
@@ -293,6 +297,7 @@ type
     procedure actCadastroCidadesExecute(Sender: TObject);
     procedure actCadastroUsuariosExecute(Sender: TObject);
     procedure actRestoreExecute(Sender: TObject);
+    procedure actEstatisticasGeraisTimesExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -390,6 +395,7 @@ begin
       LblVs.Visible := false;
       LblTitulo.Visible := false;
       ShUltimoJogo.Visible := false;
+      btnEstatisticas.Visible := False;
     end
     else
     begin
@@ -404,6 +410,7 @@ begin
       LblVs.Visible := True;
       LblTitulo.Visible := True;
       ShUltimoJogo.Visible := True;
+      btnEstatisticas.Visible := True;
     end;
 
     if (f_gerais.contadorRegistros('ca_jogad') = 0) or
@@ -494,6 +501,73 @@ end;
 procedure TFrmPrincipal.actCadastroUsuariosExecute(Sender: TObject);
 begin
   CA_USER.ShowModal;
+end;
+
+procedure TFrmPrincipal.actEstatisticasGeraisTimesExecute(Sender: TObject);
+var
+  sql,
+  codtime: String;
+begin
+    sql := 'SELECT ' +
+           'CASE WHEN ca_jogos.codadvermand = 0 THEN ca_jogos.codadvervisit ' +
+           '   ELSE ca_jogos.codadvermand ' +
+           '   END AS Adversario ' +
+          'FROM ca_jogos ' +
+          'WHERE ca_jogos.codjogo = ' + LblCodigo.Caption;
+
+    QrAux.Close;
+    QrAux.SQL.Clear;
+    QrAux.SQL.Add(sql);
+    QrAux.Open;
+
+    codtime := QrAux.Fields[0].AsString;
+
+    sql := 'select count(*) from ca_jogos ' + 'where (codadvermand = ' + codtime
+      + ' or codadvervisit = ' + codtime + ')';
+
+    FrmDm.QrContador.Close;
+    FrmDm.QrContador.sql.Clear;
+    FrmDm.QrContador.sql.Add(sql);
+    FrmDm.QrContador.Open;
+
+    if FrmDm.QrContador.Fields[0].AsInteger = 0 then
+      Application.MessageBox('Não há jogos cadastrados contra esse adversário',
+        'ATENÇÃO', MB_OK + MB_ICONINFORMATION)
+    else
+    begin
+
+      // guardar o número do forumlário na label
+      r_jogospadrao.numerorelatorio := '27';
+      r_jogospadrao.codauxiliar1 := codtime;
+
+      r_estgerais.LblSequencia1.Caption :=
+        f_gerais.sequencias(r_estgerais.LblDtIniSeq1, r_estgerais.LblDtFimSeq1,
+        codtime, 1, 1);
+      r_estgerais.LblSequencia2.Caption :=
+        f_gerais.sequencias(r_estgerais.LblDtIniSeq2, r_estgerais.LblDtFimSeq2,
+        codtime, 2, 1);
+      r_estgerais.LblSequencia3.Caption :=
+        f_gerais.sequencias(r_estgerais.LblDtIniSeq3, r_estgerais.LblDtFimSeq3,
+        codtime, 3, 1);
+      r_estgerais.LblSequencia4.Caption :=
+        f_gerais.sequencias(r_estgerais.LblDtIniSeq4, r_estgerais.LblDtFimSeq4,
+        codtime, 4, 1);
+
+      f_gerais.buscaImagemPorCodigo(r_estgerais.ImgSeutime, '0');
+      f_gerais.buscaImagemPorCodigo(r_estgerais.ImgAdver, codtime);
+      r_estgerais.LblTimeMand.Caption :=
+        AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_adver', 'codadver', '0'));
+      r_estgerais.LblTimeVisit.Caption :=
+        AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_adver', 'codadver',
+        codtime));
+
+      // ultimo jogo, vitoria e derrota, melhor, pior resultado e estatiscas
+      // por campeonato
+      f_gerais.melhorPiorResultado(codtime);
+      f_gerais.estPeriodoSemPerderSemGanhar(codtime);
+
+      r_estgerais.ShowModal;
+    end;
 end;
 
 procedure TFrmPrincipal.actRestoreExecute(Sender: TObject);
