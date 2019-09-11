@@ -175,8 +175,6 @@ begin
       r_jogospadrao.ShowModal;
     end;
   end;
-
-  h_fornecedor.Close;
 end;
 
 procedure Th_fornecedor.DbGridFornecDrawColumnCell(Sender: TObject;

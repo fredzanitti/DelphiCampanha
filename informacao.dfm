@@ -4,7 +4,7 @@ object h_informacao: Th_informacao
   BorderStyle = bsToolWindow
   Caption = 'INFORMA'#199#213'ES'
   ClientHeight = 651
-  ClientWidth = 854
+  ClientWidth = 921
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,7 +21,7 @@ object h_informacao: Th_informacao
   object Image1: TImage
     Left = -4
     Top = -5
-    Width = 862
+    Width = 929
     Height = 665
     Picture.Data = {
       0954506E67496D61676589504E470D0A1A0A0000000D494844520000039D0000

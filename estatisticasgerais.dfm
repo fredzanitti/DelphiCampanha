@@ -4,7 +4,7 @@ object r_estgerais: Tr_estgerais
   BorderStyle = bsToolWindow
   Caption = 'ESTAT'#205'STICAS GERAIS CONTRA ADVERS'#193'RIO'
   ClientHeight = 671
-  ClientWidth = 854
+  ClientWidth = 921
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,13 +20,13 @@ object r_estgerais: Tr_estgerais
   object Shape9: TShape
     Left = -2
     Top = -1
-    Width = 848
+    Width = 925
     Height = 106
     Brush.Color = cl3DDkShadow
     Pen.Style = psClear
   end
   object Shape8: TShape
-    Left = 14
+    Left = 46
     Top = 335
     Width = 113
     Height = 28
@@ -35,7 +35,7 @@ object r_estgerais: Tr_estgerais
     Shape = stRoundRect
   end
   object Shape2: TShape
-    Left = 442
+    Left = 475
     Top = 7
     Width = 85
     Height = 85
@@ -43,14 +43,14 @@ object r_estgerais: Tr_estgerais
     Shape = stRoundRect
   end
   object ImgAdver: TImage
-    Left = 448
+    Left = 481
     Top = 13
     Width = 73
     Height = 73
     Stretch = True
   end
   object LblTimeMand: TLabel
-    Left = 8
+    Left = 41
     Top = 39
     Width = 294
     Height = 21
@@ -65,7 +65,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object Shape1: TShape
-    Left = 313
+    Left = 346
     Top = 7
     Width = 85
     Height = 85
@@ -73,14 +73,14 @@ object r_estgerais: Tr_estgerais
     Shape = stRoundRect
   end
   object ImgSeutime: TImage
-    Left = 319
+    Left = 352
     Top = 13
     Width = 73
     Height = 73
     Stretch = True
   end
   object LblDtIniSeq1: TLabel
-    Left = 331
+    Left = 363
     Top = 535
     Width = 60
     Height = 13
@@ -94,7 +94,7 @@ object r_estgerais: Tr_estgerais
     Visible = False
   end
   object LblDtFimSeq1: TLabel
-    Left = 331
+    Left = 363
     Top = 543
     Width = 64
     Height = 13
@@ -108,7 +108,7 @@ object r_estgerais: Tr_estgerais
     Visible = False
   end
   object LblSequencia1: TLabel
-    Left = 23
+    Left = 55
     Top = 541
     Width = 365
     Height = 16
@@ -128,7 +128,7 @@ object r_estgerais: Tr_estgerais
     OnClick = LblSequencia1Click
   end
   object Label2: TLabel
-    Left = 23
+    Left = 55
     Top = 519
     Width = 180
     Height = 16
@@ -141,7 +141,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object LblDtIniSeq2: TLabel
-    Left = 333
+    Left = 365
     Top = 584
     Width = 60
     Height = 13
@@ -155,7 +155,7 @@ object r_estgerais: Tr_estgerais
     Visible = False
   end
   object LblDtFimSeq2: TLabel
-    Left = 333
+    Left = 365
     Top = 592
     Width = 64
     Height = 13
@@ -169,7 +169,7 @@ object r_estgerais: Tr_estgerais
     Visible = False
   end
   object LblSequencia2: TLabel
-    Left = 23
+    Left = 55
     Top = 592
     Width = 365
     Height = 16
@@ -189,7 +189,7 @@ object r_estgerais: Tr_estgerais
     OnClick = LblSequencia2Click
   end
   object Label6: TLabel
-    Left = 23
+    Left = 55
     Top = 570
     Width = 115
     Height = 16
@@ -202,7 +202,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object LblDtIniSeq3: TLabel
-    Left = 743
+    Left = 775
     Top = 529
     Width = 60
     Height = 13
@@ -216,7 +216,7 @@ object r_estgerais: Tr_estgerais
     Visible = False
   end
   object LblDtFimSeq3: TLabel
-    Left = 743
+    Left = 775
     Top = 521
     Width = 64
     Height = 13
@@ -230,7 +230,7 @@ object r_estgerais: Tr_estgerais
     Visible = False
   end
   object LblSequencia3: TLabel
-    Left = 454
+    Left = 486
     Top = 541
     Width = 368
     Height = 16
@@ -250,7 +250,7 @@ object r_estgerais: Tr_estgerais
     OnClick = LblSequencia3Click
   end
   object Label7: TLabel
-    Left = 454
+    Left = 486
     Top = 519
     Width = 188
     Height = 16
@@ -263,7 +263,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object LblDtIniSeq4: TLabel
-    Left = 743
+    Left = 775
     Top = 584
     Width = 60
     Height = 13
@@ -277,7 +277,7 @@ object r_estgerais: Tr_estgerais
     Visible = False
   end
   object LblDtFimSeq4: TLabel
-    Left = 743
+    Left = 775
     Top = 576
     Width = 64
     Height = 13
@@ -291,7 +291,7 @@ object r_estgerais: Tr_estgerais
     Visible = False
   end
   object LblSequencia4: TLabel
-    Left = 454
+    Left = 486
     Top = 592
     Width = 368
     Height = 16
@@ -311,7 +311,7 @@ object r_estgerais: Tr_estgerais
     OnClick = LblSequencia4Click
   end
   object Label11: TLabel
-    Left = 454
+    Left = 486
     Top = 570
     Width = 187
     Height = 16
@@ -324,7 +324,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 402
+    Left = 435
     Top = 39
     Width = 38
     Height = 21
@@ -339,7 +339,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object LblTimeVisit: TLabel
-    Left = 540
+    Left = 573
     Top = 39
     Width = 292
     Height = 21
@@ -353,7 +353,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object Shape4: TShape
-    Left = 15
+    Left = 47
     Top = 375
     Width = 374
     Height = 28
@@ -362,7 +362,7 @@ object r_estgerais: Tr_estgerais
     Shape = stRoundRect
   end
   object Label3: TLabel
-    Left = 29
+    Left = 61
     Top = 381
     Width = 346
     Height = 13
@@ -377,7 +377,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object Shape5: TShape
-    Left = 448
+    Left = 480
     Top = 375
     Width = 374
     Height = 28
@@ -386,7 +386,7 @@ object r_estgerais: Tr_estgerais
     Shape = stRoundRect
   end
   object Label4: TLabel
-    Left = 462
+    Left = 494
     Top = 381
     Width = 346
     Height = 13
@@ -401,7 +401,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object LblUltimaVit1: TLabel
-    Left = 23
+    Left = 55
     Top = 436
     Width = 365
     Height = 16
@@ -422,7 +422,7 @@ object r_estgerais: Tr_estgerais
     OnClick = LblUltimaVit1Click
   end
   object Label8: TLabel
-    Left = 23
+    Left = 55
     Top = 414
     Width = 86
     Height = 16
@@ -435,7 +435,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object LblMelhorResult1: TLabel
-    Left = 23
+    Left = 55
     Top = 489
     Width = 365
     Height = 16
@@ -456,7 +456,7 @@ object r_estgerais: Tr_estgerais
     OnClick = LblMelhorResult1Click
   end
   object Label10: TLabel
-    Left = 23
+    Left = 55
     Top = 467
     Width = 113
     Height = 16
@@ -469,7 +469,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object LblUltimaDerrota1: TLabel
-    Left = 454
+    Left = 486
     Top = 436
     Width = 368
     Height = 16
@@ -490,7 +490,7 @@ object r_estgerais: Tr_estgerais
     OnClick = LblUltimaDerrota1Click
   end
   object Label13: TLabel
-    Left = 454
+    Left = 486
     Top = 414
     Width = 94
     Height = 16
@@ -503,7 +503,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object LblPiorResultado1: TLabel
-    Left = 454
+    Left = 486
     Top = 489
     Width = 368
     Height = 16
@@ -524,7 +524,7 @@ object r_estgerais: Tr_estgerais
     OnClick = LblPiorResultado1Click
   end
   object Label15: TLabel
-    Left = 454
+    Left = 486
     Top = 467
     Width = 94
     Height = 16
@@ -537,7 +537,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object LblUltimaVit2: TLabel
-    Left = 327
+    Left = 359
     Top = 430
     Width = 64
     Height = 13
@@ -551,7 +551,7 @@ object r_estgerais: Tr_estgerais
     Visible = False
   end
   object LblMelhorResult2: TLabel
-    Left = 331
+    Left = 363
     Top = 491
     Width = 64
     Height = 13
@@ -565,7 +565,7 @@ object r_estgerais: Tr_estgerais
     Visible = False
   end
   object LblPiorResultado2: TLabel
-    Left = 741
+    Left = 773
     Top = 477
     Width = 64
     Height = 13
@@ -579,7 +579,7 @@ object r_estgerais: Tr_estgerais
     Visible = False
   end
   object LblUltimaDerrota2: TLabel
-    Left = 737
+    Left = 769
     Top = 416
     Width = 64
     Height = 13
@@ -593,7 +593,7 @@ object r_estgerais: Tr_estgerais
     Visible = False
   end
   object LblUltimoJogo1: TLabel
-    Left = 144
+    Left = 176
     Top = 341
     Width = 683
     Height = 16
@@ -613,7 +613,7 @@ object r_estgerais: Tr_estgerais
     OnClick = LblUltimoJogo1Click
   end
   object LblUltimoJogo2: TLabel
-    Left = 765
+    Left = 797
     Top = 343
     Width = 71
     Height = 13
@@ -621,7 +621,7 @@ object r_estgerais: Tr_estgerais
     Visible = False
   end
   object Label5: TLabel
-    Left = 24
+    Left = 56
     Top = 341
     Width = 87
     Height = 13
@@ -636,7 +636,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object Shape3: TShape
-    Left = 15
+    Left = 47
     Top = 300
     Width = 821
     Height = 3
@@ -644,7 +644,7 @@ object r_estgerais: Tr_estgerais
     Pen.Color = clWhite
   end
   object Shape6: TShape
-    Left = 15
+    Left = 47
     Top = 328
     Width = 821
     Height = 3
@@ -652,7 +652,7 @@ object r_estgerais: Tr_estgerais
     Pen.Color = clWhite
   end
   object Shape7: TShape
-    Left = 15
+    Left = 47
     Top = 368
     Width = 821
     Height = 3
@@ -660,7 +660,7 @@ object r_estgerais: Tr_estgerais
     Pen.Color = clWhite
   end
   object Shape10: TShape
-    Left = 15
+    Left = 47
     Top = 460
     Width = 376
     Height = 3
@@ -668,7 +668,7 @@ object r_estgerais: Tr_estgerais
     Pen.Color = clWhite
   end
   object Shape11: TShape
-    Left = 19
+    Left = 51
     Top = 513
     Width = 376
     Height = 3
@@ -676,7 +676,7 @@ object r_estgerais: Tr_estgerais
     Pen.Color = clWhite
   end
   object Shape12: TShape
-    Left = 19
+    Left = 51
     Top = 564
     Width = 376
     Height = 3
@@ -684,7 +684,7 @@ object r_estgerais: Tr_estgerais
     Pen.Color = clWhite
   end
   object Shape13: TShape
-    Left = 448
+    Left = 480
     Top = 460
     Width = 376
     Height = 3
@@ -692,7 +692,7 @@ object r_estgerais: Tr_estgerais
     Pen.Color = clWhite
   end
   object Shape14: TShape
-    Left = 452
+    Left = 484
     Top = 513
     Width = 376
     Height = 3
@@ -700,7 +700,7 @@ object r_estgerais: Tr_estgerais
     Pen.Color = clWhite
   end
   object Shape15: TShape
-    Left = 452
+    Left = 484
     Top = 564
     Width = 376
     Height = 3
@@ -708,7 +708,7 @@ object r_estgerais: Tr_estgerais
     Pen.Color = clWhite
   end
   object Label9: TLabel
-    Left = 271
+    Left = 303
     Top = 307
     Width = 39
     Height = 16
@@ -721,7 +721,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object Shape16: TShape
-    Left = 19
+    Left = 51
     Top = 631
     Width = 166
     Height = 28
@@ -730,7 +730,7 @@ object r_estgerais: Tr_estgerais
     Shape = stRoundRect
   end
   object Label12: TLabel
-    Left = 29
+    Left = 61
     Top = 637
     Width = 140
     Height = 13
@@ -745,7 +745,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object Shape17: TShape
-    Left = 20
+    Left = 52
     Top = 624
     Width = 821
     Height = 3
@@ -753,7 +753,7 @@ object r_estgerais: Tr_estgerais
     Pen.Color = clWhite
   end
   object Shape18: TShape
-    Left = 20
+    Left = 52
     Top = 664
     Width = 821
     Height = 3
@@ -761,7 +761,7 @@ object r_estgerais: Tr_estgerais
     Pen.Color = clWhite
   end
   object LblResumo: TLabel
-    Left = 191
+    Left = 223
     Top = 635
     Width = 629
     Height = 21
@@ -775,7 +775,7 @@ object r_estgerais: Tr_estgerais
     ParentFont = False
   end
   object DbGridEstatisticas: TDBGrid
-    Left = 23
+    Left = 53
     Top = 109
     Width = 804
     Height = 180
@@ -927,7 +927,7 @@ object r_estgerais: Tr_estgerais
       end>
   end
   object DbGridTotais: TDBGrid
-    Left = 324
+    Left = 356
     Top = 305
     Width = 505
     Height = 24
