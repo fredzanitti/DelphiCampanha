@@ -172,6 +172,7 @@ begin
       // mostara a consulta finalizada
       r_jogospadrao.ShowModal;
     end;
+    h_patrocinador.Close;
   end;
 end;
 
