@@ -118,7 +118,7 @@ object CA_ADVER: TCA_ADVER
       Top = 29
       Width = 73
       Height = 73
-      CustomHint = FrmPrincipal.BalloonHint1
+      DragCursor = crHandPoint
       Stretch = True
       OnDblClick = ImgLogoAdverDblClick
       OnMouseEnter = ImgLogoAdverMouseEnter
@@ -168,7 +168,6 @@ object CA_ADVER: TCA_ADVER
       Width = 73
       Height = 45
       Hint = 'Selecionar Escudo'
-      CustomHint = FrmPrincipal.BalloonHint1
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
         18000000000000180000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -477,7 +476,6 @@ object CA_ADVER: TCA_ADVER
     Width = 45
     Height = 45
     Hint = 'Emitir relat'#243'rio de todos os jogadores cadastrados'
-    CustomHint = FrmPrincipal.BalloonHint1
     Glyph.Data = {
       0E220000424D0E2200000000000036000000280000004C000000260000000100
       180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF

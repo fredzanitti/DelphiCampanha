@@ -159,7 +159,6 @@ object FrmPrincipal: TFrmPrincipal
     Height = 53
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = BalloonHint1
     AutoSize = False
     Caption = 'localedata'
     Color = clWhite
@@ -11322,7 +11321,6 @@ object FrmPrincipal: TFrmPrincipal
     Width = 96
     Height = 97
     Cursor = crHandPoint
-    CustomHint = BalloonHint1
     Glyph.Data = {
       7EDD0000424D7EDD0000000000003600000028000000C2000000610000000100
       18000000000048DD0000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -14908,7 +14906,6 @@ object FrmPrincipal: TFrmPrincipal
     Width = 36
     Height = 36
     Cursor = crHandPoint
-    CustomHint = BalloonHint1
     Action = actEstatisticasGeraisTimes
     ParentShowHint = False
     ShowHint = True
@@ -15377,11 +15374,6 @@ object FrmPrincipal: TFrmPrincipal
     Left = 47
     Top = 8
   end
-  object BalloonHint1: TBalloonHint
-    Delay = 0
-    Left = 80
-    Top = 8
-  end
   object DtsQrAux: TDataSource
     DataSet = QrAux
     Left = 632
@@ -15470,7 +15462,7 @@ object FrmPrincipal: TFrmPrincipal
     Left = 224
     Top = 24
     Bitmap = {
-      494C010114003800C80010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010114003800CC0010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000006000000001002000000000000060
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -16275,7 +16267,7 @@ object FrmPrincipal: TFrmPrincipal
     Left = 272
     Top = 24
     Bitmap = {
-      494C010107000C00240020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107000C00280020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000004000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

@@ -106,7 +106,6 @@ object CA_JOGAD: TCA_JOGAD
     Width = 45
     Height = 45
     Hint = 'Selecionar Foto do Jogador'
-    CustomHint = FrmPrincipal.BalloonHint1
     Glyph.Data = {
       36180000424D3618000000000000360000002800000040000000200000000100
       18000000000000180000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -382,8 +381,9 @@ object CA_JOGAD: TCA_JOGAD
       Top = 37
       Width = 209
       Height = 313
-      CustomHint = FrmPrincipal.BalloonHint1
+      DragCursor = crHandPoint
       ParentShowHint = False
+      PopupMenu = ppmJogador
       ShowHint = True
       OnDblClick = ImgFotoDblClick
       OnMouseEnter = ImgFotoMouseEnter
@@ -550,7 +550,6 @@ object CA_JOGAD: TCA_JOGAD
     Width = 45
     Height = 45
     Hint = 'Clonar Jogador/T'#233'cnico'
-    CustomHint = FrmPrincipal.BalloonHint1
     Glyph.Data = {
       06300000424D063000000000000036000000280000005A0000002D0000000100
       180000000000D02F0000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -990,7 +989,6 @@ object CA_JOGAD: TCA_JOGAD
     Width = 45
     Height = 45
     Hint = 'Exportar para Excel'
-    CustomHint = FrmPrincipal.BalloonHint1
     Glyph.Data = {
       0E220000424D0E2200000000000036000000280000004C000000260000000100
       180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -1278,7 +1276,6 @@ object CA_JOGAD: TCA_JOGAD
     Width = 45
     Height = 45
     Hint = 'Emitir relat'#243'rio de todos os jogadores cadastrados'
-    CustomHint = FrmPrincipal.BalloonHint1
     Glyph.Data = {
       06300000424D063000000000000036000000280000005A0000002D0000000100
       180000000000D02F0000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -1677,7 +1674,6 @@ object CA_JOGAD: TCA_JOGAD
     Width = 45
     Height = 45
     Hint = 'Mostrar/cadastrar carreira do jogador'
-    CustomHint = FrmPrincipal.BalloonHint1
     Glyph.Data = {
       06300000424D063000000000000036000000280000005A0000002D0000000100
       180000000000D02F0000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -2075,6 +2071,7 @@ object CA_JOGAD: TCA_JOGAD
     Top = 401
     Width = 45
     Height = 45
+    Hint = 'Abrir ficha individual do atleta'
     Glyph.Data = {
       06300000424D063000000000000036000000280000005A0000002D0000000100
       180000000000D02F0000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -2462,6 +2459,8 @@ object CA_JOGAD: TCA_JOGAD
       FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
       FFFFFFFFFFFFFFFF0000}
     NumGlyphs = 2
+    ParentShowHint = False
+    ShowHint = True
     TabOrder = 6
     OnClick = btnIndividualClick
   end
@@ -2520,5 +2519,40 @@ object CA_JOGAD: TCA_JOGAD
       'ORDER BY ca_jogad.nome')
     Left = 633
     Top = 456
+  end
+  object ppmJogador: TPopupMenu
+    Left = 432
+    Top = 32
+    object mitAbrirFichaIndividual: TMenuItem
+      Caption = 'Abrir ficha individual...'
+      OnClick = mitAbrirFichaIndividualClick
+    end
+    object mitCadastroCarreira: TMenuItem
+      Caption = 'Cadastrar carreira do atleta...'
+      OnClick = mitCadastroCarreiraClick
+    end
+    object mitPesquisarFoto: TMenuItem
+      Caption = 'Pesquisar foto na internet...'
+      OnClick = mitPesquisarFotoClick
+    end
+  end
+  object actJogadores: TActionList
+    Left = 368
+    Top = 32
+    object actBuscarFotoInternet: TAction
+      Category = 'A'#231#245'es'
+      Caption = 'Buscar foto na internet...'
+      OnExecute = actBuscarFotoInternetExecute
+    end
+    object actAbrirFichaIndividual: TAction
+      Category = 'A'#231#245'es'
+      Caption = 'Abrir ficha individual...'
+      OnExecute = actAbrirFichaIndividualExecute
+    end
+    object actCadastrarCarreira: TAction
+      Category = 'A'#231#245'es'
+      Caption = 'Cadastrar carreira do atleta...'
+      OnExecute = actCadastrarCarreiraExecute
+    end
   end
 end

@@ -1,5 +1,5 @@
 ===========================================================
- CAMPANHA DO SEU CLUBE ANO A ANO - VERSÃO 6.2 - JUL/2019
+ CAMPANHA DO SEU CLUBE ANO A ANO - VERSÃO 6.6 - DEZ/2019
 ===========================================================
 
 Desenvolvido por: FREDERICO ZANITTI SILVA
@@ -72,6 +72,11 @@ OUTUBRO/2018
 JULHO/2019
 ---------------------------------------
 - Permitir incluir/alterar substituições mesmo depois de gravar o jogo;
+
+---------------------------------------
+DEZEMBRO/2019
+---------------------------------------
+- Ajuste no cadastro de jogadores, melhoria nas "dicas" de tela e opção de ações por popup;
 
 
 SUGESTÕES OU DÚVIDAS

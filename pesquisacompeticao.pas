@@ -264,6 +264,7 @@ begin
       r_jogospadrao.ShowModal;
     end;
   end;
+  h_competicao.Close;
 end;
 
 procedure Th_competicao.DbGridCompeticaoDrawColumnCell(Sender: TObject;

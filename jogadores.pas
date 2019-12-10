@@ -13,7 +13,7 @@ uses
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.VCLUI.Wait,
   FireDAC.Comp.UI, jpeg, Vcl.Buttons, Vcl.ExtDlgs, Vcl.Menus, Vcl.ComCtrls,
   ShellApi, framePesquisaCidades, frameBotoesMenuPadrao, frxClass,
-  SelRelatorioJogador;
+  SelRelatorioJogador, System.Actions, Vcl.ActnList;
 
 type
   TCA_JOGAD = class(TForm)
@@ -56,6 +56,14 @@ type
     BtnRelatorio: TBitBtn;
     btnCarreira: TBitBtn;
     btnIndividual: TBitBtn;
+    ppmJogador: TPopupMenu;
+    mitPesquisarFoto: TMenuItem;
+    mitAbrirFichaIndividual: TMenuItem;
+    mitCadastroCarreira: TMenuItem;
+    actJogadores: TActionList;
+    actBuscarFotoInternet: TAction;
+    actAbrirFichaIndividual: TAction;
+    actCadastrarCarreira: TAction;
     procedure FormActivate(Sender: TObject);
     procedure DataChange(Sender: TObject);
     procedure BtnLocCidadeClick(Sender: TObject);
@@ -93,6 +101,12 @@ type
     procedure btnIndividualClick(Sender: TObject);
     procedure ImgFotoMouseEnter(Sender: TObject);
     procedure ImgFotoMouseLeave(Sender: TObject);
+    procedure mitPesquisarFotoClick(Sender: TObject);
+    procedure mitAbrirFichaIndividualClick(Sender: TObject);
+    procedure mitCadastroCarreiraClick(Sender: TObject);
+    procedure actBuscarFotoInternetExecute(Sender: TObject);
+    procedure actAbrirFichaIndividualExecute(Sender: TObject);
+    procedure actCadastrarCarreiraExecute(Sender: TObject);
   private
     { Private declarations }
   public
@@ -118,15 +132,49 @@ uses module, funcoes, pesquisacidades, selecionarfoto, pesquisajogadores, home,
 }
 procedure TCA_JOGAD.btnIndividualClick(Sender: TObject);
 begin
+  actAbrirFichaIndividual.Execute;
+end;
+
+procedure TCA_JOGAD.actAbrirFichaIndividualExecute(Sender: TObject);
+begin
   f_gerais.preencherFichaIndividual(FrmDm.TblJogadorescodjogador.AsInteger);
 end;
 
-procedure TCA_JOGAD.btnCarreiraClick(Sender: TObject);
+procedure TCA_JOGAD.actBuscarFotoInternetExecute(Sender: TObject);
+var
+  consultaJogador: String;
+begin
+  if (EdtNome.Text <> EmptyStr) or (EdtNomeCompleto.Text <> EmptyStr) then
+  begin
+    consultaJogador := 'https://www.google.com.br/search?q=' + EdtNome.Text +
+      ' ' + EdtNomeCompleto.Text + ' ' + f_gerais.buscarNome('nome', 'ca_adver',
+      'codadver', '0') +
+      '&biw=1280&bih=899&source=lnms&tbm=isch&sa=X&ei=gbamVNP6N4enNr79g5gI&ved=0CAYQ_AUoAQ';
+
+    ShellExecute(Handle, 'open', PChar(consultaJogador), '', '', 1);
+    ImgFoto.Hint :=
+      'Clique duplo neste espaço para buscar a foto do jogador na internet';
+    ImgFoto.ShowHint := True;
+    ImgFoto.DragCursor := crHandPoint;
+  end
+  else
+  begin
+    ImgFoto.ShowHint := False;
+    ImgFoto.DragCursor := crDefault;
+  end;
+end;
+
+procedure TCA_JOGAD.actCadastrarCarreiraExecute(Sender: TObject);
 begin
   frmCarreiraJogador.LblApelido.Caption := AnsiUpperCase(EdtNome.Text) + ' ( ' +
     CbxPosicao.Text + ' )';
   frmCarreiraJogador.codigoJogador := StrToInt(EdtCodigo.Text);
   frmCarreiraJogador.ShowModal;
+end;
+
+procedure TCA_JOGAD.btnCarreiraClick(Sender: TObject);
+begin
+  actCadastrarCarreira.Execute;
 end;
 
 procedure TCA_JOGAD.BtnClonarClick(Sender: TObject);
@@ -496,27 +544,8 @@ begin
 end;
 
 procedure TCA_JOGAD.ImgFotoDblClick(Sender: TObject);
-var
-  consultaJogador: String;
 begin
-  if (EdtNome.Text <> EmptyStr) or (EdtNomeCompleto.Text <> EmptyStr) then
-  begin
-    consultaJogador := 'https://www.google.com.br/search?q=' + EdtNome.Text +
-      ' ' + EdtNomeCompleto.Text + ' ' + f_gerais.buscarNome('nome', 'ca_adver',
-      'codadver', '0') +
-      '&biw=1280&bih=899&source=lnms&tbm=isch&sa=X&ei=gbamVNP6N4enNr79g5gI&ved=0CAYQ_AUoAQ';
-
-    ShellExecute(Handle, 'open', PChar(consultaJogador), '', '', 1);
-    ImgFoto.Hint :=
-      'Clique duplo neste espaço para buscar a foto do jogador na internet';
-    ImgFoto.ShowHint := True;
-    ImgFoto.DragCursor := crHandPoint;
-  end
-  else
-  begin
-    ImgFoto.ShowHint := False;
-    ImgFoto.DragCursor := crDefault;
-  end;
+   actBuscarFotoInternet.Execute;
 end;
 
 procedure TCA_JOGAD.ImgFotoMouseEnter(Sender: TObject);
@@ -532,8 +561,23 @@ end;
 
 procedure TCA_JOGAD.ImgFotoMouseLeave(Sender: TObject);
 begin
-    ImgFoto.ShowHint := False;
-    ImgFoto.DragCursor := crDefault;
+  ImgFoto.ShowHint := False;
+  ImgFoto.DragCursor := crDefault;
+end;
+
+procedure TCA_JOGAD.mitAbrirFichaIndividualClick(Sender: TObject);
+begin
+  actAbrirFichaIndividual.Execute;
+end;
+
+procedure TCA_JOGAD.mitCadastroCarreiraClick(Sender: TObject);
+begin
+  actCadastrarCarreira.Execute;
+end;
+
+procedure TCA_JOGAD.mitPesquisarFotoClick(Sender: TObject);
+begin
+  actBuscarFotoInternet.Execute;
 end;
 
 procedure TCA_JOGAD.MnCadastrarClick(Sender: TObject);

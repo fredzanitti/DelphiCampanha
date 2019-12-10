@@ -121,7 +121,6 @@ type
     Timer1: TTimer;
     StbSistema: TStatusBar;
     MnUsuario: TMenuItem;
-    BalloonHint1: TBalloonHint;
     MnAjuda: TMenuItem;
     MnSobre: TMenuItem;
     MnBackup: TMenuItem;
