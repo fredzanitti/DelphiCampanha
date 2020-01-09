@@ -180,7 +180,6 @@ object CA_JOGOS: TCA_JOGOS
       Width = 38
       Height = 38
       Hint = 'Escalar Time Titular'
-      CustomHint = FrmPrincipal.BalloonHint1
       Glyph.Data = {
         0E220000424D0E2200000000000036000000280000004C000000260000000100
         180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -549,7 +548,6 @@ object CA_JOGOS: TCA_JOGOS
       Width = 38
       Height = 38
       Hint = 'Editar Time Titular'
-      CustomHint = FrmPrincipal.BalloonHint1
       Glyph.Data = {
         0E220000424D0E2200000000000036000000280000004C000000260000000100
         180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -836,7 +834,6 @@ object CA_JOGOS: TCA_JOGOS
       Width = 38
       Height = 38
       Hint = 'Excluir Todos os Jogadores (Titulares e Reservas)'
-      CustomHint = FrmPrincipal.BalloonHint1
       Glyph.Data = {
         0E220000424D0E2200000000000036000000280000004C000000260000000100
         180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -1207,7 +1204,6 @@ object CA_JOGOS: TCA_JOGOS
       Width = 38
       Height = 38
       Hint = 'Inserir/Editar Substitui'#231#245'es'
-      CustomHint = FrmPrincipal.BalloonHint1
       Glyph.Data = {
         0E220000424D0E2200000000000036000000280000004C000000260000000100
         180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -1494,7 +1490,6 @@ object CA_JOGOS: TCA_JOGOS
       Width = 38
       Height = 38
       Hint = 'Excluir Todas as Substitui'#231#245'es'
-      CustomHint = FrmPrincipal.BalloonHint1
       Glyph.Data = {
         0E220000424D0E2200000000000036000000280000004C000000260000000100
         180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -1940,7 +1935,6 @@ object CA_JOGOS: TCA_JOGOS
       Width = 38
       Height = 38
       Hint = 'Buscar Est'#225'dio'
-      CustomHint = FrmPrincipal.BalloonHint1
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -11
@@ -2416,7 +2410,6 @@ object CA_JOGOS: TCA_JOGOS
       Width = 38
       Height = 38
       Hint = 'Buscar Competi'#231#227'o'
-      CustomHint = FrmPrincipal.BalloonHint1
       Glyph.Data = {
         0E220000424D0E2200000000000036000000280000004C000000260000000100
         180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -2751,7 +2744,6 @@ object CA_JOGOS: TCA_JOGOS
       Width = 38
       Height = 38
       Hint = 'Buscar Advers'#225'rio'
-      CustomHint = FrmPrincipal.BalloonHint1
       Glyph.Data = {
         0E220000424D0E2200000000000036000000280000004C000000260000000100
         180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -3038,7 +3030,6 @@ object CA_JOGOS: TCA_JOGOS
       Width = 38
       Height = 38
       Hint = 'Inverter Mando de Campo'
-      CustomHint = FrmPrincipal.BalloonHint1
       Glyph.Data = {
         0E220000424D0E2200000000000036000000280000004C000000260000000100
         180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -3356,7 +3347,6 @@ object CA_JOGOS: TCA_JOGOS
       Width = 38
       Height = 38
       Hint = 'Buscar '#193'rbitro'
-      CustomHint = FrmPrincipal.BalloonHint1
       Glyph.Data = {
         0E220000424D0E2200000000000036000000280000004C000000260000000100
         180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -3675,7 +3665,6 @@ object CA_JOGOS: TCA_JOGOS
       Width = 38
       Height = 38
       Hint = 'Buscar Fase'
-      CustomHint = FrmPrincipal.BalloonHint1
       Glyph.Data = {
         0E220000424D0E2200000000000036000000280000004C000000260000000100
         180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -3983,7 +3972,6 @@ object CA_JOGOS: TCA_JOGOS
       Width = 38
       Height = 38
       Hint = 'Selecionar Uniforme'
-      CustomHint = FrmPrincipal.BalloonHint1
       Glyph.Data = {
         0E220000424D0E2200000000000036000000280000004C000000260000000100
         180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF

@@ -939,12 +939,22 @@ begin
     EdtPenaltyVisitante.Enabled := false;
     CbEscalacoDisp.Enabled := false;
 
+    LblNomeEstadio.Caption := '';
+    LblCidade.Caption := '';
+    LblPais.Caption := '';
+    LblUf.Caption := '';
+
     // checar se escalação está disponível
-    if f_gerais.contRegComUmParametro('ES_TITUL', 'codjogo', EdtCodigo.Text) = 0
-    then
-      CbEscalacoDisp.Checked := true
+    if EdtCodigo.Text = EmptyStr then
+       CbEscalacoDisp.Checked := false
     else
-      CbEscalacoDisp.Checked := false;
+    begin
+      if f_gerais.contRegComUmParametro('ES_TITUL', 'codjogo', EdtCodigo.Text) = 0
+      then
+        CbEscalacoDisp.Checked := true
+      else
+        CbEscalacoDisp.Checked := false;
+    end;
 
   end;
 
