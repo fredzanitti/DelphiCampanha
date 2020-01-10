@@ -10,6 +10,8 @@ object fraGrafico: TfraGrafico
     Width = 322
     Height = 353
     Title.Font.Name = 'Verdana'
+    Title.Text.Strings = (
+      'TDBChart')
     Legend.Alignment = laBottom
     Legend.TextStyle = ltsPercent
     Legend.Title.Alignment = taCenter
@@ -93,8 +95,9 @@ object fraGrafico: TfraGrafico
     Connection = FrmDm.BDMySQL
     SQL.Strings = (
       
-        'select '#39'FLU'#39' as CLUBE, ROUND((sum(v)/sum(v+d+e)) * 100,1) as PER' +
-        'C'
+        'select (select substring(upper(ca_adver.nome),1,3) from ca_adver' +
+        ' where codadver = 0) as CLUBE, ROUND((sum(v)/sum(v+d+e)) * 100,1' +
+        ') as PERC'
       'from es_resum'
       'inner join ca_adver on ca_adver.codadver = es_resum.codadver'
       'where ca_adver.codadver = :CodigoVitoria'

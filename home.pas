@@ -1704,12 +1704,24 @@ begin
     'select e.codjogador, j.nome, count(*) jogos ' +
     'from es_titul e, ca_jogad j, ca_cidad c, ca_pais p ' +
     'where e.codjogador = j.codjogador ' + 'and j.codcidade = c.codcidade ' +
-    'and c.codpais = p.codpais ' + 'and p.sigla not in ("BRA") ' +
+    'and c.codpais = p.codpais ' + 'and p.sigla not in (' +
+          'select ca_pais.sigla  ' +
+          'from ca_adver ' +
+          'inner join ca_cidad on ca_cidad.codcidade = ca_adver.codcidade ' +
+          'inner join ca_pais on ca_pais.codpais = ca_cidad.codpais ' +
+          'where codadver = 0 ' +
+    ') ' +
     'and j.codposicao not in (6) ' + 'group by e.codjogador, j.nome ' + 'union '
     + 'select e.codjogador, j.nome, count(*) jogos ' +
     'from es_reser e, ca_jogad j, ca_cidad c, ca_pais p ' +
     'where e.codjogador = j.codjogador ' + 'and j.codcidade = c.codcidade ' +
-    'and c.codpais = p.codpais ' + 'and p.sigla not in ("BRA") ' +
+    'and c.codpais = p.codpais ' + 'and p.sigla not in (' +
+          'select ca_pais.sigla  ' +
+          'from ca_adver ' +
+          'inner join ca_cidad on ca_cidad.codcidade = ca_adver.codcidade ' +
+          'inner join ca_pais on ca_pais.codpais = ca_cidad.codpais ' +
+          'where codadver = 0 ' +
+    ') ' +
     'and j.codposicao not in (6) ' + 'group by e.codjogador, j.nome ' +
     ') as a ' + 'group by codjogador, nome ' + 'order by 3 desc ' +
     'limit 15 offset 0';
@@ -1723,12 +1735,24 @@ begin
     ' from( select e.codjogador, j.nome, sum(e.gols) gols' +
     ' from es_titul e, ca_jogad j, ca_cidad c, ca_pais p' +
     ' where e.codjogador = j.codjogador' + ' and j.codcidade = c.codcidade' +
-    ' and c.codpais = p.codpais' + ' and p.sigla not in ("BRA")' +
+    ' and c.codpais = p.codpais' + ' and p.sigla not in (' +
+          'select ca_pais.sigla  ' +
+          'from ca_adver ' +
+          'inner join ca_cidad on ca_cidad.codcidade = ca_adver.codcidade ' +
+          'inner join ca_pais on ca_pais.codpais = ca_cidad.codpais ' +
+          'where codadver = 0 ' +
+    ') ' +
     ' and j.codposicao not in (6)' + ' group by e.codjogador, j.nome' + ' union'
     + ' select e.codjogador, j.nome, sum(e.gols) gols' +
     ' from es_reser e, ca_jogad j, ca_cidad c, ca_pais p' +
     ' where e.codjogador = j.codjogador' + ' and j.codcidade = c.codcidade' +
-    ' and c.codpais = p.codpais' + ' and p.sigla not in ("BRA")' +
+    ' and c.codpais = p.codpais' + ' and p.sigla not in (' +
+          'select ca_pais.sigla  ' +
+          'from ca_adver ' +
+          'inner join ca_cidad on ca_cidad.codcidade = ca_adver.codcidade ' +
+          'inner join ca_pais on ca_pais.codpais = ca_cidad.codpais ' +
+          'where codadver = 0 ' +
+    ') ' +
     ' and j.codposicao not in (6)' + ' group by e.codjogador, j.nome ) as a' +
     ' group by codjogador, nome' + ' order by 3 desc limit 15 offset 0';
 

@@ -81,8 +81,9 @@ begin
     // demais componentes
     EdtAno.Enabled := false;
     BtnCompeticao.Enabled := false;
-    EdtCompExtenso.Text := f_gerais.retornaNomeCompeticao
-      (StrToInt(EdtCompeticao.Text));
+    if EdtCompeticao.Text <> EmptyStr then
+        EdtCompExtenso.Text := f_gerais.retornaNomeCompeticao
+          (StrToInt(EdtCompeticao.Text));
   end;
 
   if FrmDm.DtsTitulos.DataSet.State in [dsInsert, dsEdit] then
