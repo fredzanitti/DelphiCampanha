@@ -2848,6 +2848,9 @@ begin
   QrFunctions.Open;
   QrFunctions.First;
 
+  if anocompeticao = 'estatisticasporano' then
+     anos.Items.Add('Geral');
+
   while not QrFunctions.Eof do
   begin
     anos.Items.Add(QrFunctions.Fields[0].AsString);
@@ -3346,10 +3349,19 @@ begin
   if nroRelatorio = '28' then
   // Relatório 28 - Pesquisa por periodo vinda da campanha geral
   begin
-    sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
-      + 'from ca_jogos ' + 'where extract(year from data) = ' +
-      r_jogospadrao.codauxiliar1 + ' and data between :DATAINI and :DATAFIM ' +
-      'order by data desc ' + 'limit :LIMITE offset :CORTE';
+    if r_jogospadrao.codauxiliar1 = 'Geral' then
+    begin
+        sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
+          + 'from ca_jogos ' + 'where data between :DATAINI and :DATAFIM ' +
+          'order by data desc ' + 'limit :LIMITE offset :CORTE';
+    end
+    else
+    begin
+        sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
+          + 'from ca_jogos ' + 'where extract(year from data) = ' +
+          r_jogospadrao.codauxiliar1 + ' and data between :DATAINI and :DATAFIM ' +
+          'order by data desc ' + 'limit :LIMITE offset :CORTE';
+    end;
   end;
 
   if nroRelatorio = '29' then
@@ -4309,12 +4321,24 @@ procedure Tf_gerais.preencherGridsCampanhaGeral(ano: String);
   ======================================================================
 }
 begin
-  sql := 'select c.nome, (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, '
-    + 'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
-    'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
-    + 'from ca_jogos j, es_resum r, ca_compe c ' +
-    'where j.codjogo = r.codjogo ' + 'and j.codcompeticao = c.codcompeticao ' +
-    'and r.ano = ' + ano + ' group by j.codcompeticao ' + 'order by 2 desc';
+  if ano = 'Geral' then
+  begin
+      sql := 'select c.nome, (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, '
+              + 'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+              'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+              + 'from ca_jogos j, es_resum r, ca_compe c ' +
+              'where j.codjogo = r.codjogo ' + 'and j.codcompeticao = c.codcompeticao ' +
+              ' group by j.codcompeticao ' + 'order by 2 desc';
+  end
+  else
+  begin
+      sql := 'select c.nome, (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, '
+        + 'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+        'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+        + 'from ca_jogos j, es_resum r, ca_compe c ' +
+        'where j.codjogo = r.codjogo ' + 'and j.codcompeticao = c.codcompeticao ' +
+        'and r.ano = ' + ano + ' group by j.codcompeticao ' + 'order by 2 desc';
+  end;
 
   QrEstat1.Close;
   QrEstat1.sql.Clear;
@@ -4323,11 +4347,22 @@ begin
 
   r_campanhageral.DbGridEstatisticas.DataSource := DtsQrEstat1;
 
-  sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
-    'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
-    'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
-    + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
-    'and r.ano = ' + ano;
+  if ano = 'Geral' then
+  begin
+      sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
+              'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+              'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+              + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ';
+  end
+  else
+  begin
+      sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
+        'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+        'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+        + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
+        'and r.ano = ' + ano;
+  end;
+
 
   QrEstat2.Close;
   QrEstat2.sql.Clear;
@@ -4336,11 +4371,22 @@ begin
 
   r_campanhageral.DbGridGeral.DataSource := DtsQrEstat2;
 
-  sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
-    'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
-    'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
-    + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
-    'and j.codadvermand = 0 ' + 'and r.ano = ' + ano;
+  if ano = 'Geral' then
+  begin
+      sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
+        'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+        'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+        + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
+        'and j.codadvermand = 0 ';
+  end
+  else
+  begin
+      sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
+        'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+        'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+        + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
+        'and j.codadvermand = 0 ' + 'and r.ano = ' + ano;
+  end;
 
   QrEstat3.Close;
   QrEstat3.sql.Clear;
@@ -4349,11 +4395,22 @@ begin
 
   r_campanhageral.DbGridCasa.DataSource := DtsQrEstat3;
 
-  sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
-    'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
-    'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
-    + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
-    'and j.codadvervisit = 0 ' + 'and r.ano = ' + ano;
+  if ano = 'Geral' then
+  begin
+      sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
+        'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+        'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+        + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
+        'and j.codadvervisit = 0 ';
+  end
+  else
+  begin
+      sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
+        'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+        'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+        + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
+        'and j.codadvervisit = 0 ' + 'and r.ano = ' + ano;
+  end;
 
   QrEstat4.Close;
   QrEstat4.sql.Clear;
@@ -4389,14 +4446,27 @@ var
   i: integer;
 begin
   // melhor resultado
-  sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
-    + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar2 as GOLSPRO '
-    + 'from ca_jogos ' + 'where codadvervisit = 0 ' + 'and placar2 >= placar1 '
-    + 'and extract(year from data) = ' + ano + ' union ' +
-    'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar1 as GOLSPRO '
-    + 'from ca_jogos ' + 'where codadvermand = 0 ' + 'and placar2 <= placar1 ' +
-    'and extract(year from data) = ' + ano + ' ) as a ' +
-    'order by 9 desc, 10 desc, 2 desc ' + 'limit 3 offset 0';
+  if ano = 'Geral' then
+  begin
+      sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
+        + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar2 as GOLSPRO '
+        + 'from ca_jogos ' + 'where codadvervisit = 0 ' + 'and placar2 >= placar1 '
+        + ' union ' +
+        'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar1 as GOLSPRO '
+        + 'from ca_jogos ' + 'where codadvermand = 0 ' + 'and placar2 <= placar1 ) as a ' +
+        'order by 9 desc, 10 desc, 2 desc ' + 'limit 3 offset 0';
+  end
+  else
+  begin
+      sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
+        + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar2 as GOLSPRO '
+        + 'from ca_jogos ' + 'where codadvervisit = 0 ' + 'and placar2 >= placar1 '
+        + 'and extract(year from data) = ' + ano + ' union ' +
+        'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar1 as GOLSPRO '
+        + 'from ca_jogos ' + 'where codadvermand = 0 ' + 'and placar2 <= placar1 ' +
+        'and extract(year from data) = ' + ano + ' ) as a ' +
+        'order by 9 desc, 10 desc, 2 desc ' + 'limit 3 offset 0';
+  end;
 
   QrMelhorPior.Close;
   QrMelhorPior.sql.Clear;
@@ -4429,14 +4499,27 @@ begin
   end;
 
   // pior resultado
-  sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
-    + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar2 as GOLSPRO '
-    + 'from ca_jogos ' + 'where codadvervisit = 0 ' + 'and placar2 <= placar1 '
-    + 'and extract(year from data) = ' + ano + ' union ' +
-    'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar1 as GOLSPRO '
-    + 'from ca_jogos ' + 'where codadvermand = 0 ' + 'and placar2 >= placar1 ' +
-    'and extract(year from data) = ' + ano + ' ) as a ' +
-    'order by 9 desc, 10 desc, 2 desc ' + 'limit 3 offset 0';
+  if ano = 'Geral' then
+  begin
+      sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
+        + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar2 as GOLSPRO '
+        + 'from ca_jogos ' + 'where codadvervisit = 0 ' + 'and placar2 <= placar1 '
+        + ' union ' +
+        'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar1 as GOLSPRO '
+        + 'from ca_jogos ' + 'where codadvermand = 0 ' + 'and placar2 >= placar1 ) as a ' +
+        'order by 9 desc, 10 desc, 2 desc ' + 'limit 3 offset 0';
+  end
+  else
+  begin
+      sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
+        + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar2 as GOLSPRO '
+        + 'from ca_jogos ' + 'where codadvervisit = 0 ' + 'and placar2 <= placar1 '
+        + 'and extract(year from data) = ' + ano + ' union ' +
+        'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar1 as GOLSPRO '
+        + 'from ca_jogos ' + 'where codadvermand = 0 ' + 'and placar2 >= placar1 ' +
+        'and extract(year from data) = ' + ano + ' ) as a ' +
+        'order by 9 desc, 10 desc, 2 desc ' + 'limit 3 offset 0';
+  end;
 
   QrMelhorPior.Close;
   QrMelhorPior.sql.Clear;
@@ -4688,12 +4771,24 @@ begin
   end
   else
   begin
-    sql := 'select data, codadvermand m, placar1 pm, placar2 pv, codadvervisit v '
-      + 'from ca_jogos ' + 'where codadvermand = 0 ' +
-      'and extract(year from data) = ' + Param + ' union ' +
-      'select data, codadvervisit m, placar2 pm, placar1 pv, codadvermand v ' +
-      'from ca_jogos ' + 'where codadvervisit = 0 ' +
-      'and extract(year from data) = ' + Param + ' order by data';
+    if Param = 'Geral' then
+    begin
+        sql := 'select data, codadvermand m, placar1 pm, placar2 pv, codadvervisit v '
+                  + 'from ca_jogos ' + 'where codadvermand = 0 ' +
+                  ' union ' +
+                  'select data, codadvervisit m, placar2 pm, placar1 pv, codadvermand v ' +
+                  'from ca_jogos ' + 'where codadvervisit = 0 ' +
+                  ' order by data';
+    end
+    else
+    begin
+        sql := 'select data, codadvermand m, placar1 pm, placar2 pv, codadvervisit v '
+          + 'from ca_jogos ' + 'where codadvermand = 0 ' +
+          'and extract(year from data) = ' + Param + ' union ' +
+          'select data, codadvervisit m, placar2 pm, placar1 pv, codadvermand v ' +
+          'from ca_jogos ' + 'where codadvervisit = 0 ' +
+          'and extract(year from data) = ' + Param + ' order by data';
+    end;
   end;
 
   QrSequencias.Close;
@@ -4852,10 +4947,19 @@ begin
     r_jogospadrao.numerorelatorio := '28';
 
     // contar a quantidade de registros retornados na pesquisa
-    sql := 'select sum(r.j), sum(r.v), sum(r.e), sum(r.d), sum(r.gp), sum(r.gc), sum(r.sg) '
-      + 'from es_resum r, ca_jogos j ' + 'where r.codjogo = j.codjogo ' +
-      'and r.ano = ' + r_jogospadrao.codauxiliar1 +
-      ' and j.data between :DATAINI and :DATAFIM';
+    if r_jogospadrao.codauxiliar1 = 'Geral' then
+    begin
+        sql := 'select sum(r.j), sum(r.v), sum(r.e), sum(r.d), sum(r.gp), sum(r.gc), sum(r.sg) '
+                  + 'from es_resum r, ca_jogos j ' + 'where r.codjogo = j.codjogo ' +
+                  ' and j.data between :DATAINI and :DATAFIM';
+    end
+    else
+    begin
+        sql := 'select sum(r.j), sum(r.v), sum(r.e), sum(r.d), sum(r.gp), sum(r.gc), sum(r.sg) '
+          + 'from es_resum r, ca_jogos j ' + 'where r.codjogo = j.codjogo ' +
+          'and r.ano = ' + r_jogospadrao.codauxiliar1 +
+          ' and j.data between :DATAINI and :DATAFIM';
+    end;
   end;
 
   FrmDm.QrContador.Close;
@@ -4912,10 +5016,19 @@ begin
     end
     else
     begin
-      sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
-        + 'from ca_jogos ' + 'where extract(year from data) = ' +
-        r_jogospadrao.codauxiliar1 + ' and data between :DATAINI and :DATAFIM '
-        + 'order by data desc ' + 'limit :LIMITE offset :CORTE';
+      if r_jogospadrao.codauxiliar1 = 'Geral' then
+      begin
+          sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
+            + 'from ca_jogos ' + 'where data between :DATAINI and :DATAFIM '
+            + 'order by data desc ' + 'limit :LIMITE offset :CORTE';
+      end
+      else
+      begin
+          sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
+            + 'from ca_jogos ' + 'where extract(year from data) = ' +
+            r_jogospadrao.codauxiliar1 + ' and data between :DATAINI and :DATAFIM '
+            + 'order by data desc ' + 'limit :LIMITE offset :CORTE';
+      end;
     end;
 
     // função para preencher a tela padrão com os resultados da sql acima
