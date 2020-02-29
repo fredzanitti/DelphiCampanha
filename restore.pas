@@ -171,6 +171,14 @@ begin
         end;
 
         MemScript.Lines.Add('echo.');
+        MemScript.Lines.Add('echo Copiando arquivos... Bandeira dos Estados');
+        MemScript.Lines.Add('echo.');
+        MemScript.Lines.Add('ping -n 3 127.0.0.1 > nul');
+        MemScript.Lines.Add('xcopy /S /E /Y "' + dir + '\StoredProcedures\*.*" "' +
+          EdtRestaurar.Text + '\StoredProcedures\" ');
+        MemScript.Lines.Add('echo.');
+
+        MemScript.Lines.Add('echo.');
         MemScript.Lines.Add('echo Realizando restore do banco de dados...');
         MemScript.Lines.Add('echo.');
         MemScript.Lines.Add('ping -n 3 127.0.0.1 > nul');

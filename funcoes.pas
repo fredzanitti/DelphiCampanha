@@ -67,6 +67,8 @@ type
   public
     { Public declarations }
 
+  const cImagemPadrao = 'C:\Arquivos de programas\Campanha Ano a Ano\Seu Time\DBAcompanhamento\Imagens\indisponivel.jpg';
+
   var
     anocompeticao, codcompeticao, codigosaux, versao, tecnico: String;
 
@@ -779,9 +781,7 @@ procedure Tf_gerais.buscaBandJogador(objeto: TImage; codjogador: string);
   =======================================================
 }
 begin
-  sql := 'select p.bandeira ' + 'from ca_jogad j, ca_cidad c, ca_pais p ' +
-    'where j.codcidade = c.codcidade ' + 'and c.codpais = p.codpais ' +
-    'and j.codjogador = ' + codjogador;
+  sql := 'CALL sp_busca_bandeira_jogador (' + codjogador + ')';
 
   QrFunctions.Close;
   QrFunctions.sql.Clear;
@@ -805,12 +805,11 @@ procedure Tf_gerais.buscaImagemPorCodigo(objeto: TImage; codigo: string);
   =======================================================
 }
 begin
-  sql := 'select escudo from CA_ADVER where codadver = :CODIGO';
+  sql := 'CALL sp_busca_escudo_clube (' + codigo + ')';
 
   QrFunctions.Close;
   QrFunctions.sql.Clear;
   QrFunctions.sql.Add(sql);
-  QrFunctions.Params.ParamByName('CODIGO').AsString := codigo;
   QrFunctions.Open;
 
   if FileExists(pchar(QrFunctions.Fields[0].AsString)) then
@@ -831,8 +830,7 @@ begin
   if FileExists(pchar(caminho)) then
     objeto.Picture.LoadFromFile(caminho)
   else
-    objeto.Picture.LoadFromFile
-      ('C:\Arquivos de programas\Campanha Ano a Ano\Seu Time\DBAcompanhamento\Imagens\indisponivel.jpg');
+    objeto.Picture.LoadFromFile(cImagemPadrao);
 end;
 
 {
@@ -913,16 +911,11 @@ begin
   else
   begin
     // buscar bandeira do país/uf
-    sql := 'select ca_pais.bandeira, ca_uf.bandeira, ca_cidad.nome, ca_pais.nome, ca_uf.nome, ca_uf.sigla '
-      + 'from ca_cidad, ca_pais, ca_uf ' +
-      'where ca_cidad.codpais = ca_pais.codpais ' +
-      'and ca_cidad.coduf = ca_uf.coduf ' +
-      'and ca_cidad.codcidade = :CODIGOCIDADE';
+    sql := 'CALL sp_busca_bandeira_pais (' + codcidade + ')';
 
     QrCidades.Close;
     QrCidades.sql.Clear;
     QrCidades.sql.Add(sql);
-    QrCidades.Params.ParamByName('CODIGOCIDADE').AsString := codcidade;
     QrCidades.Open;
 
     buscaImagem(bandpais, QrCidades.Fields[0].AsString);
@@ -961,16 +954,11 @@ begin
   else
   begin
     // buscar bandeira do país/uf
-    sql := 'select ca_pais.bandeira, ca_uf.bandeira, ca_cidad.nome, ca_pais.nome, ca_uf.nome, ca_uf.sigla '
-      + 'from ca_cidad, ca_pais, ca_uf ' +
-      'where ca_cidad.codpais = ca_pais.codpais ' +
-      'and ca_cidad.coduf = ca_uf.coduf ' +
-      'and ca_cidad.codcidade = :CODIGOCIDADE';
+    sql := 'CALL sp_busca_bandeira_pais (' + codcidade + ')';
 
     QrCidades.Close;
     QrCidades.sql.Clear;
     QrCidades.sql.Add(sql);
-    QrCidades.Params.ParamByName('CODIGOCIDADE').AsString := codcidade;
     QrCidades.Open;
 
     buscaImagem(bandpais, QrCidades.Fields[0].AsString);
@@ -1004,17 +992,11 @@ begin
   else
   begin
     // buscar bandeira do país/uf
-    sql := 'select ca_pais.bandeira, ca_uf.bandeira, ca_cidad.nome, ca_pais.nome, ca_uf.nome, ca_uf.sigla, ca_estad.nome '
-      + 'from ca_cidad, ca_pais, ca_uf, ca_estad ' +
-      'where ca_cidad.codpais = ca_pais.codpais ' +
-      'and ca_cidad.coduf = ca_uf.coduf ' +
-      'and ca_cidad.codcidade = ca_estad.codcidade ' +
-      'and ca_estad.codestadio = :CODIGO';
+    sql := 'CALL sp_busca_bandeira_pais_estadio (' + codestadio + ')';
 
     QrCidades.Close;
     QrCidades.sql.Clear;
     QrCidades.sql.Add(sql);
-    QrCidades.Params.ParamByName('CODIGO').AsString := codestadio;
     QrCidades.Open;
 
     buscaImagem(bandpais, QrCidades.Fields[0].AsString);
@@ -1045,28 +1027,11 @@ procedure Tf_gerais.pesquisaCidade(grid: TDBGrid; partenome: String);
   =======================================================
 }
 begin
-  if partenome = 'TODOS' then
-  begin
-    sql := 'select c.codcidade, c.nome cidade, p.nome pais, u.sigla uf ' +
-      'from CA_CIDAD c, CA_PAIS p, CA_UF u ' + 'where c.codpais = p.codpais ' +
-      'and c.coduf = u.coduf ' + 'order by p.nome, u.sigla, c.nome';
-  end
-  else
-  begin
-    sql := 'select c.codcidade, c.nome cidade, p.nome pais, u.sigla uf ' +
-      'from CA_CIDAD c, CA_PAIS p, CA_UF u ' + 'where c.codpais = p.codpais ' +
-      'and c.coduf = u.coduf ' + 'and c.nome like :PARTEDONOME ' +
-      'order by p.nome, u.sigla, c.nome';
-  end;
+  sql := 'CALL sp_pesquisa_cidade (''' + partenome + ''')';
 
   QrCidades.Close;
   QrCidades.sql.Clear;
   QrCidades.sql.Add(sql);
-  if partenome <> 'TODOS' then
-  begin
-    QrCidades.Params.ParamByName('PARTEDONOME').AsString :=
-      '%' + partenome + '%';
-  end;
   QrCidades.Open;
 
   grid.DataSource := DtsQrCidades;
@@ -1107,30 +1072,11 @@ procedure Tf_gerais.pesquisaClubes(grid: TDBGrid; partenome: String);
   =======================================================
 }
 begin
-  if partenome = 'TODOS' then
-  begin
-    sql := 'select a.codadver codigo, a.nome time, c.nome cidade, p.nome pais, u.sigla uf '
-      + 'from CA_CIDAD c, CA_PAIS p, CA_UF u, CA_ADVER a ' +
-      'where c.codpais = p.codpais ' + 'and c.coduf = u.coduf ' +
-      'and c.codcidade = a.codcidade ' + 'and a.codadver != 0 ' +
-      'order by a.nome, p.nome, u.sigla, c.nome';
-  end
-  else
-  begin
-    sql := 'select a.codadver codigo, a.nome time, c.nome cidade, p.nome pais, u.sigla uf '
-      + 'from CA_CIDAD c, CA_PAIS p, CA_UF u, CA_ADVER a ' +
-      'where c.codpais = p.codpais ' + 'and c.coduf = u.coduf ' +
-      'and c.codcidade = a.codcidade ' + 'and a.codadver != 0 ' +
-      'and a.nome like :CLUBE ' + 'order by a.nome, p.nome, u.sigla, c.nome';
-  end;
+  sql := 'CALL sp_pesquisa_clube (''' + partenome + ''')';
 
   QrFunctions.Close;
   QrFunctions.sql.Clear;
   QrFunctions.sql.Add(sql);
-  if partenome <> 'TODOS' then
-  begin
-    QrFunctions.Params.ParamByName('CLUBE').AsString := '%' + partenome + '%';
-  end;
   QrFunctions.Open;
 
   grid.DataSource := DtsQrFunctions;
@@ -1338,74 +1284,11 @@ procedure Tf_gerais.pesquisaJogadores(grid: TDBGrid; partenome: String);
   =======================================================
 }
 begin
-  if tecnico = 'TECNICO' then
-  begin
-    if partenome = 'TODOS' then
-    begin
-      sql := 'select a.codjogador, a.nome, a.nomecompleto, a.descricao, a.dtnasc, a.foto '
-        + 'from ( ' +
-        'select c.codjogador, c.nome, c.nomecompleto, p.descricao, c.dtnasc, c.foto '
-        + 'from CA_JOGAD c, CA_POSIC p ' + 'where c.codposicao = p.codposicao '
-        + 'and p.codposicao in (6, 9) ' + 'union ' +
-        'select c.codjogador, c.nome, c.nomecompleto, p.descricao, c.dtnasc, c.foto '
-        + 'from CA_JOGAD c, CA_POSIC p ' + 'where c.codposicao = p.codposicao '
-        + 'and p.codposicao in (6, 9) ' + ') as a ' +
-        'order by a.nome, a.descricao';
-    end
-    else
-    begin
-
-      sql := 'select a.codjogador, a.nome, a.nomecompleto, a.descricao, a.dtnasc, a.foto '
-        + 'from ( ' +
-        'select c.codjogador, c.nome, c.nomecompleto, p.descricao, c.dtnasc, c.foto '
-        + 'from CA_JOGAD c, CA_POSIC p ' + 'where c.codposicao = p.codposicao '
-        + 'and p.codposicao in (6, 9) ' +
-        'and (c.nome like :PARTEDONOME or c.nomecompleto like :PARTEDONOME)' +
-        'union ' +
-        'select c.codjogador, c.nome, c.nomecompleto, p.descricao, c.dtnasc, c.foto '
-        + 'from CA_JOGAD c, CA_POSIC p ' + 'where c.codposicao = p.codposicao '
-        + 'and p.codposicao in (6, 9) ' +
-        'and (c.nome like :PARTEDONOME or c.nomecompleto like :PARTEDONOME) ' +
-        ') as a ' + 'order by a.nome, a.descricao';
-    end;
-  end
-  else
-  begin
-    if partenome = 'TODOS' then
-    begin
-      sql := 'select a.codjogador, a.nome, a.nomecompleto, a.descricao, a.dtnasc, a.foto '
-        + 'from ( ' +
-        'select c.codjogador, c.nome, c.nomecompleto, p.descricao, c.dtnasc, c.foto '
-        + 'from CA_JOGAD c, CA_POSIC p ' + 'where c.codposicao = p.codposicao '
-        + 'union ' +
-        'select c.codjogador, c.nome, c.nomecompleto, p.descricao, c.dtnasc, c.foto '
-        + 'from CA_JOGAD c, CA_POSIC p ' + 'where c.codposicao = p.codposicao '
-        + ') as a ' + 'order by a.nome, a.descricao';
-    end
-    else
-    begin
-
-      sql := 'select a.codjogador, a.nome, a.nomecompleto, a.descricao, a.dtnasc, a.foto '
-        + 'from ( ' +
-        'select c.codjogador, c.nome, c.nomecompleto, p.descricao, c.dtnasc, c.foto '
-        + 'from CA_JOGAD c, CA_POSIC p ' + 'where c.codposicao = p.codposicao '
-        + 'and (c.nome like :PARTEDONOME or c.nomecompleto like :PARTEDONOME)' +
-        'union ' +
-        'select c.codjogador, c.nome, c.nomecompleto, p.descricao, c.dtnasc, c.foto '
-        + 'from CA_JOGAD c, CA_POSIC p ' + 'where c.codposicao = p.codposicao '
-        + 'and (c.nome like :PARTEDONOME or c.nomecompleto like :PARTEDONOME) '
-        + ') as a ' + 'order by a.nome, a.descricao';
-    end;
-  end;
+  sql := 'CALL sp_pesquisa_jogadores (''' + partenome + ''',''' + tecnico + ''')';
 
   QrFunctions.Close;
   QrFunctions.sql.Clear;
   QrFunctions.sql.Add(sql);
-  if partenome <> 'TODOS' then
-  begin
-    QrFunctions.Params.ParamByName('PARTEDONOME').AsString :=
-      '%' + partenome + '%';
-  end;
   QrFunctions.Open;
 
   grid.DataSource := DtsQrFunctions;

@@ -75,10 +75,11 @@ type
     procedure estadoDosBotoesdeCadastro();
   end;
 
+const cCaminho = 'C:\Arquivos de programas\Campanha Ano a Ano\Seu Time\DBAcompanhamento\Escudos\ADVER_';
+
 var
   CA_ADVER: TCA_ADVER;
   NomeArquivo, NomeArquivoAnterior: String;
-  caminho: String;
 
 implementation
 
@@ -153,9 +154,6 @@ begin
     fraCidades.LblPais.Caption := EmptyStr;
     fraCidades.LblUf.Caption := EmptyStr;
   end;
-
-  caminho :=
-    'C:\Arquivos de programas\Campanha Ano a Ano\Seu Time\DBAcompanhamento\Escudos\ADVER_';
 end;
 
 procedure TCA_ADVER.FormClose(Sender: TObject; var Action: TCloseAction);
@@ -290,7 +288,7 @@ begin
         BtnEscolherFotoClick(Self)
       else
       begin
-        CopyFile(PChar(NomeArquivo), PChar(caminho + FormatFloat('00000',
+        CopyFile(PChar(NomeArquivo), PChar(cCaminho + FormatFloat('00000',
           StrToFloat(EdtCodigo.Text)) +
           ExtractFileExt(OpenLogo.FileName)), false);
         FrmDm.DtsAdversarios.DataSet.Post;
@@ -420,7 +418,7 @@ begin
     NomeArquivo := OpenLogo.FileName;
     f_gerais.buscaImagem(ImgLogoAdver, NomeArquivo);
     EdtEscudoAdver.Text :=
-      PChar(caminho + FormatFloat('00000', StrToFloat(EdtCodigo.Text)) +
+      PChar(cCaminho + FormatFloat('00000', StrToFloat(EdtCodigo.Text)) +
       ExtractFileExt(OpenLogo.FileName));
   end;
 end;

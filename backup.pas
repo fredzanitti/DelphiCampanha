@@ -101,6 +101,7 @@ begin
           MemScript.Lines.Add('md Fornecedores');
         if ChkUniformes.Checked then
           MemScript.Lines.Add('md Uniformes');
+        MemScript.Lines.Add('md StoredProcedures');
 
         if ChkEscudos.Checked then
         begin
@@ -177,6 +178,14 @@ begin
             'BandeiraUF\*.*" "' + EdtDestino.Text +
             '\BackupCampanha\BandeiraUF\"');
         end;
+
+        MemScript.Lines.Add('echo.');
+        MemScript.Lines.Add('echo Copiando arquivos... Stored Procedures');
+        MemScript.Lines.Add('echo.');
+        MemScript.Lines.Add('ping -n 3 127.0.0.1 > nul');
+        MemScript.Lines.Add('xcopy /S /E /Y "' + EdtOrigem.Text +
+          'StoredProcedures\*.*" "' + EdtDestino.Text +
+          '\BackupCampanha\StoredProcedures\"');
 
         MemScript.Lines.Add('echo.');
         MemScript.Lines.Add('echo Realizando backup do banco de dados...');

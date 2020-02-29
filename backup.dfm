@@ -115,7 +115,6 @@ object FrmBackup: TFrmBackup
     Width = 25
     Height = 25
     Hint = 'Selecionar Diret'#243'rio'
-    CustomHint = FrmPrincipal.BalloonHint1
     Caption = '...'
     ParentShowHint = False
     ShowHint = True
@@ -157,7 +156,6 @@ object FrmBackup: TFrmBackup
     Width = 95
     Height = 25
     Hint = 'Gerar script de backup para posterior execu'#231#227'o'
-    CustomHint = FrmPrincipal.BalloonHint1
     Caption = 'Gerar Script'
     ParentShowHint = False
     ShowHint = True
@@ -170,7 +168,6 @@ object FrmBackup: TFrmBackup
     Width = 96
     Height = 25
     Hint = 'Executar o script de backup gerado'
-    CustomHint = FrmPrincipal.BalloonHint1
     Caption = 'Executar Script'
     ParentShowHint = False
     ShowHint = True
