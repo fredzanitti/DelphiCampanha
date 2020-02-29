@@ -1,27 +1,34 @@
 # DelphiCampanhaAnoAAno
 
 ===========================================================
- CAMPANHA DO SEU CLUBE ANO A ANO - VERS√O 6.1 - JUN/2019
+ CAMPANHA DO SEU CLUBE ANO A ANO - VERS√ÉO 7.0 - FEV/2020
 ===========================================================
 
 Desenvolvido por: FREDERICO ZANITTI SILVA
 ACESSEM: http://www.zanitti.com.br
 
-ATEN«√O: ANTES DE INSTALAR O SOFTWARE CAMPANHA ANO A ANO
-		 DEVER¡ SER INSTALADO O BANDO DE DADOS MYSQL
-		 O BANCO DE DADOS PODE SER BAIXADO ATRAV…S DO 
-		 ENDERE«O: http://dev.mysql.com/downloads/installer/
+ATEN√á√ÉO: ANTES DE INSTALAR O SOFTWARE CAMPANHA ANO A ANO
+		 DEVER√Å SER INSTALADO O BANDO DE DADOS MYSQL
+		 O BANCO DE DADOS PODE SER BAIXADO ATRAV√âS DO 
+		 ENDERE√áO: http://dev.mysql.com/downloads/installer/
 
 
 
-RequisÌtos: - Sistema Operacional Windows XP/7/8/10
-			- InstalaÁ„o do mysql-installer-community-5.7.10.0
-            - ResoluÁ„o de vÌdeo de 1024x768
+Requis√≠tos: - Sistema Operacional Windows XP/7/8/10
+			- Instala√ß√£o do mysql-installer-community-5.7.10.0
+            - Resolu√ß√£o de v√≠deo de 1024x768
 
-DescriÁ„o : - Sistema de gerÍncia de jogos para um clube especÌfico
-            - RelatÛrios e filtros diversos
+Novidades da vers√£o: 	Cria√ß√£o de Stored Procedures para obter 
+			CleanCode e agilizar as consultas, sendo:
+			- sp_busca_bandeira_jogador
+			- sp_busca_bandeira_pais
+			- sp_busca_bandeira_pais_estadio
+			- sp_busca_escudo_clube
+			- sp_pesquisa_cidade
+			- sp_pesquisa_clube
+			- sp_pesquisa_jogadores
 
 ========
-AtenÁ„o:
+Aten√ß√£o:
 ========
-  O suporte ao produto È exclusivamente via e-mail.
+  O suporte ao produto √© exclusivamente via e-mail.
