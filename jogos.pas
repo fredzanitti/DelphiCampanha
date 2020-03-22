@@ -89,6 +89,7 @@ type
     EdtNomeUniforme: TEdit;
     ImgUniforme: TImage;
     fraBotoes: TfraBotoes;
+    cbPortaoFechado: TDBCheckBox;
     procedure BtnEstadioClick(Sender: TObject);
     procedure BtnCompeticaoClick(Sender: TObject);
     procedure DtDataChange(Sender: TObject);
@@ -138,6 +139,7 @@ type
     procedure fraBotoesBtnCancelarClick(Sender: TObject);
     procedure fraBotoesBtnPesquisarClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
+    procedure cbPortaoFechadoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -345,6 +347,20 @@ begin
     BtnSubstituicao.Enabled := true;
     BtnExcluirReservas.Enabled := true;
     EdtWo.Text := '0';
+  end;
+end;
+
+procedure TCA_JOGOS.cbPortaoFechadoClick(Sender: TObject);
+begin
+  if cbPortaoFechado.Checked then
+  begin
+      EdtPublico.Text := '0';
+      EdtPublico.Enabled := false;
+  end
+  else
+  begin
+      EdtPublico.Text := EmptyStr;
+      EdtPublico.Enabled := true;
   end;
 end;
 
@@ -841,6 +857,7 @@ procedure TCA_JOGOS.fraBotoesBtnIncluirClick(Sender: TObject);
 begin
   FrmDm.DtsJogos.DataSet.Append;
   EdtCodigo.Text := IntToStr(f_gerais.novoCodigo('CA_JOGOS', 'codjogo'));
+  cbPortaoFechado.Checked := False;
   estadoDosBotoesdeCadastro();
   EdtData.SetFocus;
 end;
@@ -933,6 +950,7 @@ begin
     EdtHora.Enabled := false;
     CbxTatica.Enabled := false;
     EdtPublico.Enabled := false;
+    cbPortaoFechado.Enabled := false;
     EdtPlacarMandante.Enabled := false;
     EdtPlacarVisitante.Enabled := false;
     EdtPenaltyMandante.Enabled := false;
@@ -982,6 +1000,7 @@ begin
     DtData.Enabled := true;
     EdtHora.Enabled := true;
     EdtPublico.Enabled := true;
+    cbPortaoFechado.Enabled := true;
     CbxTatica.Enabled := true;
     EdtPlacarMandante.Enabled := true;
     EdtPlacarVisitante.Enabled := true;

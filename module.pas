@@ -196,6 +196,7 @@ type
     TblCarreiraanoini: TIntegerField;
     TblCarreiraanofim: TIntegerField;
     dtsCarreira: TDataSource;
+    TblJogosportaofechado: TWideStringField;
   private
     { Private declarations }
   public

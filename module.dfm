@@ -287,6 +287,7 @@ object FrmDm: TFrmDm
   end
   object TblJogadores: TFDTable
     Active = True
+    IndexFieldNames = 'codjogador'
     Connection = BDMySQL
     Transaction = TransacaoSQL
     UpdateOptions.UpdateTableName = 'zanittic_software.CA_JOGAD'
@@ -451,6 +452,12 @@ object FrmDm: TFrmDm
       AutoGenerateValue = arDefault
       FieldName = 'coduniforme'
       Origin = 'coduniforme'
+    end
+    object TblJogosportaofechado: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'portaofechado'
+      Origin = 'portaofechado'
+      Size = 1
     end
   end
   object TblPais: TFDTable

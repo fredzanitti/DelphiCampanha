@@ -3565,7 +3565,7 @@ var
   }
 begin
   sql := 'select codcompeticao, codadvermand, placar1, penalty1, penalty2, ' +
-    'placar2, codadvervisit, data, hora, codestadio, publico, codarbitro, codtatica, contra, codfase, coduniforme '
+    'placar2, codadvervisit, data, hora, codestadio, publico, codarbitro, codtatica, contra, codfase, coduniforme, portaofechado '
     + 'from ca_jogos ' + 'where codjogo = ' + codjogo;
 
   QrSumula.Close;
@@ -3657,10 +3657,20 @@ begin
   end
   else
   begin
-    r_sumula.LblLocalEPublico.Caption := buscarNome('nome', 'ca_estad',
-      'codestadio', QrSumula.Fields[9].AsString) + ', ' +
-      retornarCidadeUfPais(buscarNome('codcidade', 'ca_estad', 'codestadio',
-      QrSumula.Fields[9].AsString)) + ' - Público: Não Informado';
+    if QrSumula.Fields[16].AsString = 'N' then
+    begin
+        r_sumula.LblLocalEPublico.Caption := buscarNome('nome', 'ca_estad',
+          'codestadio', QrSumula.Fields[9].AsString) + ', ' +
+          retornarCidadeUfPais(buscarNome('codcidade', 'ca_estad', 'codestadio',
+          QrSumula.Fields[9].AsString)) + ' - Público: Não Informado';
+    end
+    else
+    begin
+        r_sumula.LblLocalEPublico.Caption := buscarNome('nome', 'ca_estad',
+          'codestadio', QrSumula.Fields[9].AsString) + ', ' +
+          retornarCidadeUfPais(buscarNome('codcidade', 'ca_estad', 'codestadio',
+          QrSumula.Fields[9].AsString)) + ' - Público: 0, Portões Fechados';
+    end;
   end;
 
   // esquema tático

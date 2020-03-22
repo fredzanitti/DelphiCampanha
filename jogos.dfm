@@ -2275,8 +2275,8 @@ object CA_JOGOS: TCA_JOGOS
       ParentFont = False
     end
     object Label21: TLabel
-      Left = 345
-      Top = 148
+      Left = 238
+      Top = 239
       Width = 33
       Height = 13
       Caption = 'P'#250'blico'
@@ -2693,7 +2693,7 @@ object CA_JOGOS: TCA_JOGOS
     object EdtCompeticao: TEdit
       Left = 57
       Top = 164
-      Width = 281
+      Width = 387
       Height = 24
       Enabled = False
       Font.Charset = DEFAULT_CHARSET
@@ -3311,9 +3311,9 @@ object CA_JOGOS: TCA_JOGOS
       OnClick = BtnInverterClick
     end
     object EdtPublico: TDBEdit
-      Left = 346
-      Top = 164
-      Width = 96
+      Left = 239
+      Top = 255
+      Width = 91
       Height = 24
       DataField = 'publico'
       DataSource = FrmDm.DtsJogos
@@ -3323,7 +3323,7 @@ object CA_JOGOS: TCA_JOGOS
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 7
+      TabOrder = 10
       OnEnter = EdtPublicoEnter
       OnExit = EdtPublicoExit
     end
@@ -3624,7 +3624,7 @@ object CA_JOGOS: TCA_JOGOS
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 8
+      TabOrder = 7
       OnClick = BtnArbitroClick
     end
     object CbxTatica: TDBLookupComboBox
@@ -3643,12 +3643,12 @@ object CA_JOGOS: TCA_JOGOS
       ListField = 'esquema'
       ListSource = FrmDm.DtsTatica
       ParentFont = False
-      TabOrder = 9
+      TabOrder = 8
     end
     object EdtFase: TEdit
       Left = 57
       Top = 255
-      Width = 387
+      Width = 176
       Height = 24
       Enabled = False
       Font.Charset = DEFAULT_CHARSET
@@ -3942,8 +3942,27 @@ object CA_JOGOS: TCA_JOGOS
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 10
+      TabOrder = 9
       OnClick = BtnFaseClick
+    end
+    object cbPortaoFechado: TDBCheckBox
+      Left = 340
+      Top = 258
+      Width = 102
+      Height = 17
+      Caption = 'Port'#245'es fechados'
+      DataField = 'portaofechado'
+      DataSource = FrmDm.DtsJogos
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 17
+      ValueChecked = 'S'
+      ValueUnchecked = 'N'
+      OnClick = cbPortaoFechadoClick
     end
   end
   object GroupBox6: TGroupBox
