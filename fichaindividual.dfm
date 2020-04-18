@@ -777,7 +777,6 @@ object h_fichaindividual: Th_fichaindividual
     Width = 249
     Height = 45
     Hint = 'Mostrar/cadastrar carreira do jogador'
-    CustomHint = FrmPrincipal.BalloonHint1
     Caption = ' Informa'#231#245'es da carreira do jogador'
     Glyph.Data = {
       06300000424D063000000000000036000000280000005A0000002D0000000100

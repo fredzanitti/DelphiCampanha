@@ -78,21 +78,21 @@ begin
   frmRelCarreiraJogador.qryEstreia.Params.ParamByName('CodJogador').DataType :=
     ftInteger;
   frmRelCarreiraJogador.qryEstreia.Params.ParamByName('CodJogador').Value :=
-    codjogador;
+    codigojogador;
   frmRelCarreiraJogador.qryEstreia.Open;
   // ultimo jogo do jogador com a camisa do clube
   frmRelCarreiraJogador.qryUltimo.Close;
   frmRelCarreiraJogador.qryUltimo.Params.ParamByName('CodJogador').DataType :=
     ftInteger;
   frmRelCarreiraJogador.qryUltimo.Params.ParamByName('CodJogador').Value :=
-    codjogador;
+    codigojogador;
   frmRelCarreiraJogador.qryUltimo.Open;
   // TOTAL DE CLUBES NA CARREIRA
   frmRelCarreiraJogador.qryTotalClubes.Close;
   frmRelCarreiraJogador.qryTotalClubes.Params.ParamByName('CodJogador').DataType :=
     ftInteger;
   frmRelCarreiraJogador.qryTotalClubes.Params.ParamByName('CodJogador').Value :=
-    codjogador;
+    codigojogador;
   frmRelCarreiraJogador.qryTotalClubes.Open;
   // preview do relatório
   frmRelCarreiraJogador.frxRelCarreiraJogadores.PrepareReport();
