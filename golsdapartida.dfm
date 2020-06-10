@@ -3,8 +3,8 @@ object frmGolsdaPartida: TfrmGolsdaPartida
   Top = 0
   BorderStyle = bsSizeToolWin
   Caption = 'Gols da Partida'
-  ClientHeight = 543
-  ClientWidth = 529
+  ClientHeight = 542
+  ClientWidth = 525
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText

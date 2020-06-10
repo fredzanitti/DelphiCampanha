@@ -323,6 +323,7 @@ end;
 
 procedure TCA_JOGOS.BtnTempoGolsClick(Sender: TObject);
 begin
+  frmGolsdaPartida := TfrmGolsdaPartida.Create(Self);
   frmGolsdaPartida.CodigoJogo := StrToInt(EdtCodigo.Text);
   frmGolsdaPartida.LimparCampos;
   frmGolsdaPartida.ShowModal;
@@ -846,6 +847,7 @@ begin
                       FrmDm.QrGeral.Params.ParamByName('ANO').AsInteger := ano;
                       FrmDm.QrGeral.ExecSQL;
 
+                      frmGolsdaPartida.Free;
                       { GRAVAR TABELA CA_JOGOS ==================== }
                       FrmDm.DtsJogos.DataSet.Post;
 
