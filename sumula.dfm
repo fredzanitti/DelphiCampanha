@@ -3,7 +3,7 @@ object r_sumula: Tr_sumula
   Top = 0
   BorderStyle = bsToolWindow
   Caption = 'S'#218'MULA DA PARTIDA'
-  ClientHeight = 671
+  ClientHeight = 713
   ClientWidth = 1018
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
@@ -224,7 +224,7 @@ object r_sumula: Tr_sumula
   end
   object LblDataEHora: TLabel
     Left = 55
-    Top = 139
+    Top = 133
     Width = 768
     Height = 22
     AutoSize = False
@@ -238,7 +238,7 @@ object r_sumula: Tr_sumula
   end
   object LblLocalEPublico: TLabel
     Left = 55
-    Top = 167
+    Top = 161
     Width = 768
     Height = 22
     AutoSize = False
@@ -254,7 +254,7 @@ object r_sumula: Tr_sumula
   end
   object LblArbitro: TLabel
     Left = 55
-    Top = 194
+    Top = 188
     Width = 768
     Height = 22
     AutoSize = False
@@ -268,7 +268,7 @@ object r_sumula: Tr_sumula
   end
   object Shape6: TShape
     Left = 367
-    Top = 233
+    Top = 280
     Width = 3
     Height = 420
     Brush.Color = clWindowFrame
@@ -276,9 +276,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBola1: TImage
     Left = 318
-    Top = 279
+    Top = 326
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -311,7 +312,7 @@ object r_sumula: Tr_sumula
   end
   object LblGol1: TLabel
     Left = 338
-    Top = 279
+    Top = 326
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -328,11 +329,10 @@ object r_sumula: Tr_sumula
   end
   object LblNome1: TLabel
     Left = 86
-    Top = 276
+    Top = 323
     Width = 210
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ GOL ] Diego Cavalieri'
     Color = clBtnFace
@@ -350,7 +350,7 @@ object r_sumula: Tr_sumula
   end
   object LblCod1: TLabel
     Left = -4
-    Top = 276
+    Top = 323
     Width = 18
     Height = 22
     AutoSize = False
@@ -365,9 +365,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBola2: TImage
     Left = 318
-    Top = 309
+    Top = 356
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -400,7 +401,7 @@ object r_sumula: Tr_sumula
   end
   object LblGol2: TLabel
     Left = 338
-    Top = 309
+    Top = 356
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -417,11 +418,10 @@ object r_sumula: Tr_sumula
   end
   object LblNome2: TLabel
     Left = 86
-    Top = 306
+    Top = 353
     Width = 210
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ LD ] Wellington Silva'
     Color = clWhite
@@ -437,7 +437,7 @@ object r_sumula: Tr_sumula
   end
   object LblCod2: TLabel
     Left = -4
-    Top = 306
+    Top = 353
     Width = 18
     Height = 22
     AutoSize = False
@@ -452,9 +452,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBola3: TImage
     Left = 318
-    Top = 338
+    Top = 385
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -487,7 +488,7 @@ object r_sumula: Tr_sumula
   end
   object LblGol3: TLabel
     Left = 338
-    Top = 338
+    Top = 385
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -504,11 +505,10 @@ object r_sumula: Tr_sumula
   end
   object LblNome3: TLabel
     Left = 86
-    Top = 335
+    Top = 382
     Width = 210
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ ZAG ] Gum'
     Color = clBtnFace
@@ -524,7 +524,7 @@ object r_sumula: Tr_sumula
   end
   object LblCod3: TLabel
     Left = -4
-    Top = 335
+    Top = 382
     Width = 18
     Height = 22
     AutoSize = False
@@ -539,9 +539,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBola4: TImage
     Left = 318
-    Top = 366
+    Top = 413
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -574,7 +575,7 @@ object r_sumula: Tr_sumula
   end
   object LblGol4: TLabel
     Left = 338
-    Top = 366
+    Top = 413
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -591,11 +592,10 @@ object r_sumula: Tr_sumula
   end
   object LblNome4: TLabel
     Left = 86
-    Top = 363
+    Top = 410
     Width = 210
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ ZAG ] Ant'#244'nio Carlos'
     Color = clWhite
@@ -611,7 +611,7 @@ object r_sumula: Tr_sumula
   end
   object LblCod4: TLabel
     Left = -4
-    Top = 363
+    Top = 410
     Width = 18
     Height = 22
     AutoSize = False
@@ -626,9 +626,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBola5: TImage
     Left = 318
-    Top = 394
+    Top = 441
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -661,7 +662,7 @@ object r_sumula: Tr_sumula
   end
   object LblGol5: TLabel
     Left = 338
-    Top = 394
+    Top = 441
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -678,11 +679,10 @@ object r_sumula: Tr_sumula
   end
   object LblNome5: TLabel
     Left = 86
-    Top = 391
+    Top = 438
     Width = 210
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ LE ] Giovanni'
     Color = clBtnFace
@@ -698,7 +698,7 @@ object r_sumula: Tr_sumula
   end
   object LblCod5: TLabel
     Left = -4
-    Top = 391
+    Top = 438
     Width = 18
     Height = 22
     AutoSize = False
@@ -713,9 +713,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBola6: TImage
     Left = 318
-    Top = 422
+    Top = 469
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -748,7 +749,7 @@ object r_sumula: Tr_sumula
   end
   object LblGol6: TLabel
     Left = 338
-    Top = 422
+    Top = 469
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -765,11 +766,10 @@ object r_sumula: Tr_sumula
   end
   object LblNome6: TLabel
     Left = 86
-    Top = 419
+    Top = 466
     Width = 210
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ VOL ] Jean'
     Color = clWhite
@@ -785,7 +785,7 @@ object r_sumula: Tr_sumula
   end
   object LblCod6: TLabel
     Left = -4
-    Top = 419
+    Top = 466
     Width = 18
     Height = 22
     AutoSize = False
@@ -800,9 +800,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBola7: TImage
     Left = 318
-    Top = 453
+    Top = 500
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -835,7 +836,7 @@ object r_sumula: Tr_sumula
   end
   object LblGol7: TLabel
     Left = 338
-    Top = 453
+    Top = 500
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -852,11 +853,10 @@ object r_sumula: Tr_sumula
   end
   object LblNome7: TLabel
     Left = 86
-    Top = 450
+    Top = 497
     Width = 210
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ VOL ] Edson'
     Color = clBtnFace
@@ -872,7 +872,7 @@ object r_sumula: Tr_sumula
   end
   object LblCod7: TLabel
     Left = -4
-    Top = 450
+    Top = 497
     Width = 18
     Height = 22
     AutoSize = False
@@ -887,9 +887,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBola8: TImage
     Left = 318
-    Top = 481
+    Top = 528
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -922,7 +923,7 @@ object r_sumula: Tr_sumula
   end
   object LblGol8: TLabel
     Left = 338
-    Top = 481
+    Top = 528
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -939,11 +940,10 @@ object r_sumula: Tr_sumula
   end
   object LblNome8: TLabel
     Left = 86
-    Top = 478
+    Top = 525
     Width = 210
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ MEI ] Orlando Pingo de Ouro'
     Color = clWhite
@@ -959,7 +959,7 @@ object r_sumula: Tr_sumula
   end
   object LblCod8: TLabel
     Left = -4
-    Top = 478
+    Top = 525
     Width = 18
     Height = 22
     AutoSize = False
@@ -974,9 +974,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBola9: TImage
     Left = 318
-    Top = 511
+    Top = 558
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -1009,7 +1010,7 @@ object r_sumula: Tr_sumula
   end
   object LblGol9: TLabel
     Left = 338
-    Top = 511
+    Top = 558
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -1026,11 +1027,10 @@ object r_sumula: Tr_sumula
   end
   object LblNome9: TLabel
     Left = 86
-    Top = 508
+    Top = 555
     Width = 210
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ MEI ] Gerson'
     Color = clBtnFace
@@ -1046,7 +1046,7 @@ object r_sumula: Tr_sumula
   end
   object LblCod9: TLabel
     Left = -4
-    Top = 508
+    Top = 555
     Width = 18
     Height = 22
     AutoSize = False
@@ -1061,9 +1061,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBola10: TImage
     Left = 318
-    Top = 539
+    Top = 586
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -1096,7 +1097,7 @@ object r_sumula: Tr_sumula
   end
   object LblGol10: TLabel
     Left = 338
-    Top = 539
+    Top = 586
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -1113,11 +1114,10 @@ object r_sumula: Tr_sumula
   end
   object LblNome10: TLabel
     Left = 86
-    Top = 536
+    Top = 583
     Width = 210
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ ATA ] Osvaldo'
     Color = clWhite
@@ -1133,7 +1133,7 @@ object r_sumula: Tr_sumula
   end
   object LblCod10: TLabel
     Left = -4
-    Top = 536
+    Top = 583
     Width = 18
     Height = 22
     AutoSize = False
@@ -1148,9 +1148,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBola11: TImage
     Left = 318
-    Top = 568
+    Top = 615
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -1183,7 +1184,7 @@ object r_sumula: Tr_sumula
   end
   object LblGol11: TLabel
     Left = 338
-    Top = 568
+    Top = 615
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -1200,11 +1201,10 @@ object r_sumula: Tr_sumula
   end
   object LblNome11: TLabel
     Left = 86
-    Top = 565
+    Top = 612
     Width = 210
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ ATA ] Fred'
     Color = clBtnFace
@@ -1220,7 +1220,7 @@ object r_sumula: Tr_sumula
   end
   object LblCod11: TLabel
     Left = -4
-    Top = 565
+    Top = 612
     Width = 18
     Height = 22
     AutoSize = False
@@ -1235,7 +1235,7 @@ object r_sumula: Tr_sumula
   end
   object LblCod12: TLabel
     Left = -4
-    Top = 613
+    Top = 660
     Width = 18
     Height = 22
     AutoSize = False
@@ -1250,11 +1250,10 @@ object r_sumula: Tr_sumula
   end
   object LblNome12: TLabel
     Left = 86
-    Top = 613
+    Top = 660
     Width = 237
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ TEC ] Enderson Moreira'
     Color = clWhite
@@ -1270,9 +1269,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBolaEntrou1: TImage
     Left = 779
-    Top = 279
+    Top = 326
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -1305,7 +1305,7 @@ object r_sumula: Tr_sumula
   end
   object LblGolsEntrou1: TLabel
     Left = 799
-    Top = 279
+    Top = 326
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -1322,11 +1322,10 @@ object r_sumula: Tr_sumula
   end
   object LblEntrou1: TLabel
     Left = 571
-    Top = 276
+    Top = 323
     Width = 180
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ GOL ] Diego Cavalieri'
     Color = clBtnFace
@@ -1342,7 +1341,7 @@ object r_sumula: Tr_sumula
   end
   object LblCodEntrou1: TLabel
     Left = 552
-    Top = 276
+    Top = 323
     Width = 18
     Height = 22
     AutoSize = False
@@ -1357,9 +1356,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBolaEntrou2: TImage
     Left = 779
-    Top = 309
+    Top = 356
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -1392,7 +1392,7 @@ object r_sumula: Tr_sumula
   end
   object LblGolsEntrou2: TLabel
     Left = 799
-    Top = 309
+    Top = 356
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -1409,11 +1409,10 @@ object r_sumula: Tr_sumula
   end
   object LblEntrou2: TLabel
     Left = 571
-    Top = 306
+    Top = 353
     Width = 180
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ LD ] Wellington Silva'
     Color = clWhite
@@ -1429,7 +1428,7 @@ object r_sumula: Tr_sumula
   end
   object LblCodEntrou2: TLabel
     Left = 552
-    Top = 306
+    Top = 353
     Width = 18
     Height = 22
     AutoSize = False
@@ -1444,9 +1443,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBolaEntrou3: TImage
     Left = 779
-    Top = 338
+    Top = 385
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -1479,7 +1479,7 @@ object r_sumula: Tr_sumula
   end
   object LblGolsEntrou3: TLabel
     Left = 799
-    Top = 338
+    Top = 385
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -1496,11 +1496,10 @@ object r_sumula: Tr_sumula
   end
   object LblEntrou3: TLabel
     Left = 571
-    Top = 335
+    Top = 382
     Width = 180
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ ZAG ] Gum'
     Color = clBtnFace
@@ -1516,7 +1515,7 @@ object r_sumula: Tr_sumula
   end
   object LblCodEntrou3: TLabel
     Left = 552
-    Top = 335
+    Top = 382
     Width = 18
     Height = 22
     AutoSize = False
@@ -1531,9 +1530,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBolaEntrou4: TImage
     Left = 779
-    Top = 366
+    Top = 413
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -1566,7 +1566,7 @@ object r_sumula: Tr_sumula
   end
   object LblGolsEntrou4: TLabel
     Left = 799
-    Top = 366
+    Top = 413
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -1583,11 +1583,10 @@ object r_sumula: Tr_sumula
   end
   object LblEntrou4: TLabel
     Left = 571
-    Top = 363
+    Top = 410
     Width = 180
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ ZAG ] Ant'#244'nio Carlos'
     Color = clWhite
@@ -1603,7 +1602,7 @@ object r_sumula: Tr_sumula
   end
   object LblCodEntrou4: TLabel
     Left = 552
-    Top = 363
+    Top = 410
     Width = 18
     Height = 22
     AutoSize = False
@@ -1618,9 +1617,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBolaEntrou5: TImage
     Left = 779
-    Top = 394
+    Top = 441
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -1653,7 +1653,7 @@ object r_sumula: Tr_sumula
   end
   object LblGolsEntrou5: TLabel
     Left = 799
-    Top = 394
+    Top = 441
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -1670,11 +1670,10 @@ object r_sumula: Tr_sumula
   end
   object LblEntrou5: TLabel
     Left = 571
-    Top = 391
+    Top = 438
     Width = 180
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ LE ] Giovanni'
     Color = clBtnFace
@@ -1690,7 +1689,7 @@ object r_sumula: Tr_sumula
   end
   object LblCodEntrou5: TLabel
     Left = 552
-    Top = 391
+    Top = 438
     Width = 18
     Height = 22
     AutoSize = False
@@ -1705,9 +1704,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBolaEntrou6: TImage
     Left = 779
-    Top = 422
+    Top = 469
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -1740,7 +1740,7 @@ object r_sumula: Tr_sumula
   end
   object LblGolsEntrou6: TLabel
     Left = 799
-    Top = 422
+    Top = 469
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -1757,11 +1757,10 @@ object r_sumula: Tr_sumula
   end
   object LblEntrou6: TLabel
     Left = 571
-    Top = 419
+    Top = 466
     Width = 180
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ VOL ] Jean'
     Color = clWhite
@@ -1777,7 +1776,7 @@ object r_sumula: Tr_sumula
   end
   object LblCodEntrou6: TLabel
     Left = 552
-    Top = 419
+    Top = 466
     Width = 18
     Height = 22
     AutoSize = False
@@ -1792,9 +1791,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBolaEntrou7: TImage
     Left = 779
-    Top = 453
+    Top = 500
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -1827,7 +1827,7 @@ object r_sumula: Tr_sumula
   end
   object LblGolsEntrou7: TLabel
     Left = 799
-    Top = 453
+    Top = 500
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -1844,11 +1844,10 @@ object r_sumula: Tr_sumula
   end
   object LblEntrou7: TLabel
     Left = 571
-    Top = 450
+    Top = 497
     Width = 180
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ VOL ] Edson'
     Color = clBtnFace
@@ -1864,7 +1863,7 @@ object r_sumula: Tr_sumula
   end
   object LblCodEntrou7: TLabel
     Left = 552
-    Top = 450
+    Top = 497
     Width = 18
     Height = 22
     AutoSize = False
@@ -1879,9 +1878,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBolaEntrou8: TImage
     Left = 779
-    Top = 481
+    Top = 528
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -1914,7 +1914,7 @@ object r_sumula: Tr_sumula
   end
   object LblGolsEntrou8: TLabel
     Left = 799
-    Top = 481
+    Top = 528
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -1931,11 +1931,10 @@ object r_sumula: Tr_sumula
   end
   object LblEntrou8: TLabel
     Left = 571
-    Top = 478
+    Top = 525
     Width = 180
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ MEI ] Ronaldinho Ga'#250'cho'
     Color = clWhite
@@ -1951,7 +1950,7 @@ object r_sumula: Tr_sumula
   end
   object LblCodEntrou8: TLabel
     Left = 552
-    Top = 478
+    Top = 525
     Width = 18
     Height = 22
     AutoSize = False
@@ -1966,9 +1965,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBolaEntrou9: TImage
     Left = 779
-    Top = 511
+    Top = 558
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -2001,7 +2001,7 @@ object r_sumula: Tr_sumula
   end
   object LblGolsEntrou9: TLabel
     Left = 799
-    Top = 511
+    Top = 558
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -2018,11 +2018,10 @@ object r_sumula: Tr_sumula
   end
   object LblEntrou9: TLabel
     Left = 571
-    Top = 508
+    Top = 555
     Width = 180
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ MEI ] Gerson'
     Color = clBtnFace
@@ -2038,7 +2037,7 @@ object r_sumula: Tr_sumula
   end
   object LblCodEntrou9: TLabel
     Left = 552
-    Top = 508
+    Top = 555
     Width = 18
     Height = 22
     AutoSize = False
@@ -2053,9 +2052,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBolaEntrou10: TImage
     Left = 779
-    Top = 539
+    Top = 586
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -2088,7 +2088,7 @@ object r_sumula: Tr_sumula
   end
   object LblGolsEntrou10: TLabel
     Left = 799
-    Top = 539
+    Top = 586
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -2105,11 +2105,10 @@ object r_sumula: Tr_sumula
   end
   object LblEntrou10: TLabel
     Left = 571
-    Top = 536
+    Top = 583
     Width = 180
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ ATA ] Osvaldo'
     Color = clWhite
@@ -2125,7 +2124,7 @@ object r_sumula: Tr_sumula
   end
   object LblCodEntrou10: TLabel
     Left = 552
-    Top = 536
+    Top = 583
     Width = 18
     Height = 22
     AutoSize = False
@@ -2140,9 +2139,10 @@ object r_sumula: Tr_sumula
   end
   object ImgBolaEntrou11: TImage
     Left = 779
-    Top = 570
+    Top = 617
     Width = 17
     Height = 17
+    Cursor = crHandPoint
     Picture.Data = {
       0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
       2C0000FFDB0043000302020302020303030304030304050805050404050A0707
@@ -2175,7 +2175,7 @@ object r_sumula: Tr_sumula
   end
   object LblGolsEntrou11: TLabel
     Left = 799
-    Top = 570
+    Top = 617
     Width = 22
     Height = 16
     Alignment = taCenter
@@ -2192,11 +2192,10 @@ object r_sumula: Tr_sumula
   end
   object LblEntrou11: TLabel
     Left = 571
-    Top = 567
+    Top = 614
     Width = 180
     Height = 22
     Cursor = crHandPoint
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = '[ ATA ] Fred'
     Color = clBtnFace
@@ -2212,7 +2211,7 @@ object r_sumula: Tr_sumula
   end
   object LblCodEntrou11: TLabel
     Left = 552
-    Top = 567
+    Top = 614
     Width = 18
     Height = 22
     AutoSize = False
@@ -2227,7 +2226,7 @@ object r_sumula: Tr_sumula
   end
   object LblSaiu1: TLabel
     Left = 382
-    Top = 276
+    Top = 323
     Width = 171
     Height = 22
     AutoSize = False
@@ -2244,7 +2243,7 @@ object r_sumula: Tr_sumula
   end
   object LblSaiu2: TLabel
     Left = 382
-    Top = 306
+    Top = 353
     Width = 171
     Height = 22
     AutoSize = False
@@ -2261,7 +2260,7 @@ object r_sumula: Tr_sumula
   end
   object LblSaiu3: TLabel
     Left = 382
-    Top = 335
+    Top = 382
     Width = 171
     Height = 22
     AutoSize = False
@@ -2278,7 +2277,7 @@ object r_sumula: Tr_sumula
   end
   object LblSaiu4: TLabel
     Left = 382
-    Top = 363
+    Top = 410
     Width = 171
     Height = 22
     AutoSize = False
@@ -2295,7 +2294,7 @@ object r_sumula: Tr_sumula
   end
   object LblSaiu5: TLabel
     Left = 382
-    Top = 391
+    Top = 438
     Width = 171
     Height = 22
     AutoSize = False
@@ -2312,7 +2311,7 @@ object r_sumula: Tr_sumula
   end
   object LblSaiu6: TLabel
     Left = 382
-    Top = 419
+    Top = 466
     Width = 171
     Height = 22
     AutoSize = False
@@ -2329,7 +2328,7 @@ object r_sumula: Tr_sumula
   end
   object LblSaiu7: TLabel
     Left = 382
-    Top = 450
+    Top = 497
     Width = 171
     Height = 22
     AutoSize = False
@@ -2346,7 +2345,7 @@ object r_sumula: Tr_sumula
   end
   object LblSaiu8: TLabel
     Left = 382
-    Top = 478
+    Top = 525
     Width = 171
     Height = 22
     AutoSize = False
@@ -2363,7 +2362,7 @@ object r_sumula: Tr_sumula
   end
   object LblSaiu9: TLabel
     Left = 382
-    Top = 508
+    Top = 555
     Width = 171
     Height = 22
     AutoSize = False
@@ -2380,7 +2379,7 @@ object r_sumula: Tr_sumula
   end
   object LblSaiu10: TLabel
     Left = 382
-    Top = 536
+    Top = 583
     Width = 171
     Height = 22
     AutoSize = False
@@ -2397,7 +2396,7 @@ object r_sumula: Tr_sumula
   end
   object LblSaiu11: TLabel
     Left = 382
-    Top = 567
+    Top = 614
     Width = 171
     Height = 22
     AutoSize = False
@@ -2415,7 +2414,7 @@ object r_sumula: Tr_sumula
   end
   object Label49: TLabel
     Left = 382
-    Top = 237
+    Top = 284
     Width = 171
     Height = 22
     Alignment = taCenter
@@ -2430,7 +2429,7 @@ object r_sumula: Tr_sumula
   end
   object Label50: TLabel
     Left = 571
-    Top = 237
+    Top = 284
     Width = 180
     Height = 22
     Alignment = taCenter
@@ -2445,7 +2444,7 @@ object r_sumula: Tr_sumula
   end
   object LblEsquema: TLabel
     Left = 40
-    Top = 237
+    Top = 284
     Width = 274
     Height = 22
     AutoSize = False
@@ -2459,32 +2458,15 @@ object r_sumula: Tr_sumula
   end
   object Shape7: TShape
     Left = 25
-    Top = 261
+    Top = 308
     Width = 798
     Height = 3
     Brush.Color = clWindowFrame
     Pen.Color = clWhite
   end
-  object LblContra: TLabel
-    Left = 382
-    Top = 616
-    Width = 434
-    Height = 22
-    AutoSize = False
-    Caption = 'O Fluminense teve 1 gol contra a seu favor.'
-    Color = clWhite
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clMaroon
-    Font.Height = -15
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentColor = False
-    ParentFont = False
-    Transparent = False
-  end
   object Shape8: TShape
     Left = 25
-    Top = 233
+    Top = 280
     Width = 798
     Height = 3
     Brush.Color = clWindowFrame
@@ -2492,7 +2474,7 @@ object r_sumula: Tr_sumula
   end
   object shtatica1: TShape
     Left = 26
-    Top = 274
+    Top = 321
     Width = 9
     Height = 25
     Brush.Color = cl3DDkShadow
@@ -2500,7 +2482,7 @@ object r_sumula: Tr_sumula
   end
   object shtatica2: TShape
     Left = 26
-    Top = 304
+    Top = 351
     Width = 9
     Height = 25
     Brush.Color = clScrollBar
@@ -2508,7 +2490,7 @@ object r_sumula: Tr_sumula
   end
   object shtatica3: TShape
     Left = 26
-    Top = 331
+    Top = 378
     Width = 9
     Height = 25
     Brush.Color = clScrollBar
@@ -2516,7 +2498,7 @@ object r_sumula: Tr_sumula
   end
   object shtatica4: TShape
     Left = 26
-    Top = 360
+    Top = 407
     Width = 9
     Height = 25
     Brush.Color = clScrollBar
@@ -2524,7 +2506,7 @@ object r_sumula: Tr_sumula
   end
   object shtatica5: TShape
     Left = 26
-    Top = 389
+    Top = 436
     Width = 9
     Height = 25
     Brush.Color = clScrollBar
@@ -2532,7 +2514,7 @@ object r_sumula: Tr_sumula
   end
   object shtatica6: TShape
     Left = 26
-    Top = 418
+    Top = 465
     Width = 9
     Height = 25
     Brush.Color = clSkyBlue
@@ -2540,7 +2522,7 @@ object r_sumula: Tr_sumula
   end
   object shtatica7: TShape
     Left = 26
-    Top = 447
+    Top = 494
     Width = 9
     Height = 25
     Brush.Color = clSkyBlue
@@ -2548,7 +2530,7 @@ object r_sumula: Tr_sumula
   end
   object shtatica8: TShape
     Left = 26
-    Top = 476
+    Top = 523
     Width = 9
     Height = 25
     Brush.Color = clSkyBlue
@@ -2556,7 +2538,7 @@ object r_sumula: Tr_sumula
   end
   object shtatica9: TShape
     Left = 26
-    Top = 505
+    Top = 552
     Width = 9
     Height = 25
     Brush.Color = clSkyBlue
@@ -2564,7 +2546,7 @@ object r_sumula: Tr_sumula
   end
   object shtatica10: TShape
     Left = 26
-    Top = 534
+    Top = 581
     Width = 9
     Height = 25
     Brush.Color = clScrollBar
@@ -2572,7 +2554,7 @@ object r_sumula: Tr_sumula
   end
   object shtatica11: TShape
     Left = 26
-    Top = 563
+    Top = 610
     Width = 9
     Height = 25
     Brush.Color = clScrollBar
@@ -2580,84 +2562,84 @@ object r_sumula: Tr_sumula
   end
   object ImgBandJog1: TImage
     Left = 42
-    Top = 276
+    Top = 323
     Width = 35
     Height = 20
     Stretch = True
   end
   object ImgBandJog2: TImage
     Left = 42
-    Top = 306
+    Top = 353
     Width = 35
     Height = 20
     Stretch = True
   end
   object ImgBandJog3: TImage
     Left = 42
-    Top = 335
+    Top = 382
     Width = 35
     Height = 20
     Stretch = True
   end
   object ImgBandJog4: TImage
     Left = 42
-    Top = 363
+    Top = 410
     Width = 35
     Height = 20
     Stretch = True
   end
   object ImgBandJog8: TImage
     Left = 42
-    Top = 478
+    Top = 525
     Width = 35
     Height = 20
     Stretch = True
   end
   object ImgBandJog7: TImage
     Left = 42
-    Top = 450
+    Top = 497
     Width = 35
     Height = 20
     Stretch = True
   end
   object ImgBandJog6: TImage
     Left = 42
-    Top = 419
+    Top = 466
     Width = 35
     Height = 20
     Stretch = True
   end
   object ImgBandJog5: TImage
     Left = 42
-    Top = 391
+    Top = 438
     Width = 35
     Height = 20
     Stretch = True
   end
   object ImgBandJog11: TImage
     Left = 42
-    Top = 565
+    Top = 612
     Width = 35
     Height = 20
     Stretch = True
   end
   object ImgBandJog10: TImage
     Left = 42
-    Top = 536
+    Top = 583
     Width = 35
     Height = 20
     Stretch = True
   end
   object ImgBandJog9: TImage
     Left = 42
-    Top = 508
+    Top = 555
     Width = 35
     Height = 20
     Stretch = True
   end
   object ImgBandJog12: TImage
     Left = 42
-    Top = 613
+    Top = 660
     Width = 35
     Height = 20
     Stretch = True
@@ -2682,7 +2664,7 @@ object r_sumula: Tr_sumula
   end
   object ShCa2: TShape
     Left = 300
-    Top = 307
+    Top = 354
     Width = 12
     Height = 18
     Brush.Color = clYellow
@@ -2690,7 +2672,7 @@ object r_sumula: Tr_sumula
   end
   object ShCa1: TShape
     Left = 300
-    Top = 277
+    Top = 324
     Width = 12
     Height = 18
     Brush.Color = clYellow
@@ -2698,7 +2680,7 @@ object r_sumula: Tr_sumula
   end
   object ShCa3: TShape
     Left = 300
-    Top = 336
+    Top = 383
     Width = 12
     Height = 18
     Brush.Color = clYellow
@@ -2706,7 +2688,7 @@ object r_sumula: Tr_sumula
   end
   object ShCa4: TShape
     Left = 300
-    Top = 364
+    Top = 411
     Width = 12
     Height = 18
     Brush.Color = clYellow
@@ -2714,7 +2696,7 @@ object r_sumula: Tr_sumula
   end
   object ShCa5: TShape
     Left = 300
-    Top = 392
+    Top = 439
     Width = 12
     Height = 18
     Brush.Color = clYellow
@@ -2722,7 +2704,7 @@ object r_sumula: Tr_sumula
   end
   object ShCa6: TShape
     Left = 300
-    Top = 420
+    Top = 467
     Width = 12
     Height = 18
     Brush.Color = clYellow
@@ -2730,7 +2712,7 @@ object r_sumula: Tr_sumula
   end
   object ShCa7: TShape
     Left = 300
-    Top = 451
+    Top = 498
     Width = 12
     Height = 18
     Brush.Color = clYellow
@@ -2738,7 +2720,7 @@ object r_sumula: Tr_sumula
   end
   object ShCa8: TShape
     Left = 300
-    Top = 479
+    Top = 526
     Width = 12
     Height = 18
     Brush.Color = clYellow
@@ -2746,7 +2728,7 @@ object r_sumula: Tr_sumula
   end
   object ShCa9: TShape
     Left = 300
-    Top = 509
+    Top = 556
     Width = 12
     Height = 18
     Brush.Color = clYellow
@@ -2754,7 +2736,7 @@ object r_sumula: Tr_sumula
   end
   object ShCa10: TShape
     Left = 300
-    Top = 537
+    Top = 584
     Width = 12
     Height = 18
     Brush.Color = clYellow
@@ -2762,7 +2744,7 @@ object r_sumula: Tr_sumula
   end
   object ShCa11: TShape
     Left = 300
-    Top = 566
+    Top = 613
     Width = 12
     Height = 18
     Brush.Color = clYellow
@@ -2770,7 +2752,7 @@ object r_sumula: Tr_sumula
   end
   object ShCaEntrou2: TShape
     Left = 762
-    Top = 309
+    Top = 356
     Width = 12
     Height = 18
     Brush.Color = clRed
@@ -2778,7 +2760,7 @@ object r_sumula: Tr_sumula
   end
   object ShCaEntrou1: TShape
     Left = 762
-    Top = 279
+    Top = 326
     Width = 12
     Height = 18
     Brush.Color = clRed
@@ -2786,7 +2768,7 @@ object r_sumula: Tr_sumula
   end
   object ShCaEntrou3: TShape
     Left = 762
-    Top = 338
+    Top = 385
     Width = 12
     Height = 18
     Brush.Color = clRed
@@ -2794,7 +2776,7 @@ object r_sumula: Tr_sumula
   end
   object ShCaEntrou4: TShape
     Left = 762
-    Top = 366
+    Top = 413
     Width = 12
     Height = 18
     Brush.Color = clRed
@@ -2802,7 +2784,7 @@ object r_sumula: Tr_sumula
   end
   object ShCaEntrou5: TShape
     Left = 762
-    Top = 394
+    Top = 441
     Width = 12
     Height = 18
     Brush.Color = clRed
@@ -2810,7 +2792,7 @@ object r_sumula: Tr_sumula
   end
   object ShCaEntrou6: TShape
     Left = 762
-    Top = 422
+    Top = 469
     Width = 12
     Height = 18
     Brush.Color = clRed
@@ -2818,7 +2800,7 @@ object r_sumula: Tr_sumula
   end
   object ShCaEntrou7: TShape
     Left = 762
-    Top = 453
+    Top = 500
     Width = 12
     Height = 18
     Brush.Color = clRed
@@ -2826,7 +2808,7 @@ object r_sumula: Tr_sumula
   end
   object ShCaEntrou8: TShape
     Left = 762
-    Top = 481
+    Top = 528
     Width = 12
     Height = 18
     Brush.Color = clRed
@@ -2834,7 +2816,7 @@ object r_sumula: Tr_sumula
   end
   object ShCaEntrou9: TShape
     Left = 762
-    Top = 511
+    Top = 558
     Width = 12
     Height = 18
     Brush.Color = clRed
@@ -2842,7 +2824,7 @@ object r_sumula: Tr_sumula
   end
   object ShCaEntrou10: TShape
     Left = 762
-    Top = 539
+    Top = 586
     Width = 12
     Height = 18
     Brush.Color = clRed
@@ -2850,15 +2832,15 @@ object r_sumula: Tr_sumula
   end
   object ShCaEntrou11: TShape
     Left = 762
-    Top = 568
+    Top = 615
     Width = 12
     Height = 18
     Brush.Color = clRed
     Pen.Color = clMaroon
   end
-  object Image3: TImage
+  object imgArbitro: TImage
     Left = 25
-    Top = 194
+    Top = 188
     Width = 22
     Height = 22
     Picture.Data = {
@@ -2897,9 +2879,9 @@ object r_sumula: Tr_sumula
       E714A4F61EAAAA36A8000EC0514515D4627FFFD9}
     Stretch = True
   end
-  object Image1: TImage
+  object imgEstadio: TImage
     Left = 26
-    Top = 167
+    Top = 161
     Width = 22
     Height = 22
     Picture.Data = {
@@ -2933,9 +2915,9 @@ object r_sumula: Tr_sumula
       14514C47FFD9}
     Stretch = True
   end
-  object Image2: TImage
+  object imgData: TImage
     Left = 26
-    Top = 139
+    Top = 133
     Width = 22
     Height = 22
     Picture.Data = {
@@ -2985,17 +2967,73 @@ object r_sumula: Tr_sumula
   end
   object ShCa12: TShape
     Left = 330
-    Top = 616
+    Top = 663
     Width = 12
     Height = 18
     Brush.Color = clYellow
     Pen.Color = clOlive
   end
+  object lblGolsPartida: TLabel
+    Left = 55
+    Top = 222
+    Width = 768
+    Height = 51
+    AutoSize = False
+    Caption = 
+      'Paulo Henrique Ganso (5'#39'); Paulo Henrique Ganso (25'#39');  Paulo He' +
+      'nrique Ganso (25'#39');  Paulo Henrique Ganso (25'#39');  Paulo Henrique' +
+      ' Ganso (25'#39');  Paulo Henrique Ganso (25'#39');  Paulo Henrique Ganso' +
+      ' (25'#39');  Paulo Henrique Ganso (25'#39'); Paulo Henrique Ganso (25'#39');' +
+      ' Paulo Henrique Ganso (25'#39'); Paulo Henrique Ganso (25'#39'); Paulo H' +
+      'enrique Ganso (25'#39'); Paulo Henrique Ganso (25'#39'); '
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowFrame
+    Font.Height = -13
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    WordWrap = True
+  end
+  object imgGols: TImage
+    Left = 25
+    Top = 222
+    Width = 20
+    Height = 20
+    Picture.Data = {
+      0A544A504547496D61676544030000FFD8FFE000104A46494600010101012C01
+      2C0000FFDB0043000302020302020303030304030304050805050404050A0707
+      06080C0A0C0C0B0A0B0B0D0E12100D0E110E0B0B1016101113141515150C0F17
+      1816141812141514FFDB00430103040405040509050509140D0B0D1414141414
+      1414141414141414141414141414141414141414141414141414141414141414
+      14141414141414141414141414FFC00011080011001103012200021101031101
+      FFC4001F0000010501010101010100000000000000000102030405060708090A
+      0BFFC400B5100002010303020403050504040000017D01020300041105122131
+      410613516107227114328191A1082342B1C11552D1F02433627282090A161718
+      191A25262728292A3435363738393A434445464748494A535455565758595A63
+      6465666768696A737475767778797A838485868788898A92939495969798999A
+      A2A3A4A5A6A7A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6
+      D7D8D9DAE1E2E3E4E5E6E7E8E9EAF1F2F3F4F5F6F7F8F9FAFFC4001F01000301
+      01010101010101010000000000000102030405060708090A0BFFC400B5110002
+      0102040403040705040400010277000102031104052131061241510761711322
+      328108144291A1B1C109233352F0156272D10A162434E125F11718191A262728
+      292A35363738393A434445464748494A535455565758595A636465666768696A
+      737475767778797A82838485868788898A92939495969798999AA2A3A4A5A6A7
+      A8A9AAB2B3B4B5B6B7B8B9BAC2C3C4C5C6C7C8C9CAD2D3D4D5D6D7D8D9DAE2E3
+      E4E5E6E7E8E9EAF2F3F4F5F6F7F8F9FAFFDA000C03010002110311003F00FB57
+      E2678A3C47278BEE7C407C7767E12F85FE158DDB58B5B6815EFAFA64277AB4AC
+      0F968A36E1506F624F3CAE337C2DF12B58D77C5367E35F0678DECFC51F0A1E46
+      D3F54D2F518FFD2AD275507CDB7942E4F2D1EE490918248238AE0BE28FC0DBAF
+      855ADFC50D65FC3FA87C47F87DE36B8FED1D43C376D68D7735B4ECB89FCB8D4E
+      E3BDBE70C8015DA39E14D72FF0ABE0B58FC53F833A7F80FC13E04F11FC26F08C
+      9AB4379AB5CEB56B2DB5E5D451C88D229F31B7C8D28409BB24281E800A00FBD0
+      7228A00C003D28A005A28A2800A28A2803FFD9}
+    Stretch = True
+  end
   object GbxPatrocinios: TGroupBox
     Left = 840
-    Top = 139
+    Top = 129
     Width = 152
-    Height = 262
+    Height = 312
     Caption = '    Patrocinadores    '
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowFrame
@@ -3006,39 +3044,37 @@ object r_sumula: Tr_sumula
     TabOrder = 0
     object ImgFornec: TImage
       Left = 39
-      Top = 26
+      Top = 39
       Width = 73
       Height = 73
-      CustomHint = FrmPrincipal.BalloonHint1
       Center = True
       Proportional = True
     end
     object ImgPatroc: TImage
       Left = 39
-      Top = 144
+      Top = 188
       Width = 73
       Height = 73
-      CustomHint = FrmPrincipal.BalloonHint1
       Center = True
       Proportional = True
     end
     object ImgBandPatroc: TImage
       Left = 57
-      Top = 224
+      Top = 268
       Width = 37
       Height = 21
       Stretch = True
     end
     object ImgBandFornec: TImage
       Left = 57
-      Top = 105
+      Top = 118
       Width = 37
       Height = 21
       Stretch = True
     end
     object Shape9: TShape
       Left = 6
-      Top = 132
+      Top = 162
       Width = 140
       Height = 3
       Brush.Color = clWindowFrame
@@ -3047,7 +3083,7 @@ object r_sumula: Tr_sumula
   end
   object GbxUniformes: TGroupBox
     Left = 840
-    Top = 416
+    Top = 463
     Width = 152
     Height = 222
     Caption = '    Uniforme Utilizado    '
@@ -3057,7 +3093,6 @@ object r_sumula: Tr_sumula
       Top = 26
       Width = 127
       Height = 180
-      CustomHint = FrmPrincipal.BalloonHint1
       Center = True
       Proportional = True
     end

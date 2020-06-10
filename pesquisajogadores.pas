@@ -43,7 +43,7 @@ implementation
 {$R *.dfm}
 
 uses funcoes, module, jogadores, telapadraojogos, selecionarano,
-  fichaindividual, pesquisaarbitros, r_vitimasdegolsdojogador;
+  fichaindividual, pesquisaarbitros, r_vitimasdegolsdojogador, golsdapartida;
 
 procedure Th_jogadores.BtnSelecionarClick(Sender: TObject);
 begin
@@ -55,11 +55,17 @@ begin
   if CbOpcao.Checked then
   begin
     f_gerais.tecnico := 'TECNICO';
-    f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS');
+    if identificacao = 'ES_GOLS' then
+       f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'S')
+    else
+       f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
   end
   else begin
     f_gerais.tecnico := '';
-    f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS');
+    if identificacao = 'ES_GOLS' then
+       f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'S')
+    else
+       f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
   end;
 end;
 
@@ -87,6 +93,22 @@ begin
       FrmDm.TblJogadores.Next;
     end;
     CA_JOGAD.estadoDosBotoesdeCadastro();
+  end;
+
+  // ==========================================================================
+  // Pesquisa quando acionada pelo cadastro de jogadores
+  // ==========================================================================
+  if identificacao = 'ES_GOLS' then
+  begin
+    FrmDm.TblJogadores.First;
+
+    while FrmDm.TblJogadorescodjogador.AsInteger <> StrToInt(codjogador) do
+    begin
+      FrmDm.TblJogadores.Next;
+    end;
+    frmGolsdaPartida.CodigoJogador := FrmDm.TblJogadorescodjogador.Value;
+    frmGolsdaPartida.EdtJogador.Text := FrmDm.TblJogadoresnome.Value;
+    h_jogadores.Close;
   end;
 
   // ==========================================================================
@@ -759,7 +781,7 @@ begin
   begin
     f_gerais.preencherFichaIndividual(StrToInt(codjogador));
   end;
-  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS');
+  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
 
   // ==========================================================================
   // Pesquisa - Maiores vítimas (clubes) de um jogador
@@ -870,14 +892,19 @@ end;
 procedure Th_jogadores.EdtPesquisaKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
-  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, EdtPesquisa.Text);
+  if identificacao = 'ES_GOLS' then
+     f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, EdtPesquisa.Text, 'S')
+  else
+     f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, EdtPesquisa.Text, 'N');
 end;
 
 procedure Th_jogadores.FormActivate(Sender: TObject);
 begin
-
   // preencher grid da pesquisa de Jogadores
-  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS');
+  if identificacao = 'ES_GOLS' then
+     f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'S')
+  else
+     f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
 
   FrmDm.TblJogadores.Refresh;
   EdtPesquisa.Clear;

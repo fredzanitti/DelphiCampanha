@@ -135,7 +135,6 @@ type
     Label50: TLabel;
     LblEsquema: TLabel;
     Shape7: TShape;
-    LblContra: TLabel;
     Shape8: TShape;
     shtatica1: TShape;
     shtatica2: TShape;
@@ -191,10 +190,12 @@ type
     ShCaEntrou9: TShape;
     ShCaEntrou10: TShape;
     ShCaEntrou11: TShape;
-    Image3: TImage;
-    Image1: TImage;
-    Image2: TImage;
+    imgArbitro: TImage;
+    imgEstadio: TImage;
+    imgData: TImage;
     ShCa12: TShape;
+    lblGolsPartida: TLabel;
+    imgGols: TImage;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure LblNome1Click(Sender: TObject);
     procedure LblNome2Click(Sender: TObject);

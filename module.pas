@@ -197,6 +197,12 @@ type
     TblCarreiraanofim: TIntegerField;
     dtsCarreira: TDataSource;
     TblJogosportaofechado: TWideStringField;
+    tblTiposGols: TFDTable;
+    dtsTiposGols: TDataSource;
+    tblTiposGolscodtipo: TFDAutoIncField;
+    tblTiposGolstipo: TWideStringField;
+    tblGolsporpartida: TFDTable;
+    dtsGolsporpartida: TDataSource;
   private
     { Private declarations }
   public

@@ -265,4 +265,99 @@ object f_gerais: Tf_gerais
     Left = 688
     Top = 16
   end
+  object qryGolsJogo: TFDQuery
+    Connection = FrmDm.BDMySQL
+    SQL.Strings = (
+      'SELECT'
+      
+        '    CASE WHEN es_gols.codjogador = 0 THEN '#39'CONTRA'#39' ELSE ca_jogad' +
+        '.nome END AS nome,'
+      '    CASE WHEN es_gols.fracao = '#39'Minutos'#39
+      
+        '     '#9#9' THEN CONCAT('#39' ('#39', CAST(es_gols.tempo AS CHAR), '#39#180')'#39', CAS' +
+        'E WHEN es_tipogol.tipo = '#39'Penalti'#39' THEN '#39' ( Penalti )'#39' ELSE '#39#39' E' +
+        'ND, '#39'; '#39')'
+      
+        '         ELSE CONCAT('#39' ('#39', CAST(es_gols.tempo AS CHAR), '#39'")'#39', CA' +
+        'SE WHEN es_tipogol.tipo = '#39'Penalti'#39' THEN '#39' ( Penalti )'#39' ELSE '#39#39' ' +
+        'END, '#39'; '#39')'
+      #9'  END tempoTipo'
+      'FROM es_gols'
+      'LEFT JOIN ca_jogad ON ca_jogad.codjogador = es_gols.codjogador'
+      'INNER JOIN es_tipogol ON es_tipogol.codtipo = es_gols.codtipogol'
+      'WHERE es_gols.codjogo = :CodigoJogo'
+      'ORDER BY es_gols.tempo, es_gols.fracao;')
+    Left = 616
+    Top = 80
+    ParamData = <
+      item
+        Name = 'CODIGOJOGO'
+        DataType = ftInteger
+        Precision = 10
+        ParamType = ptInput
+        Size = 4
+      end>
+    object qryGolsJogonome: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'nome'
+      Origin = 'nome'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 25
+    end
+    object qryGolsJogotempoTipo: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tempoTipo'
+      Origin = 'tempoTipo'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 30
+    end
+  end
+  object qryMinutosGolsPorJogador: TFDQuery
+    Connection = FrmDm.BDMySQL
+    SQL.Strings = (
+      'SELECT'
+      '    CASE WHEN es_gols.fracao = '#39'Minutos'#39
+      
+        '          THEN CONCAT(CAST(es_gols.tempo AS CHAR), '#39' min'#39', CASE ' +
+        'WHEN es_tipogol.tipo = '#39'Penalti'#39' THEN '#39' ( Penalti )'#39' ELSE '#39#39' END' +
+        ')'
+      
+        '          ELSE CONCAT(CAST(es_gols.tempo AS CHAR), '#39' seg'#39', CASE ' +
+        'WHEN es_tipogol.tipo = '#39'Penalti'#39' THEN '#39' ( Penalti )'#39' ELSE '#39#39' END' +
+        ')'
+      #9'  END tempoTipo'
+      'FROM es_gols'
+      'LEFT JOIN ca_jogad ON ca_jogad.codjogador = es_gols.codjogador'
+      'INNER JOIN es_tipogol ON es_tipogol.codtipo = es_gols.codtipogol'
+      'WHERE es_gols.codjogo = :CodigoJogo'
+      'AND es_gols.codjogador = :CodigoJogador'
+      'ORDER BY es_gols.tempo, es_gols.fracao;')
+    Left = 616
+    Top = 136
+    ParamData = <
+      item
+        Name = 'CODIGOJOGO'
+        DataType = ftInteger
+        Precision = 10
+        ParamType = ptInput
+        Size = 4
+      end
+      item
+        Name = 'CODIGOJOGADOR'
+        DataType = ftInteger
+        Precision = 10
+        ParamType = ptInput
+        Size = 4
+      end>
+    object qryMinutosGolsPorJogadortempoTipo: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tempoTipo'
+      Origin = 'tempoTipo'
+      ProviderFlags = []
+      ReadOnly = True
+      Size = 27
+    end
+  end
 end

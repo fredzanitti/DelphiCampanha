@@ -90,6 +90,7 @@ type
     ImgUniforme: TImage;
     fraBotoes: TfraBotoes;
     cbPortaoFechado: TDBCheckBox;
+    BtnTempoGols: TBitBtn;
     procedure BtnEstadioClick(Sender: TObject);
     procedure BtnCompeticaoClick(Sender: TObject);
     procedure DtDataChange(Sender: TObject);
@@ -140,6 +141,7 @@ type
     procedure fraBotoesBtnPesquisarClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure cbPortaoFechadoClick(Sender: TObject);
+    procedure BtnTempoGolsClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -158,7 +160,7 @@ implementation
 
 uses module, pesquisaestadios, funcoes, pesquisacompeticao, pesquisaclubes,
   pesquisaarbitros, h_fase, pesquisajogadoresativos, reservas, home,
-  pesquisajogos, pesquisauniformes;
+  pesquisajogos, pesquisauniformes, golsdapartida;
 
 procedure TCA_JOGOS.BtnAdversarioClick(Sender: TObject);
 begin
@@ -276,8 +278,7 @@ begin
       else
       begin
         // preencher grid da pesquisa de clubes
-        f_gerais.pesquisajogadoresativos(h_jogadoresativos.DbGridAtivo,
-          'TODOS');
+        f_gerais.pesquisajogadoresativos(h_jogadoresativos.DbGridAtivo, 'TODOS');
         f_gerais.limpaTelaJogadoresNosJogos(12);
         h_jogadoresativos.ShowModal;
       end;
@@ -318,6 +319,13 @@ begin
       h_substituicoes.ShowModal;
     end;
   end;
+end;
+
+procedure TCA_JOGOS.BtnTempoGolsClick(Sender: TObject);
+begin
+  frmGolsdaPartida.CodigoJogo := StrToInt(EdtCodigo.Text);
+  frmGolsdaPartida.LimparCampos;
+  frmGolsdaPartida.ShowModal;
 end;
 
 procedure TCA_JOGOS.BtnUniformeClick(Sender: TObject);
@@ -576,8 +584,10 @@ begin
   begin
     // deletar o registro do clube
     f_gerais.deletarRegistroComParametro('ES_RESUM', 'codjogo', EdtCodigo.Text);
+    f_gerais.deletarRegistroComParametro('ES_GOLS', 'codjogo', EdtCodigo.Text);
     f_gerais.deletarTitularesOuReservas('ES_TITUL', EdtCodigo.Text);
     f_gerais.deletarTitularesOuReservas('ES_RESER', EdtCodigo.Text);
+
     FrmDm.DtsJogos.DataSet.Delete;
     // restaurar bandeiras e estado dos botões
     estadoDosBotoesdeCadastro();
@@ -935,6 +945,7 @@ begin
     BtnAdversario.Enabled := false;
     BtnInverter.Enabled := false;
     BtnCompeticao.Enabled := false;
+    BtnTempoGols.Enabled := False;
     BtnArbitro.Enabled := false;
     BtnFase.Enabled := false;
     BtnJogador.Enabled := false;
@@ -986,6 +997,7 @@ begin
     BtnAdversario.Enabled := true;
     BtnInverter.Enabled := true;
     BtnCompeticao.Enabled := true;
+    BtnTempoGols.Enabled := true;
     BtnArbitro.Enabled := true;
     BtnFase.Enabled := true;
     BtnJogador.Enabled := true;

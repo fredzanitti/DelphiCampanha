@@ -61,6 +61,11 @@ type
     DtsQrRivais: TDataSource;
     QrTotais: TFDQuery;
     DtsQrTotais: TDataSource;
+    qryGolsJogo: TFDQuery;
+    qryGolsJogonome: TWideStringField;
+    qryGolsJogotempoTipo: TWideStringField;
+    qryMinutosGolsPorJogador: TFDQuery;
+    qryMinutosGolsPorJogadortempoTipo: TWideStringField;
 
   private
     { Private declarations }
@@ -95,7 +100,7 @@ type
     procedure pesquisaJogos(grid: TDBGrid; dtini, dtfim: String);
     procedure pesquisaJogosPorNumero(grid: TDBGrid; numero: String);
     procedure pesquisaCompeticao(grid: TDBGrid; partenome: String);
-    procedure pesquisaJogadores(grid: TDBGrid; partenome: String);
+    procedure pesquisaJogadores(grid: TDBGrid; partenome: String; ativo: string);
     procedure pesquisaJogadoresAtivos(grid: TDBGrid; partenome: String);
     procedure pesquisaTitulos(grid: TDBGrid; partenome: String);
     procedure pesquisaFase(grid: TDBGrid; partenome: String);
@@ -184,6 +189,7 @@ type
     function verificaTecnico(codjogador: String): boolean;
     function RemoveAcento(const pText: string): string;
     function InsereAspasSimples(texto: string): string;
+    function retornarGolsPorMinutoPorJogador(codjogo, codjogador: Integer): String;
   end;
 
 var
@@ -1274,7 +1280,7 @@ begin
 
 end;
 
-procedure Tf_gerais.pesquisaJogadores(grid: TDBGrid; partenome: String);
+procedure Tf_gerais.pesquisaJogadores(grid: TDBGrid; partenome: String; ativo: string);
 {
   =======================================================
   Pesquisar jogadores na tabela CA_JOGAD
@@ -1284,7 +1290,7 @@ procedure Tf_gerais.pesquisaJogadores(grid: TDBGrid; partenome: String);
   =======================================================
 }
 begin
-  sql := 'CALL sp_pesquisa_jogadores (''' + partenome + ''',''' + tecnico + ''')';
+  sql := 'CALL sp_pesquisa_jogadores (''' + partenome + ''',''' + tecnico + ''',''' + ativo + ''')';
 
   QrFunctions.Close;
   QrFunctions.sql.Clear;
@@ -3557,7 +3563,7 @@ procedure Tf_gerais.preencherSumula(codjogo: String);
 var
   i, z, m, a, x: integer;
   aux: String;
-  patroc, fornec: String;
+  patroc, fornec, gols: String;
   {
     =======================================================
     Preencher súmula
@@ -3614,6 +3620,37 @@ begin
   // árbitro
   r_sumula.LblArbitro.Caption := 'Árbitro: ' + buscarNome('nome', 'ca_arbit',
     'codarbitro', QrSumula.Fields[11].AsString);
+
+  //gols do jogo
+  gols := EmptyStr;
+  if qryGolsJogo.Active then
+     qryGolsJogo.Close;
+  qryGolsJogo.Params.ParamByName('CodigoJogo').DataType := ftInteger;
+  qryGolsJogo.Params.ParamByName('CodigoJogo').Value := StrToInt(codjogo);
+  qryGolsJogo.Open;
+  qryGolsJogo.First;
+  if not qryGolsJogo.IsEmpty then
+  begin
+      while not qryGolsJogo.Eof do
+      begin
+           gols := gols + qryGolsJogonome.Value + qryGolsJogotempoTipo.Value;
+           qryGolsJogo.Next;
+      end;
+      r_sumula.lblGolsPartida.Caption := gols;
+  end
+  else
+  begin
+    sql := 'select a.nome time, c.nome cidade, p.sigla pais ' +
+      'from CA_CIDAD c, CA_PAIS p, CA_UF u, CA_ADVER a ' +
+      'where c.codpais = p.codpais ' + 'and c.coduf = u.coduf ' +
+      'and c.codcidade = a.codcidade ' + 'and a.codadver = 0 ';
+
+    QrFunctions.Close;
+    QrFunctions.sql.Clear;
+    QrFunctions.sql.Add(sql);
+    QrFunctions.Open;
+    r_sumula.lblGolsPartida.Caption := 'Nenhum gol do ' + UpperCase(QrFunctions.Fields[0].AsString) + ' registrado para esta partida!';
+  end;
 
   // placar do jogo (e penaltis)
   r_sumula.LblPlacarMandante.Caption := QrSumula.Fields[2].AsString;
@@ -3701,17 +3738,6 @@ begin
       .Brush.Color := clScrollBar;
   end;
 
-  // gol contra
-  if QrSumula.Fields[13].AsInteger = 0 then
-    r_sumula.LblContra.Visible := false
-  else
-  begin
-    r_sumula.LblContra.Caption := 'O ' + buscarNome('nome', 'ca_adver',
-      'codadver', '0') + ' teve ' + QrSumula.Fields[13].AsString +
-      ' gol(s) contra a seu favor.';
-    r_sumula.LblContra.Visible := true;
-  end;
-
   // jogadores titulares
   sql := 'select e.codjogador, e.camarelo, e.cvermelho, e.gols, p.bandeira ' +
     'from ca_jogos j, es_titul e, ca_jogad jg, ca_cidad c, ca_pais p ' +
@@ -3778,8 +3804,11 @@ begin
         (r_sumula.FindComponent('ImgBola' + IntToStr(i)) as TImage)
           .Visible := false
       else
-        (r_sumula.FindComponent('ImgBola' + IntToStr(i)) as TImage)
-          .Visible := true;
+      begin
+        (r_sumula.FindComponent('ImgBola' + IntToStr(i)) as TImage).Visible := true;
+        (r_sumula.FindComponent('ImgBola' + IntToStr(i)) as TImage).Hint := retornarGolsPorMinutoPorJogador(StrToInt(codjogo), QrTitulares.Fields[0].AsInteger);
+        (r_sumula.FindComponent('ImgBola' + IntToStr(i)) as TImage).ShowHint := True;
+      end;
       // quantidade de gols
       if QrTitulares.Fields[3].AsInteger > 1 then
       begin
@@ -3870,8 +3899,9 @@ begin
       end
       else
       begin
-        (r_sumula.FindComponent('ImgBolaEntrou' + IntToStr(i)) as TImage)
-          .Visible := true;
+        (r_sumula.FindComponent('ImgBolaEntrou' + IntToStr(i)) as TImage).Visible := true;
+        (r_sumula.FindComponent('ImgBolaEntrou' + IntToStr(i)) as TImage).Hint := retornarGolsPorMinutoPorJogador(StrToInt(codjogo), QrReservas.Fields[0].AsInteger);
+        (r_sumula.FindComponent('ImgBolaEntrou' + IntToStr(i)) as TImage).ShowHint := True;
       end;
 
       // quantidade de gols
@@ -3909,6 +3939,37 @@ begin
 
   r_sumula.ShowModal;
 end;
+
+{
+  ======================================================================
+  Retornar minutos dos gols de cada jogador
+  ======================================================================
+}
+
+function Tf_gerais.retornarGolsPorMinutoPorJogador(codjogo, codjogador: Integer): String;
+var
+  gols: string;
+begin
+     gols := EmptyStr;
+     if qryMinutosGolsPorJogador.Active then
+        qryMinutosGolsPorJogador.Close;
+     qryMinutosGolsPorJogador.Params.ParamByName('CodigoJogo').DataType := ftInteger;
+     qryMinutosGolsPorJogador.Params.ParamByName('CodigoJogador').DataType := ftInteger;
+     qryMinutosGolsPorJogador.Params.ParamByName('CodigoJogo').Value := codjogo;
+     qryMinutosGolsPorJogador.Params.ParamByName('CodigoJogador').Value := codjogador;
+     qryMinutosGolsPorJogador.Open;
+     qryMinutosGolsPorJogador.First;
+     while not qryMinutosGolsPorJogador.Eof do
+     begin
+         if gols = EmptyStr then
+            gols := qryMinutosGolsPorJogadortempoTipo.Value
+         else
+            gols := gols + ' - ' + qryMinutosGolsPorJogadortempoTipo.Value;
+         qryMinutosGolsPorJogador.Next;
+     end;
+     Result := gols;
+end;
+
 
 {
   ======================================================================

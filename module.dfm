@@ -1094,4 +1094,40 @@ object FrmDm: TFrmDm
     Left = 48
     Top = 496
   end
+  object tblTiposGols: TFDTable
+    IndexFieldNames = 'codtipo'
+    Connection = BDMySQL
+    UpdateOptions.UpdateTableName = 'zanittic_software.es_tipogol'
+    TableName = 'zanittic_software.es_tipogol'
+    Left = 304
+    Top = 416
+    object tblTiposGolscodtipo: TFDAutoIncField
+      FieldName = 'codtipo'
+      Origin = 'codtipo'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
+    object tblTiposGolstipo: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tipo'
+      Origin = 'tipo'
+    end
+  end
+  object dtsTiposGols: TDataSource
+    DataSet = tblTiposGols
+    Left = 304
+    Top = 440
+  end
+  object tblGolsporpartida: TFDTable
+    IndexFieldNames = 'coditem'
+    Connection = BDMySQL
+    UpdateOptions.UpdateTableName = 'zanittic_software.es_gols'
+    TableName = 'zanittic_software.es_gols'
+    Left = 304
+    Top = 496
+  end
+  object dtsGolsporpartida: TDataSource
+    DataSet = tblGolsporpartida
+    Left = 304
+    Top = 512
+  end
 end

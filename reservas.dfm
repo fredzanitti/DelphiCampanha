@@ -38,7 +38,6 @@ object h_substituicoes: Th_substituicoes
     Width = 257
     Height = 187
     Hint = 'Clique aqui para selecionar o jogador a ser substitu'#237'do'
-    CustomHint = FrmPrincipal.BalloonHint1
     BorderStyle = bsNone
     DrawingStyle = gdsGradient
     Options = [dgTitles, dgIndicator, dgRowLines, dgRowSelect, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -95,7 +94,6 @@ object h_substituicoes: Th_substituicoes
     Width = 257
     Height = 165
     Hint = 'Clique aqui para selecionar o jogador que entrou na partida'
-    CustomHint = FrmPrincipal.BalloonHint1
     BorderStyle = bsNone
     DrawingStyle = gdsGradient
     Options = [dgTitles, dgIndicator, dgRowLines, dgRowSelect, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
@@ -152,7 +150,6 @@ object h_substituicoes: Th_substituicoes
     Width = 38
     Height = 38
     Hint = 'Confirmar Substitui'#231#227'o'
-    CustomHint = FrmPrincipal.BalloonHint1
     Glyph.Data = {
       0E220000424D0E2200000000000036000000280000004C000000260000000100
       180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -1683,7 +1680,6 @@ object h_substituicoes: Th_substituicoes
     Width = 45
     Height = 45
     Hint = 'Confirmar Escala'#231#227'o'
-    CustomHint = FrmPrincipal.BalloonHint1
     Glyph.Data = {
       36180000424D3618000000000000360000002800000040000000200000000100
       18000000000000180000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -1891,7 +1887,6 @@ object h_substituicoes: Th_substituicoes
     Width = 45
     Height = 45
     Hint = 'Cancelar Escala'#231#227'o'
-    CustomHint = FrmPrincipal.BalloonHint1
     Glyph.Data = {
       36180000424D3618000000000000360000002800000040000000200000000100
       18000000000000180000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -2099,7 +2094,6 @@ object h_substituicoes: Th_substituicoes
     Width = 38
     Height = 38
     Hint = 'Eliminar '#250'ltima substitui'#231#227'o realizada'
-    CustomHint = FrmPrincipal.BalloonHint1
     Glyph.Data = {
       0E220000424D0E2200000000000036000000280000004C000000260000000100
       180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -2386,7 +2380,6 @@ object h_substituicoes: Th_substituicoes
     Width = 38
     Height = 38
     Hint = 'Desbloquear um jogador para utilizar na escala'#231#227'o'
-    CustomHint = FrmPrincipal.BalloonHint1
     Glyph.Data = {
       0E220000424D0E2200000000000036000000280000004C000000260000000100
       180000000000D8210000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -2673,7 +2666,6 @@ object h_substituicoes: Th_substituicoes
     Width = 45
     Height = 45
     Hint = 'Adionar e/ou Editar Jogador'
-    CustomHint = FrmPrincipal.BalloonHint1
     Glyph.Data = {
       36180000424D3618000000000000360000002800000040000000200000000100
       18000000000000180000232E0000232E00000000000000000000FFFFFFFFFFFF

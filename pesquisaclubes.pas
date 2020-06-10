@@ -373,7 +373,7 @@ begin
   begin
     // guardar o número do forumlário na label
     r_jogospadrao.numerorelatorio := '11';
-    f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS');
+    f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
     r_jogospadrao.codauxiliar1 := codtime;
     h_jogadores.identificacao := 'MnAdversario5';
     h_jogadores.ShowModal;
@@ -484,7 +484,7 @@ begin
     // guardar o número do forumlário na label
     r_jogospadrao.numerorelatorio := '25';
     r_jogospadrao.codauxiliar1 := codtime;
-    f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS');
+    f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
     h_jogadores.identificacao := 'MnJogadores5';
     h_jogadores.ShowModal;
   end;
@@ -793,3 +793,5 @@ begin
 end;
 
 end.
+
+

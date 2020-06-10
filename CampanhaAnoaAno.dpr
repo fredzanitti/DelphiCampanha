@@ -83,7 +83,8 @@ uses
   frameSelecionarClubeCompleto in 'frameSelecionarClubeCompleto.pas' {fraSelClubeCompleto: TFrame},
   relCarreiraJogador in 'relCarreiraJogador.pas' {frmRelCarreiraJogador},
   UGerenciadorJogos in 'UGerenciadorJogos.pas' {frmGerenciadorJogos},
-  frameGrafico in 'frameGrafico.pas' {fraGrafico: TFrame};
+  frameGrafico in 'frameGrafico.pas' {fraGrafico: TFrame},
+  golsdapartida in 'golsdapartida.pas' {frmGolsdaPartida};
 
 {$R *.res}
 const
@@ -160,6 +161,7 @@ begin
   Application.CreateForm(TfrmCarreiraJogador, frmCarreiraJogador);
   Application.CreateForm(TfrmRelCarreiraJogador, frmRelCarreiraJogador);
   Application.CreateForm(TfrmGerenciadorJogos, frmGerenciadorJogos);
+  Application.CreateForm(TfrmGolsdaPartida, frmGolsdaPartida);
   // Tela de Splash
   FrmSplash.Show;
   FrmSplash.Refresh;
