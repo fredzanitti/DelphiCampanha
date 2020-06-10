@@ -142,10 +142,12 @@ type
     procedure FormActivate(Sender: TObject);
     procedure cbPortaoFechadoClick(Sender: TObject);
     procedure BtnTempoGolsClick(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
     { Public declarations }
+    Acessou: boolean;
     procedure estadoDosBotoesdeCadastro();
     procedure estadoDosBotoesdeJogadores();
   end;
@@ -327,6 +329,7 @@ begin
   frmGolsdaPartida.CodigoJogo := StrToInt(EdtCodigo.Text);
   frmGolsdaPartida.LimparCampos;
   frmGolsdaPartida.ShowModal;
+  Acessou := True;
 end;
 
 procedure TCA_JOGOS.BtnUniformeClick(Sender: TObject);
@@ -520,6 +523,11 @@ begin
   // f_gerais.infIniciais(FrmPrincipal.LblTemp, FrmPrincipal.LblJogos,
   // FrmPrincipal.LblJogad, FrmPrincipal.LblTecn);
   FrmPrincipal.InformacoesIniciais;
+end;
+
+procedure TCA_JOGOS.FormCreate(Sender: TObject);
+begin
+  Acessou := False;
 end;
 
 procedure TCA_JOGOS.FormKeyDown(Sender: TObject; var Key: Word;
@@ -847,7 +855,12 @@ begin
                       FrmDm.QrGeral.Params.ParamByName('ANO').AsInteger := ano;
                       FrmDm.QrGeral.ExecSQL;
 
-                      frmGolsdaPartida.Free;
+                      if Acessou then
+                      begin
+                          frmGolsdaPartida.Free;
+                          Acessou := False;
+                      end;
+
                       { GRAVAR TABELA CA_JOGOS ==================== }
                       FrmDm.DtsJogos.DataSet.Post;
 

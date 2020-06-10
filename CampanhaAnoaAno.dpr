@@ -161,6 +161,7 @@ begin
   Application.CreateForm(TfrmCarreiraJogador, frmCarreiraJogador);
   Application.CreateForm(TfrmRelCarreiraJogador, frmRelCarreiraJogador);
   Application.CreateForm(TfrmGerenciadorJogos, frmGerenciadorJogos);
+  Application.CreateForm(TfrmGolsdaPartida, frmGolsdaPartida);
   // Tela de Splash
   FrmSplash.Show;
   FrmSplash.Refresh;

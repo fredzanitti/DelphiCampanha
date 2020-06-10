@@ -19,7 +19,7 @@ object frmGolsdaPartida: TfrmGolsdaPartida
   PixelsPerInch = 96
   TextHeight = 13
   object Label20: TLabel
-    Left = 182
+    Left = 147
     Top = 23
     Width = 39
     Height = 13
@@ -32,7 +32,7 @@ object frmGolsdaPartida: TfrmGolsdaPartida
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 138
+    Left = 103
     Top = 75
     Width = 32
     Height = 13
@@ -45,7 +45,7 @@ object frmGolsdaPartida: TfrmGolsdaPartida
     ParentFont = False
   end
   object btnJogadores: TBitBtn
-    Left = 138
+    Left = 103
     Top = 27
     Width = 38
     Height = 38
@@ -331,8 +331,8 @@ object frmGolsdaPartida: TfrmGolsdaPartida
     OnClick = btnJogadoresClick
   end
   object DbGridGols: TDBGrid
-    Left = 10
-    Top = 180
+    Left = 8
+    Top = 181
     Width = 503
     Height = 353
     BiDiMode = bdLeftToRight
@@ -378,7 +378,7 @@ object frmGolsdaPartida: TfrmGolsdaPartida
         Font.Name = 'Tahoma'
         Font.Style = []
         Title.Caption = 'Jogador'
-        Width = 230
+        Width = 160
         Visible = True
       end
       item
@@ -394,6 +394,21 @@ object frmGolsdaPartida: TfrmGolsdaPartida
         Title.Alignment = taCenter
         Title.Caption = 'Tempo'
         Width = 50
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'periodo'
+        Font.Charset = DEFAULT_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -11
+        Font.Name = 'Tahoma'
+        Font.Style = []
+        ReadOnly = True
+        Title.Alignment = taCenter
+        Title.Caption = 'Per'#237'odo'
+        Width = 65
         Visible = True
       end
       item
@@ -431,9 +446,9 @@ object frmGolsdaPartida: TfrmGolsdaPartida
       end>
   end
   object EdtJogador: TEdit
-    Left = 182
+    Left = 147
     Top = 41
-    Width = 161
+    Width = 191
     Height = 24
     Enabled = False
     Font.Charset = DEFAULT_CHARSET
@@ -445,9 +460,9 @@ object frmGolsdaPartida: TfrmGolsdaPartida
     TabOrder = 2
   end
   object CbxFracao: TComboBox
-    Left = 186
+    Left = 140
     Top = 94
-    Width = 92
+    Width = 74
     Height = 22
     Style = csOwnerDrawFixed
     ItemIndex = 0
@@ -458,9 +473,9 @@ object frmGolsdaPartida: TfrmGolsdaPartida
       'Segundos')
   end
   object EdtTempo: TDBEdit
-    Left = 138
-    Top = 93
-    Width = 42
+    Left = 103
+    Top = 92
+    Width = 32
     Height = 24
     DataField = 'publico'
     DataSource = FrmDm.DtsJogos
@@ -932,16 +947,30 @@ object frmGolsdaPartida: TfrmGolsdaPartida
   object rgrGolContra: TRadioGroup
     Left = 10
     Top = 18
-    Width = 119
-    Height = 47
+    Width = 80
+    Height = 98
     Caption = ' Gol contra '
-    Columns = 2
     ItemIndex = 0
     Items.Strings = (
       'N'#227'o'
       'Sim')
     TabOrder = 0
     OnClick = rgrGolContraClick
+  end
+  object cbxTempo: TComboBox
+    Left = 222
+    Top = 94
+    Width = 116
+    Height = 22
+    Style = csOwnerDrawFixed
+    ItemIndex = 0
+    TabOrder = 9
+    Text = '1'#186' Tempo'
+    Items.Strings = (
+      '1'#186' Tempo'
+      '2'#186' Tempo'
+      '1'#186' Tempo Prorrog.'
+      '2'#186' Tempo Prorrog.')
   end
   object qryGolsporjogo: TFDQuery
     Connection = FrmDm.BDMySQL
@@ -952,6 +981,7 @@ object frmGolsdaPartida: TfrmGolsdaPartida
         '    CASE WHEN es_gols.codjogador = 0 THEN '#39'CONTRA'#39' ELSE ca_jogad' +
         '.nome END AS nome,'
       '    es_gols.tempo,'
+      '    es_gols.periodo,'
       '    es_gols.fracao,'
       '    es_tipogol.codtipo,'
       '    es_tipogol.tipo,'
@@ -960,7 +990,7 @@ object frmGolsdaPartida: TfrmGolsdaPartida
       'LEFT JOIN ca_jogad ON ca_jogad.codjogador = es_gols.codjogador'
       'INNER JOIN es_tipogol ON es_tipogol.codtipo = es_gols.codtipogol'
       'WHERE es_gols.codjogo = :CodigoJogo'
-      'ORDER BY es_gols.tempo, es_gols.fracao')
+      'ORDER BY es_gols.coditem')
     Left = 480
     Top = 312
     ParamData = <
@@ -1010,6 +1040,17 @@ object frmGolsdaPartida: TfrmGolsdaPartida
       ProviderFlags = []
       ReadOnly = True
     end
+    object qryGolsporjogoperiodo: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'periodo'
+      Origin = 'periodo'
+      Size = 3
+    end
+    object qryGolsporjogocoditem: TFDAutoIncField
+      FieldName = 'coditem'
+      Origin = 'coditem'
+      ProviderFlags = [pfInWhere, pfInKey]
+    end
   end
   object dtsGolsporjogo: TDataSource
     DataSet = qryGolsporjogo
@@ -1054,6 +1095,12 @@ object frmGolsdaPartida: TfrmGolsdaPartida
       AutoGenerateValue = arDefault
       FieldName = 'codtipogol'
       Origin = 'codtipogol'
+    end
+    object qryPrincipalperiodo: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'periodo'
+      Origin = 'periodo'
+      Size = 3
     end
   end
   object qryTipoGol: TFDQuery

@@ -17,6 +17,7 @@ object CA_JOGOS: TCA_JOGOS
   Position = poMainFormCenter
   OnActivate = FormActivate
   OnClose = FormClose
+  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13

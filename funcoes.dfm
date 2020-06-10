@@ -274,19 +274,19 @@ object f_gerais: Tf_gerais
         '.nome END AS nome,'
       '    CASE WHEN es_gols.fracao = '#39'Minutos'#39
       
-        '     '#9#9' THEN CONCAT('#39' ('#39', CAST(es_gols.tempo AS CHAR), '#39#180')'#39', CAS' +
-        'E WHEN es_tipogol.tipo = '#39'Penalti'#39' THEN '#39' ( Penalti )'#39' ELSE '#39#39' E' +
-        'ND, '#39'; '#39')'
+        '     '#9'   THEN CONCAT('#39' ( '#39', CAST(es_gols.tempo AS CHAR), '#39'\'#39'\ '#39',' +
+        ' es_gols.periodo, '#39' ) '#39', CASE WHEN es_tipogol.tipo = '#39'Penalti'#39' T' +
+        'HEN '#39' ( Penalti )'#39' ELSE '#39#39' END, '#39'; '#39')'
       
-        '         ELSE CONCAT('#39' ('#39', CAST(es_gols.tempo AS CHAR), '#39'")'#39', CA' +
-        'SE WHEN es_tipogol.tipo = '#39'Penalti'#39' THEN '#39' ( Penalti )'#39' ELSE '#39#39' ' +
-        'END, '#39'; '#39')'
+        '         ELSE CONCAT('#39' ( '#39', CAST(es_gols.tempo AS CHAR), '#39'" '#39', e' +
+        's_gols.periodo, '#39' ) '#39', CASE WHEN es_tipogol.tipo = '#39'Penalti'#39' THE' +
+        'N '#39' ( Penalti )'#39' ELSE '#39#39' END, '#39'; '#39')'
       #9'  END tempoTipo'
       'FROM es_gols'
       'LEFT JOIN ca_jogad ON ca_jogad.codjogador = es_gols.codjogador'
       'INNER JOIN es_tipogol ON es_tipogol.codtipo = es_gols.codtipogol'
       'WHERE es_gols.codjogo = :CodigoJogo'
-      'ORDER BY es_gols.tempo, es_gols.fracao;')
+      'ORDER BY es_gols.coditem')
     Left = 616
     Top = 80
     ParamData = <
@@ -320,20 +320,20 @@ object f_gerais: Tf_gerais
       'SELECT'
       '    CASE WHEN es_gols.fracao = '#39'Minutos'#39
       
-        '          THEN CONCAT(CAST(es_gols.tempo AS CHAR), '#39' min'#39', CASE ' +
-        'WHEN es_tipogol.tipo = '#39'Penalti'#39' THEN '#39' ( Penalti )'#39' ELSE '#39#39' END' +
-        ')'
+        #9#9'    THEN CONCAT(CAST(es_gols.tempo AS CHAR), '#39'\'#39'\ ('#39', es_gols.' +
+        'periodo, '#39') '#39', CASE WHEN es_tipogol.tipo = '#39'Penalti'#39' THEN '#39' ( Pe' +
+        'nalti )'#39' ELSE '#39#39' END)'
       
-        '          ELSE CONCAT(CAST(es_gols.tempo AS CHAR), '#39' seg'#39', CASE ' +
-        'WHEN es_tipogol.tipo = '#39'Penalti'#39' THEN '#39' ( Penalti )'#39' ELSE '#39#39' END' +
-        ')'
+        '        ELSE CONCAT(CAST(es_gols.tempo AS CHAR), '#39'" ('#39', es_gols.' +
+        'periodo, '#39') '#39', CASE WHEN es_tipogol.tipo = '#39'Penalti'#39' THEN '#39' ( Pe' +
+        'nalti )'#39' ELSE '#39#39' END)'
       #9'  END tempoTipo'
       'FROM es_gols'
       'LEFT JOIN ca_jogad ON ca_jogad.codjogador = es_gols.codjogador'
       'INNER JOIN es_tipogol ON es_tipogol.codtipo = es_gols.codtipogol'
       'WHERE es_gols.codjogo = :CodigoJogo'
       'AND es_gols.codjogador = :CodigoJogador'
-      'ORDER BY es_gols.tempo, es_gols.fracao;')
+      'ORDER BY es_gols.coditem;')
     Left = 616
     Top = 136
     ParamData = <

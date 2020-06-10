@@ -45,6 +45,10 @@ type
     BtnEliminarUltimo: TBitBtn;
     qryEliminarUltimoRegistro: TFDQuery;
     rgrGolContra: TRadioGroup;
+    cbxTempo: TComboBox;
+    qryPrincipalperiodo: TWideStringField;
+    qryGolsporjogoperiodo: TWideStringField;
+    qryGolsporjogocoditem: TFDAutoIncField;
     procedure BtnGravarClick(Sender: TObject);
     procedure btnJogadoresClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
@@ -79,6 +83,7 @@ begin
     btnJogadores.Enabled := true;
     EdtTempo.Clear;
     CbxFracao.ItemIndex := 0;
+    cbxTempo.ItemIndex := 0;
 
     if qryGolsporjogo.Active then
        qryGolsporjogo.Close;
@@ -109,7 +114,7 @@ end;
 procedure TfrmGolsdaPartida.BtnGravarClick(Sender: TObject);
 var
   CodigoTipo: Integer;
-  TipoGol: string;
+  TipoGol, Tempo: string;
 begin
   if (not (CodigoJogador > 0)) and (rgrGolContra.ItemIndex = 0) then
   begin
@@ -132,6 +137,13 @@ begin
      Abort;
   end;
 
+  if cbxTempo.Text = EmptyStr then
+  begin
+     Application.MessageBox('É obrigatório informar o período em que o gol aconteceu', 'ATENÇÃO', MB_OK + MB_ICONWARNING);
+     cbxTempo.SetFocus;
+     Abort;
+  end;
+
   if rgrTiposGols.ItemIndex = -1 then
   begin
      Application.MessageBox('É obrigatório informar o tipo do gol', 'ATENÇÃO', MB_OK + MB_ICONWARNING);
@@ -143,6 +155,13 @@ begin
   begin
      CodigoJogador := 0;
      EdtJogador.Text := 'Contra';
+  end;
+
+  case cbxTempo.ItemIndex of
+      0: Tempo := '1T';
+      1: Tempo := '2T';
+      2: Tempo := '1TP';
+      3: Tempo := '2TP';
   end;
 
   TipoGol := rgrTiposGols.Items[rgrTiposGols.ItemIndex];
@@ -161,6 +180,7 @@ begin
   qryPrincipaltempo.Value := StrToInt(EdtTempo.Text);
   qryPrincipalfracao.Value := CbxFracao.Text;
   qryPrincipalcodtipogol.Value := qryRecuperaCodigoTipocodtipo.Value;
+  qryPrincipalperiodo.Value := Tempo;
   qryPrincipal.Post;
 
   LimparCampos;

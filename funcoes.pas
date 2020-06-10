@@ -3964,7 +3964,7 @@ begin
          if gols = EmptyStr then
             gols := qryMinutosGolsPorJogadortempoTipo.Value
          else
-            gols := gols + ' - ' + qryMinutosGolsPorJogadortempoTipo.Value;
+            gols := gols + ', ' + qryMinutosGolsPorJogadortempoTipo.Value;
          qryMinutosGolsPorJogador.Next;
      end;
      Result := gols;
