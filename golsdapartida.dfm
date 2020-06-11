@@ -349,7 +349,7 @@ object frmGolsdaPartida: TfrmGolsdaPartida
     ParentBiDiMode = False
     ParentCtl3D = False
     ParentFont = False
-    TabOrder = 8
+    TabOrder = 9
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clGrayText
     TitleFont.Height = -11
@@ -471,21 +471,6 @@ object frmGolsdaPartida: TfrmGolsdaPartida
     Items.Strings = (
       'Minutos'
       'Segundos')
-  end
-  object EdtTempo: TDBEdit
-    Left = 103
-    Top = 92
-    Width = 32
-    Height = 24
-    DataField = 'publico'
-    DataSource = FrmDm.DtsJogos
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = clWindowText
-    Font.Height = -13
-    Font.Name = 'Tahoma'
-    Font.Style = []
-    ParentFont = False
-    TabOrder = 3
   end
   object BtnGravar: TBitBtn
     Left = 10
@@ -646,7 +631,7 @@ object frmGolsdaPartida: TfrmGolsdaPartida
     NumGlyphs = 2
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 6
+    TabOrder = 7
     OnClick = BtnGravarClick
   end
   object rgrTiposGols: TRadioGroup
@@ -656,7 +641,7 @@ object frmGolsdaPartida: TfrmGolsdaPartida
     Height = 147
     Caption = ' Tipo do gol '
     Columns = 2
-    TabOrder = 5
+    TabOrder = 6
   end
   object BtnEliminarUltimo: TBitBtn
     Left = 52
@@ -941,7 +926,7 @@ object frmGolsdaPartida: TfrmGolsdaPartida
     NumGlyphs = 2
     ParentShowHint = False
     ShowHint = True
-    TabOrder = 7
+    TabOrder = 8
     OnClick = BtnEliminarUltimoClick
   end
   object rgrGolContra: TRadioGroup
@@ -964,13 +949,27 @@ object frmGolsdaPartida: TfrmGolsdaPartida
     Height = 22
     Style = csOwnerDrawFixed
     ItemIndex = 0
-    TabOrder = 9
+    TabOrder = 5
     Text = '1'#186' Tempo'
     Items.Strings = (
       '1'#186' Tempo'
       '2'#186' Tempo'
       '1'#186' Tempo Prorrog.'
       '2'#186' Tempo Prorrog.')
+  end
+  object EdtTempo: TEdit
+    Left = 103
+    Top = 94
+    Width = 32
+    Height = 21
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -11
+    Font.Name = 'Tahoma'
+    Font.Style = []
+    ParentFont = False
+    TabOrder = 3
+    OnExit = EdtTempoExit
   end
   object qryGolsporjogo: TFDQuery
     Connection = FrmDm.BDMySQL
@@ -1050,6 +1049,7 @@ object frmGolsdaPartida: TfrmGolsdaPartida
       FieldName = 'coditem'
       Origin = 'coditem'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
   end
   object dtsGolsporjogo: TDataSource
@@ -1162,5 +1162,32 @@ object frmGolsdaPartida: TfrmGolsdaPartida
         ParamType = ptInput
         Size = 4
       end>
+  end
+  object qryUltimoTempo: TFDQuery
+    Connection = FrmDm.BDMySQL
+    SQL.Strings = (
+      'SELECT es_gols.periodo'
+      'FROM es_gols'
+      'LEFT JOIN ca_jogad ON ca_jogad.codjogador = es_gols.codjogador'
+      'INNER JOIN es_tipogol ON es_tipogol.codtipo = es_gols.codtipogol'
+      'WHERE es_gols.codjogo = :CodigoJogo'
+      'ORDER BY es_gols.coditem DESC'
+      'LIMIT 1')
+    Left = 480
+    Top = 184
+    ParamData = <
+      item
+        Name = 'CODIGOJOGO'
+        DataType = ftInteger
+        Precision = 10
+        ParamType = ptInput
+        Size = 4
+      end>
+    object qryUltimoTempoperiodo: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'periodo'
+      Origin = 'periodo'
+      Size = 3
+    end
   end
 end

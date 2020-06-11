@@ -24,7 +24,6 @@ type
     qryGolsporjogofracao: TWideStringField;
     dtsGolsporjogo: TDataSource;
     CbxFracao: TComboBox;
-    EdtTempo: TDBEdit;
     Label1: TLabel;
     BtnGravar: TBitBtn;
     qryPrincipal: TFDQuery;
@@ -49,12 +48,16 @@ type
     qryPrincipalperiodo: TWideStringField;
     qryGolsporjogoperiodo: TWideStringField;
     qryGolsporjogocoditem: TFDAutoIncField;
+    EdtTempo: TEdit;
+    qryUltimoTempo: TFDQuery;
+    qryUltimoTempoperiodo: TWideStringField;
     procedure BtnGravarClick(Sender: TObject);
     procedure btnJogadoresClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure BtnEliminarUltimoClick(Sender: TObject);
     procedure rgrGolContraClick(Sender: TObject);
+    procedure EdtTempoExit(Sender: TObject);
   private
     { Private declarations }
   public
@@ -194,6 +197,19 @@ begin
   rgrTiposGols.ItemIndex := 5;
 end;
 
+procedure TfrmGolsdaPartida.EdtTempoExit(Sender: TObject);
+begin
+    if qryUltimoTempo.Active then
+       qryUltimoTempo.Close;
+    qryUltimoTempo.Params.ParamByName('CodigoJogo').DataType := ftInteger;
+    qryUltimoTempo.Params.ParamByName('CodigoJogo').Value := CodigoJogo;
+    qryUltimoTempo.Open;
+
+    if qryUltimoTempoperiodo.Value = '2T' then
+       cbxTempo.ItemIndex := 1;
+
+end;
+
 procedure TfrmGolsdaPartida.FormCreate(Sender: TObject);
 begin
    if qryTipoGol.Active then
@@ -216,6 +232,8 @@ begin
   case Key of
     VK_ESCAPE:
       frmGolsdaPartida.Close;
+    VK_RETURN:
+      BtnGravarClick(Self);
   end;
 end;
 

@@ -4624,6 +4624,15 @@ object CA_JOGOS: TCA_JOGOS
       OnClick = fraBotoesBtnPesquisarClick
     end
   end
+  object btnVisualizarSumula: TBitBtn
+    Left = 880
+    Top = 552
+    Width = 112
+    Height = 25
+    Caption = 'Visualizar S'#250'mula'
+    TabOrder = 19
+    OnClick = btnVisualizarSumulaClick
+  end
   object MainMenu: TMainMenu
     Left = 8
     Top = 600

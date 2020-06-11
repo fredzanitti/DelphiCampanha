@@ -91,6 +91,7 @@ type
     fraBotoes: TfraBotoes;
     cbPortaoFechado: TDBCheckBox;
     BtnTempoGols: TBitBtn;
+    btnVisualizarSumula: TBitBtn;
     procedure BtnEstadioClick(Sender: TObject);
     procedure BtnCompeticaoClick(Sender: TObject);
     procedure DtDataChange(Sender: TObject);
@@ -143,6 +144,7 @@ type
     procedure cbPortaoFechadoClick(Sender: TObject);
     procedure BtnTempoGolsClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure btnVisualizarSumulaClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -338,6 +340,13 @@ begin
   f_gerais.pesquisaUniforme(h_uniformes.DbGridUniforme, 'TODOS');
   h_uniformes.identificacao := 'CA_JOGOS';
   h_uniformes.ShowModal;
+end;
+
+procedure TCA_JOGOS.btnVisualizarSumulaClick(Sender: TObject);
+
+begin
+  f_gerais.preencherSumula(EdtCodigo.Text);
+  estadoDosBotoesdeCadastro();
 end;
 
 procedure TCA_JOGOS.CbEscalacoDispClick(Sender: TObject);
@@ -969,6 +978,7 @@ begin
     BtnExcluirJogadores.Enabled := false;
     BtnExcluirReservas.Enabled := false;
     BtnUniforme.Enabled := false;
+    btnVisualizarSumula.Enabled := True;
 
     // demais componentes
     EdtData.Enabled := false;
@@ -1021,6 +1031,7 @@ begin
     BtnExcluirJogadores.Enabled := true;
     BtnExcluirReservas.Enabled := true;
     BtnUniforme.Enabled := true;
+    btnVisualizarSumula.Enabled := False;
 
     // demais componentes
     EdtData.Enabled := true;
