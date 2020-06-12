@@ -1107,7 +1107,8 @@ object frmGolsdaPartida: TfrmGolsdaPartida
     Connection = FrmDm.BDMySQL
     SQL.Strings = (
       'SELECT *'
-      'FROM es_tipogol')
+      'FROM es_tipogol'
+      'ORDER BY tipo')
     Left = 480
     Top = 392
     object qryTipoGolcodtipo: TFDAutoIncField

@@ -81,7 +81,7 @@ implementation
 procedure TfrmGolsdaPartida.LimparCampos;
 begin
     rgrGolContra.ItemIndex := 0;
-    rgrTiposGols.ItemIndex := 5;
+    rgrTiposGols.ItemIndex := 6;
     EdtJogador.Clear;
     btnJogadores.Enabled := true;
     EdtTempo.Clear;
@@ -194,7 +194,7 @@ procedure TfrmGolsdaPartida.btnJogadoresClick(Sender: TObject);
 begin
   h_jogadores.identificacao := 'ES_GOLS';
   h_jogadores.ShowModal;
-  rgrTiposGols.ItemIndex := 5;
+  rgrTiposGols.ItemIndex := 6;
 end;
 
 procedure TfrmGolsdaPartida.EdtTempoExit(Sender: TObject);
@@ -207,7 +207,6 @@ begin
 
     if qryUltimoTempoperiodo.Value = '2T' then
        cbxTempo.ItemIndex := 1;
-
 end;
 
 procedure TfrmGolsdaPartida.FormCreate(Sender: TObject);
@@ -248,7 +247,7 @@ begin
   else
   begin
      btnJogadores.Enabled := True;
-     rgrTiposGols.ItemIndex := 5;
+     rgrTiposGols.ItemIndex := 6;
      EdtJogador.Clear;
   end;
 end;
