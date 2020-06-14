@@ -10,7 +10,8 @@ uses
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
-  FireDAC.Comp.Client;
+  FireDAC.Comp.Client, VclTee.TeeGDIPlus, VCLTee.TeEngine, VCLTee.Series,
+  VCLTee.TeeProcs, VCLTee.Chart, VCLTee.DBChart;
 
 type
   Th_fichaindividual = class(TForm)
@@ -44,8 +45,15 @@ type
     Label2: TLabel;
     LblIdadeUltimoJogo: TLabel;
     Shape4: TShape;
-    Shape5: TShape;
     btnCarreira: TBitBtn;
+    Shape6: TShape;
+    qryGolsPorTipo: TFDQuery;
+    qryGolsPorTipogols: TLargeintField;
+    qryGolsPorTipotipo: TWideStringField;
+    dbcEstatisticas: TDBChart;
+    lblTituloGrafico: TLabel;
+    Series1: TPieSeries;
+    lblSemGols: TLabel;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure BtnPesquisarClick(Sender: TObject);
     procedure LblEstreiaClick(Sender: TObject);
@@ -69,7 +77,7 @@ implementation
 
 {$R *.dfm}
 
-uses pesquisajogadores, funcoes, relCarreiraJogador;
+uses pesquisajogadores, funcoes, relCarreiraJogador, module;
 
 procedure Th_fichaindividual.btnCarreiraClick(Sender: TObject);
 begin
@@ -128,6 +136,20 @@ begin
     btnCarreira.Visible := False
   else
     btnCarreira.Visible := true;
+
+  dbcEstatisticas.Title.Caption := '';
+  lblTituloGrafico.Caption := 'Gols por tipo';
+  if qryGolsPorTipo.Active then
+     qryGolsPorTipo.Close;
+  qryGolsPorTipo.Params.ParamByName('CodigoJogador').DataType := ftInteger;
+  qryGolsPorTipo.Params.ParamByName('CodigoJogador').Value := codigojogador;
+  qryGolsPorTipo.Open;
+
+  if qryGolsPorTipo.IsEmpty then
+     lblSemGols.Caption := UpperCase('Nenhum gol pela equipe!')
+  else
+     lblSemGols.Caption := '';
+
 
 end;
 

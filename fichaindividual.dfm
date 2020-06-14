@@ -3,8 +3,8 @@ object h_fichaindividual: Th_fichaindividual
   Top = 0
   BorderStyle = bsToolWindow
   Caption = '  >> FICHA INDIVIDUAL DO ATLETA'
-  ClientHeight = 671
-  ClientWidth = 854
+  ClientHeight = 743
+  ClientWidth = 968
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,8 +20,8 @@ object h_fichaindividual: Th_fichaindividual
   TextHeight = 13
   object Shape3: TShape
     Left = -2
-    Top = 198
-    Width = 859
+    Top = 217
+    Width = 983
     Height = 33
     Brush.Color = cl3DDkShadow
     Pen.Style = psClear
@@ -29,7 +29,7 @@ object h_fichaindividual: Th_fichaindividual
   object Shape1: TShape
     Left = -1
     Top = 34
-    Width = 848
+    Width = 982
     Height = 71
     Brush.Color = cl3DDkShadow
     Pen.Style = psClear
@@ -40,7 +40,6 @@ object h_fichaindividual: Th_fichaindividual
     Width = 249
     Height = 345
     Pen.Color = clSilver
-    Shape = stRoundRect
   end
   object ImgFoto: TImage
     Left = 51
@@ -153,7 +152,7 @@ object h_fichaindividual: Th_fichaindividual
   end
   object Label4: TLabel
     Left = 312
-    Top = 244
+    Top = 263
     Width = 147
     Height = 18
     AutoSize = False
@@ -168,7 +167,7 @@ object h_fichaindividual: Th_fichaindividual
   end
   object Label5: TLabel
     Left = 312
-    Top = 268
+    Top = 287
     Width = 147
     Height = 18
     AutoSize = False
@@ -183,7 +182,7 @@ object h_fichaindividual: Th_fichaindividual
   end
   object LblTituloJogosComoTit: TLabel
     Left = 311
-    Top = 292
+    Top = 311
     Width = 147
     Height = 18
     AutoSize = False
@@ -198,7 +197,7 @@ object h_fichaindividual: Th_fichaindividual
   end
   object Label7: TLabel
     Left = 311
-    Top = 204
+    Top = 223
     Width = 480
     Height = 23
     AutoSize = False
@@ -213,7 +212,7 @@ object h_fichaindividual: Th_fichaindividual
   end
   object LblEstreia: TLabel
     Left = 479
-    Top = 244
+    Top = 263
     Width = 319
     Height = 18
     Cursor = crHandPoint
@@ -230,7 +229,7 @@ object h_fichaindividual: Th_fichaindividual
   end
   object LblUltimoJogo: TLabel
     Left = 479
-    Top = 268
+    Top = 287
     Width = 319
     Height = 18
     Cursor = crHandPoint
@@ -247,7 +246,7 @@ object h_fichaindividual: Th_fichaindividual
   end
   object LblJogosTitular: TLabel
     Left = 479
-    Top = 292
+    Top = 311
     Width = 249
     Height = 18
     AutoSize = False
@@ -261,8 +260,8 @@ object h_fichaindividual: Th_fichaindividual
     Transparent = True
   end
   object Label12: TLabel
-    Left = 307
-    Top = 623
+    Left = 3
+    Top = 706
     Width = 42
     Height = 19
     Alignment = taRightJustify
@@ -276,25 +275,9 @@ object h_fichaindividual: Th_fichaindividual
     ParentFont = False
     Transparent = True
   end
-  object LblPosicao: TLabel
-    Left = 32
-    Top = 369
-    Width = 249
-    Height = 18
-    Alignment = taCenter
-    AutoSize = False
-    Caption = 'LATERAL ESQUERDO'
-    Font.Charset = DEFAULT_CHARSET
-    Font.Color = cl3DDkShadow
-    Font.Height = -17
-    Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
-    ParentFont = False
-    Transparent = True
-  end
   object LblCodJogoEstreia: TLabel
     Left = 806
-    Top = 244
+    Top = 263
     Width = 30
     Height = 23
     AutoSize = False
@@ -309,7 +292,7 @@ object h_fichaindividual: Th_fichaindividual
   end
   object LblCodJogoUltimo: TLabel
     Left = 806
-    Top = 268
+    Top = 287
     Width = 30
     Height = 23
     AutoSize = False
@@ -323,9 +306,9 @@ object h_fichaindividual: Th_fichaindividual
     Visible = False
   end
   object Label1: TLabel
-    Left = 32
-    Top = 444
-    Width = 249
+    Left = 311
+    Top = 338
+    Width = 140
     Height = 18
     AutoSize = False
     Caption = 'Idade na Estr'#233'ia:'
@@ -338,9 +321,9 @@ object h_fichaindividual: Th_fichaindividual
     Transparent = True
   end
   object LblIdadeEstreia: TLabel
-    Left = 32
-    Top = 468
-    Width = 249
+    Left = 479
+    Top = 338
+    Width = 165
     Height = 18
     AutoSize = False
     Caption = '20 anos 11 meses 25 dias'
@@ -353,9 +336,9 @@ object h_fichaindividual: Th_fichaindividual
     Transparent = True
   end
   object Label2: TLabel
-    Left = 32
-    Top = 508
-    Width = 249
+    Left = 311
+    Top = 364
+    Width = 140
     Height = 18
     AutoSize = False
     Caption = 'Idade no '#250'ltimo jogo:'
@@ -368,9 +351,9 @@ object h_fichaindividual: Th_fichaindividual
     Transparent = True
   end
   object LblIdadeUltimoJogo: TLabel
-    Left = 32
-    Top = 532
-    Width = 249
+    Left = 479
+    Top = 364
+    Width = 165
     Height = 18
     AutoSize = False
     Caption = '20 anos 11 meses 25 dias'
@@ -384,23 +367,40 @@ object h_fichaindividual: Th_fichaindividual
   end
   object Shape4: TShape
     Left = -5
-    Top = 428
+    Top = 396
     Width = 294
     Height = 2
     Brush.Color = cl3DDkShadow
     Pen.Style = psClear
   end
-  object Shape5: TShape
-    Left = 307
-    Top = 613
-    Width = 533
-    Height = 2
-    Brush.Color = cl3DDkShadow
-    Pen.Style = psClear
+  object Shape6: TShape
+    Left = 52
+    Top = 345
+    Width = 207
+    Height = 35
+    Brush.Color = clBtnFace
+    Pen.Color = clSilver
+    Shape = stRoundRect
+  end
+  object LblPosicao: TLabel
+    Left = 51
+    Top = 354
+    Width = 209
+    Height = 18
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'LATERAL ESQUERDO'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = cl3DDkShadow
+    Font.Height = -15
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+    Transparent = True
   end
   object DbGridEstatisticas: TDBGrid
-    Left = 312
-    Top = 328
+    Left = 8
+    Top = 411
     Width = 523
     Height = 279
     BorderStyle = bsNone
@@ -578,8 +578,8 @@ object h_fichaindividual: Th_fichaindividual
       end>
   end
   object DbGridTotais: TDBGrid
-    Left = 358
-    Top = 621
+    Left = 54
+    Top = 704
     Width = 478
     Height = 26
     BorderStyle = bsNone
@@ -772,12 +772,12 @@ object h_fichaindividual: Th_fichaindividual
       end>
   end
   object btnCarreira: TBitBtn
-    Left = 32
-    Top = 570
-    Width = 249
+    Left = 836
+    Top = 263
+    Width = 124
     Height = 45
     Hint = 'Mostrar/cadastrar carreira do jogador'
-    Caption = ' Informa'#231#245'es da carreira do jogador'
+    Caption = 'Carreira'
     Glyph.Data = {
       06300000424D063000000000000036000000280000005A0000002D0000000100
       180000000000D02F0000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -1169,5 +1169,111 @@ object h_fichaindividual: Th_fichaindividual
     ShowHint = True
     TabOrder = 2
     OnClick = btnCarreiraClick
+  end
+  object dbcEstatisticas: TDBChart
+    Left = 545
+    Top = 411
+    Width = 415
+    Height = 319
+    Title.Font.Name = 'Verdana'
+    Title.Text.Strings = (
+      'TDBChart')
+    Legend.Alignment = laBottom
+    Legend.TextStyle = ltsValue
+    Legend.Title.Alignment = taCenter
+    View3DOptions.Elevation = 315
+    View3DOptions.Orthogonal = False
+    View3DOptions.Perspective = 0
+    View3DOptions.Rotation = 360
+    TabOrder = 3
+    DefaultCanvas = 'TGDIPlusCanvas'
+    ColorPaletteIndex = 13
+    object lblTituloGrafico: TLabel
+      Left = -8
+      Top = 14
+      Width = 415
+      Height = 35
+      Alignment = taCenter
+      AutoSize = False
+      Caption = 'lblTituloGrafico'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Calibri'
+      Font.Style = [fsBold]
+      ParentFont = False
+      WordWrap = True
+    end
+    object lblSemGols: TLabel
+      Left = -8
+      Top = 32
+      Width = 415
+      Height = 35
+      Alignment = taCenter
+      AutoSize = False
+      Caption = 'lblTituloGrafico'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Calibri'
+      Font.Style = [fsBold]
+      ParentFont = False
+      WordWrap = True
+    end
+    object Series1: TPieSeries
+      DataSource = qryGolsPorTipo
+      XLabelsSource = 'tipo'
+      XValues.Order = loAscending
+      YValues.Name = 'Pie'
+      YValues.Order = loNone
+      YValues.ValueSource = 'gols'
+      Frame.InnerBrush.BackColor = clRed
+      Frame.InnerBrush.Gradient.EndColor = clGray
+      Frame.InnerBrush.Gradient.MidColor = clWhite
+      Frame.InnerBrush.Gradient.StartColor = 4210752
+      Frame.InnerBrush.Gradient.Visible = True
+      Frame.MiddleBrush.BackColor = clYellow
+      Frame.MiddleBrush.Gradient.EndColor = 8553090
+      Frame.MiddleBrush.Gradient.MidColor = clWhite
+      Frame.MiddleBrush.Gradient.StartColor = clGray
+      Frame.MiddleBrush.Gradient.Visible = True
+      Frame.OuterBrush.BackColor = clGreen
+      Frame.OuterBrush.Gradient.EndColor = 4210752
+      Frame.OuterBrush.Gradient.MidColor = clWhite
+      Frame.OuterBrush.Gradient.StartColor = clSilver
+      Frame.OuterBrush.Gradient.Visible = True
+      Frame.Width = 4
+      ExplodeBiggest = 30
+      OtherSlice.Legend.Visible = False
+    end
+  end
+  object qryGolsPorTipo: TFDQuery
+    Connection = FrmDm.BDMySQL
+    SQL.Strings = (
+      'SELECT COUNT(*) AS gols, es_tipogol.tipo'
+      'FROM es_gols'
+      'INNER JOIN es_tipogol ON es_tipogol.codtipo = es_gols.codtipogol'
+      'WHERE es_gols.codjogador = :CodigoJogador'
+      'GROUP BY es_tipogol.tipo')
+    Left = 560
+    Top = 416
+    ParamData = <
+      item
+        Name = 'CODIGOJOGADOR'
+        DataType = ftInteger
+        Precision = 10
+        ParamType = ptInput
+        Size = 4
+      end>
+    object qryGolsPorTipogols: TLargeintField
+      AutoGenerateValue = arDefault
+      FieldName = 'gols'
+      Origin = 'gols'
+    end
+    object qryGolsPorTipotipo: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'tipo'
+      Origin = 'tipo'
+    end
   end
 end
