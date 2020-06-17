@@ -110,7 +110,7 @@ end;
 procedure Th_fichaindividual.BtnPesquisarClick(Sender: TObject);
 begin
   // preencher grid da pesquisa de Jogadores
-  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
+  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 0);
   h_jogadores.identificacao := 'FichaIndividual';
   h_jogadores.ShowModal;
 end;

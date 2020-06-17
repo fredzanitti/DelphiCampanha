@@ -71,6 +71,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    CodigoJogo: Integer;
 
   const cImagemPadrao = 'C:\Arquivos de programas\Campanha Ano a Ano\Seu Time\DBAcompanhamento\Imagens\indisponivel.jpg';
 
@@ -100,7 +101,7 @@ type
     procedure pesquisaJogos(grid: TDBGrid; dtini, dtfim: String);
     procedure pesquisaJogosPorNumero(grid: TDBGrid; numero: String);
     procedure pesquisaCompeticao(grid: TDBGrid; partenome: String);
-    procedure pesquisaJogadores(grid: TDBGrid; partenome: String; ativo: string);
+    procedure pesquisaJogadores(grid: TDBGrid; partenome: String; codigojogo: integer);
     procedure pesquisaJogadoresAtivos(grid: TDBGrid; partenome: String);
     procedure pesquisaTitulos(grid: TDBGrid; partenome: String);
     procedure pesquisaFase(grid: TDBGrid; partenome: String);
@@ -1280,7 +1281,7 @@ begin
 
 end;
 
-procedure Tf_gerais.pesquisaJogadores(grid: TDBGrid; partenome: String; ativo: string);
+procedure Tf_gerais.pesquisaJogadores(grid: TDBGrid; partenome: String; codigojogo: integer);
 {
   =======================================================
   Pesquisar jogadores na tabela CA_JOGAD
@@ -1290,7 +1291,7 @@ procedure Tf_gerais.pesquisaJogadores(grid: TDBGrid; partenome: String; ativo: s
   =======================================================
 }
 begin
-  sql := 'CALL sp_pesquisa_jogadores (''' + partenome + ''',''' + tecnico + ''',''' + ativo + ''')';
+  sql := 'CALL sp_pesquisa_jogadores (''' + partenome + ''',''' + tecnico + ''',' + IntToStr(codigojogo) + ')';
 
   QrFunctions.Close;
   QrFunctions.sql.Clear;

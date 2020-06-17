@@ -29,6 +29,7 @@ type
     { Private declarations }
   public
     { Public declarations }
+    CodigoJogo: Integer;
   var
     identificacao: String;
   end;
@@ -55,17 +56,14 @@ begin
   if CbOpcao.Checked then
   begin
     f_gerais.tecnico := 'TECNICO';
-    if identificacao = 'ES_GOLS' then
-       f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'S')
-    else
-       f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
+    f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 0);
   end
   else begin
     f_gerais.tecnico := '';
     if identificacao = 'ES_GOLS' then
-       f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'S')
+       f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', CodigoJogo)
     else
-       f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
+       f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 0);
   end;
 end;
 
@@ -781,7 +779,7 @@ begin
   begin
     f_gerais.preencherFichaIndividual(StrToInt(codjogador));
   end;
-  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
+  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 0);
 
   // ==========================================================================
   // Pesquisa - Maiores vítimas (clubes) de um jogador
@@ -893,18 +891,18 @@ procedure Th_jogadores.EdtPesquisaKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   if identificacao = 'ES_GOLS' then
-     f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, EdtPesquisa.Text, 'S')
+     f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, EdtPesquisa.Text, CodigoJogo)
   else
-     f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, EdtPesquisa.Text, 'N');
+     f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, EdtPesquisa.Text, 0);
 end;
 
 procedure Th_jogadores.FormActivate(Sender: TObject);
 begin
   // preencher grid da pesquisa de Jogadores
   if identificacao = 'ES_GOLS' then
-     f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'S')
+     f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', CodigoJogo)
   else
-     f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
+     f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 0);
 
   FrmDm.TblJogadores.Refresh;
   EdtPesquisa.Clear;

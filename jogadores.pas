@@ -532,7 +532,7 @@ end;
 procedure TCA_JOGAD.fraBotoesBtnPesquisarClick(Sender: TObject);
 begin
   // preencher grid da pesquisa de clubes
-  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
+  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 0);
   h_jogadores.identificacao := 'CA_JOGAD';
   h_jogadores.ShowModal;
 end;

@@ -3,8 +3,8 @@ object h_jogadores: Th_jogadores
   Top = 0
   BorderStyle = bsToolWindow
   Caption = 'Pesquisa por Jogadores'
-  ClientHeight = 402
-  ClientWidth = 673
+  ClientHeight = 435
+  ClientWidth = 645
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -37,7 +37,7 @@ object h_jogadores: Th_jogadores
     Left = 8
     Top = 72
     Width = 625
-    Height = 225
+    Height = 297
     BorderStyle = bsNone
     DrawingStyle = gdsGradient
     Font.Charset = DEFAULT_CHARSET
@@ -102,8 +102,8 @@ object h_jogadores: Th_jogadores
       end>
   end
   object BtnSelecionar: TBitBtn
-    Left = 526
-    Top = 319
+    Left = 518
+    Top = 384
     Width = 115
     Height = 45
     Caption = 'Selecionar'

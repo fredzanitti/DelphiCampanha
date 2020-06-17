@@ -192,6 +192,7 @@ end;
 
 procedure TfrmGolsdaPartida.btnJogadoresClick(Sender: TObject);
 begin
+  h_jogadores.CodigoJogo := CodigoJogo;
   h_jogadores.identificacao := 'ES_GOLS';
   h_jogadores.ShowModal;
   rgrTiposGols.ItemIndex := 6;

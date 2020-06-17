@@ -726,7 +726,7 @@ end;
 procedure TFrmPrincipal.MnJogadores10Click(Sender: TObject);
 begin
   r_jogospadrao.numerorelatorio := '35';
-  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
+  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 0);
   h_jogadores.identificacao := 'MnJogadores10';
   h_jogadores.ShowModal;
 end;
@@ -1153,7 +1153,7 @@ end;
 procedure TFrmPrincipal.MnJogadores1Click(Sender: TObject);
 begin
   // preencher grid da pesquisa de Jogadores
-  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
+  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 0);
   h_jogadores.identificacao := 'MnJogadores1';
   h_jogadores.ShowModal;
 end;
@@ -1161,12 +1161,12 @@ end;
 procedure TFrmPrincipal.MnJogadores2Click(Sender: TObject);
 begin
   // preencher grid da pesquisa de Jogadores
-  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
+  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 0);
   h_jogadores.identificacao := 'MnJogadores2';
   Application.MessageBox('Selecione o 1º Jogador ou Técnico', 'SELEÇAO',
     MB_OK + MB_ICONINFORMATION);
   h_jogadores.ShowModal;
-  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
+  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 0);
   h_jogadores.identificacao := 'MnJogadores2a';
   Application.MessageBox('Selecione o 2º Jogador ou Técnico', 'SELEÇAO',
     MB_OK + MB_ICONINFORMATION);
@@ -1191,7 +1191,7 @@ end;
 procedure TFrmPrincipal.MnJogadores4Click(Sender: TObject);
 begin
   // preencher grid da pesquisa de Jogadores
-  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
+  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 0);
   h_jogadores.identificacao := 'MnJogadores4';
   h_jogadores.ShowModal;
 end;
@@ -1207,7 +1207,7 @@ end;
 procedure TFrmPrincipal.MnJogadores6Click(Sender: TObject);
 begin
   // preencher grid da pesquisa de Jogadores
-  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
+  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 0);
   h_jogadores.identificacao := 'MnJogadores6';
   h_jogadores.ShowModal;
 end;
@@ -1314,7 +1314,7 @@ begin
   begin
     r_jogospadrao.numerorelatorio := '34';
     r_jogospadrao.codauxiliar1 := f_gerais.retornaCodigosRivais();
-    f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
+    f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 0);
     h_jogadores.identificacao := 'MnJogadores9';
     h_jogadores.ShowModal;
   end;
@@ -1833,7 +1833,7 @@ end;
 procedure TFrmPrincipal.MnJogosComTecnicoClick(Sender: TObject);
 begin
   // preencher grid da pesquisa de Jogadores
-  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 'N');
+  f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 0);
   h_jogadores.identificacao := 'MnTecnicos';
   h_jogadores.ShowModal;
 end;
