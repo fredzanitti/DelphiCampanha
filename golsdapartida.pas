@@ -58,6 +58,7 @@ type
     procedure BtnEliminarUltimoClick(Sender: TObject);
     procedure rgrGolContraClick(Sender: TObject);
     procedure EdtTempoExit(Sender: TObject);
+    procedure EdtTempoKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
   public
@@ -81,7 +82,7 @@ implementation
 procedure TfrmGolsdaPartida.LimparCampos;
 begin
     rgrGolContra.ItemIndex := 0;
-    rgrTiposGols.ItemIndex := 6;
+    rgrTiposGols.ItemIndex := 10;
     EdtJogador.Clear;
     btnJogadores.Enabled := true;
     EdtTempo.Clear;
@@ -195,7 +196,8 @@ begin
   h_jogadores.CodigoJogo := CodigoJogo;
   h_jogadores.identificacao := 'ES_GOLS';
   h_jogadores.ShowModal;
-  rgrTiposGols.ItemIndex := 6;
+  rgrTiposGols.ItemIndex := 10;
+  EdtTempo.SetFocus;
 end;
 
 procedure TfrmGolsdaPartida.EdtTempoExit(Sender: TObject);
@@ -208,6 +210,12 @@ begin
 
     if qryUltimoTempoperiodo.Value = '2T' then
        cbxTempo.ItemIndex := 1;
+end;
+
+procedure TfrmGolsdaPartida.EdtTempoKeyPress(Sender: TObject; var Key: Char);
+begin
+    if ((key in ['0'..'9'] = false) and (word(key) <> vk_back)) then
+      key := #0;
 end;
 
 procedure TfrmGolsdaPartida.FormCreate(Sender: TObject);
@@ -248,7 +256,7 @@ begin
   else
   begin
      btnJogadores.Enabled := True;
-     rgrTiposGols.ItemIndex := 6;
+     rgrTiposGols.ItemIndex := 10;
      EdtJogador.Clear;
   end;
 end;

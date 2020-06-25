@@ -2369,7 +2369,7 @@ object CA_JOGOS: TCA_JOGOS
       Width = 11
       Height = 17
       Caption = 'X'
-      TabOrder = 11
+      TabOrder = 13
     end
     object EdtPenaltyMandante: TDBEdit
       Left = 188
@@ -2688,7 +2688,7 @@ object CA_JOGOS: TCA_JOGOS
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 6
+      TabOrder = 7
       OnClick = BtnCompeticaoClick
     end
     object EdtCompeticao: TEdit
@@ -2703,7 +2703,7 @@ object CA_JOGOS: TCA_JOGOS
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 14
+      TabOrder = 16
     end
     object EdtMandante: TEdit
       Left = 55
@@ -2719,7 +2719,7 @@ object CA_JOGOS: TCA_JOGOS
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 12
+      TabOrder = 14
       Text = 'Am'#233'rica de Tr'#234's Rios ( RJ )'
     end
     object EdtVisitante: TEdit
@@ -2736,7 +2736,7 @@ object CA_JOGOS: TCA_JOGOS
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 13
+      TabOrder = 15
       Text = 'Am'#233'rica de Tr'#234's Rios ( RJ )'
     end
     object BtnAdversario: TBitBtn
@@ -3324,7 +3324,7 @@ object CA_JOGOS: TCA_JOGOS
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 10
+      TabOrder = 11
       OnEnter = EdtPublicoEnter
       OnExit = EdtPublicoExit
     end
@@ -3340,7 +3340,7 @@ object CA_JOGOS: TCA_JOGOS
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 15
+      TabOrder = 17
     end
     object BtnArbitro: TBitBtn
       Left = 13
@@ -3625,7 +3625,7 @@ object CA_JOGOS: TCA_JOGOS
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 7
+      TabOrder = 8
       OnClick = BtnArbitroClick
     end
     object CbxTatica: TDBLookupComboBox
@@ -3644,7 +3644,7 @@ object CA_JOGOS: TCA_JOGOS
       ListField = 'esquema'
       ListSource = FrmDm.DtsTatica
       ParentFont = False
-      TabOrder = 8
+      TabOrder = 9
     end
     object EdtFase: TEdit
       Left = 57
@@ -3658,7 +3658,7 @@ object CA_JOGOS: TCA_JOGOS
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 16
+      TabOrder = 18
     end
     object BtnFase: TBitBtn
       Left = 13
@@ -3943,7 +3943,7 @@ object CA_JOGOS: TCA_JOGOS
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 9
+      TabOrder = 10
       OnClick = BtnFaseClick
     end
     object cbPortaoFechado: TDBCheckBox
@@ -3960,7 +3960,7 @@ object CA_JOGOS: TCA_JOGOS
       Font.Name = 'Tahoma'
       Font.Style = []
       ParentFont = False
-      TabOrder = 17
+      TabOrder = 12
       ValueChecked = 'S'
       ValueUnchecked = 'N'
       OnClick = cbPortaoFechadoClick
@@ -4248,7 +4248,7 @@ object CA_JOGOS: TCA_JOGOS
       NumGlyphs = 2
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 18
+      TabOrder = 6
       OnClick = BtnTempoGolsClick
     end
   end

@@ -448,7 +448,7 @@ object frmGolsdaPartida: TfrmGolsdaPartida
   object EdtJogador: TEdit
     Left = 147
     Top = 41
-    Width = 191
+    Width = 181
     Height = 24
     Enabled = False
     Font.Charset = DEFAULT_CHARSET
@@ -635,9 +635,9 @@ object frmGolsdaPartida: TfrmGolsdaPartida
     OnClick = BtnGravarClick
   end
   object rgrTiposGols: TRadioGroup
-    Left = 350
+    Left = 338
     Top = 18
-    Width = 163
+    Width = 173
     Height = 147
     Caption = ' Tipo do gol '
     Columns = 2
@@ -945,7 +945,7 @@ object frmGolsdaPartida: TfrmGolsdaPartida
   object cbxTempo: TComboBox
     Left = 222
     Top = 94
-    Width = 116
+    Width = 106
     Height = 22
     Style = csOwnerDrawFixed
     ItemIndex = 0
@@ -970,6 +970,7 @@ object frmGolsdaPartida: TfrmGolsdaPartida
     ParentFont = False
     TabOrder = 3
     OnExit = EdtTempoExit
+    OnKeyPress = EdtTempoKeyPress
   end
   object qryGolsporjogo: TFDQuery
     Connection = FrmDm.BDMySQL
