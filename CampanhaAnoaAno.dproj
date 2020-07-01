@@ -362,6 +362,10 @@
             <Form>frmGolsdaPartida</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="escudos.pas">
+            <Form>frmEscudosHistoricos</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Release">
             <Key>Cfg_2</Key>
             <CfgParent>Base</CfgParent>

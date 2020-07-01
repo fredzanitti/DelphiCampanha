@@ -259,6 +259,7 @@ begin
      rgrTiposGols.ItemIndex := 10;
      EdtJogador.Clear;
   end;
+  EdtTempo.SetFocus;
 end;
 
 end.

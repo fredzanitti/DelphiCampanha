@@ -244,8 +244,8 @@ begin
   EdtCodVisitante.Text := EdtCodMandante.Text;
   EdtCodMandante.Text := troca;
 
-  f_gerais.buscaImagemPorCodigo(ImgLogoMandante, EdtCodMandante.Text);
-  f_gerais.buscaImagemPorCodigo(ImgLogoVisitante, EdtCodVisitante.Text);
+  f_gerais.buscaImagemPorCodigo(ImgLogoMandante, EdtCodMandante.Text, '0');
+  f_gerais.buscaImagemPorCodigo(ImgLogoVisitante, EdtCodVisitante.Text, '0');
   EdtMandante.Text := AnsiUpperCase(f_gerais.buscarNome('nome', 'CA_ADVER',
     'codadver', EdtCodMandante.Text));
   EdtVisitante.Text := AnsiUpperCase(f_gerais.buscarNome('nome', 'CA_ADVER',
@@ -736,11 +736,11 @@ begin
                       if ((total < golsdojogo) and
                         (CbEscalacoDisp.Checked = false)) then
                       begin
-                        msg := 'A quantidade de gols atribuído aos jogadores ' +
+                       { msg := 'A quantidade de gols atribuído aos jogadores ' +
                           #13 + 'é menor que a quantidade de gols marcados.' +
                           #13 + 'A diferença será cadastrada como GOL CONTRA.';
                         Application.MessageBox(Pchar(msg), 'ATENÇÃO',
-                          MB_OK + MB_ICONINFORMATION);
+                          MB_OK + MB_ICONINFORMATION);}
                         EdtQtdeGolContra.Text := IntToStr(golsdojogo - total);
                       end
                       else
@@ -1064,8 +1064,8 @@ begin
     else
     begin
       // logo e nome dos clubes
-      f_gerais.buscaImagemPorCodigo(ImgLogoMandante, EdtCodMandante.Text);
-      f_gerais.buscaImagemPorCodigo(ImgLogoVisitante, EdtCodVisitante.Text);
+      f_gerais.buscaImagemPorCodigo(ImgLogoMandante, EdtCodMandante.Text, f_gerais.ExtrairAnoDataDoJogo(EdtCodigo.Text));
+      f_gerais.buscaImagemPorCodigo(ImgLogoVisitante, EdtCodVisitante.Text, f_gerais.ExtrairAnoDataDoJogo(EdtCodigo.Text));
       EdtMandante.Text := AnsiUpperCase(f_gerais.buscarNome('nome', 'CA_ADVER',
         'codadver', EdtCodMandante.Text));
       EdtVisitante.Text := AnsiUpperCase(f_gerais.buscarNome('nome', 'CA_ADVER',

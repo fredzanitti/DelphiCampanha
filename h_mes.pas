@@ -150,7 +150,7 @@ begin
         r_jogospadrao.LblDescricao2.Caption :=
           'Todos os jogos disputados no mês de ' + NomeMes + ' de ' + ano;
         // buscar escudo do seu time
-        f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+        f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
         // definir título do formulário
         r_jogospadrao.Caption := 'Jogos disputados por mês';
         // mostara a consulta finalizada

@@ -11,7 +11,7 @@ uses
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.DBGrids, Vcl.StdCtrls,
   jpeg, UProgresso, SHDocVw, ActiveX, ComObj,
   DateUtils, IdHashMessageDigest, DBXJSON, Character,
-  IdCoder, IdCoder3to4, IdCoderMIME, XSBuiltIns,ComCtrls;
+  IdCoder, IdCoder3to4, IdCoderMIME, XSBuiltIns, ComCtrls;
 
 type
   Tf_gerais = class(TForm)
@@ -73,7 +73,9 @@ type
     { Public declarations }
     CodigoJogo: Integer;
 
-  const cImagemPadrao = 'C:\Arquivos de programas\Campanha Ano a Ano\Seu Time\DBAcompanhamento\Imagens\indisponivel.jpg';
+  const
+    cImagemPadrao =
+      'C:\Arquivos de programas\Campanha Ano a Ano\Seu Time\DBAcompanhamento\Imagens\indisponivel.jpg';
 
   var
     anocompeticao, codcompeticao, codigosaux, versao, tecnico: String;
@@ -85,7 +87,7 @@ type
       * }
     procedure buscaImagem(objeto: TImage; caminho: string);
     procedure buscaImagemJogador(objeto: TImage; caminho: string);
-    procedure buscaImagemPorCodigo(objeto: TImage; codigo: string);
+    procedure buscaImagemPorCodigo(objeto: TImage; codigoTime, anoJogo: string);
     procedure buscaBandJogador(objeto: TImage; codjogador: string);
     procedure buscaBandPaisPorCodCidade(bandpais: TImage; codcidade: String);
     procedure buscaBandeiras(bandpais, banduf: TImage; codcidade: String;
@@ -101,7 +103,8 @@ type
     procedure pesquisaJogos(grid: TDBGrid; dtini, dtfim: String);
     procedure pesquisaJogosPorNumero(grid: TDBGrid; numero: String);
     procedure pesquisaCompeticao(grid: TDBGrid; partenome: String);
-    procedure pesquisaJogadores(grid: TDBGrid; partenome: String; codigojogo: integer);
+    procedure pesquisaJogadores(grid: TDBGrid; partenome: String;
+      CodigoJogo: Integer);
     procedure pesquisaJogadoresAtivos(grid: TDBGrid; partenome: String);
     procedure pesquisaTitulos(grid: TDBGrid; partenome: String);
     procedure pesquisaFase(grid: TDBGrid; partenome: String);
@@ -113,7 +116,7 @@ type
     procedure ultimoJogo(codigo, Data, placarmand, placarvisit: TLabel;
       mand, visit: TImage);
     procedure captionForm(formulario: TForm);
-    procedure limpaTelaJogadoresNosJogos(limite: integer);
+    procedure limpaTelaJogadoresNosJogos(limite: Integer);
     procedure limpaTelaEditaEscalacao();
     procedure preencherGridTitulares(titulares: TDBGrid; codigodojogo: String);
     procedure preencherGridReservas(reservas: TDBGrid; codigodojogo: String);
@@ -125,10 +128,10 @@ type
     procedure jogadoresDisponiveis(grid: TDBGrid;
       codigodojogo, nomeform, nomejogador: String);
     procedure liberaJogadores(ano: String);
-    procedure atualizaSituacao(situacao: integer);
-    procedure atualizaSituacaoGeral(situacao: integer);
-    procedure preenchimentoTelaPadraoJogos(sqlcode: String; corte: integer;
-      limite: integer);
+    procedure atualizaSituacao(situacao: Integer);
+    procedure atualizaSituacaoGeral(situacao: Integer);
+    procedure preenchimentoTelaPadraoJogos(sqlcode: String; corte: Integer;
+      limite: Integer);
     procedure preencherCbxAnos(anos: TComboBox);
     procedure preencherComboUf(ufs: TComboBox);
     procedure preencherComboPais(paises: TComboBox);
@@ -139,11 +142,11 @@ type
     procedure preencherEstJogadoresPorAdversario(codigoTime, ordem: String);
     procedure InfReduzidaJogador(codjogador: String; bandeira, foto: TImage;
       apelido, nomecompleto, periodo, posicao: TLabel);
-    procedure preencherFichaIndividual(codjogador: integer);
+    procedure preencherFichaIndividual(codjogador: Integer);
     procedure preencherSumula(codjogo: String);
-    procedure preencherOsDezMais(sql: String; codRelatorio: integer);
+    procedure preencherOsDezMais(sql: String; codRelatorio: Integer);
     procedure preencherAniversariantes(sql: String);
-    procedure relPeriodoEstGerais(dtini, dtfim: String; relat: integer);
+    procedure relPeriodoEstGerais(dtini, dtfim: String; relat: Integer);
     procedure melhorPiorResultado(codigodotime: String);
     procedure melhorPiorResultadoGeral(ano: String);
     procedure preencherGridsCampanhaGeral(ano: String);
@@ -152,7 +155,7 @@ type
     procedure infIniciais(qttemp, qtjogos, qtjogad, qttecn: TLabel);
     procedure MudaCor(Evento: String; Componente: TObject);
     procedure qtdeDeTitulos(titulos, descultimotit: TLabel);
-    procedure testaUsuario(cod: integer);
+    procedure testaUsuario(cod: Integer);
     procedure ultimoBackup(tempo: TLabel);
     procedure preencherPatrocinios(Data: string);
     procedure estPeriodoSemPerderSemGanhar(codigodotime: String);
@@ -165,11 +168,11 @@ type
       * }
     function verificarStringEmBranco(texto, campo: String): boolean;
     function verifJogParaCadastroJogos(): boolean;
-    function contadorRegistros(tabela: String): integer;
-    function maiorCodigo(pk: string; tabela: String): integer;
+    function contadorRegistros(tabela: String): Integer;
+    function maiorCodigo(pk: string; tabela: String): Integer;
     function contRegComUmParametro(tabela, campo, chaveprocurada
-      : String): integer;
-    function novoCodigo(tabela, codigo: String): integer;
+      : String): Integer;
+    function novoCodigo(tabela, codigo: String): Integer;
     function desejaRealizarAcao(textoinf: string): boolean;
     function buscarNome(retorno, tabela, pk, codigo: String): String;
     function determinarVED(): String;
@@ -178,10 +181,11 @@ type
     function retornarCidadeUfPais(codcidade: String): String;
     function periodoJogador(codjogador: String): String;
     function sequencias(dti, dtf: TLabel; Param: String;
-      indice, relat: integer): String;
+      indice, relat: Integer): String;
     function idadeAtual(DataIni, DataFim: TDateTime): string;
-    function criptografarSenha(pwd: string): integer;
-    function retornaNomeCompeticao(codigo: integer): String;
+    function criptografarSenha(pwd: string): Integer;
+    function retornaNomeCompeticao(codigo: Integer): String;
+    function retornaNomeTimePorCodigo(codigo: Integer): string;
     function validaNomeUsuario(texto: TDBEdit): boolean;
     function retornaNomesRivais(): String;
     function retornaData(Data: string): string;
@@ -190,7 +194,9 @@ type
     function verificaTecnico(codjogador: String): boolean;
     function RemoveAcento(const pText: string): string;
     function InsereAspasSimples(texto: string): string;
-    function retornarGolsPorMinutoPorJogador(codjogo, codjogador: Integer): String;
+    function retornarGolsPorMinutoPorJogador(codjogo,
+      codjogador: Integer): String;
+    function ExtrairAnoDataDoJogo(CodigoJogo: string): string;
   end;
 
 var
@@ -244,7 +250,7 @@ end;
 
 function Tf_gerais.Mascara(edt: string; str: string): string;
 var
-  i: integer;
+  i: Integer;
 begin
   for i := 1 to Length(edt) do
   begin
@@ -266,7 +272,7 @@ procedure Tf_gerais.gerarExcel(query: TFDQuery);
 }
 var
   Excel: Variant;
-  Linha, Work, ValorI, i: integer;
+  Linha, Work, ValorI, i: Integer;
   MascaraData: string;
   hWnd: Cardinal;
 
@@ -332,7 +338,7 @@ function Tf_gerais.retornaNomesRivais(): String;
 }
 var
   Nomes: String;
-  i, tot: integer;
+  i, tot: Integer;
 begin
   tot := contadorRegistros('ca_rival');
   i := 1;
@@ -399,7 +405,7 @@ function Tf_gerais.retornaCodigosRivais(): String;
 }
 var
   Codigos: String;
-  i, tot: integer;
+  i, tot: Integer;
 begin
   tot := contadorRegistros('ca_rival');
   i := 1;
@@ -494,7 +500,8 @@ begin
   r_artilheirosporadver.DbGridArtClube.DataSource := FrmDm.DtsQrEstatisticas;
 
   // buscar logo do adversário
-  f_gerais.buscaImagemPorCodigo(r_artilheirosporadver.ImgLogoAdver, codigoTime);
+  f_gerais.buscaImagemPorCodigo(r_artilheirosporadver.ImgLogoAdver,
+    codigoTime, '0');
 
   // buscar bandeiras do Pais e UF
   f_gerais.buscaBandeiras(r_artilheirosporadver.ImgBandPaisAdver,
@@ -675,7 +682,7 @@ end;
 
 procedure Tf_gerais.estPeriodoSemPerderSemGanhar(codigodotime: String);
 var
-  contvit, contder: integer;
+  contvit, contder: Integer;
   seuTime, Adversario: String;
   {
     =============================================================
@@ -801,7 +808,25 @@ begin
     objeto.Picture.Graphic := nil;
 end;
 
-procedure Tf_gerais.buscaImagemPorCodigo(objeto: TImage; codigo: string);
+function Tf_gerais.ExtrairAnoDataDoJogo(CodigoJogo: string): string;
+var
+  qryExtraiAno: TFDQuery;
+begin
+  sql := 'SELECT YEAR(ca_jogos.Data) FROM ca_jogos WHERE ca_jogos.codjogo = ' +
+    CodigoJogo;
+
+  qryExtraiAno := TFDQuery.Create(nil);
+  qryExtraiAno.Connection := FrmDm.BDMySQL;
+  qryExtraiAno.Close;
+  qryExtraiAno.sql.Clear;
+  qryExtraiAno.sql.Add(sql);
+  qryExtraiAno.Open;
+
+  Result := qryExtraiAno.Fields[0].AsString;
+end;
+
+procedure Tf_gerais.buscaImagemPorCodigo(objeto: TImage;
+  codigoTime, anoJogo: string);
 {
   =======================================================
   Esta procedure busca a imagem do escudo do clube
@@ -812,7 +837,7 @@ procedure Tf_gerais.buscaImagemPorCodigo(objeto: TImage; codigo: string);
   =======================================================
 }
 begin
-  sql := 'CALL sp_busca_escudo_clube (' + codigo + ')';
+  sql := 'CALL sp_busca_escudo_clube (' + codigoTime + ',' + anoJogo + ')';
 
   QrFunctions.Close;
   QrFunctions.sql.Clear;
@@ -830,7 +855,7 @@ procedure Tf_gerais.buscaImagemJogador(objeto: TImage; caminho: string);
   =======================================================
   Faz a mesma função da procedure buscaImagem, porém se o
   caminho da imagem é inválido ou não existe, o TImage
-  receberá uma imagem defaut “Foto Indisponível”.
+  receberá uma imagem defaut ?Foto Indisponível?.
   =======================================================
 }
 begin
@@ -845,7 +870,7 @@ end;
   Contador de registros de uma tabela
   =======================================================
 }
-function Tf_gerais.contadorRegistros(tabela: String): integer;
+function Tf_gerais.contadorRegistros(tabela: String): Integer;
 begin
   sql := 'select count(*) from ' + tabela;
 
@@ -862,7 +887,7 @@ end;
   Retorna código máximo de uma PK
   =======================================================
 }
-function Tf_gerais.maiorCodigo(pk: string; tabela: String): integer;
+function Tf_gerais.maiorCodigo(pk: string; tabela: String): Integer;
 begin
   sql := 'select max(' + pk + ') from ' + tabela;
 
@@ -880,7 +905,7 @@ end;
   =======================================================
 }
 function Tf_gerais.contRegComUmParametro(tabela, campo, chaveprocurada
-  : String): integer;
+  : String): Integer;
 begin
   sql := 'select count(*) from ' + tabela + ' where ' + campo + ' = ' +
     chaveprocurada;
@@ -1049,9 +1074,9 @@ end;
   Retorna próximo código válido para inserção de registro
   =======================================================
 }
-function Tf_gerais.novoCodigo(tabela, codigo: String): integer;
+function Tf_gerais.novoCodigo(tabela, codigo: String): Integer;
 var
-  codauxiliar, i: integer;
+  codauxiliar, i: Integer;
 begin
   if tabela = 'CA_USER' then
     sql := 'select max(' + codigo + ') from ' + tabela +
@@ -1281,7 +1306,8 @@ begin
 
 end;
 
-procedure Tf_gerais.pesquisaJogadores(grid: TDBGrid; partenome: String; codigojogo: integer);
+procedure Tf_gerais.pesquisaJogadores(grid: TDBGrid; partenome: String;
+  CodigoJogo: Integer);
 {
   =======================================================
   Pesquisar jogadores na tabela CA_JOGAD
@@ -1291,7 +1317,8 @@ procedure Tf_gerais.pesquisaJogadores(grid: TDBGrid; partenome: String; codigojo
   =======================================================
 }
 begin
-  sql := 'CALL sp_pesquisa_jogadores (''' + partenome + ''',''' + tecnico + ''',' + IntToStr(codigojogo) + ')';
+  sql := 'CALL sp_pesquisa_jogadores (''' + partenome + ''',''' + tecnico +
+    ''',' + IntToStr(CodigoJogo) + ')';
 
   QrFunctions.Close;
   QrFunctions.sql.Clear;
@@ -1414,8 +1441,8 @@ procedure Tf_gerais.captionForm(formulario: TForm);
   =======================================================
   Procedure para renomear o caption de um formulário. Ela
   recebe o formulário como parâmetro e retorna para o
-  título do formulário a expressão “CAMPANHA ANO A ANO –
-  Versão x.xx mês/ano”.
+  título do formulário a expressão ?CAMPANHA ANO A ANO ?
+  Versão x.xx mês/ano?.
   =======================================================
 }
 begin
@@ -1728,7 +1755,30 @@ begin
     Result := true;
 end;
 
-function Tf_gerais.retornaNomeCompeticao(codigo: integer): String;
+function Tf_gerais.retornaNomeTimePorCodigo(codigo: Integer): string;
+{
+  =======================================================
+  Retorna Nome de um time cadastrado
+  =======================================================
+}
+var
+  qryNomeTime: TFDQuery;
+begin
+  sql := 'select nome from ca_adver where codadver = :COD';
+
+  qryNomeTime := TFDQuery.Create(nil);
+  qryNomeTime.Connection := FrmDm.BDMySQL;
+  qryNomeTime.Close;
+  qryNomeTime.sql.Clear;
+  qryNomeTime.sql.Add(sql);
+  qryNomeTime.Params.ParamByName('COD').AsInteger := codigo;
+  qryNomeTime.Open;
+
+  Result := qryNomeTime.Fields[0].AsString;
+
+end;
+
+function Tf_gerais.retornaNomeCompeticao(codigo: Integer): String;
 {
   =======================================================
   Retorna Nome de uma Competição cadastrada
@@ -1754,7 +1804,7 @@ function Tf_gerais.validaNomeUsuario(texto: TDBEdit): boolean;
   =======================================================
 }
 var
-  tamanho, i: integer;
+  tamanho, i: Integer;
   encontrou: boolean;
   msg: String;
 begin
@@ -1828,9 +1878,9 @@ begin
   fase.Text := QrFunctions.Fields[0].AsString;
 end;
 
-procedure Tf_gerais.limpaTelaJogadoresNosJogos(limite: integer);
+procedure Tf_gerais.limpaTelaJogadoresNosJogos(limite: Integer);
 var
-  i: integer;
+  i: Integer;
   {
     =======================================================
     Esta procedure limpa a tela da escalação dos jogadores
@@ -1913,7 +1963,7 @@ end;
 
 procedure Tf_gerais.limpaTelaEditaEscalacao();
 var
-  i: integer;
+  i: Integer;
   {
     =======================================================
     Esta procedure limpa a tela das edições dos jogadores
@@ -1998,7 +2048,7 @@ end;
 
 procedure Tf_gerais.preencherTelaEdtiaEscalacao(TitOuRes, codigodojogo: String);
 var
-  i: integer;
+  i: Integer;
   {
     =======================================================
     Preencher tela de titulares e reservas para edição
@@ -2431,46 +2481,45 @@ begin
 
   h_liberarjogador.lsvJogadores.Items.Clear;
   try
-     frmProgresso := TfrmProgresso.Create(Self);
-     try
-            frmProgresso.gauProgresso.MaxValue := QrFunctions.RecordCount;
-            frmProgresso.gauProgresso.MinValue := 0;
-            frmProgresso.gauProgresso.Progress := 0;
-            frmProgresso.Show;
-            frmProgresso.lblMensagem.Caption := 'Processando informações...';
-            frmProgresso.lblMensagem.Update;
+    frmProgresso := TfrmProgresso.Create(Self);
+    try
+      frmProgresso.gauProgresso.MaxValue := QrFunctions.RecordCount;
+      frmProgresso.gauProgresso.MinValue := 0;
+      frmProgresso.gauProgresso.Progress := 0;
+      frmProgresso.Show;
+      frmProgresso.lblMensagem.Caption := 'Processando informações...';
+      frmProgresso.lblMensagem.Update;
 
-            // Carrega listview
-            h_liberarjogador.lsvJogadores.Items.BeginUpdate;
-            QrFunctions.First;
-            while not QrFunctions.Eof do
-            begin
-                 Application.ProcessMessages;
-                 frmProgresso.gauProgresso.Progress := I;
+      // Carrega listview
+      h_liberarjogador.lsvJogadores.Items.BeginUpdate;
+      QrFunctions.First;
+      while not QrFunctions.Eof do
+      begin
+        Application.ProcessMessages;
+        frmProgresso.gauProgresso.Progress := i;
 
-                 Item := h_liberarjogador.lsvJogadores.Items.Add;
-                 Item.Caption := QrFunctions.Fields[0].AsString;
-                 Item.SubItems.Add(QrFunctions.Fields[1].AsString);
-                 QrFunctions.Next;
-            end;
-     finally
-            if Assigned(frmProgresso) then
-                 frmProgresso.Free;
-     end;
+        Item := h_liberarjogador.lsvJogadores.Items.Add;
+        Item.Caption := QrFunctions.Fields[0].AsString;
+        Item.SubItems.Add(QrFunctions.Fields[1].AsString);
+        QrFunctions.Next;
+      end;
+    finally
+      if Assigned(frmProgresso) then
+        frmProgresso.Free;
+    end;
   finally
-       h_liberarjogador.lsvJogadores.Items.EndUpdate;
+    h_liberarjogador.lsvJogadores.Items.EndUpdate;
   end;
   FrmDm.DtsJogadores.DataSet.Refresh;
 end;
 
-procedure Tf_gerais.atualizaSituacao(situacao: integer);
+procedure Tf_gerais.atualizaSituacao(situacao: Integer);
 var
-  i: integer;
+  i: Integer;
 begin
-  for I := 0 to h_liberarjogador.lsvJogadores.Items.Count - 1 do
+  for i := 0 to h_liberarjogador.lsvJogadores.Items.Count - 1 do
   begin
-    if (h_liberarjogador.lsvJogadores.Items[I].Checked)
-    then
+    if (h_liberarjogador.lsvJogadores.Items[i].Checked) then
     begin
       sql := 'update ca_jogad set situacao = :SIT where codjogador = :CODIGO';
       FrmDm.QrGeral.Close;
@@ -2478,7 +2527,7 @@ begin
       FrmDm.QrGeral.sql.Add(sql);
       FrmDm.QrGeral.Params.ParamByName('SIT').AsInteger := situacao;
       FrmDm.QrGeral.Params.ParamByName('CODIGO').AsString :=
-        h_liberarjogador.lsvJogadores.Items[I].Caption;
+        h_liberarjogador.lsvJogadores.Items[i].Caption;
 
       FrmDm.QrGeral.ExecSQL;
     end;
@@ -2489,7 +2538,7 @@ begin
     MB_OK + MB_ICONINFORMATION);
 end;
 
-procedure Tf_gerais.atualizaSituacaoGeral(situacao: integer);
+procedure Tf_gerais.atualizaSituacaoGeral(situacao: Integer);
 begin
 
   sql := 'update ca_jogad set situacao = :SIT';
@@ -2508,9 +2557,9 @@ begin
 end;
 
 procedure Tf_gerais.preenchimentoTelaPadraoJogos(sqlcode: String;
-  corte: integer; limite: integer);
+  corte: Integer; limite: Integer);
 var
-  i: integer;
+  i: Integer;
   {
     =======================================================
     Preencher jogos da tela padrão
@@ -2634,15 +2683,18 @@ begin
       (r_jogospadrao.FindComponent('LblCompeticao' + IntToStr(i)) as TLabel)
         .Caption := f_gerais.buscarNome('nome', 'ca_compe', 'codcompeticao',
         QrEstat.Fields[7].AsString);
-
-      f_gerais.buscaImagem
+      // escudo mandante
+      f_gerais.buscaImagemPorCodigo
         ((r_jogospadrao.FindComponent('ImgEscudoMand' + IntToStr(i)) as TImage),
-        f_gerais.buscarNome('escudo', 'ca_adver', 'codadver',
-        QrEstat.Fields[2].AsString));
-      f_gerais.buscaImagem
+        QrEstat.Fields[2].AsString,
+        ExtrairAnoDataDoJogo((r_jogospadrao.FindComponent('LblCodJogo' +
+        IntToStr(i)) as TLabel).Caption));
+      // escudo visitante
+      f_gerais.buscaImagemPorCodigo
         ((r_jogospadrao.FindComponent('ImgEscudoVisit' + IntToStr(i))
-        as TImage), f_gerais.buscarNome('escudo', 'ca_adver', 'codadver',
-        QrEstat.Fields[5].AsString));
+        as TImage), QrEstat.Fields[5].AsString,
+        ExtrairAnoDataDoJogo((r_jogospadrao.FindComponent('LblCodJogo' +
+        IntToStr(i)) as TLabel).Caption));
     end
     else
     begin
@@ -2739,7 +2791,7 @@ begin
   QrFunctions.First;
 
   if anocompeticao = 'estatisticasporano' then
-     anos.Items.Add('Geral');
+    anos.Items.Add('Geral');
 
   while not QrFunctions.Eof do
   begin
@@ -3241,16 +3293,16 @@ begin
   begin
     if r_jogospadrao.codauxiliar1 = 'Geral' then
     begin
-        sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
-          + 'from ca_jogos ' + 'where data between :DATAINI and :DATAFIM ' +
-          'order by data desc ' + 'limit :LIMITE offset :CORTE';
+      sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
+        + 'from ca_jogos ' + 'where data between :DATAINI and :DATAFIM ' +
+        'order by data desc ' + 'limit :LIMITE offset :CORTE';
     end
     else
     begin
-        sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
-          + 'from ca_jogos ' + 'where extract(year from data) = ' +
-          r_jogospadrao.codauxiliar1 + ' and data between :DATAINI and :DATAFIM ' +
-          'order by data desc ' + 'limit :LIMITE offset :CORTE';
+      sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
+        + 'from ca_jogos ' + 'where extract(year from data) = ' +
+        r_jogospadrao.codauxiliar1 + ' and data between :DATAINI and :DATAFIM '
+        + 'order by data desc ' + 'limit :LIMITE offset :CORTE';
     end;
   end;
 
@@ -3382,7 +3434,7 @@ begin
   Result := sql;
 end;
 
-procedure Tf_gerais.preencherFichaIndividual(codjogador: integer);
+procedure Tf_gerais.preencherFichaIndividual(codjogador: Integer);
 {
   =======================================================
   Preencher ficha individual
@@ -3562,7 +3614,7 @@ end;
 
 procedure Tf_gerais.preencherSumula(codjogo: String);
 var
-  i, z, m, a, x: integer;
+  i, z, m, a, x: Integer;
   aux: String;
   patroc, fornec, gols: String;
   {
@@ -3601,8 +3653,10 @@ begin
     QrSumula.Fields[6].AsString));
 
   // escudo dos clubes
-  buscaImagemPorCodigo(r_sumula.ImgMandante, QrSumula.Fields[1].AsString);
-  buscaImagemPorCodigo(r_sumula.ImgVisitante, QrSumula.Fields[6].AsString);
+  buscaImagemPorCodigo(r_sumula.ImgMandante, QrSumula.Fields[1].AsString,
+    f_gerais.ExtrairAnoDataDoJogo(codjogo));
+  buscaImagemPorCodigo(r_sumula.ImgVisitante, QrSumula.Fields[6].AsString,
+    f_gerais.ExtrairAnoDataDoJogo(codjogo));
 
   // uniforme
   if QrSumula.Fields[15].AsInteger = 0 then
@@ -3622,22 +3676,22 @@ begin
   r_sumula.LblArbitro.Caption := 'Árbitro: ' + buscarNome('nome', 'ca_arbit',
     'codarbitro', QrSumula.Fields[11].AsString);
 
-  //gols do jogo
+  // gols do jogo
   gols := EmptyStr;
   if qryGolsJogo.Active then
-     qryGolsJogo.Close;
+    qryGolsJogo.Close;
   qryGolsJogo.Params.ParamByName('CodigoJogo').DataType := ftInteger;
   qryGolsJogo.Params.ParamByName('CodigoJogo').Value := StrToInt(codjogo);
   qryGolsJogo.Open;
   qryGolsJogo.First;
   if not qryGolsJogo.IsEmpty then
   begin
-      while not qryGolsJogo.Eof do
-      begin
-           gols := gols + qryGolsJogonome.Value + qryGolsJogotempoTipo.Value;
-           qryGolsJogo.Next;
-      end;
-      r_sumula.lblGolsPartida.Caption := gols;
+    while not qryGolsJogo.Eof do
+    begin
+      gols := gols + qryGolsJogonome.Value + qryGolsJogotempoTipo.Value;
+      qryGolsJogo.Next;
+    end;
+    r_sumula.lblGolsPartida.Caption := gols;
   end
   else
   begin
@@ -3650,7 +3704,9 @@ begin
     QrFunctions.sql.Clear;
     QrFunctions.sql.Add(sql);
     QrFunctions.Open;
-    r_sumula.lblGolsPartida.Caption := 'Nenhum gol do ' + UpperCase(QrFunctions.Fields[0].AsString) + ' registrado para esta partida!';
+    r_sumula.lblGolsPartida.Caption := 'Nenhum gol do ' +
+      UpperCase(QrFunctions.Fields[0].AsString) +
+      ' registrado para esta partida!';
   end;
 
   // placar do jogo (e penaltis)
@@ -3697,17 +3753,17 @@ begin
   begin
     if QrSumula.Fields[16].AsString = 'N' then
     begin
-        r_sumula.LblLocalEPublico.Caption := buscarNome('nome', 'ca_estad',
-          'codestadio', QrSumula.Fields[9].AsString) + ', ' +
-          retornarCidadeUfPais(buscarNome('codcidade', 'ca_estad', 'codestadio',
-          QrSumula.Fields[9].AsString)) + ' - Público: Não Informado';
+      r_sumula.LblLocalEPublico.Caption := buscarNome('nome', 'ca_estad',
+        'codestadio', QrSumula.Fields[9].AsString) + ', ' +
+        retornarCidadeUfPais(buscarNome('codcidade', 'ca_estad', 'codestadio',
+        QrSumula.Fields[9].AsString)) + ' - Público: Não Informado';
     end
     else
     begin
-        r_sumula.LblLocalEPublico.Caption := buscarNome('nome', 'ca_estad',
-          'codestadio', QrSumula.Fields[9].AsString) + ', ' +
-          retornarCidadeUfPais(buscarNome('codcidade', 'ca_estad', 'codestadio',
-          QrSumula.Fields[9].AsString)) + ' - Público: 0, Portões Fechados';
+      r_sumula.LblLocalEPublico.Caption := buscarNome('nome', 'ca_estad',
+        'codestadio', QrSumula.Fields[9].AsString) + ', ' +
+        retornarCidadeUfPais(buscarNome('codcidade', 'ca_estad', 'codestadio',
+        QrSumula.Fields[9].AsString)) + ' - Público: 0, Portões Fechados';
     end;
   end;
 
@@ -3806,9 +3862,13 @@ begin
           .Visible := false
       else
       begin
-        (r_sumula.FindComponent('ImgBola' + IntToStr(i)) as TImage).Visible := true;
-        (r_sumula.FindComponent('ImgBola' + IntToStr(i)) as TImage).Hint := retornarGolsPorMinutoPorJogador(StrToInt(codjogo), QrTitulares.Fields[0].AsInteger);
-        (r_sumula.FindComponent('ImgBola' + IntToStr(i)) as TImage).ShowHint := True;
+        (r_sumula.FindComponent('ImgBola' + IntToStr(i)) as TImage)
+          .Visible := true;
+        (r_sumula.FindComponent('ImgBola' + IntToStr(i)) as TImage).Hint :=
+          retornarGolsPorMinutoPorJogador(StrToInt(codjogo),
+          QrTitulares.Fields[0].AsInteger);
+        (r_sumula.FindComponent('ImgBola' + IntToStr(i)) as TImage)
+          .ShowHint := true;
       end;
       // quantidade de gols
       if QrTitulares.Fields[3].AsInteger > 1 then
@@ -3900,9 +3960,13 @@ begin
       end
       else
       begin
-        (r_sumula.FindComponent('ImgBolaEntrou' + IntToStr(i)) as TImage).Visible := true;
-        (r_sumula.FindComponent('ImgBolaEntrou' + IntToStr(i)) as TImage).Hint := retornarGolsPorMinutoPorJogador(StrToInt(codjogo), QrReservas.Fields[0].AsInteger);
-        (r_sumula.FindComponent('ImgBolaEntrou' + IntToStr(i)) as TImage).ShowHint := True;
+        (r_sumula.FindComponent('ImgBolaEntrou' + IntToStr(i)) as TImage)
+          .Visible := true;
+        (r_sumula.FindComponent('ImgBolaEntrou' + IntToStr(i)) as TImage).Hint
+          := retornarGolsPorMinutoPorJogador(StrToInt(codjogo),
+          QrReservas.Fields[0].AsInteger);
+        (r_sumula.FindComponent('ImgBolaEntrou' + IntToStr(i)) as TImage)
+          .ShowHint := true;
       end;
 
       // quantidade de gols
@@ -3947,30 +4011,33 @@ end;
   ======================================================================
 }
 
-function Tf_gerais.retornarGolsPorMinutoPorJogador(codjogo, codjogador: Integer): String;
+function Tf_gerais.retornarGolsPorMinutoPorJogador(codjogo,
+  codjogador: Integer): String;
 var
   gols: string;
 begin
-     gols := EmptyStr;
-     if qryMinutosGolsPorJogador.Active then
-        qryMinutosGolsPorJogador.Close;
-     qryMinutosGolsPorJogador.Params.ParamByName('CodigoJogo').DataType := ftInteger;
-     qryMinutosGolsPorJogador.Params.ParamByName('CodigoJogador').DataType := ftInteger;
-     qryMinutosGolsPorJogador.Params.ParamByName('CodigoJogo').Value := codjogo;
-     qryMinutosGolsPorJogador.Params.ParamByName('CodigoJogador').Value := codjogador;
-     qryMinutosGolsPorJogador.Open;
-     qryMinutosGolsPorJogador.First;
-     while not qryMinutosGolsPorJogador.Eof do
-     begin
-         if gols = EmptyStr then
-            gols := qryMinutosGolsPorJogadortempoTipo.Value
-         else
-            gols := gols + ', ' + qryMinutosGolsPorJogadortempoTipo.Value;
-         qryMinutosGolsPorJogador.Next;
-     end;
-     Result := gols;
+  gols := EmptyStr;
+  if qryMinutosGolsPorJogador.Active then
+    qryMinutosGolsPorJogador.Close;
+  qryMinutosGolsPorJogador.Params.ParamByName('CodigoJogo').DataType :=
+    ftInteger;
+  qryMinutosGolsPorJogador.Params.ParamByName('CodigoJogador').DataType :=
+    ftInteger;
+  qryMinutosGolsPorJogador.Params.ParamByName('CodigoJogo').Value := codjogo;
+  qryMinutosGolsPorJogador.Params.ParamByName('CodigoJogador').Value :=
+    codjogador;
+  qryMinutosGolsPorJogador.Open;
+  qryMinutosGolsPorJogador.First;
+  while not qryMinutosGolsPorJogador.Eof do
+  begin
+    if gols = EmptyStr then
+      gols := qryMinutosGolsPorJogadortempoTipo.Value
+    else
+      gols := gols + ', ' + qryMinutosGolsPorJogadortempoTipo.Value;
+    qryMinutosGolsPorJogador.Next;
+  end;
+  Result := gols;
 end;
-
 
 {
   ======================================================================
@@ -4003,7 +4070,7 @@ end;
 
 procedure Tf_gerais.preencherAniversariantes(sql: String);
 var
-  i: integer;
+  i: Integer;
 begin
   QrEstat.Close;
   QrEstat.sql.Clear;
@@ -4058,9 +4125,9 @@ begin
 
 end;
 
-procedure Tf_gerais.preencherOsDezMais(sql: String; codRelatorio: integer);
+procedure Tf_gerais.preencherOsDezMais(sql: String; codRelatorio: Integer);
 var
-  i: integer;
+  i: Integer;
 begin
   {
     ======================================================================
@@ -4278,21 +4345,21 @@ procedure Tf_gerais.preencherGridsCampanhaGeral(ano: String);
 begin
   if ano = 'Geral' then
   begin
-      sql := 'select c.nome, (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, '
-              + 'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
-              'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
-              + 'from ca_jogos j, es_resum r, ca_compe c ' +
-              'where j.codjogo = r.codjogo ' + 'and j.codcompeticao = c.codcompeticao ' +
-              ' group by j.codcompeticao ' + 'order by 2 desc';
+    sql := 'select c.nome, (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, '
+      + 'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+      'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+      + 'from ca_jogos j, es_resum r, ca_compe c ' +
+      'where j.codjogo = r.codjogo ' + 'and j.codcompeticao = c.codcompeticao '
+      + ' group by j.codcompeticao ' + 'order by 2 desc';
   end
   else
   begin
-      sql := 'select c.nome, (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, '
-        + 'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
-        'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
-        + 'from ca_jogos j, es_resum r, ca_compe c ' +
-        'where j.codjogo = r.codjogo ' + 'and j.codcompeticao = c.codcompeticao ' +
-        'and r.ano = ' + ano + ' group by j.codcompeticao ' + 'order by 2 desc';
+    sql := 'select c.nome, (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, '
+      + 'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+      'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+      + 'from ca_jogos j, es_resum r, ca_compe c ' +
+      'where j.codjogo = r.codjogo ' + 'and j.codcompeticao = c.codcompeticao '
+      + 'and r.ano = ' + ano + ' group by j.codcompeticao ' + 'order by 2 desc';
   end;
 
   QrEstat1.Close;
@@ -4304,20 +4371,19 @@ begin
 
   if ano = 'Geral' then
   begin
-      sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
-              'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
-              'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
-              + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ';
+    sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
+      'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+      'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+      + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ';
   end
   else
   begin
-      sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
-        'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
-        'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
-        + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
-        'and r.ano = ' + ano;
+    sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
+      'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+      'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+      + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
+      'and r.ano = ' + ano;
   end;
-
 
   QrEstat2.Close;
   QrEstat2.sql.Clear;
@@ -4328,19 +4394,19 @@ begin
 
   if ano = 'Geral' then
   begin
-      sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
-        'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
-        'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
-        + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
-        'and j.codadvermand = 0 ';
+    sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
+      'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+      'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+      + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
+      'and j.codadvermand = 0 ';
   end
   else
   begin
-      sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
-        'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
-        'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
-        + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
-        'and j.codadvermand = 0 ' + 'and r.ano = ' + ano;
+    sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
+      'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+      'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+      + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
+      'and j.codadvermand = 0 ' + 'and r.ano = ' + ano;
   end;
 
   QrEstat3.Close;
@@ -4352,19 +4418,19 @@ begin
 
   if ano = 'Geral' then
   begin
-      sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
-        'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
-        'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
-        + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
-        'and j.codadvervisit = 0 ';
+    sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
+      'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+      'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+      + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
+      'and j.codadvervisit = 0 ';
   end
   else
   begin
-      sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
-        'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
-        'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
-        + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
-        'and j.codadvervisit = 0 ' + 'and r.ano = ' + ano;
+    sql := 'select (sum(r.v)+sum(r.e)+sum(r.d)) j, sum(r.v) v, sum(r.e) e, ' +
+      'sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, (sum(gp)-sum(gc)) sg, ' +
+      'concat(round((((sum(r.v)*3)+sum(r.e)) / ((sum(r.v)+sum(r.e)+sum(r.d))*3)) * 100,2),"%") apr '
+      + 'from ca_jogos j, es_resum r ' + 'where j.codjogo = r.codjogo ' +
+      'and j.codadvervisit = 0 ' + 'and r.ano = ' + ano;
   end;
 
   QrEstat4.Close;
@@ -4398,29 +4464,31 @@ end;
 }
 procedure Tf_gerais.melhorPiorResultadoGeral(ano: String);
 var
-  i: integer;
+  i: Integer;
 begin
   // melhor resultado
   if ano = 'Geral' then
   begin
-      sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
-        + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar2 as GOLSPRO '
-        + 'from ca_jogos ' + 'where codadvervisit = 0 ' + 'and placar2 >= placar1 '
-        + ' union ' +
-        'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar1 as GOLSPRO '
-        + 'from ca_jogos ' + 'where codadvermand = 0 ' + 'and placar2 <= placar1 ) as a ' +
-        'order by 9 desc, 10 desc, 2 desc ' + 'limit 3 offset 0';
+    sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
+      + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar2 as GOLSPRO '
+      + 'from ca_jogos ' + 'where codadvervisit = 0 ' +
+      'and placar2 >= placar1 ' + ' union ' +
+      'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar1 as GOLSPRO '
+      + 'from ca_jogos ' + 'where codadvermand = 0 ' +
+      'and placar2 <= placar1 ) as a ' + 'order by 9 desc, 10 desc, 2 desc ' +
+      'limit 3 offset 0';
   end
   else
   begin
-      sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
-        + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar2 as GOLSPRO '
-        + 'from ca_jogos ' + 'where codadvervisit = 0 ' + 'and placar2 >= placar1 '
-        + 'and extract(year from data) = ' + ano + ' union ' +
-        'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar1 as GOLSPRO '
-        + 'from ca_jogos ' + 'where codadvermand = 0 ' + 'and placar2 <= placar1 ' +
-        'and extract(year from data) = ' + ano + ' ) as a ' +
-        'order by 9 desc, 10 desc, 2 desc ' + 'limit 3 offset 0';
+    sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
+      + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar2 as GOLSPRO '
+      + 'from ca_jogos ' + 'where codadvervisit = 0 ' +
+      'and placar2 >= placar1 ' + 'and extract(year from data) = ' + ano +
+      ' union ' +
+      'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar1 as GOLSPRO '
+      + 'from ca_jogos ' + 'where codadvermand = 0 ' + 'and placar2 <= placar1 '
+      + 'and extract(year from data) = ' + ano + ' ) as a ' +
+      'order by 9 desc, 10 desc, 2 desc ' + 'limit 3 offset 0';
   end;
 
   QrMelhorPior.Close;
@@ -4456,24 +4524,26 @@ begin
   // pior resultado
   if ano = 'Geral' then
   begin
-      sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
-        + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar2 as GOLSPRO '
-        + 'from ca_jogos ' + 'where codadvervisit = 0 ' + 'and placar2 <= placar1 '
-        + ' union ' +
-        'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar1 as GOLSPRO '
-        + 'from ca_jogos ' + 'where codadvermand = 0 ' + 'and placar2 >= placar1 ) as a ' +
-        'order by 9 desc, 10 desc, 2 desc ' + 'limit 3 offset 0';
+    sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
+      + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar2 as GOLSPRO '
+      + 'from ca_jogos ' + 'where codadvervisit = 0 ' +
+      'and placar2 <= placar1 ' + ' union ' +
+      'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar1 as GOLSPRO '
+      + 'from ca_jogos ' + 'where codadvermand = 0 ' +
+      'and placar2 >= placar1 ) as a ' + 'order by 9 desc, 10 desc, 2 desc ' +
+      'limit 3 offset 0';
   end
   else
   begin
-      sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
-        + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar2 as GOLSPRO '
-        + 'from ca_jogos ' + 'where codadvervisit = 0 ' + 'and placar2 <= placar1 '
-        + 'and extract(year from data) = ' + ano + ' union ' +
-        'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar1 as GOLSPRO '
-        + 'from ca_jogos ' + 'where codadvermand = 0 ' + 'and placar2 >= placar1 ' +
-        'and extract(year from data) = ' + ano + ' ) as a ' +
-        'order by 9 desc, 10 desc, 2 desc ' + 'limit 3 offset 0';
+    sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
+      + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar2 as GOLSPRO '
+      + 'from ca_jogos ' + 'where codadvervisit = 0 ' +
+      'and placar2 <= placar1 ' + 'and extract(year from data) = ' + ano +
+      ' union ' +
+      'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar1 as GOLSPRO '
+      + 'from ca_jogos ' + 'where codadvermand = 0 ' + 'and placar2 >= placar1 '
+      + 'and extract(year from data) = ' + ano + ' ) as a ' +
+      'order by 9 desc, 10 desc, 2 desc ' + 'limit 3 offset 0';
   end;
 
   QrMelhorPior.Close;
@@ -4515,7 +4585,7 @@ end;
 }
 procedure Tf_gerais.melhorPiorResultado(codigodotime: String);
 var
-  contador: integer;
+  contador: Integer;
 begin
 
   // ultimo jogo
@@ -4696,25 +4766,22 @@ end;
   ======================================================================
   Sequencias
   Param = recebe o código do adversário ou o ano
-
   Obs.:
   Índices
   1 - Maior sequencia de vitórias
   2 - Maior sequencia invicta
   3 - Maior sequencia de derrotas
   4 - Maior sequencia sem vencer
-
   Relatório
   1 - Adversários
   2 - Ano
-
   ======================================================================
 }
 
 function Tf_gerais.sequencias(dti, dtf: TLabel; Param: String;
-  indice, relat: integer): String;
+  indice, relat: Integer): String;
 var
-  qtde, maior: integer;
+  qtde, maior: Integer;
   dtini1, dtfim1, dtaux: String;
 begin
   if relat = 1 then // adversários
@@ -4728,21 +4795,19 @@ begin
   begin
     if Param = 'Geral' then
     begin
-        sql := 'select data, codadvermand m, placar1 pm, placar2 pv, codadvervisit v '
-                  + 'from ca_jogos ' + 'where codadvermand = 0 ' +
-                  ' union ' +
-                  'select data, codadvervisit m, placar2 pm, placar1 pv, codadvermand v ' +
-                  'from ca_jogos ' + 'where codadvervisit = 0 ' +
-                  ' order by data';
+      sql := 'select data, codadvermand m, placar1 pm, placar2 pv, codadvervisit v '
+        + 'from ca_jogos ' + 'where codadvermand = 0 ' + ' union ' +
+        'select data, codadvervisit m, placar2 pm, placar1 pv, codadvermand v '
+        + 'from ca_jogos ' + 'where codadvervisit = 0 ' + ' order by data';
     end
     else
     begin
-        sql := 'select data, codadvermand m, placar1 pm, placar2 pv, codadvervisit v '
-          + 'from ca_jogos ' + 'where codadvermand = 0 ' +
-          'and extract(year from data) = ' + Param + ' union ' +
-          'select data, codadvervisit m, placar2 pm, placar1 pv, codadvermand v ' +
-          'from ca_jogos ' + 'where codadvervisit = 0 ' +
-          'and extract(year from data) = ' + Param + ' order by data';
+      sql := 'select data, codadvermand m, placar1 pm, placar2 pv, codadvervisit v '
+        + 'from ca_jogos ' + 'where codadvermand = 0 ' +
+        'and extract(year from data) = ' + Param + ' union ' +
+        'select data, codadvervisit m, placar2 pm, placar1 pv, codadvermand v '
+        + 'from ca_jogos ' + 'where codadvervisit = 0 ' +
+        'and extract(year from data) = ' + Param + ' order by data';
     end;
   end;
 
@@ -4881,9 +4946,9 @@ end;
 // Relatório: 1 - Adeversário; 2 - Ano
 // =============================================================================
 
-procedure Tf_gerais.relPeriodoEstGerais(dtini, dtfim: String; relat: integer);
+procedure Tf_gerais.relPeriodoEstGerais(dtini, dtfim: String; relat: Integer);
 var
-  i, cont: integer;
+  i, cont: Integer;
 begin
 
   // guardar o número do forumlário na label
@@ -4904,16 +4969,16 @@ begin
     // contar a quantidade de registros retornados na pesquisa
     if r_jogospadrao.codauxiliar1 = 'Geral' then
     begin
-        sql := 'select sum(r.j), sum(r.v), sum(r.e), sum(r.d), sum(r.gp), sum(r.gc), sum(r.sg) '
-                  + 'from es_resum r, ca_jogos j ' + 'where r.codjogo = j.codjogo ' +
-                  ' and j.data between :DATAINI and :DATAFIM';
+      sql := 'select sum(r.j), sum(r.v), sum(r.e), sum(r.d), sum(r.gp), sum(r.gc), sum(r.sg) '
+        + 'from es_resum r, ca_jogos j ' + 'where r.codjogo = j.codjogo ' +
+        ' and j.data between :DATAINI and :DATAFIM';
     end
     else
     begin
-        sql := 'select sum(r.j), sum(r.v), sum(r.e), sum(r.d), sum(r.gp), sum(r.gc), sum(r.sg) '
-          + 'from es_resum r, ca_jogos j ' + 'where r.codjogo = j.codjogo ' +
-          'and r.ano = ' + r_jogospadrao.codauxiliar1 +
-          ' and j.data between :DATAINI and :DATAFIM';
+      sql := 'select sum(r.j), sum(r.v), sum(r.e), sum(r.d), sum(r.gp), sum(r.gc), sum(r.sg) '
+        + 'from es_resum r, ca_jogos j ' + 'where r.codjogo = j.codjogo ' +
+        'and r.ano = ' + r_jogospadrao.codauxiliar1 +
+        ' and j.data between :DATAINI and :DATAFIM';
     end;
   end;
 
@@ -4973,16 +5038,17 @@ begin
     begin
       if r_jogospadrao.codauxiliar1 = 'Geral' then
       begin
-          sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
-            + 'from ca_jogos ' + 'where data between :DATAINI and :DATAFIM '
-            + 'order by data desc ' + 'limit :LIMITE offset :CORTE';
+        sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
+          + 'from ca_jogos ' + 'where data between :DATAINI and :DATAFIM ' +
+          'order by data desc ' + 'limit :LIMITE offset :CORTE';
       end
       else
       begin
-          sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
-            + 'from ca_jogos ' + 'where extract(year from data) = ' +
-            r_jogospadrao.codauxiliar1 + ' and data between :DATAINI and :DATAFIM '
-            + 'order by data desc ' + 'limit :LIMITE offset :CORTE';
+        sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
+          + 'from ca_jogos ' + 'where extract(year from data) = ' +
+          r_jogospadrao.codauxiliar1 +
+          ' and data between :DATAINI and :DATAFIM ' + 'order by data desc ' +
+          'limit :LIMITE offset :CORTE';
       end;
     end;
 
@@ -5010,13 +5076,13 @@ begin
         r_jogospadrao.codauxiliar1);
       // buscar escudo do seu time
       f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime,
-        r_jogospadrao.codauxiliar1);
+        r_jogospadrao.codauxiliar1, '0');
       // definir título do formulário
     end
     else
     begin
       r_jogospadrao.Caption := 'Jogos por período';
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
     end;
 
     // mostara a consulta finalizada
@@ -5027,8 +5093,8 @@ end;
 
 procedure Tf_gerais.relacaoTitulos(tipo: String; descricao: TLabel);
 var
-  i: integer;
-  cont: integer;
+  i: Integer;
+  cont: Integer;
   {
     =======================================================
     Relação Titulos
@@ -5089,7 +5155,7 @@ end;
 function Tf_gerais.idadeAtual(DataIni, DataFim: TDateTime): string;
 var
   Idade: string;
-  Resto: integer;
+  Resto: Integer;
   iDia, iMes, iAno, fDia, fMes, fAno: Word;
   nDia, nMes, nAno, DiaBissexto: Double;
   {
@@ -5102,6 +5168,7 @@ begin
   DecodeDate(DataIni, iAno, iMes, iDia);
   DecodeDate(DataFim, fAno, fMes, fDia);
   nAno := fAno - iAno;
+
   if nAno > 0 then
     if fMes < iMes then
       nAno := nAno - 1
@@ -5147,6 +5214,7 @@ begin
     Result := Result + FloatToStr(nDia) + ' dia '
   else if nDia > 1 then
     Result := Result + FloatToStr(nDia) + ' dias ';
+
 end;
 
 {
@@ -5231,9 +5299,9 @@ end;
   =======================================================
 }
 
-function Tf_gerais.criptografarSenha(pwd: string): integer;
+function Tf_gerais.criptografarSenha(pwd: string): Integer;
 var
-  tamanho, i, x: integer;
+  tamanho, i, x: Integer;
 begin
   x := 0;
   tamanho := Length(pwd);
@@ -5285,7 +5353,7 @@ end;
   =======================================================
 }
 
-procedure Tf_gerais.testaUsuario(cod: integer);
+procedure Tf_gerais.testaUsuario(cod: Integer);
 begin
   if StrToInt(f_gerais.buscarNome('perfil', 'ca_user', 'codusuario',
     IntToStr(cod))) = 1 then

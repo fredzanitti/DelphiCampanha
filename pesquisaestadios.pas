@@ -158,7 +158,7 @@ begin
         codtime)) + ' NO ESTÁDIO: ' + AnsiUpperCase(f_gerais.buscarNome('nome',
         'ca_estad', 'codestadio', codestadio));
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, codtime);
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, codtime, '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Seleção de jogos disputados contra: ' +
         f_gerais.buscarNome('nome', 'ca_adver', 'codadver', codtime);
@@ -235,7 +235,7 @@ begin
         AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_estad', 'codestadio',
         codestadio));
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Seleção de jogos disputados no(a) ' +
         f_gerais.buscarNome('nome', 'ca_estad', 'codestadio', codestadio);

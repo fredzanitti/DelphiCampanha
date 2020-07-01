@@ -197,7 +197,7 @@ begin
         codjogador));
       // buscar escudo do seu time
       f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime,
-        r_jogospadrao.codauxiliar1);
+        r_jogospadrao.codauxiliar1, '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Seleção de jogos disputados contra: ' +
         f_gerais.buscarNome('nome', 'ca_adver', 'codadver',
@@ -316,7 +316,7 @@ begin
           AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_jogad', 'codjogador',
           codjogador));
         // buscar escudo do seu time
-        f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+        f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
         // definir título do formulário
         r_jogospadrao.Caption := 'Seleção de jogos disputados pelo: ' +
           f_gerais.buscarNome('nome', 'ca_jogad', 'codjogador', codjogador);
@@ -447,7 +447,7 @@ begin
         AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_jogad', 'codjogador',
         codjogador));
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Seleção de jogos disputados pelo: ' +
         f_gerais.buscarNome('nome', 'ca_jogad', 'codjogador',
@@ -555,7 +555,7 @@ begin
         'Somente partidas em que o jogador fez 1 ou mais gols';
       // buscar escudo do seu time
       f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime,
-        r_jogospadrao.codauxiliar1);
+        r_jogospadrao.codauxiliar1, '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Gols em jogos disputados contra: ' +
         f_gerais.buscarNome('nome', 'ca_adver', 'codadver',
@@ -661,7 +661,7 @@ begin
       r_jogospadrao.LblDescricao2.Caption :=
         'Somente partidas em que o jogador fez 1 ou mais gols';
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Gols em jogos disputados contra seus rivais';
       // mostara a consulta finalizada
@@ -764,7 +764,7 @@ begin
       r_jogospadrao.LblDescricao2.Caption :=
         'Somente partidas em que o jogador fez 1 ou mais gols';
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Gols em jogos disputados pelo seu time';
       // mostara a consulta finalizada
@@ -830,7 +830,7 @@ begin
 
         f_gerais.buscaImagemPorCodigo
           ((r_vitimas.FindComponent('ImgEscudo' + IntToStr(i)) as TImage),
-          FrmDm.QrEstatisticas.Fields[0].AsString);
+          FrmDm.QrEstatisticas.Fields[0].AsString, '0');
       end
       else
       begin
@@ -842,7 +842,7 @@ begin
 
         f_gerais.buscaImagemPorCodigo
           ((r_vitimas.FindComponent('ImgEscudo' + IntToStr(i))
-          as TImage), '-1');
+          as TImage), '-1', '0');
       end;
       FrmDm.QrEstatisticas.Next;
     end;

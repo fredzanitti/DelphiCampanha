@@ -16,7 +16,6 @@ BEGIN
         WHERE c.codpais = p.codpais
         AND c.coduf = u.coduf
         AND c.codcidade = a.codcidade
-        AND a.codadver != 0
         ORDER BY a.nome, p.nome, u.sigla, c.nome;   
 	ELSE
 		SELECT a.codadver AS Codigo, 
@@ -28,7 +27,6 @@ BEGIN
         WHERE c.codpais = p.codpais
         AND c.coduf = u.coduf
         AND c.codcidade = a.codcidade
-        AND a.codadver != 0
         AND a.nome LIKE CONCAT('%',pParteNome,'%')
         ORDER BY a.nome, p.nome, u.sigla, c.nome;    
     END IF;

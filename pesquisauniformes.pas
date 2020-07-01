@@ -126,7 +126,7 @@ begin
         AnsiUpperCase(f_gerais.buscarNome('descricao', 'ca_uniformes',
         'coduniforme', coduniforme));
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Seleção de jogos utilizando o modelo ' +
         f_gerais.buscarNome('descricao', 'ca_uniformes', 'coduniforme',

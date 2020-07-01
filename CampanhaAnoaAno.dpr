@@ -84,7 +84,8 @@ uses
   relCarreiraJogador in 'relCarreiraJogador.pas' {frmRelCarreiraJogador},
   UGerenciadorJogos in 'UGerenciadorJogos.pas' {frmGerenciadorJogos},
   frameGrafico in 'frameGrafico.pas' {fraGrafico: TFrame},
-  golsdapartida in 'golsdapartida.pas' {frmGolsdaPartida};
+  golsdapartida in 'golsdapartida.pas' {frmGolsdaPartida},
+  escudos in 'escudos.pas' {frmEscudosHistoricos};
 
 {$R *.res}
 const
@@ -162,6 +163,8 @@ begin
   Application.CreateForm(TfrmRelCarreiraJogador, frmRelCarreiraJogador);
   Application.CreateForm(TfrmGerenciadorJogos, frmGerenciadorJogos);
   Application.CreateForm(TfrmGolsdaPartida, frmGolsdaPartida);
+  Application.CreateForm(TfrmEscudosHistoricos, frmEscudosHistoricos);
+  Application.CreateForm(TfrmEscudosHistoricos, frmEscudosHistoricos);
   // Tela de Splash
   FrmSplash.Show;
   FrmSplash.Refresh;

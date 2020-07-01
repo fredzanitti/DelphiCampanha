@@ -203,6 +203,13 @@ type
     tblTiposGolstipo: TWideStringField;
     tblGolsporpartida: TFDTable;
     dtsGolsporpartida: TDataSource;
+    tblEscudos: TFDTable;
+    tblEscudoscoditem: TFDAutoIncField;
+    tblEscudoscodadver: TIntegerField;
+    tblEscudosano_inicio: TIntegerField;
+    tblEscudosano_fim: TIntegerField;
+    tblEscudosescudo: TWideStringField;
+    dtsEscudos: TDataSource;
   private
     { Private declarations }
   public

@@ -100,7 +100,7 @@ begin
     r_jogospadrao.LblDescricao2.Caption :=
       'Considerando todos os jogos cadastrados e com públicos maiores que 0';
     // buscar escudo do seu time
-    f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+    f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
     // definir título do formulário
     r_jogospadrao.Caption := 'Maiores Públicos: ' + f_gerais.buscarNome('nome',
       'ca_adver', 'codadver', '0');
@@ -163,7 +163,7 @@ begin
     r_jogospadrao.LblDescricao2.Caption :=
       'Considerando todos os jogos cadastrados e com públicos maiores que 0';
     // buscar escudo do seu time
-    f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+    f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
     // definir título do formulário
     r_jogospadrao.Caption := 'Menores Públicos: ' + f_gerais.buscarNome('nome',
       'ca_adver', 'codadver', '0');
@@ -240,7 +240,7 @@ begin
         AnsiUpperCase(f_gerais.retornaNomesRivais());
       r_jogospadrao.LblDescricao2.Caption := 'Ano selecionado: ' + CbxAnos.Text;
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Jogos contra rivais:  ' +
         f_gerais.retornaNomesRivais();
@@ -319,7 +319,7 @@ begin
         r_jogospadrao.codauxiliar1));
       r_jogospadrao.LblDescricao2.Caption := 'Ano selecionado: ' + CbxAnos.Text;
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Jogos contra rivais:  ' +
         f_gerais.buscarNome('nome', 'ca_adver', 'codadver',
@@ -404,7 +404,7 @@ begin
         AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_jogad', 'codjogador',
         r_jogospadrao.codauxiliar1)) + ' no ano de ' + CbxAnos.Text;
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Seleção de jogos disputados pelo: ' +
         f_gerais.buscarNome('nome', 'ca_jogad', 'codjogador',
@@ -475,7 +475,7 @@ begin
         AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_jogad', 'codjogador',
         r_jogospadrao.codauxiliar1)) + ' no ano de ' + CbxAnos.Text;
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Seleção de jogos disputados pelo: ' +
         f_gerais.buscarNome('nome', 'ca_jogad', 'codjogador',
@@ -554,7 +554,7 @@ begin
         f_gerais.buscarNome('nome', 'ca_compe', 'codcompeticao',
         r_jogospadrao.codauxiliar1);
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Jogos Por Campeonato, ano de ' + CbxAnos.Text;
       // mostara a consulta finalizada

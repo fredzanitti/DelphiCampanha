@@ -16,9 +16,7 @@ uses
 
 type
   TCA_ADVER = class(TForm)
-    Label4: TLabel;
     EdtRival: TDBEdit;
-    Label5: TLabel;
     EdtEscudoAdver: TDBEdit;
     OpenLogo: TOpenPictureDialog;
     GroupBox2: TGroupBox;
@@ -28,7 +26,6 @@ type
     EdtCodigo: TDBEdit;
     EdtNomeAdver: TDBEdit;
     BtnEscolherFoto: TBitBtn;
-    Label3: TLabel;
     EdtCidade: TDBEdit;
     MainMenu: TMainMenu;
     MnArquivo: TMenuItem;

@@ -47,7 +47,7 @@ implementation
 uses funcoes, module, adversarios, jogos, telapadraojogos, pesquisaestadios,
   selecionarano, selecionaperiodo, pesquisajogadoresativos, pesquisajogadores,
   pesquisacompeticao, frequenciaplacar, relatartilheirosporadver,
-  estatisticasgerais, UProgresso;
+  estatisticasgerais, UProgresso, escudos;
 
 procedure Th_clubes.BtnIncluirClick(Sender: TObject);
 begin
@@ -69,6 +69,7 @@ procedure Th_clubes.DbGridClubesDblClick(Sender: TObject);
 var
   i, j, max, cont: Integer;
   codtime: String;
+  achou: Boolean;
 begin
   codtime := DbGridClubes.Columns[0].Field.AsString;
 
@@ -87,21 +88,49 @@ begin
   end;
 
   // ==========================================================================
+  // pesquisa quando acionado pelo cadastro de escudos
+  // ==========================================================================
+  if identificacao = 'CA_ESCUDOS' then
+  begin
+    achou := False;
+    FrmDm.tblEscudos.First;
+    while ((FrmDm.tblEscudoscodadver.AsInteger <> DbGridClubes.Columns[0].Field.AsInteger) and
+          (not achou)) do
+    begin
+       FrmDm.tblEscudos.Next;
+       if FrmDm.tblEscudos.Eof then
+          achou := True;
+    end;
+    if achou then
+       Application.MessageBox('Registro não encontrado para edição de escudos!', 'ATENÇÃO', MB_OK + MB_ICONINFORMATION);
+    frmEscudosHistoricos.estadoDosBotoesdeCadastro();
+  end;
+
+  // ==========================================================================
   // pesquisa quando acionado pelo cadastro de jogos
   // ==========================================================================
   if identificacao = 'CA_JOGOS' then
   begin
     CA_JOGOS.EdtCodMandante.Text := '0';
     CA_JOGOS.EdtCodVisitante.Text := DbGridClubes.Columns[0].Field.AsString;
-    f_gerais.buscaImagemPorCodigo(CA_JOGOS.ImgLogoMandante, '0');
+    f_gerais.buscaImagemPorCodigo(CA_JOGOS.ImgLogoMandante, '0', '0');
     f_gerais.buscaImagemPorCodigo(CA_JOGOS.ImgLogoVisitante,
-      CA_JOGOS.EdtCodVisitante.Text);
+      CA_JOGOS.EdtCodVisitante.Text, '0');
     CA_JOGOS.EdtMandante.Text :=
       AnsiUpperCase(f_gerais.buscarNome('nome', 'CA_ADVER', 'codadver',
       CA_JOGOS.EdtCodMandante.Text));
     CA_JOGOS.EdtVisitante.Text :=
       AnsiUpperCase(f_gerais.buscarNome('nome', 'CA_ADVER', 'codadver',
       CA_JOGOS.EdtCodVisitante.Text));
+  end;
+
+  // ==========================================================================
+  // pesquisa quando acionado pelo cadastro de escudos
+  // ==========================================================================
+  if identificacao = 'ESCUDOS_HISTORICOS' then
+  begin
+    frmEscudosHistoricos.edtCodigoTime.Text := codtime;
+    frmEscudosHistoricos.edtNomeTime.Text := f_gerais.buscarNome('nome', 'CA_ADVER', 'codadver',codtime);
   end;
 
   // ==========================================================================
@@ -171,7 +200,7 @@ begin
         'MAIORES GOLEADAS APLICADAS EM ADVERSÁRIOS';
       r_jogospadrao.LblDescricao2.Caption := 'POR 3 GOLS OU MAIS DE DIFERENÇA';
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, codtime);
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, codtime, '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Maiores Goleadas Aplicadas em Adversários: ' +
         f_gerais.buscarNome('nome', 'ca_adver', 'codadver', codtime);
@@ -247,7 +276,7 @@ begin
         'MAIORES GOLEADAS SOFRIDAS POR ADVERSÁRIOS';
       r_jogospadrao.LblDescricao2.Caption := 'POR 3 GOLS OU MAIS DE DIFERENÇA';
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, codtime);
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, codtime, '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Maiores Goleadas Sofridas por Adversários: ' +
         f_gerais.buscarNome('nome', 'ca_adver', 'codadver', codtime);
@@ -319,7 +348,7 @@ begin
         AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_adver', 'codadver',
         codtime));
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, codtime);
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, codtime, '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Seleção de jogos disputados contra: ' +
         f_gerais.buscarNome('nome', 'ca_adver', 'codadver', codtime);
@@ -443,7 +472,7 @@ begin
         AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_adver', 'codadver',
         codtime));
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, codtime);
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, codtime, '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Últimos 10 jogos disputados contra: ' +
         f_gerais.buscarNome('nome', 'ca_adver', 'codadver', codtime);
@@ -526,8 +555,8 @@ begin
         f_gerais.sequencias(r_estgerais.LblDtIniSeq4, r_estgerais.LblDtFimSeq4,
         codtime, 4, 1);
 
-      f_gerais.buscaImagemPorCodigo(r_estgerais.ImgSeutime, '0');
-      f_gerais.buscaImagemPorCodigo(r_estgerais.ImgAdver, codtime);
+      f_gerais.buscaImagemPorCodigo(r_estgerais.ImgSeutime, '0', '0');
+      f_gerais.buscaImagemPorCodigo(r_estgerais.ImgAdver, codtime, '0');
       r_estgerais.LblTimeMand.Caption :=
         AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_adver', 'codadver', '0'));
       r_estgerais.LblTimeVisit.Caption :=
@@ -793,5 +822,3 @@ begin
 end;
 
 end.
-
-

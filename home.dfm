@@ -14925,7 +14925,14 @@ object FrmPrincipal: TFrmPrincipal
         Action = actCadastroCidades
       end
       object MnClubes: TMenuItem
-        Action = actCadastroClubes
+        Caption = 'Clubes...'
+        ImageIndex = 10
+        object MnCadastroDeClubes: TMenuItem
+          Action = actCadastroClubes
+        end
+        object MnCadastrodeEscudosHistricos: TMenuItem
+          Action = actCadastroEscudosHistoricos
+        end
       end
       object MnCompeticao: TMenuItem
         Caption = 'Competi'#231#227'o'
@@ -15390,7 +15397,7 @@ object FrmPrincipal: TFrmPrincipal
     Top = 24
     object actCadastroClubes: TAction
       Category = 'Cadastro'
-      Caption = 'Clubes...'
+      Caption = 'Cadastro de Clubes'
       ImageIndex = 10
       ShortCut = 117
       OnExecute = actCadastroClubesExecute
@@ -15457,12 +15464,18 @@ object FrmPrincipal: TFrmPrincipal
       ImageIndex = 2
       OnExecute = actRestoreExecute
     end
+    object actCadastroEscudosHistoricos: TAction
+      Category = 'Cadastro'
+      Caption = 'Cadastro de Escudos Hist'#243'ricos'
+      ImageIndex = 10
+      OnExecute = actCadastroEscudosHistoricosExecute
+    end
   end
   object imgIcons16: TImageList
     Left = 224
     Top = 24
     Bitmap = {
-      494C010114003800D80010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010114003800E00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000006000000001002000000000000060
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -16267,7 +16280,7 @@ object FrmPrincipal: TFrmPrincipal
     Left = 272
     Top = 24
     Bitmap = {
-      494C010107000C00340020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107000C003C0020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000004000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

@@ -130,7 +130,7 @@ begin
           DateToStr(DtInicial.Date) + ' e ' + DateToStr(DtFinal.Date);
         // buscar escudo do seu time
         f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime,
-          r_jogospadrao.codauxiliar1);
+          r_jogospadrao.codauxiliar1, '0');
         // definir título do formulário
         r_jogospadrao.Caption := 'Jogos por período contra adversário:  ' +
           f_gerais.buscarNome('nome', 'ca_adver', 'codadver',
@@ -208,7 +208,7 @@ begin
         r_jogospadrao.LblDescricao2.Caption := 'Período selecionado: ' +
           DateToStr(DtInicial.Date) + ' e ' + DateToStr(DtFinal.Date);
         // buscar escudo do seu time
-        f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+        f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
         // definir título do formulário
         r_jogospadrao.Caption := 'Jogos disputados por período';;
         // mostara a consulta finalizada

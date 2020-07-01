@@ -3,8 +3,8 @@ object CA_ADVER: TCA_ADVER
   Top = 0
   BorderStyle = bsToolWindow
   Caption = 'Cadastro de Clubes'
-  ClientHeight = 486
-  ClientWidth = 679
+  ClientHeight = 409
+  ClientWidth = 573
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -20,36 +20,9 @@ object CA_ADVER: TCA_ADVER
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
-  object Label4: TLabel
-    Left = 543
-    Top = 438
-    Width = 29
-    Height = 13
-    Caption = 'RIVAL'
-    FocusControl = EdtRival
-    Visible = False
-  end
-  object Label5: TLabel
-    Left = 64
-    Top = 438
-    Width = 41
-    Height = 13
-    Caption = 'ESCUDO'
-    FocusControl = EdtEscudoAdver
-    Visible = False
-  end
-  object Label3: TLabel
-    Left = 578
-    Top = 438
-    Width = 60
-    Height = 13
-    Caption = 'CODCIDADE'
-    FocusControl = EdtCidade
-    Visible = False
-  end
   object EdtRival: TDBEdit
-    Left = 543
-    Top = 457
+    Left = 357
+    Top = 322
     Width = 29
     Height = 21
     DataField = 'RIVAL'
@@ -59,9 +32,9 @@ object CA_ADVER: TCA_ADVER
     Visible = False
   end
   object EdtEscudoAdver: TDBEdit
-    Left = 64
-    Top = 457
-    Width = 473
+    Left = 22
+    Top = 322
+    Width = 321
     Height = 21
     DataField = 'ESCUDO'
     DataSource = FrmDm.DtsAdversarios
@@ -70,8 +43,8 @@ object CA_ADVER: TCA_ADVER
     Visible = False
   end
   object GroupBox2: TGroupBox
-    Left = 64
-    Top = 27
+    Left = 23
+    Top = 13
     Width = 529
     Height = 170
     Caption = '    DADOS DO CLUBE    '
@@ -164,7 +137,7 @@ object CA_ADVER: TCA_ADVER
     end
     object BtnEscolherFoto: TBitBtn
       Left = 22
-      Top = 113
+      Top = 108
       Width = 73
       Height = 45
       Hint = 'Selecionar Escudo'
@@ -404,8 +377,8 @@ object CA_ADVER: TCA_ADVER
     end
   end
   object EdtCidade: TDBEdit
-    Left = 578
-    Top = 457
+    Left = 392
+    Top = 322
     Width = 59
     Height = 21
     DataField = 'CODCIDADE'
@@ -415,16 +388,19 @@ object CA_ADVER: TCA_ADVER
     Visible = False
   end
   inline fraCidades: TfraCidades
-    Left = 64
-    Top = 211
+    Left = 23
+    Top = 197
     Width = 529
-    Height = 131
+    Height = 134
     TabOrder = 1
-    ExplicitLeft = 64
-    ExplicitTop = 211
+    ExplicitLeft = 23
+    ExplicitTop = 197
     ExplicitWidth = 529
+    ExplicitHeight = 134
     inherited GroupBox2: TGroupBox
+      Top = 1
       Width = 529
+      ExplicitTop = 1
       ExplicitWidth = 529
       inherited BtnLocCidade: TBitBtn
         OnClick = fraCidades1BtnLocCidadeClick
@@ -433,12 +409,12 @@ object CA_ADVER: TCA_ADVER
   end
   inline fraBotoes: TfraBotoes
     Left = 23
-    Top = 379
+    Top = 343
     Width = 481
     Height = 53
     TabOrder = 2
     ExplicitLeft = 23
-    ExplicitTop = 379
+    ExplicitTop = 343
     inherited BtnCancelar: TBitBtn
       OnClick = fraBotoesBtnCancelarClick
     end
@@ -471,8 +447,8 @@ object CA_ADVER: TCA_ADVER
     end
   end
   object BtnRelatorio: TBitBtn
-    Left = 510
-    Top = 382
+    Left = 507
+    Top = 346
     Width = 45
     Height = 45
     Hint = 'Emitir relat'#243'rio de todos os jogadores cadastrados'
@@ -757,12 +733,11 @@ object CA_ADVER: TCA_ADVER
     OnClick = BtnRelatorioClick
   end
   object OpenLogo: TOpenPictureDialog
-    Left = 20
-    Top = 439
+    Left = 535
+    Top = 65534
   end
   object MainMenu: TMainMenu
-    Left = 616
-    Top = 176
+    Left = 504
     object MnArquivo: TMenuItem
       Caption = 'Arquivo'
       object MnCadastrar: TMenuItem

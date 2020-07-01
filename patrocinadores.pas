@@ -140,15 +140,21 @@ end;
 
 procedure TCA_PATROC.BtnExcluirClick(Sender: TObject);
 begin
-  if f_gerais.desejaRealizarAcao('excluir o registro?') then
+  if f_gerais.contadorRegistros('CA_PATROC') > 0 then
   begin
-    // deletar o escudo do patrocinador
-    f_gerais.deletarImagens(EdtLogoPatroc.Text);
-    // deletar o registro do patrocinador
-    FrmDm.DtsPatroc.DataSet.Delete;
-    // restaurar bandeiras e estado dos botões
-    estadoDosBotoesdeCadastro();
-  end;
+      if f_gerais.desejaRealizarAcao('excluir o registro?') then
+      begin
+        // deletar o escudo do patrocinador
+        f_gerais.deletarImagens(EdtLogoPatroc.Text);
+        // deletar o registro do patrocinador
+        FrmDm.DtsPatroc.DataSet.Delete;
+        // restaurar bandeiras e estado dos botões
+        estadoDosBotoesdeCadastro();
+      end;
+  end
+  else
+    Application.MessageBox('A tabela está vazia!', 'ATENÇÃO',
+      MB_OK + MB_ICONWARNING);
 end;
 
 procedure TCA_PATROC.BtnGravarClick(Sender: TObject);

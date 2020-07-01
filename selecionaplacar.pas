@@ -118,7 +118,7 @@ begin
       r_jogospadrao.LblDescricao2.Caption := 'Placar pesquisado: ' +
         EdtPlacar1.Text + ' x ' + EdtPlacar2.Text;
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Jogos por Placar)';
       // mostara a consulta finalizada

@@ -159,7 +159,7 @@ begin
         AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_compe', 'codcompeticao',
         codcompet));
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Seleção de jogos disputados pelo(a) ' +
         f_gerais.buscarNome('nome', 'ca_compe', 'codcompeticao', codcompet);
@@ -256,7 +256,7 @@ begin
       // buscar escudo do seu time
       f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime,
         AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_adver', 'codadver',
-        r_jogospadrao.codauxiliar1)));
+        r_jogospadrao.codauxiliar1)), '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Seleção de jogos disputados pelo(a) ' +
         f_gerais.buscarNome('nome', 'ca_compe', 'codcompeticao', codcompet);

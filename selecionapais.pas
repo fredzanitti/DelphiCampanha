@@ -112,7 +112,7 @@ begin
       r_jogospadrao.LblDescricao2.Caption := 'Da(o): ' +
         f_gerais.buscarNome('nome', 'ca_pais', 'codpais', codpais);
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0');
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, '0', '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Jogos contra rivais da(o) ' +
         f_gerais.buscarNome('nome', 'ca_pais', 'codpais', codpais);

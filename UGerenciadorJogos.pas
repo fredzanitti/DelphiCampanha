@@ -198,7 +198,7 @@ begin
     lblAproveitamento.Color := clRed;
   lblAproveitamento.Caption := qryEstatisticasGeraisAPR.AsString + '%';
   f_gerais.buscaImagemPorCodigo(ImgAdver,
-    qryRecuperaAdverCodigoAdversario.AsString);
+    qryRecuperaAdverCodigoAdversario.AsString, '0');
   lblAdversario.Caption := 'Adversário: ' +
     UpperCase(f_gerais.buscarNome('nome', 'ca_adver', 'codadver',
     qryRecuperaAdverCodigoAdversario.AsString));

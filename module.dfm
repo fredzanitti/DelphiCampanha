@@ -1105,6 +1105,7 @@ object FrmDm: TFrmDm
       FieldName = 'codtipo'
       Origin = 'codtipo'
       ProviderFlags = [pfInWhere, pfInKey]
+      ReadOnly = True
     end
     object tblTiposGolstipo: TWideStringField
       AutoGenerateValue = arDefault
@@ -1129,5 +1130,46 @@ object FrmDm: TFrmDm
     DataSet = tblGolsporpartida
     Left = 304
     Top = 512
+  end
+  object tblEscudos: TFDTable
+    Active = True
+    IndexFieldNames = 'codadver;ano_inicio'
+    Connection = BDMySQL
+    Transaction = TransacaoSQL
+    UpdateOptions.UpdateTableName = 'zanittic_software.ca_escudos'
+    TableName = 'zanittic_software.ca_escudos'
+    Left = 400
+    Top = 16
+    object tblEscudoscoditem: TFDAutoIncField
+      FieldName = 'coditem'
+      Origin = 'coditem'
+      ReadOnly = True
+    end
+    object tblEscudoscodadver: TIntegerField
+      FieldName = 'codadver'
+      Origin = 'codadver'
+      Required = True
+    end
+    object tblEscudosano_inicio: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'ano_inicio'
+      Origin = 'ano_inicio'
+    end
+    object tblEscudosano_fim: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'ano_fim'
+      Origin = 'ano_fim'
+    end
+    object tblEscudosescudo: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'escudo'
+      Origin = 'escudo'
+      Size = 200
+    end
+  end
+  object dtsEscudos: TDataSource
+    DataSet = tblEscudos
+    Left = 400
+    Top = 40
   end
 end
