@@ -16,7 +16,6 @@ uses
 
 type
   TCA_UNIFORMES = class(TForm)
-    Label5: TLabel;
     EdtFotoUniforme: TDBEdit;
     GroupBox2: TGroupBox;
     Label1: TLabel;

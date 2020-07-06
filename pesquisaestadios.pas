@@ -243,8 +243,8 @@ begin
       r_jogospadrao.ShowModal;
     end;
   end;
-
-  h_estadios.Close;
+  if identificacao = 'CA_JOGOS' then
+     h_estadios.Close;
 end;
 
 procedure Th_estadios.DbGridEstadioDrawColumnCell(Sender: TObject;

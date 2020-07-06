@@ -772,7 +772,14 @@ begin
   end;
   h_freqplacar.LblTitulo.Caption := 'FREQUÊNCIA DE PLACARES - ' +
     AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_adver', 'codadver', codtime));
-  h_clubes.Close;
+  if not ((identificacao = 'MnAdversario1') or
+     (identificacao = 'MnAdversario2') or
+     (identificacao = 'MnAdversario3') or
+     (identificacao = 'MnAdversario4') or
+     (identificacao = 'MnAdversario5') or
+     (identificacao = 'MnAdversario6') or
+     (identificacao = 'MnAdversario7')) then
+     h_clubes.Close;
 end;
 
 procedure Th_clubes.DbGridClubesDrawColumnCell(Sender: TObject;

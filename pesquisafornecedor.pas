@@ -42,6 +42,7 @@ type
 var
   h_fornecedor: Th_fornecedor;
   sql, msg: String;
+  CodigoFornecedor: Integer;
 
 implementation
 
@@ -56,8 +57,9 @@ end;
 
 procedure Th_fornecedor.DbGridFornecCellClick(Column: TColumn);
 begin
+  CodigoFornecedor := DbGridFornec.Columns[0].Field.AsInteger;
   f_gerais.buscaImagem(ImgFornec, f_gerais.buscarNome('logo_fornec',
-    'CA_FORNEC', 'codfornec', DbGridFornec.Columns[0].Field.AsString));
+    'CA_FORNEC', 'codfornec', IntToStr(CodigoFornecedor)));
 end;
 
 procedure Th_fornecedor.DbGridFornecDblClick(Sender: TObject);
@@ -93,8 +95,7 @@ begin
     QrPesquisa.Close;
     QrPesquisa.sql.Clear;
     QrPesquisa.sql.Add(sql);
-    QrPesquisa.Params.ParamByName('CODIGOFORNECEDOR').AsInteger :=
-      DbGridFornec.Columns[0].Field.AsInteger;
+    QrPesquisa.Params.ParamByName('CODIGOFORNECEDOR').AsInteger := CodigoFornecedor;
     QrPesquisa.Open;
     QrPesquisa.First;
 
@@ -162,12 +163,10 @@ begin
       r_jogospadrao.LblDescricao1.Caption :=
         'JOGOS DISPUTADOS - FORNECEDOR DE MATERIAL ESPORTIVO';
       r_jogospadrao.LblDescricao2.Caption := 'Fornecedor: ' +
-        AnsiUpperCase(f_gerais.buscarNome('nomefornec', 'CA_FORNEC',
-        'codfornec', DbGridFornec.Columns[0].Field.AsString));
+        AnsiUpperCase(f_gerais.buscarNome('nomefornec', 'CA_FORNEC','codfornec', IntToStr(CodigoFornecedor)));
       // buscar imagem da logo do fornecedor
       f_gerais.buscaImagem(r_jogospadrao.ImgEscudoSeutime,
-        f_gerais.buscarNome('logo_fornec', 'CA_FORNEC', 'codfornec',
-        DbGridFornec.Columns[0].Field.AsString));
+        f_gerais.buscarNome('logo_fornec', 'CA_FORNEC', 'codfornec',IntToStr(CodigoFornecedor)));
       // definir título do formulário
       r_jogospadrao.Caption :=
         'Jogos disputados por fornecedor de material esportivo';;
@@ -188,7 +187,7 @@ procedure Th_fornecedor.DbGridFornecKeyUp(Sender: TObject; var Key: Word;
   Shift: TShiftState);
 begin
   f_gerais.buscaImagem(ImgFornec, f_gerais.buscarNome('logo_fornec',
-    'CA_FORNEC', 'codfornec', DbGridFornec.Columns[0].Field.AsString));
+    'CA_FORNEC', 'codfornec', IntToStr(CodigoFornecedor)));
 end;
 
 procedure Th_fornecedor.EdtPesquisaKeyUp(Sender: TObject; var Key: Word;
@@ -197,7 +196,7 @@ begin
   // preencher grid da pesquisa de patrocinadores
   f_gerais.pesquisaFornec(DbGridFornec, EdtPesquisa.Text);
   f_gerais.buscaImagem(ImgFornec, f_gerais.buscarNome('logo_fornec',
-    'CA_FORNEC', 'codfornec', DbGridFornec.Columns[0].Field.AsString));
+    'CA_FORNEC', 'codfornec', IntToStr(CodigoFornecedor)));
 end;
 
 procedure Th_fornecedor.FormActivate(Sender: TObject);

@@ -125,8 +125,6 @@ begin
       r_jogospadrao.ShowModal;
     end;
   end;
-  h_placar.Close;
-
 end;
 
 procedure Th_placar.FormActivate(Sender: TObject);

@@ -2,8 +2,8 @@ object CA_FORNEC: TCA_FORNEC
   Left = 0
   Top = 0
   Caption = 'Cadastro de Fornecedor de Material Esportivo'
-  ClientHeight = 436
-  ClientWidth = 669
+  ClientHeight = 408
+  ClientWidth = 509
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -18,28 +18,10 @@ object CA_FORNEC: TCA_FORNEC
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
-  object Label5: TLabel
-    Left = 64
-    Top = 395
-    Width = 41
-    Height = 13
-    Caption = 'ESCUDO'
-    FocusControl = EdtLogoFornec
-    Visible = False
-  end
-  object Label3: TLabel
-    Left = 554
-    Top = 395
-    Width = 60
-    Height = 13
-    Caption = 'CODCIDADE'
-    FocusControl = EdtCidade
-    Visible = False
-  end
   object EdtLogoFornec: TDBEdit
-    Left = 64
-    Top = 414
-    Width = 469
+    Left = 69
+    Top = 327
+    Width = 182
     Height = 21
     DataField = 'logo_fornec'
     DataSource = FrmDm.DtsFornec
@@ -48,9 +30,9 @@ object CA_FORNEC: TCA_FORNEC
     Visible = False
   end
   object GroupBox1: TGroupBox
-    Left = 64
-    Top = 214
-    Width = 525
+    Left = 12
+    Top = 197
+    Width = 481
     Height = 131
     Caption = '   CIDADE   '
     Color = clWhite
@@ -122,7 +104,6 @@ object CA_FORNEC: TCA_FORNEC
       Width = 45
       Height = 45
       Hint = 'Buscar Cidade'
-      CustomHint = FrmPrincipal.BalloonHint1
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
         18000000000000180000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -326,9 +307,9 @@ object CA_FORNEC: TCA_FORNEC
     end
   end
   object GroupBox2: TGroupBox
-    Left = 64
-    Top = 27
-    Width = 525
+    Left = 12
+    Top = 10
+    Width = 481
     Height = 170
     Caption = '    DADOS DO FORNECEDOR    '
     Color = clWhite
@@ -425,7 +406,7 @@ object CA_FORNEC: TCA_FORNEC
     object EdtNomeFornec: TDBEdit
       Left = 220
       Top = 44
-      Width = 290
+      Width = 245
       Height = 27
       DataField = 'nomefornec'
       DataSource = FrmDm.DtsFornec
@@ -445,7 +426,6 @@ object CA_FORNEC: TCA_FORNEC
       Width = 73
       Height = 45
       Hint = 'Selecionar Logo'
-      CustomHint = FrmPrincipal.BalloonHint1
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
         18000000000000180000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -707,8 +687,8 @@ object CA_FORNEC: TCA_FORNEC
     end
   end
   object EdtCidade: TDBEdit
-    Left = 554
-    Top = 414
+    Left = 8
+    Top = 327
     Width = 55
     Height = 21
     DataField = 'codcidade'
@@ -718,13 +698,13 @@ object CA_FORNEC: TCA_FORNEC
     Visible = False
   end
   inline fraBotoes: TfraBotoes
-    Left = 86
-    Top = 355
+    Left = 12
+    Top = 340
     Width = 481
     Height = 53
     TabOrder = 4
-    ExplicitLeft = 86
-    ExplicitTop = 355
+    ExplicitLeft = 12
+    ExplicitTop = 340
     inherited BtnCancelar: TBitBtn
       OnClick = fraBotoesBtnCancelarClick
     end
@@ -757,12 +737,10 @@ object CA_FORNEC: TCA_FORNEC
     end
   end
   object OpenLogo: TOpenPictureDialog
-    Left = 20
-    Top = 396
+    Left = 412
   end
   object MainMenu: TMainMenu
-    Left = 616
-    Top = 176
+    Left = 448
     object MnArquivo: TMenuItem
       Caption = 'Arquivo'
       object MnCadastrar: TMenuItem

@@ -3,8 +3,8 @@ object CA_ESTAD: TCA_ESTAD
   Top = 0
   BorderStyle = bsToolWindow
   Caption = 'Cadastro de Est'#225'dios'
-  ClientHeight = 392
-  ClientWidth = 584
+  ClientHeight = 346
+  ClientWidth = 509
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,33 +21,24 @@ object CA_ESTAD: TCA_ESTAD
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 22
-    Top = 32
+    Left = 13
+    Top = 10
     Width = 86
     Height = 13
     Caption = 'C'#243'digo do Est'#225'dio'
     FocusControl = EdtCodigo
   end
   object Label2: TLabel
-    Left = 22
-    Top = 104
+    Left = 13
+    Top = 82
     Width = 80
     Height = 13
     Caption = 'Nome do Est'#225'dio'
     FocusControl = EdtNome
   end
-  object Label3: TLabel
-    Left = 54
-    Top = 366
-    Width = 48
-    Height = 13
-    Caption = 'codcidade'
-    FocusControl = EdtCidade
-    Visible = False
-  end
   object EdtCodigo: TDBEdit
-    Left = 22
-    Top = 51
+    Left = 13
+    Top = 29
     Width = 98
     Height = 41
     DataField = 'codestadio'
@@ -62,9 +53,9 @@ object CA_ESTAD: TCA_ESTAD
     TabOrder = 1
   end
   object EdtNome: TDBEdit
-    Left = 22
-    Top = 120
-    Width = 529
+    Left = 13
+    Top = 98
+    Width = 474
     Height = 27
     DataField = 'nome'
     DataSource = FrmDm.DtsEstadio
@@ -80,8 +71,8 @@ object CA_ESTAD: TCA_ESTAD
     OnExit = EdtNomeExit
   end
   object EdtCidade: TDBEdit
-    Left = 108
-    Top = 363
+    Left = 385
+    Top = 45
     Width = 37
     Height = 21
     DataField = 'codcidade'
@@ -97,32 +88,32 @@ object CA_ESTAD: TCA_ESTAD
     Visible = False
   end
   inline fraCidades: TfraCidades
-    Left = 22
-    Top = 163
-    Width = 529
+    Left = 13
+    Top = 141
+    Width = 477
     Height = 131
     TabOrder = 2
-    ExplicitLeft = 22
-    ExplicitTop = 163
-    ExplicitWidth = 529
+    ExplicitLeft = 13
+    ExplicitTop = 141
+    ExplicitWidth = 477
     inherited GroupBox2: TGroupBox
       Top = -3
-      Width = 526
+      Width = 474
       ExplicitTop = -3
-      ExplicitWidth = 526
+      ExplicitWidth = 474
       inherited BtnLocCidade: TBitBtn
         OnClick = fraCidades1BtnLocCidadeClick
       end
     end
   end
   inline fraBotoes: TfraBotoes
-    Left = 18
-    Top = 300
+    Left = 9
+    Top = 278
     Width = 481
     Height = 53
     TabOrder = 3
-    ExplicitLeft = 18
-    ExplicitTop = 300
+    ExplicitLeft = 9
+    ExplicitTop = 278
     inherited BtnCancelar: TBitBtn
       OnClick = fraBotoesBtnCancelarClick
     end
@@ -155,8 +146,8 @@ object CA_ESTAD: TCA_ESTAD
     end
   end
   object MainMenu: TMainMenu
-    Left = 520
-    Top = 10
+    Left = 447
+    Top = 36
     object MnArquivo: TMenuItem
       Caption = 'Arquivo'
       object MnCadastrar: TMenuItem

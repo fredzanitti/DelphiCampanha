@@ -155,8 +155,8 @@ begin
       r_jogospadrao.ShowModal;
     end;
   end;
-
-  h_arbitros.Close;
+  if identificacao = 'CA_JOGOS' then
+     h_arbitros.Close;
 end;
 
 procedure Th_arbitros.DbGridArbitroDrawColumnCell(Sender: TObject;

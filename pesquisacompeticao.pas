@@ -254,9 +254,7 @@ begin
         codcompet)) + ' contra o ' + AnsiUpperCase(f_gerais.buscarNome('nome',
         'ca_adver', 'codadver', r_jogospadrao.codauxiliar1));
       // buscar escudo do seu time
-      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime,
-        AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_adver', 'codadver',
-        r_jogospadrao.codauxiliar1)), '0');
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, r_jogospadrao.codauxiliar1, '0');
       // definir título do formulário
       r_jogospadrao.Caption := 'Seleção de jogos disputados pelo(a) ' +
         f_gerais.buscarNome('nome', 'ca_compe', 'codcompeticao', codcompet);
@@ -264,7 +262,8 @@ begin
       r_jogospadrao.ShowModal;
     end;
   end;
-  h_competicao.Close;
+  if identificacao = 'CA_JOGOS' then
+     h_competicao.Close;
 end;
 
 procedure Th_competicao.DbGridCompeticaoDrawColumnCell(Sender: TObject;

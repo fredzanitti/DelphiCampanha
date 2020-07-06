@@ -20,7 +20,6 @@ type
     EdtCodigo: TDBEdit;
     Label2: TLabel;
     EdtNome: TDBEdit;
-    Label3: TLabel;
     EdtCidade: TDBEdit;
     MainMenu: TMainMenu;
     MnArquivo: TMenuItem;

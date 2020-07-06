@@ -16,8 +16,6 @@ uses
 
 type
   TCA_FORNEC = class(TForm)
-    Label5: TLabel;
-    Label3: TLabel;
     EdtLogoFornec: TDBEdit;
     GroupBox1: TGroupBox;
     ImgBandPaisAdver: TImage;

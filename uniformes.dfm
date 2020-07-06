@@ -2,8 +2,8 @@ object CA_UNIFORMES: TCA_UNIFORMES
   Left = 0
   Top = 0
   Caption = 'Cadastro de Uniformes'
-  ClientHeight = 403
-  ClientWidth = 669
+  ClientHeight = 316
+  ClientWidth = 508
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -19,19 +19,10 @@ object CA_UNIFORMES: TCA_UNIFORMES
   OnKeyDown = FormKeyDown
   PixelsPerInch = 96
   TextHeight = 13
-  object Label5: TLabel
-    Left = 64
-    Top = 345
-    Width = 102
-    Height = 13
-    Caption = 'FOTO DO UNIFORME'
-    FocusControl = EdtFotoUniforme
-    Visible = False
-  end
   object EdtFotoUniforme: TDBEdit
-    Left = 64
-    Top = 364
-    Width = 469
+    Left = 30
+    Top = 236
+    Width = 65
     Height = 21
     DataField = 'foto_uniforme'
     DataSource = FrmDm.DtsUniformes
@@ -40,9 +31,9 @@ object CA_UNIFORMES: TCA_UNIFORMES
     Visible = False
   end
   object GroupBox2: TGroupBox
-    Left = 64
-    Top = 27
-    Width = 525
+    Left = 16
+    Top = 10
+    Width = 477
     Height = 230
     Caption = '    INFORMA'#199#213'ES DO UNIFORME    '
     Color = clWhite
@@ -130,7 +121,6 @@ object CA_UNIFORMES: TCA_UNIFORMES
       Width = 73
       Height = 45
       Hint = 'Selecionar Logo'
-      CustomHint = FrmPrincipal.BalloonHint1
       Glyph.Data = {
         36180000424D3618000000000000360000002800000040000000200000000100
         18000000000000180000232E0000232E00000000000000000000FFFFFFFFFFFF
@@ -334,13 +324,13 @@ object CA_UNIFORMES: TCA_UNIFORMES
     end
   end
   inline fraBotoes: TfraBotoes
-    Left = 60
-    Top = 267
+    Left = 12
+    Top = 250
     Width = 481
     Height = 53
     TabOrder = 2
-    ExplicitLeft = 60
-    ExplicitTop = 267
+    ExplicitLeft = 12
+    ExplicitTop = 250
     inherited BtnCancelar: TBitBtn
       OnClick = fraBotoesBtnCancelarClick
     end
@@ -373,12 +363,11 @@ object CA_UNIFORMES: TCA_UNIFORMES
     end
   end
   object OpenLogo: TOpenPictureDialog
-    Left = 20
-    Top = 346
+    Left = 412
+    Top = 2
   end
   object MainMenu: TMainMenu
-    Left = 616
-    Top = 176
+    Left = 448
     object MnArquivo: TMenuItem
       Caption = 'Arquivo'
       object MnCadastrar: TMenuItem

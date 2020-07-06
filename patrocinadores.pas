@@ -11,23 +11,12 @@ uses
   FireDAC.Phys.MySQLDef, FireDAC.Stan.Param, FireDAC.DatS, FireDAC.DApt.Intf,
   FireDAC.DApt, Vcl.ExtCtrls, Vcl.DBCtrls, Data.DB, Vcl.StdCtrls, Vcl.Mask,
   FireDAC.Comp.DataSet, FireDAC.Comp.Client, FireDAC.VCLUI.Wait,
-  FireDAC.Comp.UI, jpeg, Vcl.Buttons, Vcl.ExtDlgs, Vcl.Menus, Vcl.ComCtrls;
+  FireDAC.Comp.UI, jpeg, Vcl.Buttons, Vcl.ExtDlgs, Vcl.Menus, Vcl.ComCtrls,
+  frameBotoesMenuPadrao;
 
 type
   TCA_PATROC = class(TForm)
-    Label5: TLabel;
-    Label3: TLabel;
     EdtLogoPatroc: TDBEdit;
-    BtnPesquisar: TBitBtn;
-    BtnCancelar: TBitBtn;
-    BtnExcluir: TBitBtn;
-    BtnEditar: TBitBtn;
-    BtnIncluir: TBitBtn;
-    BtnUltimo: TBitBtn;
-    BtnProximo: TBitBtn;
-    BtnAnterior: TBitBtn;
-    BtnPrimeiro: TBitBtn;
-    BtnGravar: TBitBtn;
     GroupBox1: TGroupBox;
     ImgBandPaisAdver: TImage;
     LblCidade: TLabel;
@@ -56,25 +45,16 @@ type
     MnEditar: TMenuItem;
     MnExcluir: TMenuItem;
     MnSair: TMenuItem;
-    procedure BtnIncluirClick(Sender: TObject);
-    procedure BtnEditarClick(Sender: TObject);
-    procedure BtnExcluirClick(Sender: TObject);
-    procedure BtnGravarClick(Sender: TObject);
+    fraBotoes: TfraBotoes;
     procedure BtnLocCidadeClick(Sender: TObject);
     procedure BtnEscolherFotoClick(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormClose(Sender: TObject; var Action: TCloseAction);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
-    procedure BtnPrimeiroClick(Sender: TObject);
-    procedure BtnAnteriorClick(Sender: TObject);
-    procedure BtnProximoClick(Sender: TObject);
-    procedure BtnUltimoClick(Sender: TObject);
-    procedure BtnCancelarClick(Sender: TObject);
     procedure MnCadastrarClick(Sender: TObject);
     procedure MnEditarClick(Sender: TObject);
     procedure MnExcluirClick(Sender: TObject);
     procedure MnSairClick(Sender: TObject);
-    procedure BtnPesquisarClick(Sender: TObject);
     procedure DataIniChange(Sender: TObject);
     procedure DataFimChange(Sender: TObject);
     procedure EdtDtIniExit(Sender: TObject);
@@ -83,6 +63,16 @@ type
     procedure EdtNomePatrocEnter(Sender: TObject);
     procedure EdtNomePatrocExit(Sender: TObject);
     procedure EdtDtFimExit(Sender: TObject);
+    procedure fraBotoesBtnPrimeiroClick(Sender: TObject);
+    procedure fraBotoesBtnAnteriorClick(Sender: TObject);
+    procedure fraBotoesBtnProximoClick(Sender: TObject);
+    procedure fraBotoesBtnUltimoClick(Sender: TObject);
+    procedure fraBotoesBtnIncluirClick(Sender: TObject);
+    procedure fraBotoesBtnEditarClick(Sender: TObject);
+    procedure fraBotoesBtnExcluirClick(Sender: TObject);
+    procedure fraBotoesBtnGravarClick(Sender: TObject);
+    procedure fraBotoesBtnCancelarClick(Sender: TObject);
+    procedure fraBotoesBtnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -101,31 +91,6 @@ implementation
 
 uses module, funcoes, pesquisacidades, pesquisapatrocinador;
 
-procedure TCA_PATROC.BtnAnteriorClick(Sender: TObject);
-begin
-  FrmDm.DtsPatroc.DataSet.Prior;
-  estadoDosBotoesdeCadastro();
-end;
-
-procedure TCA_PATROC.BtnCancelarClick(Sender: TObject);
-begin
-  EdtCodigo.Clear;
-  FrmDm.DtsPatroc.DataSet.Cancel;
-  estadoDosBotoesdeCadastro();
-end;
-
-procedure TCA_PATROC.BtnEditarClick(Sender: TObject);
-begin
-  if f_gerais.contadorRegistros('CA_PATROC') > 0 then
-  begin
-    FrmDm.DtsPatroc.DataSet.Edit;
-    estadoDosBotoesdeCadastro();
-  end
-  else
-    Application.MessageBox('A tabela está vazia!', 'ATENÇÃO',
-      MB_OK + MB_ICONWARNING);
-end;
-
 procedure TCA_PATROC.BtnEscolherFotoClick(Sender: TObject);
 begin
   NomeArquivoAnterior := EdtLogoPatroc.Text;
@@ -138,103 +103,12 @@ begin
   end;
 end;
 
-procedure TCA_PATROC.BtnExcluirClick(Sender: TObject);
-begin
-  if f_gerais.contadorRegistros('CA_PATROC') > 0 then
-  begin
-      if f_gerais.desejaRealizarAcao('excluir o registro?') then
-      begin
-        // deletar o escudo do patrocinador
-        f_gerais.deletarImagens(EdtLogoPatroc.Text);
-        // deletar o registro do patrocinador
-        FrmDm.DtsPatroc.DataSet.Delete;
-        // restaurar bandeiras e estado dos botões
-        estadoDosBotoesdeCadastro();
-      end;
-  end
-  else
-    Application.MessageBox('A tabela está vazia!', 'ATENÇÃO',
-      MB_OK + MB_ICONWARNING);
-end;
-
-procedure TCA_PATROC.BtnGravarClick(Sender: TObject);
-begin
-  if StrToDate(EdtDtFim.Text) < StrToDate(EdtDtIni.Text) then
-  begin
-    Application.MessageBox('Data final não pode ser menor que a data inicial.',
-      'ATENÇÃO', MB_OK + MB_ICONINFORMATION);
-  end
-  else
-  begin
-    if f_gerais.verificarStringEmBranco(EdtNomePatroc.Text, 'NOME PATROCINADOR')
-    then
-      EdtNomePatroc.SetFocus
-    else
-    begin
-      if f_gerais.verificarStringEmBranco(EdtCidade.Text, 'CIDADE') then
-        BtnLocCidadeClick(Self)
-      else
-      begin
-        if f_gerais.verificarStringEmBranco(EdtLogoPatroc.Text, 'LOGOMARCA')
-        then
-          BtnEscolherFotoClick(Self)
-        else
-        begin
-          CopyFile(PChar(NomeArquivo),
-            PChar(caminho + FormatFloat('00000', StrToFloat(EdtCodigo.Text)) +
-            ExtractFileExt(OpenLogo.FileName)), false);
-          FrmDm.DtsPatroc.DataSet.Post;
-
-          if NomeArquivoAnterior <> EdtLogoPatroc.Text then
-            f_gerais.deletarImagens(NomeArquivoAnterior);
-
-          estadoDosBotoesdeCadastro();
-          FrmDm.DtsPatroc.DataSet.Refresh;
-        end;
-      end;
-    end;
-  end;
-end;
-
-procedure TCA_PATROC.BtnIncluirClick(Sender: TObject);
-begin
-  FrmDm.DtsPatroc.DataSet.Append;
-  EdtCodigo.Text := IntToStr(f_gerais.novoCodigo('CA_PATROC', 'codpatroc'));
-  estadoDosBotoesdeCadastro();
-end;
-
 procedure TCA_PATROC.BtnLocCidadeClick(Sender: TObject);
 begin
   // preencher grid da pesquisa de cidades
   f_gerais.pesquisaCidade(h_cidades.DbGridCidades, 'TODOS');
   h_cidades.identificacao := 'CA_PATROC';
   h_cidades.ShowModal;
-end;
-
-procedure TCA_PATROC.BtnPesquisarClick(Sender: TObject);
-begin
-  // preencher grid da pesquisa de clubes
-  f_gerais.pesquisaPatroc(h_patrocinador.DbGridPatroc, 'TODOS');
-  h_patrocinador.identificacao := 'CA_PATROC';
-  h_patrocinador.ShowModal;
-end;
-
-procedure TCA_PATROC.BtnPrimeiroClick(Sender: TObject);
-begin
-  FrmDm.DtsPatroc.DataSet.First;
-  estadoDosBotoesdeCadastro();
-end;
-
-procedure TCA_PATROC.BtnProximoClick(Sender: TObject);
-begin
-  FrmDm.DtsPatroc.DataSet.Next;
-  estadoDosBotoesdeCadastro();
-end;
-
-procedure TCA_PATROC.BtnUltimoClick(Sender: TObject);
-begin
-  FrmDm.DtsPatroc.DataSet.Last;
-  estadoDosBotoesdeCadastro();
 end;
 
 procedure TCA_PATROC.DataFimChange(Sender: TObject);
@@ -288,25 +162,16 @@ end;
 }
 procedure TCA_PATROC.estadoDosBotoesdeCadastro();
 begin
+  fraBotoes.estadoDosBotoesdeCadastro(FrmDm.DtsPatroc.DataSet.State);
+
   { O Dataset está aberto. Seus dados podem ser visualizados, mas não podem ser alterados. }
   if FrmDm.DtsPatroc.DataSet.State in [dsBrowse] then
   begin
     // botões
-    BtnPrimeiro.Enabled := True;
-    BtnAnterior.Enabled := True;
-    BtnProximo.Enabled := True;
-    BtnUltimo.Enabled := True;
-    BtnIncluir.Enabled := True;
     MnCadastrar.Enabled := True;
-    BtnEditar.Enabled := True;
     MnEditar.Enabled := True;
-    BtnExcluir.Enabled := True;
     MnExcluir.Enabled := True;
-    BtnGravar.Enabled := false;
-    BtnCancelar.Enabled := false;
-    BtnLocCidade.Enabled := false;
     BtnEscolherFoto.Enabled := false;
-    BtnPesquisar.Enabled := True;
     // demais componentes
     EdtNomePatroc.Enabled := false;
     EdtDtIni.Enabled := false;
@@ -316,21 +181,11 @@ begin
   if FrmDm.DtsPatroc.DataSet.State in [dsInsert, dsEdit] then
   begin
     // botões
-    BtnPrimeiro.Enabled := false;
-    BtnAnterior.Enabled := false;
-    BtnProximo.Enabled := false;
-    BtnUltimo.Enabled := false;
-    BtnIncluir.Enabled := false;
     MnCadastrar.Enabled := false;
-    BtnEditar.Enabled := false;
     MnEditar.Enabled := false;
-    BtnExcluir.Enabled := false;
     MnExcluir.Enabled := false;
-    BtnGravar.Enabled := True;
-    BtnCancelar.Enabled := True;
     BtnLocCidade.Enabled := True;
     BtnEscolherFoto.Enabled := True;
-    BtnPesquisar.Enabled := false;
     // demais componentes
     EdtNomePatroc.Enabled := True;
     EdtNomePatroc.SetFocus;
@@ -347,7 +202,7 @@ begin
 
   // inibir pesquisa se o cadastro de jogos estiver ativo
   if FrmDm.DtsJogos.DataSet.State in [dsInsert, dsEdit] then
-    BtnPesquisar.Enabled := false;
+    fraBotoes.BtnPesquisar.Enabled := false;
 
 end;
 
@@ -368,7 +223,7 @@ end;
 procedure TCA_PATROC.FormClose(Sender: TObject; var Action: TCloseAction);
 begin
   if FrmDm.DtsPatroc.DataSet.State in [dsInsert, dsEdit] then
-    BtnCancelarClick(Self);
+    fraBotoesBtnCancelarClick(Self);
 end;
 
 procedure TCA_PATROC.FormKeyDown(Sender: TObject; var Key: Word;
@@ -377,45 +232,161 @@ begin
   case Key of
     VK_F5:
       begin
-        BtnIncluirClick(Self);
+        fraBotoesBtnIncluirClick(Self);
       end;
     VK_F10:
       begin
-        BtnPesquisarClick(Self);
+        fraBotoesBtnPesquisarClick(Self);
       end;
     VK_ESCAPE:
       begin
         if FrmDm.DtsPatroc.DataSet.State in [dsInsert, dsEdit] then
-          BtnCancelarClick(Self)
+          fraBotoesBtnCancelarClick(Self)
         else
           CA_PATROC.Close;
       end;
     VK_RETURN:
       begin
-        BtnGravarClick(Self);
+        fraBotoesBtnGravarClick(Self);
       end;
   end;
 end;
 
+procedure TCA_PATROC.fraBotoesBtnAnteriorClick(Sender: TObject);
+begin
+  FrmDm.DtsPatroc.DataSet.Prior;
+  estadoDosBotoesdeCadastro();
+end;
+
+procedure TCA_PATROC.fraBotoesBtnCancelarClick(Sender: TObject);
+begin
+  EdtCodigo.Clear;
+  FrmDm.DtsPatroc.DataSet.Cancel;
+  estadoDosBotoesdeCadastro();
+end;
+
+procedure TCA_PATROC.fraBotoesBtnEditarClick(Sender: TObject);
+begin
+  if f_gerais.contadorRegistros('CA_PATROC') > 0 then
+  begin
+    FrmDm.DtsPatroc.DataSet.Edit;
+    estadoDosBotoesdeCadastro();
+  end
+  else
+    Application.MessageBox('A tabela está vazia!', 'ATENÇÃO',
+      MB_OK + MB_ICONWARNING);
+end;
+
+procedure TCA_PATROC.fraBotoesBtnExcluirClick(Sender: TObject);
+begin
+  if f_gerais.contadorRegistros('CA_PATROC') > 0 then
+  begin
+      if f_gerais.desejaRealizarAcao('excluir o registro?') then
+      begin
+        // deletar o escudo do patrocinador
+        f_gerais.deletarImagens(EdtLogoPatroc.Text);
+        // deletar o registro do patrocinador
+        FrmDm.DtsPatroc.DataSet.Delete;
+        // restaurar bandeiras e estado dos botões
+        estadoDosBotoesdeCadastro();
+      end;
+  end
+  else
+    Application.MessageBox('A tabela está vazia!', 'ATENÇÃO',
+      MB_OK + MB_ICONWARNING);
+end;
+
+procedure TCA_PATROC.fraBotoesBtnGravarClick(Sender: TObject);
+begin
+  if StrToDate(EdtDtFim.Text) < StrToDate(EdtDtIni.Text) then
+  begin
+    Application.MessageBox('Data final não pode ser menor que a data inicial.',
+      'ATENÇÃO', MB_OK + MB_ICONINFORMATION);
+  end
+  else
+  begin
+    if f_gerais.verificarStringEmBranco(EdtNomePatroc.Text, 'NOME PATROCINADOR')
+    then
+      EdtNomePatroc.SetFocus
+    else
+    begin
+      if f_gerais.verificarStringEmBranco(EdtCidade.Text, 'CIDADE') then
+        BtnLocCidadeClick(Self)
+      else
+      begin
+        if f_gerais.verificarStringEmBranco(EdtLogoPatroc.Text, 'LOGOMARCA')
+        then
+          BtnEscolherFotoClick(Self)
+        else
+        begin
+          CopyFile(PChar(NomeArquivo),
+            PChar(caminho + FormatFloat('00000', StrToFloat(EdtCodigo.Text)) +
+            ExtractFileExt(OpenLogo.FileName)), false);
+          FrmDm.DtsPatroc.DataSet.Post;
+
+          if NomeArquivoAnterior <> EdtLogoPatroc.Text then
+            f_gerais.deletarImagens(NomeArquivoAnterior);
+
+          estadoDosBotoesdeCadastro();
+          FrmDm.DtsPatroc.DataSet.Refresh;
+        end;
+      end;
+    end;
+  end;
+end;
+
+procedure TCA_PATROC.fraBotoesBtnIncluirClick(Sender: TObject);
+begin
+  FrmDm.DtsPatroc.DataSet.Append;
+  EdtCodigo.Text := IntToStr(f_gerais.novoCodigo('CA_PATROC', 'codpatroc'));
+  estadoDosBotoesdeCadastro();
+end;
+
+procedure TCA_PATROC.fraBotoesBtnPesquisarClick(Sender: TObject);
+begin
+  // preencher grid da pesquisa de clubes
+  f_gerais.pesquisaPatroc(h_patrocinador.DbGridPatroc, 'TODOS');
+  h_patrocinador.identificacao := 'CA_PATROC';
+  h_patrocinador.ShowModal;
+end;
+
+procedure TCA_PATROC.fraBotoesBtnPrimeiroClick(Sender: TObject);
+begin
+  FrmDm.DtsPatroc.DataSet.First;
+  estadoDosBotoesdeCadastro();
+end;
+
+procedure TCA_PATROC.fraBotoesBtnProximoClick(Sender: TObject);
+begin
+  FrmDm.DtsPatroc.DataSet.Next;
+  estadoDosBotoesdeCadastro();
+end;
+
+procedure TCA_PATROC.fraBotoesBtnUltimoClick(Sender: TObject);
+begin
+  FrmDm.DtsPatroc.DataSet.Last;
+  estadoDosBotoesdeCadastro();
+end;
+
 procedure TCA_PATROC.MnCadastrarClick(Sender: TObject);
 begin
-  BtnIncluirClick(Self);
+  fraBotoesBtnIncluirClick(Self);
 end;
 
 procedure TCA_PATROC.MnEditarClick(Sender: TObject);
 begin
-  BtnEditarClick(Self);
+  fraBotoesBtnEditarClick(Self);
 end;
 
 procedure TCA_PATROC.MnExcluirClick(Sender: TObject);
 begin
-  BtnExcluirClick(Self);
+  fraBotoesBtnExcluirClick(Self);
 end;
 
 procedure TCA_PATROC.MnSairClick(Sender: TObject);
 begin
   if FrmDm.DtsPatroc.DataSet.State in [dsInsert, dsEdit] then
-    BtnCancelarClick(Self)
+    fraBotoesBtnCancelarClick(Self)
   else
     CA_PATROC.Close;
 end;

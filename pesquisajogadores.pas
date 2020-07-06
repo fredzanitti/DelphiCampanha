@@ -79,6 +79,12 @@ begin
 
   codjogador := DbGridJogadores.Columns[0].Field.AsString;
 
+  if codjogador = EmptyStr then
+  begin
+      Application.MessageBox('Jogador não encontrado!', 'ATENÇÃO', MB_OK + MB_ICONINFORMATION);
+      Abort;
+  end;
+
   // ==========================================================================
   // Pesquisa quando acionada pelo cadastro de jogadores
   // ==========================================================================

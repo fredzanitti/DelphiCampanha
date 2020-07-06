@@ -1103,15 +1103,23 @@ procedure Tf_gerais.pesquisaClubes(grid: TDBGrid; partenome: String);
   que é passado como parâmetro.
   =======================================================
 }
+var
+  qryPesquisarClube: TFDQuery;
+  dtsPesquisarClube: TDataSource;
 begin
   sql := 'CALL sp_pesquisa_clube (''' + partenome + ''')';
 
-  QrFunctions.Close;
-  QrFunctions.sql.Clear;
-  QrFunctions.sql.Add(sql);
-  QrFunctions.Open;
+  qryPesquisarClube := TFDQuery.Create(nil);
+  qryPesquisarClube.Connection := FrmDm.BDMySQL;
+  dtsPesquisarClube := TDataSource.Create(nil);
+  dtsPesquisarClube.DataSet := qryPesquisarClube;
 
-  grid.DataSource := DtsQrFunctions;
+  qryPesquisarClube.Close;
+  qryPesquisarClube.sql.Clear;
+  qryPesquisarClube.sql.Add(sql);
+  qryPesquisarClube.Open;
+
+  grid.DataSource := dtsPesquisarClube;
 end;
 
 {
@@ -1372,6 +1380,9 @@ procedure Tf_gerais.pesquisaEstadio(grid: TDBGrid; partenome: String);
   que é passado como parâmetro.
   =======================================================
 }
+var
+  qryPesquisarEstadio: TFDQuery;
+  dtsPesquisarEstadio: TDataSource;
 begin
   if partenome = 'TODOS' then
   begin
@@ -1389,17 +1400,22 @@ begin
       ' order by e.nome';
   end;
 
-  QrFunctions.Close;
-  QrFunctions.sql.Clear;
-  QrFunctions.sql.Add(sql);
+  qryPesquisarEstadio := TFDQuery.Create(nil);
+  qryPesquisarEstadio.Connection := FrmDm.BDMySQL;
+  dtsPesquisarEstadio := TDataSource.Create(nil);
+  dtsPesquisarEstadio.DataSet := qryPesquisarEstadio;
+
+  qryPesquisarEstadio.Close;
+  qryPesquisarEstadio.sql.Clear;
+  qryPesquisarEstadio.sql.Add(sql);
   if partenome <> 'TODOS' then
   begin
-    QrFunctions.Params.ParamByName('PARTEDONOME').AsString :=
+    qryPesquisarEstadio.Params.ParamByName('PARTEDONOME').AsString :=
       '%' + partenome + '%';
   end;
-  QrFunctions.Open;
+  qryPesquisarEstadio.Open;
 
-  grid.DataSource := DtsQrFunctions;
+  grid.DataSource := dtsPesquisarEstadio;
 end;
 
 {
@@ -1475,6 +1491,9 @@ procedure Tf_gerais.pesquisaArbitro(grid: TDBGrid; partenome: String);
   que é passado como parâmetro.
   =======================================================
 }
+var
+  qryPesquisarArbitro: TFDQuery;
+  dtsPesquisarArbitro: TDataSource;
 begin
   if partenome = 'TODOS' then
   begin
@@ -1486,17 +1505,22 @@ begin
       'order by nome';
   end;
 
-  QrFunctions.Close;
-  QrFunctions.sql.Clear;
-  QrFunctions.sql.Add(sql);
+  qryPesquisarArbitro := TFDQuery.Create(nil);
+  qryPesquisarArbitro.Connection := FrmDm.BDMySQL;
+  dtsPesquisarArbitro := TDataSource.Create(nil);
+  dtsPesquisarArbitro.DataSet := qryPesquisarArbitro;
+
+  qryPesquisarArbitro.Close;
+  qryPesquisarArbitro.sql.Clear;
+  qryPesquisarArbitro.sql.Add(sql);
   if partenome <> 'TODOS' then
   begin
-    QrFunctions.Params.ParamByName('PARTEDONOME').AsString :=
+    qryPesquisarArbitro.Params.ParamByName('PARTEDONOME').AsString :=
       '%' + partenome + '%';
   end;
-  QrFunctions.Open;
+  qryPesquisarArbitro.Open;
 
-  grid.DataSource := DtsQrFunctions;
+  grid.DataSource := dtsPesquisarArbitro;
 end;
 
 procedure Tf_gerais.pesquisaTitulos(grid: TDBGrid; partenome: String);
@@ -1578,6 +1602,9 @@ procedure Tf_gerais.pesquisaUniforme(grid: TDBGrid; partenome: String);
   que é passado como parâmetro.
   =======================================================
 }
+var
+  qryPesquisarCamisa: TFDQuery;
+  dtsPesquisarCamisa: TDataSource;
 begin
   if partenome = 'TODOS' then
   begin
@@ -1589,17 +1616,22 @@ begin
       + 'order by descricao';
   end;
 
-  QrFunctions.Close;
-  QrFunctions.sql.Clear;
-  QrFunctions.sql.Add(sql);
+  qryPesquisarCamisa := TFDQuery.Create(nil);
+  qryPesquisarCamisa.Connection := FrmDm.BDMySQL;
+  dtsPesquisarCamisa := TDataSource.Create(nil);
+  dtsPesquisarCamisa.DataSet := qryPesquisarCamisa;
+
+  qryPesquisarCamisa.Close;
+  qryPesquisarCamisa.sql.Clear;
+  qryPesquisarCamisa.sql.Add(sql);
   if partenome <> 'TODOS' then
   begin
-    QrFunctions.Params.ParamByName('PARTEDONOME').AsString :=
+    qryPesquisarCamisa.Params.ParamByName('PARTEDONOME').AsString :=
       '%' + partenome + '%';
   end;
-  QrFunctions.Open;
+  qryPesquisarCamisa.Open;
 
-  grid.DataSource := DtsQrFunctions;
+  grid.DataSource := dtsPesquisarCamisa;
 end;
 
 procedure Tf_gerais.pesquisaPatroc(grid: TDBGrid; partenome: String);
@@ -1611,6 +1643,9 @@ procedure Tf_gerais.pesquisaPatroc(grid: TDBGrid; partenome: String);
   nome que é passado como parâmetro.
   =======================================================
 }
+var
+  qryPesquisarPatroc: TFDQuery;
+  dtsPesquisarPatroc: TDataSource;
 begin
   if partenome = 'TODOS' then
   begin
@@ -1632,17 +1667,22 @@ begin
 
   end;
 
-  QrFunctions.Close;
-  QrFunctions.sql.Clear;
-  QrFunctions.sql.Add(sql);
+  qryPesquisarPatroc := TFDQuery.Create(nil);
+  qryPesquisarPatroc.Connection := FrmDm.BDMySQL;
+  dtsPesquisarPatroc := TDataSource.Create(nil);
+  dtsPesquisarPatroc.DataSet := qryPesquisarPatroc;
+
+  qryPesquisarPatroc.Close;
+  qryPesquisarPatroc.sql.Clear;
+  qryPesquisarPatroc.sql.Add(sql);
   if partenome <> 'TODOS' then
   begin
-    QrFunctions.Params.ParamByName('PARTEDONOME').AsString :=
+    qryPesquisarPatroc.Params.ParamByName('PARTEDONOME').AsString :=
       '%' + partenome + '%';
   end;
-  QrFunctions.Open;
+  qryPesquisarPatroc.Open;
 
-  grid.DataSource := DtsQrFunctions;
+  grid.DataSource := dtsPesquisarPatroc;
 end;
 
 procedure Tf_gerais.pesquisaFornec(grid: TDBGrid; partenome: String);
@@ -1654,6 +1694,9 @@ procedure Tf_gerais.pesquisaFornec(grid: TDBGrid; partenome: String);
   nome que é passado como parâmetro.
   =======================================================
 }
+var
+  qryPesquisarFornec: TFDQuery;
+  dtsPesquisarFornec: TDataSource;
 begin
   if partenome = 'TODOS' then
   begin
@@ -1674,18 +1717,22 @@ begin
       'order by f.nomefornec, c.nome, p.nome, u.sigla';
 
   end;
+  qryPesquisarFornec := TFDQuery.Create(nil);
+  qryPesquisarFornec.Connection := FrmDm.BDMySQL;
+  dtsPesquisarFornec := TDataSource.Create(nil);
+  dtsPesquisarFornec.DataSet := qryPesquisarFornec;
 
-  QrFunctions.Close;
-  QrFunctions.sql.Clear;
-  QrFunctions.sql.Add(sql);
+  qryPesquisarFornec.Close;
+  qryPesquisarFornec.sql.Clear;
+  qryPesquisarFornec.sql.Add(sql);
   if partenome <> 'TODOS' then
   begin
-    QrFunctions.Params.ParamByName('PARTEDONOME').AsString :=
+    qryPesquisarFornec.Params.ParamByName('PARTEDONOME').AsString :=
       '%' + partenome + '%';
   end;
-  QrFunctions.Open;
+  qryPesquisarFornec.Open;
 
-  grid.DataSource := DtsQrFunctions;
+  grid.DataSource := dtsPesquisarFornec;
 end;
 
 procedure Tf_gerais.pesquisaCompeticao(grid: TDBGrid; partenome: String);
@@ -1697,6 +1744,9 @@ procedure Tf_gerais.pesquisaCompeticao(grid: TDBGrid; partenome: String);
   que é passado como parâmetro.
   =======================================================
 }
+var
+  qryPesquisarCompeticao: TFDQuery;
+  dtsPesquisarCompeticao: TDataSource;
 begin
   if partenome = 'TODOS' then
   begin
@@ -1708,17 +1758,22 @@ begin
       'order by nome';
   end;
 
-  QrFunctions.Close;
-  QrFunctions.sql.Clear;
-  QrFunctions.sql.Add(sql);
+  qryPesquisarCompeticao := TFDQuery.Create(nil);
+  qryPesquisarCompeticao.Connection := FrmDm.BDMySQL;
+  dtsPesquisarCompeticao := TDataSource.Create(nil);
+  dtsPesquisarCompeticao.DataSet := qryPesquisarCompeticao;
+
+  qryPesquisarCompeticao.Close;
+  qryPesquisarCompeticao.sql.Clear;
+  qryPesquisarCompeticao.sql.Add(sql);
   if partenome <> 'TODOS' then
   begin
-    QrFunctions.Params.ParamByName('PARTEDONOME').AsString :=
+    qryPesquisarCompeticao.Params.ParamByName('PARTEDONOME').AsString :=
       '%' + partenome + '%';
   end;
-  QrFunctions.Open;
+  qryPesquisarCompeticao.Open;
 
-  grid.DataSource := DtsQrFunctions;
+  grid.DataSource := dtsPesquisarCompeticao;
 end;
 
 {
@@ -2003,19 +2058,27 @@ procedure Tf_gerais.preencherGridTitulares(titulares: TDBGrid;
   do jogo que é passado como parâmetro.
   =======================================================
 }
+var
+  qryTimeTitular: TFDQuery;
+  dtsTimeTitular: TDataSource;
 begin
   sql := 'select concat(j.nome," ( ",p.abreviatura," ) ") nome, e.gols, e.camarelo ca, e.cvermelho cv '
     + 'from CA_JOGAD j, ES_TITUL e, ca_posic P ' +
     'where j.codjogador = e.codjogador ' + 'and j.codposicao = p.codposicao ' +
     'and e.codjogo = :CODJOGO ' + 'order by e.coditem';
 
-  QrTitulares.Close;
-  QrTitulares.sql.Clear;
-  QrTitulares.sql.Add(sql);
-  QrTitulares.Params.ParamByName('CODJOGO').AsString := codigodojogo;
-  QrTitulares.Open;
+  qryTimeTitular := TFDQuery.Create(nil);
+  qryTimeTitular.Connection := FrmDm.BDMySQL;
+  dtsTimeTitular := TDataSource.Create(nil);
+  dtsTimeTitular.DataSet := qryTimeTitular;
 
-  titulares.DataSource := DtsQrTitulares;
+  qryTimeTitular.Close;
+  qryTimeTitular.sql.Clear;
+  qryTimeTitular.sql.Add(sql);
+  qryTimeTitular.Params.ParamByName('CODJOGO').AsString := codigodojogo;
+  qryTimeTitular.Open;
+
+  titulares.DataSource := dtsTimeTitular;
 end;
 
 procedure Tf_gerais.preencherGridReservas(reservas: TDBGrid;
@@ -2028,6 +2091,9 @@ procedure Tf_gerais.preencherGridReservas(reservas: TDBGrid;
   do jogo que é passado como parâmetro.
   =======================================================
 }
+var
+  qryTimeReserva: TFDQuery;
+  dtsTimeReserva: TDataSource;
 begin
   sql := 'select concat(js.nome," ( ",ps.abreviatura," ) ") saiu, concat(je.nome," ( ",pe.abreviatura," ) ") entrou, '
     + 'r.gols, r.camarelo ca, r.cvermelho cv ' +
@@ -2037,13 +2103,18 @@ begin
     'and je.codposicao = pe.codposicao ' + 'and js.codposicao = ps.codposicao '
     + 'and codjogo = :CODJOGO ' + 'order by r.coditem';
 
-  QrReservas.Close;
-  QrReservas.sql.Clear;
-  QrReservas.sql.Add(sql);
-  QrReservas.Params.ParamByName('CODJOGO').AsString := codigodojogo;
-  QrReservas.Open;
+  qryTimeReserva := TFDQuery.Create(nil);
+  qryTimeReserva.Connection := FrmDm.BDMySQL;
+  dtsTimeReserva := TDataSource.Create(nil);
+  dtsTimeReserva.DataSet := qryTimeReserva;
 
-  reservas.DataSource := DtsQrReservas;
+  qryTimeReserva.Close;
+  qryTimeReserva.sql.Clear;
+  qryTimeReserva.sql.Add(sql);
+  qryTimeReserva.Params.ParamByName('CODJOGO').AsString := codigodojogo;
+  qryTimeReserva.Open;
+
+  reservas.DataSource := dtsTimeReserva;
 end;
 
 procedure Tf_gerais.preencherTelaEdtiaEscalacao(TitOuRes, codigodojogo: String);
@@ -5095,6 +5166,10 @@ procedure Tf_gerais.relacaoTitulos(tipo: String; descricao: TLabel);
 var
   i: Integer;
   cont: Integer;
+  qryTitulos: TFDQuery;
+  dtsTitulos: TDataSource;
+  qryEstatTitulos: TFDQuery;
+  dtsEstatTitulos: TDataSource;
   {
     =======================================================
     Relação Titulos
@@ -5108,41 +5183,50 @@ begin
     'and c.tipocompeticao = :TIPOCOMPET ' + ' group by e.codcompeticao, c.nome '
     + 'order by count(*) desc, c.nome ';
 
-  QrEstat1.Close;
-  QrEstat1.sql.Clear;
-  QrEstat1.sql.Add(sql);
-  QrEstat1.Params.ParamByName('TIPOCOMPET').AsString := tipo;
-  QrEstat1.Open;
-  QrEstat1.First;
+  qryTitulos := TFDQuery.Create(nil);
+  qryTitulos.Connection := FrmDm.BDMySQL;
+  dtsTitulos := TDataSource.Create(nil);
+  dtsTitulos.DataSet := qryTitulos;
+  qryEstatTitulos := TFDQuery.Create(nil);
+  qryEstatTitulos.Connection := FrmDm.BDMySQL;
+  dtsEstatTitulos := TDataSource.Create(nil);
+  dtsEstatTitulos.DataSet := qryEstatTitulos;
 
-  while not(QrEstat1.Eof) do
+  qryTitulos.Close;
+  qryTitulos.sql.Clear;
+  qryTitulos.sql.Add(sql);
+  qryTitulos.Params.ParamByName('TIPOCOMPET').AsString := tipo;
+  qryTitulos.Open;
+  qryTitulos.First;
+
+  while not(qryTitulos.Eof) do
   begin
 
-    descricao.Caption := descricao.Caption + QrEstat1.Fields[2].AsString + ' - '
-      + QrEstat1.Fields[1].AsString;
+    descricao.Caption := descricao.Caption + qryTitulos.Fields[2].AsString + ' - '
+      + qryTitulos.Fields[1].AsString;
 
-    sql := 'select ano from es_titulos where codcompeticao = ' + QrEstat1.Fields
+    sql := 'select ano from es_titulos where codcompeticao = ' + qryTitulos.Fields
       [0].AsString;
 
-    QrEstat2.Close;
-    QrEstat2.sql.Clear;
-    QrEstat2.sql.Add(sql);
-    QrEstat2.Open;
-    QrEstat2.First;
+    qryEstatTitulos.Close;
+    qryEstatTitulos.sql.Clear;
+    qryEstatTitulos.sql.Add(sql);
+    qryEstatTitulos.Open;
+    qryEstatTitulos.First;
 
     descricao.Caption := descricao.Caption + ' [ ';
 
-    while not(QrEstat2.Eof) do
+    while not(qryEstatTitulos.Eof) do
     begin
-      descricao.Caption := descricao.Caption + QrEstat2.Fields[0].AsString;
-      QrEstat2.Next;
+      descricao.Caption := descricao.Caption + qryEstatTitulos.Fields[0].AsString;
+      qryEstatTitulos.Next;
       cont := cont + 1;
-      if QrEstat2.Eof then
+      if qryEstatTitulos.Eof then
         descricao.Caption := descricao.Caption + ' ]' + #13 + #13
       else
         descricao.Caption := descricao.Caption + ', ';
     end;
-    QrEstat1.Next;
+    qryTitulos.Next;
   end;
   if tipo = 'N' then
     r_titulos.lblTitulosNacionais.Caption := 'Títulos Nacionais [' +

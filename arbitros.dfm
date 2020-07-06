@@ -3,8 +3,8 @@ object CA_ARBIT: TCA_ARBIT
   Top = 0
   BorderStyle = bsToolWindow
   Caption = 'Cadastro de '#193'rbitros'
-  ClientHeight = 262
-  ClientWidth = 557
+  ClientHeight = 210
+  ClientWidth = 505
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -21,24 +21,24 @@ object CA_ARBIT: TCA_ARBIT
   PixelsPerInch = 96
   TextHeight = 13
   object Label1: TLabel
-    Left = 32
-    Top = 34
+    Left = 13
+    Top = 10
     Width = 84
     Height = 13
     Caption = 'C'#243'digo do '#193'rbitro'
     FocusControl = EdtCodigo
   end
   object Label2: TLabel
-    Left = 32
-    Top = 106
+    Left = 13
+    Top = 82
     Width = 78
     Height = 13
     Caption = 'Nome do '#193'rbitro'
     FocusControl = EdtNome
   end
   object EdtCodigo: TDBEdit
-    Left = 32
-    Top = 55
+    Left = 13
+    Top = 31
     Width = 96
     Height = 41
     DataField = 'codarbitro'
@@ -53,9 +53,9 @@ object CA_ARBIT: TCA_ARBIT
     TabOrder = 1
   end
   object EdtNome: TDBEdit
-    Left = 32
-    Top = 128
-    Width = 486
+    Left = 13
+    Top = 104
+    Width = 477
     Height = 27
     DataField = 'nome'
     DataSource = FrmDm.DtsArbitros
@@ -71,13 +71,13 @@ object CA_ARBIT: TCA_ARBIT
     OnExit = EdtNomeExit
   end
   inline fraBotoes: TfraBotoes
-    Left = 28
-    Top = 168
+    Left = 9
+    Top = 144
     Width = 481
     Height = 53
     TabOrder = 2
-    ExplicitLeft = 28
-    ExplicitTop = 168
+    ExplicitLeft = 9
+    ExplicitTop = 144
     inherited BtnCancelar: TBitBtn
       OnClick = fraBotoesBtnCancelarClick
     end
@@ -112,8 +112,8 @@ object CA_ARBIT: TCA_ARBIT
     end
   end
   object MainMenu: TMainMenu
-    Left = 168
-    Top = 58
+    Left = 149
+    Top = 34
     object MnArquivo: TMenuItem
       Caption = 'Arquivo'
       object MnCadastrar: TMenuItem

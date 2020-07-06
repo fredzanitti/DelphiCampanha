@@ -163,7 +163,9 @@ begin
       f_gerais.buscarNome('foto_uniforme', 'CA_UNIFORMES', 'coduniforme',
       CA_JOGOS.EdtCodUniforme.Text));
   end;
-  h_uniformes.Close;
+
+  if identificacao = 'CA_JOGOS' then
+     h_uniformes.Close;
 end;
 
 procedure Th_uniformes.DbGridUniformeDrawColumnCell(Sender: TObject;

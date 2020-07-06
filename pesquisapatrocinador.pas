@@ -64,7 +64,9 @@ procedure Th_patrocinador.DbGridPatrocDblClick(Sender: TObject);
 var
   i, cont: Integer;
   DtInicial, DtFinal: string;
+  CodigoPatrocinador: Integer;
 begin
+
   // ==========================================================================
   // pesquisa quando acionado pelo cadastro de patrocinadores
   // ==========================================================================
@@ -79,13 +81,13 @@ begin
     CA_PATROC.estadoDosBotoesdeCadastro();
   end;
 
-
   // ==========================================================================
   // Pesquisa quando acionada pelo Jogos / Jogos por patrocinador
   // ==========================================================================
 
   if identificacao = 'MnJogosPatroc' then
   begin
+    CodigoPatrocinador := DbGridPatroc.Columns[0].Field.AsInteger;
 
     sql := 'select dt_inicio, dt_fim from ca_patroc ' +
       'where codpatroc = :CODIGOPATROCINADOR ';
@@ -93,8 +95,7 @@ begin
     QrPesquisa.Close;
     QrPesquisa.sql.Clear;
     QrPesquisa.sql.Add(sql);
-    QrPesquisa.Params.ParamByName('CODIGOPATROCINADOR').AsInteger :=
-      DbGridPatroc.Columns[0].Field.AsInteger;
+    QrPesquisa.Params.ParamByName('CODIGOPATROCINADOR').AsInteger := CodigoPatrocinador;
     QrPesquisa.Open;
     QrPesquisa.First;
 
@@ -160,19 +161,15 @@ begin
 
       // títulos e descrição do relatório
       r_jogospadrao.LblDescricao1.Caption := 'JOGOS DISPUTADOS - PATROCINADOR';
-      r_jogospadrao.LblDescricao2.Caption := 'Patrocinador: ' +
-        AnsiUpperCase(f_gerais.buscarNome('nomepatroc', 'CA_PATROC',
-        'codpatroc', DbGridPatroc.Columns[0].Field.AsString));
+      r_jogospadrao.LblDescricao2.Caption := 'Patrocinador: ' + f_gerais.buscarNome('nomepatroc', 'CA_PATROC','codpatroc', IntToStr(CodigoPatrocinador));
       // buscar imagem da logo do fornecedor
       f_gerais.buscaImagem(r_jogospadrao.ImgEscudoSeutime,
-        f_gerais.buscarNome('logo_patroc', 'CA_PATROC', 'codpatroc',
-        DbGridPatroc.Columns[0].Field.AsString));
+        f_gerais.buscarNome('logo_patroc', 'CA_PATROC', 'codpatroc',IntToStr(CodigoPatrocinador)));
       // definir título do formulário
-      r_jogospadrao.Caption := 'Jogos disputados por patrocinador';;
+      r_jogospadrao.Caption := 'Jogos disputados por patrocinador';
       // mostara a consulta finalizada
       r_jogospadrao.ShowModal;
     end;
-    h_patrocinador.Close;
   end;
 end;
 
@@ -201,6 +198,7 @@ end;
 
 procedure Th_patrocinador.FormActivate(Sender: TObject);
 begin
+
   f_gerais.buscaImagem(ImgPatroc, f_gerais.buscarNome('logo_patroc',
     'CA_PATROC', 'codpatroc', DbGridPatroc.Columns[0].Field.AsString));
 end;
