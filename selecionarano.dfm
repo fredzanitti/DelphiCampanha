@@ -35,9 +35,9 @@ object h_anos: Th_anos
   object Label1: TLabel
     Left = 32
     Top = 18
-    Width = 91
+    Width = 132
     Height = 16
-    Caption = 'Selecione o ano'
+    Caption = 'Selecione a temporada'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -13

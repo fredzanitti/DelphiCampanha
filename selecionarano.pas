@@ -55,7 +55,7 @@ begin
 
     // contar a quantidade de registros retornados na pesquisa
     sql := 'select count(*) from ca_jogos where publico > 0 ' +
-      'and year(ca_jogos.data) = ' + CbxAnos.Text;
+      'and ca_jogos.temporada = ' + CbxAnos.Text;
 
     FrmDm.QrContador.Close;
     FrmDm.QrContador.sql.Clear;
@@ -86,7 +86,7 @@ begin
     // arpesentados na tela padrão
     sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, '
       + 'codcompeticao, publico from ca_jogos where publico > 0 ' +
-      'and year(ca_jogos.data) = ' + CbxAnos.Text + ' order by publico desc ' +
+      'and ca_jogos.temporada = ' + CbxAnos.Text + ' order by publico desc ' +
       'limit :LIMITE offset :CORTE';
 
     // função para preencher a tela padrão com os resultados da sql acima
@@ -118,7 +118,7 @@ begin
 
     // contar a quantidade de registros retornados na pesquisa
     sql := 'select count(*) from ca_jogos where publico > 0 ' +
-      'and year(ca_jogos.data) = ' + CbxAnos.Text;
+      'and ca_jogos.temporada = ' + CbxAnos.Text;
 
     FrmDm.QrContador.Close;
     FrmDm.QrContador.sql.Clear;
@@ -149,7 +149,7 @@ begin
     // arpesentados na tela padrão
     sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, '
       + 'codcompeticao, publico from ca_jogos where publico > 0 ' +
-      'and year(ca_jogos.data) = ' + CbxAnos.Text + ' order by publico ' +
+      'and ca_jogos.temporada = ' + CbxAnos.Text + ' order by publico ' +
       'limit :LIMITE offset :CORTE';
 
     // função para preencher a tela padrão com os resultados da sql acima
@@ -224,11 +224,11 @@ begin
       sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
         + 'from ca_jogos ' +
         'where codadvermand in (select codadver from ca_adver where rival = 1) '
-        + 'and extract(year from data) = ' + CbxAnos.Text + ' union ' +
+        + 'and temporada = ' + CbxAnos.Text + ' union ' +
         'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
         + 'from ca_jogos ' +
         'where codadvervisit in (select codadver from ca_adver where rival = 1) '
-        + 'and extract(year from data) = ' + CbxAnos.Text +
+        + 'and temporada = ' + CbxAnos.Text +
         ' order by data desc ' + 'limit :LIMITE offset :CORTE';
 
       // função para preencher a tela padrão com os resultados da sql acima
@@ -302,11 +302,11 @@ begin
       // arpesentados na tela padrão
       sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
         + 'from ca_jogos ' + 'where codadvermand = ' +
-        r_jogospadrao.codauxiliar1 + ' and extract(year from data) = ' +
+        r_jogospadrao.codauxiliar1 + ' and temporada = ' +
         CbxAnos.Text + ' union ' +
         'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
         + 'from ca_jogos ' + 'where codadvervisit = ' +
-        r_jogospadrao.codauxiliar1 + ' and extract(year from data) = ' +
+        r_jogospadrao.codauxiliar1 + ' and temporada = ' +
         CbxAnos.Text + ' order by data desc ' + 'limit :LIMITE offset :CORTE';
 
       // função para preencher a tela padrão com os resultados da sql acima
@@ -387,11 +387,11 @@ begin
       sql := 'select j.codjogo, j.data, j.codadvermand, j.placar1, j.placar2, j.codadvervisit, j.codestadio, j.codcompeticao, j.publico '
         + 'from ca_jogos j, es_titul e ' + 'where j.codjogo = e.codjogo ' +
         'and e.codjogador = ' + r_jogospadrao.codauxiliar1 +
-        ' and extract(year from j.data) = ' + CbxAnos.Text + ' union ' +
+        ' and j.temporada = ' + CbxAnos.Text + ' union ' +
         'select j.codjogo, j.data, j.codadvermand, j.placar1, j.placar2, j.codadvervisit, j.codestadio, j.codcompeticao, j.publico '
         + 'from ca_jogos j, es_reser e ' + 'where j.codjogo = e.codjogo ' +
         'and e.codjogador = ' + r_jogospadrao.codauxiliar1 +
-        ' and extract(year from j.data) = ' + CbxAnos.Text +
+        ' and j.temporada = ' + CbxAnos.Text +
         ' order by data desc ' + 'limit :LIMITE offset :CORTE';
 
       // função para preencher a tela padrão com os resultados da sql acima
@@ -462,7 +462,7 @@ begin
       // agora faremos a pesquisa com retorno dos resultados para serem
       // arpesentados na tela padrão
       sql := 'select j.codjogo, j.data, j.codadvermand, j.placar1, j.placar2, j.codadvervisit, j.codestadio, j.codcompeticao, j.publico '
-        + 'from ca_jogos j ' + 'where extract(year from j.data) = ' +
+        + 'from ca_jogos j ' + 'where j.temporada = ' +
         CbxAnos.Text + ' order by data desc ' + 'limit :LIMITE offset :CORTE';
 
       // função para preencher a tela padrão com os resultados da sql acima
@@ -498,7 +498,7 @@ begin
     sql := 'select sum(r.j) j, sum(r.v) v, sum(r.e) e, sum(r.d) d, sum(r.gp) gp, sum(r.gc) gc, sum(r.sg) sg '
       + 'from es_resum r, ca_jogos j ' + 'where r.codjogo = j.codjogo ' +
       'and j.codcompeticao = ' + r_jogospadrao.codauxiliar1 +
-      ' and extract(year from j.data) = ' + CbxAnos.Text;
+      ' and j.temporada = ' + CbxAnos.Text;
 
     FrmDm.QrContador.Close;
     FrmDm.QrContador.sql.Clear;
@@ -540,7 +540,7 @@ begin
       // arpesentados na tela padrão
       sql := 'select j.codjogo, j.data, j.codadvermand, j.placar1, j.placar2, j.codadvervisit, j.codestadio, j.codcompeticao, j.publico '
         + 'from ca_jogos j ' + 'where codcompeticao = ' +
-        r_jogospadrao.codauxiliar1 + ' and extract(year from j.data) = ' +
+        r_jogospadrao.codauxiliar1 + ' and j.temporada = ' +
         CbxAnos.Text + ' order by data desc ' + 'limit :LIMITE offset :CORTE';
 
       // função para preencher a tela padrão com os resultados da sql acima

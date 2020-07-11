@@ -270,7 +270,7 @@ object f_gerais: Tf_gerais
     SQL.Strings = (
       'SELECT'
       
-        '    CASE WHEN es_gols.codjogador = 0 THEN '#39'CONTRA'#39' ELSE ca_jogad' +
+        '    CASE WHEN es_gols.codjogador = 0 THEN '#39'Contra'#39' ELSE ca_jogad' +
         '.nome END AS nome,'
       '    CASE WHEN es_gols.fracao = '#39'Minutos'#39
       

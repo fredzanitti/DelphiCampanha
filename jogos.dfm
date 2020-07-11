@@ -1887,6 +1887,20 @@ object CA_JOGOS: TCA_JOGOS
       Font.Style = [fsBold]
       ParentFont = False
     end
+    object Label1: TLabel
+      Left = 222
+      Top = 24
+      Width = 54
+      Height = 13
+      Caption = 'Temporada'
+      FocusControl = edtTemporada
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+    end
     object EdtData: TDBEdit
       Left = 16
       Top = 40
@@ -1902,6 +1916,7 @@ object CA_JOGOS: TCA_JOGOS
       MaxLength = 10
       ParentFont = False
       TabOrder = 0
+      OnExit = EdtDataExit
     end
     object DtData: TDateTimePicker
       Left = 120
@@ -2219,8 +2234,24 @@ object CA_JOGOS: TCA_JOGOS
       ParentFont = False
       ParentShowHint = False
       ShowHint = True
-      TabOrder = 3
+      TabOrder = 4
       OnClick = BtnEstadioClick
+    end
+    object edtTemporada: TDBEdit
+      Left = 222
+      Top = 40
+      Width = 59
+      Height = 27
+      DataField = 'temporada'
+      DataSource = FrmDm.DtsJogos
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Tahoma'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 3
+      OnEnter = edtTemporadaEnter
     end
   end
   object GroupBox2: TGroupBox

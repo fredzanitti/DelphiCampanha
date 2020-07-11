@@ -92,6 +92,8 @@ type
     cbPortaoFechado: TDBCheckBox;
     BtnTempoGols: TBitBtn;
     btnVisualizarSumula: TBitBtn;
+    Label1: TLabel;
+    edtTemporada: TDBEdit;
     procedure BtnEstadioClick(Sender: TObject);
     procedure BtnCompeticaoClick(Sender: TObject);
     procedure DtDataChange(Sender: TObject);
@@ -145,6 +147,7 @@ type
     procedure BtnTempoGolsClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
     procedure btnVisualizarSumulaClick(Sender: TObject);
+    procedure edtTemporadaEnter(Sender: TObject);
   private
     { Private declarations }
   public
@@ -416,6 +419,7 @@ end;
 procedure TCA_JOGOS.DtDataChange(Sender: TObject);
 begin
   EdtData.Text := DateToStr(DtData.Date);
+  edtTemporada.Text := copy(EdtData.Text, 7, 4);
 end;
 
 procedure TCA_JOGOS.EdtDataEnter(Sender: TObject);
@@ -440,6 +444,7 @@ begin
   begin
     if FrmDm.DtsJogos.DataSet.State in [dsInsert] then
     begin
+      edtTemporada.Text := copy(EdtData.Text, 7, 4);
       ano := StrToInt(copy(EdtData.Text, 7, 4));
       anoatual := StrToInt(FormatDateTime('yyyy', Date));
       if ano < anoatual then
@@ -809,8 +814,7 @@ begin
                         FrmDm.QrGeral.Params.ParamByName('GP').AsInteger := gp;
                         FrmDm.QrGeral.Params.ParamByName('GC').AsInteger := gc;
                         FrmDm.QrGeral.Params.ParamByName('SG').AsInteger := sg;
-                        FrmDm.QrGeral.Params.ParamByName('ANO')
-                          .AsInteger := ano;
+                        FrmDm.QrGeral.Params.ParamByName('ANO').AsInteger := StrToInt(edtTemporada.Text);
                         FrmDm.QrGeral.ExecSQL;
                       end
                       else
@@ -838,8 +842,7 @@ begin
                             .AsInteger := gc;
                           FrmDm.QrGeral.Params.ParamByName('SG')
                             .AsInteger := sg;
-                          FrmDm.QrGeral.Params.ParamByName('ANO')
-                            .AsInteger := ano;
+                          FrmDm.QrGeral.Params.ParamByName('ANO').AsInteger := StrToInt(edtTemporada.Text);
                           FrmDm.QrGeral.ExecSQL;
                         end;
                       end;
@@ -851,7 +854,7 @@ begin
                       FrmDm.QrGeral.sql.Add(sql);
                       FrmDm.QrGeral.Params.ParamByName('CODJOGO').AsInteger :=
                         codigojogo;
-                      FrmDm.QrGeral.Params.ParamByName('ANO').AsInteger := ano;
+                      FrmDm.QrGeral.Params.ParamByName('ANO').AsInteger := StrToInt(edtTemporada.Text);
                       FrmDm.QrGeral.ExecSQL;
 
                       sql := 'update ES_RESER ' + 'set ano = :ANO ' +
@@ -861,7 +864,7 @@ begin
                       FrmDm.QrGeral.sql.Add(sql);
                       FrmDm.QrGeral.Params.ParamByName('CODJOGO').AsInteger :=
                         codigojogo;
-                      FrmDm.QrGeral.Params.ParamByName('ANO').AsInteger := ano;
+                      FrmDm.QrGeral.Params.ParamByName('ANO').AsInteger := StrToInt(edtTemporada.Text);
                       FrmDm.QrGeral.ExecSQL;
 
                       if Acessou then
@@ -955,6 +958,11 @@ begin
     BtnExcluirReservas.Enabled := true;
 end;
 
+procedure TCA_JOGOS.edtTemporadaEnter(Sender: TObject);
+begin
+   edtTemporada.Text := copy(EdtData.Text, 7, 4);
+end;
+
 procedure TCA_JOGOS.estadoDosBotoesdeCadastro();
 begin
   fraBotoes.estadoDosBotoesdeCadastro(FrmDm.DtsJogos.DataSet.State);
@@ -984,6 +992,7 @@ begin
     EdtData.Enabled := false;
     DtData.Enabled := false;
     EdtHora.Enabled := false;
+    edtTemporada.Enabled := False;
     CbxTatica.Enabled := false;
     EdtPublico.Enabled := false;
     cbPortaoFechado.Enabled := false;
@@ -1037,6 +1046,7 @@ begin
     EdtData.Enabled := true;
     DtData.Enabled := true;
     EdtHora.Enabled := true;
+    edtTemporada.Enabled := True;
     EdtPublico.Enabled := true;
     cbPortaoFechado.Enabled := true;
     CbxTatica.Enabled := true;

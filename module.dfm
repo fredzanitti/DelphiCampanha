@@ -459,6 +459,11 @@ object FrmDm: TFrmDm
       Origin = 'portaofechado'
       Size = 1
     end
+    object TblJogostemporada: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'temporada'
+      Origin = 'temporada'
+    end
   end
   object TblPais: TFDTable
     Active = True

@@ -51,7 +51,7 @@ object fraSelecionarAno: TfraSelecionarAno
     Active = True
     Connection = FrmDm.BDMySQL
     SQL.Strings = (
-      'select distinct year(ca_jogos.data) as ano'
+      'select distinct ca_jogos.temporada as ano'
       'from ca_jogos'
       'order by ano desc')
     Left = 74

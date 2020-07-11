@@ -210,6 +210,7 @@ type
     tblEscudosano_fim: TIntegerField;
     tblEscudosescudo: TWideStringField;
     dtsEscudos: TDataSource;
+    TblJogostemporada: TIntegerField;
   private
     { Private declarations }
   public

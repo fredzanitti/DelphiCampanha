@@ -978,7 +978,7 @@ object frmGolsdaPartida: TfrmGolsdaPartida
       'SELECT'
       #9'  es_gols.codjogador,'
       
-        '    CASE WHEN es_gols.codjogador = 0 THEN '#39'CONTRA'#39' ELSE ca_jogad' +
+        '    CASE WHEN es_gols.codjogador = 0 THEN '#39'Contra'#39' ELSE ca_jogad' +
         '.nome END AS nome,'
       '    es_gols.tempo,'
       '    es_gols.periodo,'

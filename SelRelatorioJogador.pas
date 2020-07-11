@@ -90,7 +90,7 @@ begin
             '      AND ((:TODASPOSICOES <> 0) OR (ca_posic.codposicao = :CODPOSICAO)) ' +
             '      AND ((:TODOS <> 0) OR (ca_jogad.situacao = :TODOSATUAIS)) ' +
             '      AND ((:TODOSPAISES <> 0) OR (ca_pais.codpais = :CODIGOPAIS)) ' +
-            '      AND ((:TODOSANOS <> 0) OR (YEAR(ca_jogos.data) = :ANO)) ' +
+            '      AND ((:TODOSANOS <> 0) OR (ca_jogos.temporada = :ANO)) ' +
             'UNION ' +
             'SELECT distinct ca_jogad.codjogador as Codigo, ca_jogad.nome as Apelido, ' +
             '      ca_jogad.nomecompleto as NomeCompleto, ca_jogad.dtnasc as DataNascimento, ' +
@@ -108,7 +108,7 @@ begin
             '      AND ((:TODASPOSICOES <> 0) OR (ca_posic.codposicao = :CODPOSICAO)) ' +
             '      AND ((:TODOS <> 0) OR (ca_jogad.situacao = :TODOSATUAIS)) ' +
             '      AND ((:TODOSPAISES <> 0) OR (ca_pais.codpais = :CODIGOPAIS)) ' +
-            '      AND ((:TODOSANOS <> 0) OR (YEAR(ca_jogos.data) = :ANO)) ' +
+            '      AND ((:TODOSANOS <> 0) OR (ca_jogos.temporada = :ANO)) ' +
             ') AS J ' +
             'ORDER BY J.Apelido';
 
@@ -243,7 +243,7 @@ begin
             '      AND ((:TODASPOSICOES <> 0) OR (ca_posic.codposicao = :CODPOSICAO)) ' +
             '      AND ((:TODOS <> 0) OR (ca_jogad.situacao = :TODOSATUAIS)) ' +
             '      AND ((:TODOSPAISES <> 0) OR (ca_pais.codpais = :CODIGOPAIS)) ' +
-            '      AND ((:TODOSANOS <> 0) OR (YEAR(ca_jogos.data) = :ANO)) ' +
+            '      AND ((:TODOSANOS <> 0) OR (ca_jogos.temporada = :ANO)) ' +
             'UNION ' +
             'SELECT distinct ca_jogad.codjogador as Codigo, ca_jogad.nome as Apelido, ' +
             '      ca_jogad.nomecompleto as NomeCompleto, ca_jogad.dtnasc as DataNascimento, ' +
@@ -261,7 +261,7 @@ begin
             '      AND ((:TODASPOSICOES <> 0) OR (ca_posic.codposicao = :CODPOSICAO)) ' +
             '      AND ((:TODOS <> 0) OR (ca_jogad.situacao = :TODOSATUAIS)) ' +
             '      AND ((:TODOSPAISES <> 0) OR (ca_pais.codpais = :CODIGOPAIS)) ' +
-            '      AND ((:TODOSANOS <> 0) OR (YEAR(ca_jogos.data) = :ANO)) ' +
+            '      AND ((:TODOSANOS <> 0) OR (ca_jogos.temporada = :ANO)) ' +
             ') AS J ' +
             'ORDER BY J.Apelido';
 

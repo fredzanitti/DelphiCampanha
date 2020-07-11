@@ -202,6 +202,18 @@ end;
 
 procedure TfrmGolsdaPartida.EdtTempoExit(Sender: TObject);
 begin
+    if not (EdtTempo.Text = EmptyStr) then
+    begin
+        if StrToInt(EdtTempo.Text) > 60 then
+        begin
+            if not f_gerais.desejaRealizarAcao('manter o valor digitado? Possivelmente o tempo digitado está incorreto, pois considerando os acréscimos um tempo, provavelmente, não terá mais que 60 minutos') then
+            begin
+                EdtTempo.SetFocus;
+                Abort;
+            end;
+        end;
+    end;
+
     if qryUltimoTempo.Active then
        qryUltimoTempo.Close;
     qryUltimoTempo.Params.ParamByName('CodigoJogo').DataType := ftInteger;

@@ -1531,7 +1531,7 @@ begin
   f_gerais.relacaotitulos('I', r_titulos.LblTitInter);
 
   sql := 'select max(j.data) ' + 'from es_titulos t, ca_jogos j ' +
-    'where t.ano = extract(year from j.data) ' +
+    'where t.ano = j.temporada ' +
     'and t.codcompeticao = j.codcompeticao ' +
     'and t.ano = (select max(ano) from es_titulos)';
 

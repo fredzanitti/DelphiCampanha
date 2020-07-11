@@ -812,7 +812,7 @@ function Tf_gerais.ExtrairAnoDataDoJogo(CodigoJogo: string): string;
 var
   qryExtraiAno: TFDQuery;
 begin
-  sql := 'SELECT YEAR(ca_jogos.Data) FROM ca_jogos WHERE ca_jogos.codjogo = ' +
+  sql := 'SELECT ca_jogos.temporada FROM ca_jogos WHERE ca_jogos.codjogo = ' +
     CodigoJogo;
 
   qryExtraiAno := TFDQuery.Create(nil);
@@ -1426,8 +1426,8 @@ end;
 procedure Tf_gerais.ultimoJogo(codigo, Data, placarmand, placarvisit: TLabel;
   mand, visit: TImage);
 begin
-  sql := 'select j.codjogo, j.data, j.hora, am.escudo, j.placar1, ' +
-    'av.escudo, j.placar2, e.nome estadio, co.nome competicao, ci.nome cidade, p.sigla siglap '
+  sql := 'select j.codjogo, j.data, j.hora, am.codadver, j.placar1, ' +
+    'av.codadver, j.placar2, e.nome estadio, co.nome competicao, ci.nome cidade, p.sigla siglap '
     + 'from CA_JOGOS j, CA_ADVER am, CA_ADVER av, CA_ESTAD e, CA_COMPE co, CA_CIDAD ci, CA_PAIS p '
     + 'where j.codadvermand = am.codadver ' +
     'and j.codadvervisit = av.codadver ' + 'and j.codestadio = e.codestadio ' +
@@ -1447,9 +1447,8 @@ begin
     QrUltimo.Fields[10].AsString + #13 + QrUltimo.Fields[8].AsString;
   placarmand.Caption := QrUltimo.Fields[4].AsString;
   placarvisit.Caption := QrUltimo.Fields[6].AsString;
-  buscaImagem(mand, QrUltimo.Fields[3].AsString);
-  buscaImagem(visit, QrUltimo.Fields[5].AsString);
-
+  buscaImagemPorCodigo(mand, QrUltimo.Fields[3].AsString, f_gerais.ExtrairAnoDataDoJogo(QrUltimo.Fields[0].AsString));
+  buscaImagemPorCodigo(visit, QrUltimo.Fields[5].AsString, f_gerais.ExtrairAnoDataDoJogo(QrUltimo.Fields[0].AsString));
 end;
 
 procedure Tf_gerais.captionForm(formulario: TForm);
@@ -2816,7 +2815,7 @@ begin
   // então irá mostrar somente os anos em que o clube disputou o
   // campeonato selecionado.
   begin
-    sql := 'select distinct extract(year from data) from ca_jogos ' +
+    sql := 'select distinct temporada from ca_jogos ' +
       'where codcompeticao = ' + codcompeticao + ' order by 1 desc';
   end
   else
@@ -2824,11 +2823,11 @@ begin
     if anocompeticao = 'MnJogadores1' then
     // aqui irá selecionar apenas os anos em que o jogador atuou pelo clube.
     begin
-      sql := 'select distinct extract(year from ca_jogos.data)' +
+      sql := 'select distinct ca_jogos.temporada' +
         ' from ca_jogos, es_titul' +
         ' where ca_jogos.codjogo = es_titul.codjogo' +
         ' and es_titul.codjogador = ' + codigosaux + ' union' +
-        ' select distinct extract(year from ca_jogos.data)' +
+        ' select distinct ca_jogos.temporada' +
         ' from ca_jogos, es_reser' +
         ' where ca_jogos.codjogo = es_reser.codjogo' +
         ' and es_reser.codjogador = ' + codigosaux + ' order by 1 desc';
@@ -2839,7 +2838,7 @@ begin
       // aqui vai selecionar apenas os anos que o seu time enfrentou o
       // adversário selecionado
       begin
-        sql := 'select distinct extract(year from ca_jogos.data)' +
+        sql := 'select distinct ca_jogos.temporada' +
           ' from ca_jogos' + ' where (ca_jogos.codadvermand = ' + codigosaux +
           ' or ca_jogos.codadvervisit = ' + codigosaux + ')';
       end
@@ -3070,11 +3069,11 @@ begin
     sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
       + 'from ca_jogos ' +
       'where codadvermand in (select codadver from ca_adver where rival = 1) ' +
-      'and extract(year from data) = ' + r_jogospadrao.codauxiliar1 + ' union '
+      'and temporada = ' + r_jogospadrao.codauxiliar1 + ' union '
       + 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
       + 'from ca_jogos ' +
       'where codadvervisit in (select codadver from ca_adver where rival = 1) '
-      + 'and extract(year from data) = ' + r_jogospadrao.codauxiliar1 +
+      + 'and temporada = ' + r_jogospadrao.codauxiliar1 +
       ' order by data desc ' + 'limit :LIMITE offset :CORTE';
   end;
 
@@ -3104,11 +3103,11 @@ begin
   begin
     sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
       + 'from ca_jogos ' + 'where codadvermand = ' + r_jogospadrao.codauxiliar1
-      + ' and extract(year from data) = ' + r_jogospadrao.codauxiliar2 +
+      + ' and temporada = ' + r_jogospadrao.codauxiliar2 +
       ' union ' +
       'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
       + 'from ca_jogos ' + 'where codadvervisit = ' + r_jogospadrao.codauxiliar1
-      + ' and extract(year from data) = ' + r_jogospadrao.codauxiliar2 +
+      + ' and temporada = ' + r_jogospadrao.codauxiliar2 +
       ' order by data desc ' + 'limit :LIMITE offset :CORTE';
   end;
 
@@ -3174,12 +3173,12 @@ begin
       sql := 'select j.codjogo, j.data, j.codadvermand, j.placar1, j.placar2, j.codadvervisit, j.codestadio, j.codcompeticao, j.publico '
         + 'from ca_jogos j, es_titul e ' + 'where j.codjogo = e.codjogo ' +
         'and e.codjogador = ' + r_jogospadrao.codauxiliar1 +
-        ' and extract(year from j.data) = ' + r_jogospadrao.codauxiliar2 +
+        ' and j.temporada = ' + r_jogospadrao.codauxiliar2 +
         ' union ' +
         'select j.codjogo, j.data, j.codadvermand, j.placar1, j.placar2, j.codadvervisit, j.codestadio, j.codcompeticao, j.publico '
         + 'from ca_jogos j, es_reser e ' + 'where j.codjogo = e.codjogo ' +
         'and e.codjogador = ' + r_jogospadrao.codauxiliar1 +
-        ' and extract(year from j.data) = ' + r_jogospadrao.codauxiliar2 +
+        ' and j.temporada = ' + r_jogospadrao.codauxiliar2 +
         ' order by data desc ' + 'limit :LIMITE offset :CORTE';
     end;
   end;
@@ -3214,7 +3213,7 @@ begin
   // Relatório 15 - Jogos por ano
   begin
     sql := 'select j.codjogo, j.data, j.codadvermand, j.placar1, j.placar2, j.codadvervisit, j.codestadio, j.codcompeticao, j.publico '
-      + 'from ca_jogos j ' + 'where extract(year from j.data) = ' +
+      + 'from ca_jogos j ' + 'where j.temporada = ' +
       r_jogospadrao.codauxiliar1 + ' order by data desc ' +
       'limit :LIMITE offset :CORTE';
   end;
@@ -3241,7 +3240,7 @@ begin
   begin
     sql := 'select j.codjogo, j.data, j.codadvermand, j.placar1, j.placar2, j.codadvervisit, j.codestadio, j.codcompeticao, j.publico '
       + 'from ca_jogos j ' + 'where codcompeticao = ' +
-      r_jogospadrao.codauxiliar1 + ' and extract(year from j.data) = ' +
+      r_jogospadrao.codauxiliar1 + ' and j.temporada = ' +
       r_jogospadrao.codauxiliar2 + ' order by data desc ' +
       'limit :LIMITE offset :CORTE';
   end;
@@ -3371,7 +3370,7 @@ begin
     else
     begin
       sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
-        + 'from ca_jogos ' + 'where extract(year from data) = ' +
+        + 'from ca_jogos ' + 'where temporada = ' +
         r_jogospadrao.codauxiliar1 + ' and data between :DATAINI and :DATAFIM '
         + 'order by data desc ' + 'limit :LIMITE offset :CORTE';
     end;
@@ -3489,7 +3488,7 @@ begin
   begin
     sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, '
       + 'codcompeticao, publico from ca_jogos where publico > 0 ' +
-      'and year(ca_jogos.data) = ' + r_jogospadrao.codauxiliar1 +
+      'and ca_jogos.temporada = ' + r_jogospadrao.codauxiliar1 +
       ' order by publico desc ' + 'limit :LIMITE offset :CORTE';
   end;
 
@@ -3498,7 +3497,7 @@ begin
   begin
     sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, '
       + 'codcompeticao, publico from ca_jogos where publico > 0 ' +
-      'and year(ca_jogos.data) = ' + r_jogospadrao.codauxiliar1 +
+      'and ca_jogos.temporada = ' + r_jogospadrao.codauxiliar1 +
       ' order by publico ' + 'limit :LIMITE offset :CORTE';
   end;
 
@@ -3763,21 +3762,13 @@ begin
       qryGolsJogo.Next;
     end;
     r_sumula.lblGolsPartida.Caption := gols;
+    r_sumula.imgGols.Visible := True;
+    r_sumula.lblGolsPartida.Visible := True;
   end
   else
   begin
-    sql := 'select a.nome time, c.nome cidade, p.sigla pais ' +
-      'from CA_CIDAD c, CA_PAIS p, CA_UF u, CA_ADVER a ' +
-      'where c.codpais = p.codpais ' + 'and c.coduf = u.coduf ' +
-      'and c.codcidade = a.codcidade ' + 'and a.codadver = 0 ';
-
-    QrFunctions.Close;
-    QrFunctions.sql.Clear;
-    QrFunctions.sql.Add(sql);
-    QrFunctions.Open;
-    r_sumula.lblGolsPartida.Caption := 'Nenhum gol do ' +
-      UpperCase(QrFunctions.Fields[0].AsString) +
-      ' registrado para esta partida!';
+    r_sumula.imgGols.Visible := False;
+    r_sumula.lblGolsPartida.Visible := False;
   end;
 
   // placar do jogo (e penaltis)
@@ -4554,11 +4545,11 @@ begin
     sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
       + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar2 as GOLSPRO '
       + 'from ca_jogos ' + 'where codadvervisit = 0 ' +
-      'and placar2 >= placar1 ' + 'and extract(year from data) = ' + ano +
+      'and placar2 >= placar1 ' + 'and temporada = ' + ano +
       ' union ' +
       'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar1 as GOLSPRO '
       + 'from ca_jogos ' + 'where codadvermand = 0 ' + 'and placar2 <= placar1 '
-      + 'and extract(year from data) = ' + ano + ' ) as a ' +
+      + 'and temporada = ' + ano + ' ) as a ' +
       'order by 9 desc, 10 desc, 2 desc ' + 'limit 3 offset 0';
   end;
 
@@ -4609,11 +4600,11 @@ begin
     sql := 'select a.codjogo, a.data, a.codadvermand, a.placar1, a.placar2, a.codadvervisit, a.codestadio, a.codcompeticao, a.SALDO, a.GOLSPRO from ( '
       + 'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar1-placar2 as SALDO, placar2 as GOLSPRO '
       + 'from ca_jogos ' + 'where codadvervisit = 0 ' +
-      'and placar2 <= placar1 ' + 'and extract(year from data) = ' + ano +
+      'and placar2 <= placar1 ' + 'and temporada = ' + ano +
       ' union ' +
       'select Codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, placar2-placar1 as SALDO, placar1 as GOLSPRO '
       + 'from ca_jogos ' + 'where codadvermand = 0 ' + 'and placar2 >= placar1 '
-      + 'and extract(year from data) = ' + ano + ' ) as a ' +
+      + 'and temporada = ' + ano + ' ) as a ' +
       'order by 9 desc, 10 desc, 2 desc ' + 'limit 3 offset 0';
   end;
 
@@ -4875,10 +4866,10 @@ begin
     begin
       sql := 'select data, codadvermand m, placar1 pm, placar2 pv, codadvervisit v '
         + 'from ca_jogos ' + 'where codadvermand = 0 ' +
-        'and extract(year from data) = ' + Param + ' union ' +
+        'and temporada = ' + Param + ' union ' +
         'select data, codadvervisit m, placar2 pm, placar1 pv, codadvermand v '
         + 'from ca_jogos ' + 'where codadvervisit = 0 ' +
-        'and extract(year from data) = ' + Param + ' order by data';
+        'and temporada = ' + Param + ' order by data';
     end;
   end;
 
@@ -5116,7 +5107,7 @@ begin
       else
       begin
         sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
-          + 'from ca_jogos ' + 'where extract(year from data) = ' +
+          + 'from ca_jogos ' + 'where temporada = ' +
           r_jogospadrao.codauxiliar1 +
           ' and data between :DATAINI and :DATAFIM ' + 'order by data desc ' +
           'limit :LIMITE offset :CORTE';
@@ -5504,7 +5495,7 @@ begin
 
   // descrição do ultimo título
   sql := 'select c.nome, e.ano ' + 'from es_titulos e, ca_jogos j, ca_compe c '
-    + 'where e.ano = extract(year from j.data) ' +
+    + 'where e.ano = j.temporada ' +
     'and e.codcompeticao = j.codcompeticao ' +
     'and e.codcompeticao = c.codcompeticao ' + 'order by j.data desc ' +
     'limit 1 offset 0';

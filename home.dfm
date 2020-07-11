@@ -15034,7 +15034,7 @@ object FrmPrincipal: TFrmPrincipal
           OnClick = MnFreq2Click
         end
         object MnFreq3: TMenuItem
-          Caption = 'Por ano'
+          Caption = 'Por temporada'
           ImageIndex = 6
           OnClick = MnFreq3Click
         end
@@ -15099,11 +15099,6 @@ object FrmPrincipal: TFrmPrincipal
             ImageIndex = 6
             OnClick = MnAdversario2Click
           end
-          object MnAdversarios3: TMenuItem
-            Caption = 'Advers'#225'rios por ano'
-            ImageIndex = 6
-            OnClick = MnAdversarios3Click
-          end
           object MnAdversario4: TMenuItem
             Caption = 'Advers'#225'rios por per'#237'odo'
             ImageIndex = 6
@@ -15114,16 +15109,16 @@ object FrmPrincipal: TFrmPrincipal
             ImageIndex = 6
             OnClick = MnAdversario5Click
           end
+          object MnAdversarios3: TMenuItem
+            Caption = 'Advers'#225'rios por temporada'
+            ImageIndex = 6
+            OnClick = MnAdversarios3Click
+          end
           object MnAdversario6: TMenuItem
             Caption = 'Ultimos 10 jogos'
             ImageIndex = 6
             OnClick = MnAdversario6Click
           end
-        end
-        object MnJogosAno: TMenuItem
-          Caption = 'Por ano'
-          ImageIndex = 6
-          OnClick = MnJogosAnoClick
         end
         object MnJogosArbitro: TMenuItem
           Caption = 'Por '#225'rbitro'
@@ -15144,7 +15139,7 @@ object FrmPrincipal: TFrmPrincipal
             OnClick = MnJogosCampeonato1Click
           end
           object MnJogosCampeonato2: TMenuItem
-            Caption = 'Por ano'
+            Caption = 'Por temporada'
             ImageIndex = 6
             OnClick = MnJogosCampeonato2Click
           end
@@ -15193,6 +15188,11 @@ object FrmPrincipal: TFrmPrincipal
           Caption = 'Por placar'
           ImageIndex = 6
           OnClick = MnPlacarClick
+        end
+        object MnJogosAno: TMenuItem
+          Caption = 'Por temporada'
+          ImageIndex = 6
+          OnClick = MnJogosAnoClick
         end
       end
       object MnRelJogadores: TMenuItem
@@ -15287,7 +15287,7 @@ object FrmPrincipal: TFrmPrincipal
             OnClick = Os10Mais1Click
           end
           object Os10Mais2: TMenuItem
-            Caption = 'Maiores artilheiros por ano'
+            Caption = 'Maiores artilheiros por temporada'
             ImageIndex = 6
             OnClick = Os10Mais2Click
           end
@@ -15332,12 +15332,12 @@ object FrmPrincipal: TFrmPrincipal
           OnClick = MnPublicoMenorClick
         end
         object MnPublicoMaiorAno: TMenuItem
-          Caption = 'Maiores p'#250'blicos por ano'
+          Caption = 'Maiores p'#250'blicos por temporada'
           ImageIndex = 6
           OnClick = MnPublicoMaiorAnoClick
         end
         object MnPublicoMenorAno: TMenuItem
-          Caption = 'Menores p'#250'blicos por ano'
+          Caption = 'Menores p'#250'blicos por temporada'
           ImageIndex = 6
           OnClick = MnPublicoMenorAnoClick
         end
@@ -15475,7 +15475,7 @@ object FrmPrincipal: TFrmPrincipal
     Left = 224
     Top = 24
     Bitmap = {
-      494C010114003800E00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010114003800E40010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000006000000001002000000000000060
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -16280,7 +16280,7 @@ object FrmPrincipal: TFrmPrincipal
     Left = 272
     Top = 24
     Bitmap = {
-      494C010107000C003C0020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107000C00400020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000004000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
