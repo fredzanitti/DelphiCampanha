@@ -519,6 +519,79 @@ begin
   end;
 
   // ==========================================================================
+  // Pesquisa quando acionada pelo Jogos / Adversario em final
+  // ==========================================================================
+  if identificacao = 'AdverEmFinal' then
+  begin
+    // guardar o número do forumlário na label
+    r_jogospadrao.numerorelatorio := '41';
+
+    // contar a quantidade de registros retornados na pesquisa
+    sql := 'select sum(es_resum.j), sum(es_resum.v), sum(es_resum.e), sum(es_resum.d), sum(es_resum.gp), sum(es_resum.gc), sum(es_resum.sg) ' +
+      'from es_resum inner join ca_jogos on ca_jogos.codjogo = es_resum.codjogo ' +
+      'where es_resum.codadver = ' + codtime + ' and ca_jogos.codfase = 15 ';
+
+    FrmDm.QrContador.Close;
+    FrmDm.QrContador.sql.Clear;
+    FrmDm.QrContador.sql.Add(sql);
+    FrmDm.QrContador.Open;
+    FrmDm.QrContador.First;
+
+    if FrmDm.QrContador.Fields[0].AsInteger = 0 then
+    begin
+      msg := 'Não há finais dispoutadas cadastrados contra o adversário selecionado';
+      Application.MessageBox(Pchar(msg), 'ATENÇÃO', MB_OK + MB_ICONINFORMATION);
+    end
+    else
+    begin
+
+      // as páginas são mostradas de 10 em 10, por isso pegar o total de registros
+      // e dividir por 10 truncando o resultado, assim teremos a quantidade de
+      // páginas a ser exibida.
+      if (FrmDm.QrContador.Fields[0].AsInteger mod 10) = 0 then
+        cont := Trunc(FrmDm.QrContador.Fields[0].AsInteger / 10)
+      else
+        cont := Trunc(FrmDm.QrContador.Fields[0].AsInteger / 10) + 1;
+
+      r_jogospadrao.LblTotalReg.Caption := IntToStr(cont);
+      f_gerais.determinaVEDRelatorios(FrmDm.QrContador);
+
+      // limpar o combobox das páginas e acrescentar os números de páginas atuais
+      r_jogospadrao.CbxPagina.Clear;
+      for i := 1 to cont do
+      begin
+        r_jogospadrao.CbxPagina.Items.Add(IntToStr(i));
+      end;
+      r_jogospadrao.CbxPagina.ItemIndex := 0;
+
+      // agora faremos a pesquisa com retorno dos resultados para serem
+      // arpesentados na tela padrão
+      sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
+        + 'from ca_jogos ' + 'where codadvermand = ' + codtime + ' and codfase = 15 union ' +
+        'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
+        + 'from ca_jogos ' + 'where codadvervisit = ' + codtime +
+        ' and codfase = 15 order by data desc ' + 'limit :LIMITE offset :CORTE';
+
+      // função para preencher a tela padrão com os resultados da sql acima
+      f_gerais.preenchimentoTelaPadraoJogos(sql, 0, 10);
+
+      r_jogospadrao.codauxiliar1 := codtime;
+      // títulos e descrição do relatório
+      r_jogospadrao.LblDescricao1.Caption := 'SELEÇÃO DE FINAIS DISPUTADAS';
+      r_jogospadrao.LblDescricao2.Caption := 'Adversário: ' +
+        AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_adver', 'codadver',
+        codtime));
+      // buscar escudo do seu time
+      f_gerais.buscaImagemPorCodigo(r_jogospadrao.ImgEscudoSeutime, codtime, '0');
+      // definir título do formulário
+      r_jogospadrao.Caption := 'Seleção de finais disputadas contra: ' +
+        f_gerais.buscarNome('nome', 'ca_adver', 'codadver', codtime);
+      // mostara a consulta finalizada
+      r_jogospadrao.ShowModal;
+    end;
+  end;
+
+  // ==========================================================================
   // Frequênica de Placar por adversários
   // ==========================================================================
 
@@ -772,7 +845,8 @@ begin
   end;
   h_freqplacar.LblTitulo.Caption := 'FREQUÊNCIA DE PLACARES - ' +
     AnsiUpperCase(f_gerais.buscarNome('nome', 'ca_adver', 'codadver', codtime));
-  if not ((identificacao = 'MnAdversario1') or
+  if not ((identificacao = 'AdverEmFinal') or
+     (identificacao = 'MnAdversario1') or
      (identificacao = 'MnAdversario2') or
      (identificacao = 'MnAdversario3') or
      (identificacao = 'MnAdversario4') or

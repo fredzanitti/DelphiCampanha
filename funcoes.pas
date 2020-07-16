@@ -2998,6 +2998,7 @@ begin
     38 - Jogos por patrocinador
     39 - Maiores públicos por ano
     40 - Menores públicos por ano
+    41 - Jogos por adversários em finais
   }
 
   if nroRelatorio = '1' then
@@ -3499,6 +3500,17 @@ begin
       + 'codcompeticao, publico from ca_jogos where publico > 0 ' +
       'and ca_jogos.temporada = ' + r_jogospadrao.codauxiliar1 +
       ' order by publico ' + 'limit :LIMITE offset :CORTE';
+  end;
+
+  if nroRelatorio = '41' then
+  // Relatório 41 - Jogos por adversários em finais
+  begin
+    sql := 'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
+      + 'from ca_jogos ' + 'where codadvermand = ' + r_jogospadrao.codauxiliar1 + ' and codfase = 15 '
+      + ' union ' +
+      'select codjogo, data, codadvermand, placar1, placar2, codadvervisit, codestadio, codcompeticao, publico '
+      + 'from ca_jogos ' + 'where codadvervisit = ' + r_jogospadrao.codauxiliar1 + ' and codfase = 15 '
+      + ' order by data desc ' + 'limit :LIMITE offset :CORTE';
   end;
 
   Result := sql;

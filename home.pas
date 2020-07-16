@@ -181,6 +181,7 @@ type
     MnCadastroDeClubes: TMenuItem;
     actCadastroEscudosHistoricos: TAction;
     MnCadastrodeEscudosHistricos: TMenuItem;
+    MnAdversarios8: TMenuItem;
     procedure FormActivate(Sender: TObject);
     procedure MnClubesClick(Sender: TObject);
     procedure BtnCadJogosMouseEnter(Sender: TObject);
@@ -301,6 +302,7 @@ type
     procedure actRestoreExecute(Sender: TObject);
     procedure actEstatisticasGeraisTimesExecute(Sender: TObject);
     procedure actCadastroEscudosHistoricosExecute(Sender: TObject);
+    procedure MnAdversarios8Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -583,6 +585,14 @@ begin
   FrmRestore.MemScript.Clear;
   FrmRestore.MemScript.Visible := false;
   FrmRestore.ShowModal;
+end;
+
+procedure TFrmPrincipal.MnAdversarios8Click(Sender: TObject);
+begin
+  // preencher grid da pesquisa de clubes
+  f_gerais.pesquisaclubes(h_clubes.DbGridClubes, 'TODOS');
+  h_clubes.identificacao := 'AdverEmFinal';
+  h_clubes.ShowModal;
 end;
 
 procedure TFrmPrincipal.BitBtn1Click(Sender: TObject);
