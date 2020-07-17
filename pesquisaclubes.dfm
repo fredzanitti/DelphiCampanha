@@ -30,6 +30,7 @@ object h_clubes: Th_clubes
     Top = 8
     Width = 73
     Height = 73
+    Stretch = True
   end
   object EdtPesquisa: TEdit
     Left = 8

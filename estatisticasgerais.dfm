@@ -114,7 +114,6 @@ object r_estgerais: Tr_estgerais
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a lista dos jogos'
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = 'LblSequencia1'
     Font.Charset = DEFAULT_CHARSET
@@ -175,7 +174,6 @@ object r_estgerais: Tr_estgerais
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = 'LblSequencia1'
     Font.Charset = DEFAULT_CHARSET
@@ -236,7 +234,6 @@ object r_estgerais: Tr_estgerais
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = 'LblSequencia1'
     Font.Charset = DEFAULT_CHARSET
@@ -297,7 +294,6 @@ object r_estgerais: Tr_estgerais
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = 'LblSequencia1'
     Font.Charset = DEFAULT_CHARSET
@@ -407,7 +403,6 @@ object r_estgerais: Tr_estgerais
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = 'LblSequencia1'
     Font.Charset = DEFAULT_CHARSET
@@ -441,7 +436,6 @@ object r_estgerais: Tr_estgerais
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = 'LblSequencia1'
     Font.Charset = DEFAULT_CHARSET
@@ -475,7 +469,6 @@ object r_estgerais: Tr_estgerais
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = 'O Fluminense ainda n'#227'o perdeu ou empatou com este advers'#225'rio'
     Font.Charset = DEFAULT_CHARSET
@@ -509,7 +502,6 @@ object r_estgerais: Tr_estgerais
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = 'O Fluminense ainda n'#227'o perdeu ou empatou com este advers'#225'rio'
     Font.Charset = DEFAULT_CHARSET
@@ -599,7 +591,6 @@ object r_estgerais: Tr_estgerais
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = 'LblUltimoJogo1'
     Font.Charset = DEFAULT_CHARSET

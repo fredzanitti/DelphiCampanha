@@ -2292,6 +2292,7 @@ object CA_JOGOS: TCA_JOGOS
       DragCursor = crHandPoint
       ParentShowHint = False
       ShowHint = True
+      Stretch = True
     end
     object Label20: TLabel
       Left = 57
