@@ -91,12 +91,12 @@ type
     MnJogadores8: TMenuItem;
     MnCidades: TMenuItem;
     MnDezMais: TMenuItem;
-    Os10Mais1: TMenuItem;
-    Os10Mais2: TMenuItem;
-    Os10Mais3: TMenuItem;
-    Os10Mais4: TMenuItem;
-    Os10Mais5: TMenuItem;
-    Os10Mais6: TMenuItem;
+    mitMaioresartilheiros: TMenuItem;
+    mitArtilheirosportemporada: TMenuItem;
+    mitJogadoresMaisAtuaram: TMenuItem;
+    mitTecnicosMaisTreinaram: TMenuItem;
+    mitJogadoresamaisdisciplinados: TMenuItem;
+    mitEstrangeirosMaisAtuaram: TMenuItem;
     MnEstGerais: TMenuItem;
     MnCampanha: TMenuItem;
     N1: TMenuItem;
@@ -128,7 +128,7 @@ type
     BtnBackup: TBitBtn;
     LblUltimoBackup: TLabel;
     BasedeDados1: TMenuItem;
-    Os10Mais7: TMenuItem;
+    mitEstrangeirosMaisMarcaram: TMenuItem;
     MnPatroc: TMenuItem;
     Fornecedores1: TMenuItem;
     MnUniformes: TMenuItem;
@@ -137,8 +137,8 @@ type
     PorCamisa1: TMenuItem;
     MnPublicoMenor: TMenuItem;
     Mn10UltimosJogos: TMenuItem;
-    Goleirosquemaisatuaram1: TMenuItem;
-    Maioresartilheiroscontrarivais1: TMenuItem;
+    mitGoleirosquemaisatuaram: TMenuItem;
+    mitMaioresartilheiroscontrarivais: TMenuItem;
     Maioresgoleadasaplicadasemrivais1: TMenuItem;
     Maioresgoleadassofridasporrivais1: TMenuItem;
     MnJogadores9: TMenuItem;
@@ -150,10 +150,10 @@ type
     MnJogosPatroc: TMenuItem;
     BtnUniformes: TBitBtn;
     MnCodJogo: TMenuItem;
-    MnHattricks: TMenuItem;
+    mitJogadoresMaisHattricks: TMenuItem;
     MnJogadores11: TMenuItem;
-    MnJogosComTecnico: TMenuItem;
-    Maioreszagueirosartilheiros1: TMenuItem;
+    mitJogosComTecnico: TMenuItem;
+    mitMaioreszagueirosartilheiros: TMenuItem;
     Pblicos1: TMenuItem;
     MnPublicoMaiorAno: TMenuItem;
     MnPublicoMenorAno: TMenuItem;
@@ -182,6 +182,7 @@ type
     actCadastroEscudosHistoricos: TAction;
     MnCadastrodeEscudosHistricos: TMenuItem;
     MnAdversarios8: TMenuItem;
+    mitMaioresartilheirosemfinais: TMenuItem;
     procedure FormActivate(Sender: TObject);
     procedure MnClubesClick(Sender: TObject);
     procedure BtnCadJogosMouseEnter(Sender: TObject);
@@ -247,12 +248,12 @@ type
     procedure MnJogadores6Click(Sender: TObject);
     procedure MnJogadores7Click(Sender: TObject);
     procedure MnJogadores8Click(Sender: TObject);
-    procedure Os10Mais1Click(Sender: TObject);
-    procedure Os10Mais2Click(Sender: TObject);
-    procedure Os10Mais3Click(Sender: TObject);
-    procedure Os10Mais4Click(Sender: TObject);
-    procedure Os10Mais5Click(Sender: TObject);
-    procedure Os10Mais6Click(Sender: TObject);
+    procedure mitMaioresartilheirosClick(Sender: TObject);
+    procedure mitArtilheirosportemporadaClick(Sender: TObject);
+    procedure mitJogadoresMaisAtuaramClick(Sender: TObject);
+    procedure mitTecnicosMaisTreinaramClick(Sender: TObject);
+    procedure mitJogadoresamaisdisciplinadosClick(Sender: TObject);
+    procedure mitEstrangeirosMaisAtuaramClick(Sender: TObject);
     procedure MnEstGeraisClick(Sender: TObject);
     procedure MnCampanhaClick(Sender: TObject);
     procedure MnRelTitulosClick(Sender: TObject);
@@ -261,14 +262,14 @@ type
     procedure BtnBackupClick(Sender: TObject);
     procedure BtnBackupMouseEnter(Sender: TObject);
     procedure BtnBackupMouseLeave(Sender: TObject);
-    procedure Os10Mais7Click(Sender: TObject);
+    procedure mitEstrangeirosMaisMarcaramClick(Sender: TObject);
     procedure MnPatrocClick(Sender: TObject);
     procedure Fornecedores1Click(Sender: TObject);
     procedure PorCamisa1Click(Sender: TObject);
     procedure MnPublicoMenorClick(Sender: TObject);
     procedure Mn10UltimosJogosClick(Sender: TObject);
-    procedure Goleirosquemaisatuaram1Click(Sender: TObject);
-    procedure Maioresartilheiroscontrarivais1Click(Sender: TObject);
+    procedure mitGoleirosquemaisatuaramClick(Sender: TObject);
+    procedure mitMaioresartilheiroscontrarivaisClick(Sender: TObject);
     procedure Maioresgoleadasaplicadasemrivais1Click(Sender: TObject);
     procedure Maioresgoleadassofridasporrivais1Click(Sender: TObject);
     procedure MnJogadores9Click(Sender: TObject);
@@ -280,10 +281,10 @@ type
     procedure BtnUniformesMouseEnter(Sender: TObject);
     procedure BtnUniformesMouseLeave(Sender: TObject);
     procedure MnCodJogoClick(Sender: TObject);
-    procedure MnHattricksClick(Sender: TObject);
+    procedure mitJogadoresMaisHattricksClick(Sender: TObject);
     procedure MnJogadores11Click(Sender: TObject);
-    procedure MnJogosComTecnicoClick(Sender: TObject);
-    procedure Maioreszagueirosartilheiros1Click(Sender: TObject);
+    procedure mitJogosComTecnicoClick(Sender: TObject);
+    procedure mitMaioreszagueirosartilheirosClick(Sender: TObject);
     procedure MnPublicoMaiorAnoClick(Sender: TObject);
     procedure MnPublicoMenorAnoClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
@@ -303,6 +304,7 @@ type
     procedure actEstatisticasGeraisTimesExecute(Sender: TObject);
     procedure actCadastroEscudosHistoricosExecute(Sender: TObject);
     procedure MnAdversarios8Click(Sender: TObject);
+    procedure mitMaioresartilheirosemfinaisClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -904,6 +906,12 @@ begin
   f_gerais.buscaImagemPorCodigo(r_campanhageral.ImgSeutime, '0', '0');
   r_jogospadrao.numerorelatorio := '28';
   r_jogospadrao.codauxiliar1 := r_campanhageral.CbxAnos.Text;
+
+  if r_campanhageral.qryGolsPorPeriodo.Active then
+     r_campanhageral.qryGolsPorPeriodo.Close;
+  r_campanhageral.qryGolsPorPeriodo.Params.ParamByName('Temporada').Value := 0;
+  r_campanhageral.qryGolsPorPeriodo.Open;
+
   r_campanhageral.ShowModal;
 end;
 
@@ -1641,7 +1649,7 @@ begin
   r_jogospadrao.ShowModal;
 end;
 
-procedure TFrmPrincipal.Os10Mais1Click(Sender: TObject);
+procedure TFrmPrincipal.mitMaioresartilheirosClick(Sender: TObject);
 begin
   sql := 'select codjogador, nome, sum(gols) from( ' +
     'select e.codjogador, j.nome, sum(e.gols) gols ' +
@@ -1655,7 +1663,7 @@ begin
   f_gerais.preencherOsDezMais(sql, 1);
 end;
 
-procedure TFrmPrincipal.Os10Mais2Click(Sender: TObject);
+procedure TFrmPrincipal.mitArtilheirosportemporadaClick(Sender: TObject);
 begin
   sql := 'select codjogador, nome, sum(gols), ano from( ' +
     'select e.ano, e.codjogador, j.nome, sum(e.gols) gols ' +
@@ -1670,7 +1678,7 @@ begin
   f_gerais.preencherOsDezMais(sql, 2);
 end;
 
-procedure TFrmPrincipal.Os10Mais3Click(Sender: TObject);
+procedure TFrmPrincipal.mitJogadoresMaisAtuaramClick(Sender: TObject);
 begin
   sql := 'select codjogador, nome, sum(jogos) from( ' +
     'select e.codjogador, j.nome, count(*) jogos ' +
@@ -1685,7 +1693,7 @@ begin
   f_gerais.preencherOsDezMais(sql, 3);
 end;
 
-procedure TFrmPrincipal.Os10Mais4Click(Sender: TObject);
+procedure TFrmPrincipal.mitTecnicosMaisTreinaramClick(Sender: TObject);
 begin
   // Excluir o codigo de jogador 574 pois pertence a um grupo que
   // treinava o Fluminense em décadas passadas
@@ -1703,7 +1711,7 @@ begin
   f_gerais.preencherOsDezMais(sql, 4);
 end;
 
-procedure TFrmPrincipal.Os10Mais5Click(Sender: TObject);
+procedure TFrmPrincipal.mitJogadoresamaisdisciplinadosClick(Sender: TObject);
 begin
   sql := 'select codjogador, nome, sum(ca+cv), sum(ca), sum(cv) from( ' +
     'select e.codjogador, j.nome, sum(e.camarelo) ca, sum(e.cvermelho) cv ' +
@@ -1717,7 +1725,7 @@ begin
   f_gerais.preencherOsDezMais(sql, 5);
 end;
 
-procedure TFrmPrincipal.Os10Mais6Click(Sender: TObject);
+procedure TFrmPrincipal.mitEstrangeirosMaisAtuaramClick(Sender: TObject);
 begin
   sql := 'select codjogador, nome, sum(jogos) from( ' +
     'select e.codjogador, j.nome, count(*) jogos ' +
@@ -1748,7 +1756,7 @@ begin
   f_gerais.preencherOsDezMais(sql, 6);
 end;
 
-procedure TFrmPrincipal.Os10Mais7Click(Sender: TObject);
+procedure TFrmPrincipal.mitEstrangeirosMaisMarcaramClick(Sender: TObject);
 begin
   sql := 'select codjogador, nome, sum(gols)' +
     ' from( select e.codjogador, j.nome, sum(e.gols) gols' +
@@ -1784,7 +1792,7 @@ begin
   frmGerenciadorJogos.ShowModal;
 end;
 
-procedure TFrmPrincipal.Goleirosquemaisatuaram1Click(Sender: TObject);
+procedure TFrmPrincipal.mitGoleirosquemaisatuaramClick(Sender: TObject);
 begin
   sql := 'select codjogador, nome, sum(jogos) from( ' +
     'select e.codjogador, j.nome, count(*) jogos ' +
@@ -1798,7 +1806,7 @@ begin
   f_gerais.preencherOsDezMais(sql, 8);
 end;
 
-procedure TFrmPrincipal.Maioresartilheiroscontrarivais1Click(Sender: TObject);
+procedure TFrmPrincipal.mitMaioresartilheiroscontrarivaisClick(Sender: TObject);
 begin
   if f_gerais.contadorRegistros('ca_rival') > 0 then
   begin
@@ -1825,7 +1833,7 @@ begin
       'ATENÇÃO', MB_OK + MB_ICONINFORMATION);
 end;
 
-procedure TFrmPrincipal.MnHattricksClick(Sender: TObject);
+procedure TFrmPrincipal.mitJogadoresMaisHattricksClick(Sender: TObject);
 begin
   sql := 'select c, j, qtde from( ' +
     'select e.codjogador c, jg.nome j, count(r.j) qtde ' +
@@ -1849,7 +1857,7 @@ begin
   f_gerais.preencherOsDezMais(sql, 10);
 end;
 
-procedure TFrmPrincipal.MnJogosComTecnicoClick(Sender: TObject);
+procedure TFrmPrincipal.mitJogosComTecnicoClick(Sender: TObject);
 begin
   // preencher grid da pesquisa de Jogadores
   f_gerais.pesquisajogadores(h_jogadores.DbGridJogadores, 'TODOS', 0);
@@ -1857,7 +1865,7 @@ begin
   h_jogadores.ShowModal;
 end;
 
-procedure TFrmPrincipal.Maioreszagueirosartilheiros1Click(Sender: TObject);
+procedure TFrmPrincipal.mitMaioreszagueirosartilheirosClick(Sender: TObject);
 begin
   sql := 'select codjogador, nome, sum(gols) from( ' +
     'select e.codjogador, j.nome, sum(e.gols) gols ' +
@@ -1869,6 +1877,29 @@ begin
     'group by codjogador, nome ' + 'order by 3 desc ' + 'limit 15 offset 0';
 
   f_gerais.preencherOsDezMais(sql, 12);
+end;
+
+procedure TFrmPrincipal.mitMaioresartilheirosemfinaisClick(Sender: TObject);
+begin
+  sql := 'select codjogador, nome, sum(gols) from( ' +
+    'select e.codjogador, j.nome, sum(e.gols) gols ' +
+    'from es_titul e ' +
+    'inner join ca_jogad j on j.codjogador = e.codjogador ' +
+    'inner join ca_jogos g on g.codjogo = e.codjogo ' +
+    'where g.codfase = 15 ' +
+    'group by e.codjogador, j.nome ' +
+    'union ' +
+    'select e.codjogador, j.nome, sum(e.gols) gols ' +
+    'from es_reser e ' +
+    'inner join ca_jogad j on j.codjogador = e.codjogador ' +
+    'inner join ca_jogos g on g.codjogo = e.codjogo ' +
+    'where g.codfase = 15 ' +
+    'group by e.codjogador, j.nome) as a ' +
+    'group by codjogador, nome ' +
+    'order by 3 desc ' +
+    'limit 15 offset 0';
+
+  f_gerais.preencherOsDezMais(sql, 13);
 end;
 
 procedure TFrmPrincipal.Maioresgoleadasaplicadasemrivais1Click(Sender: TObject);

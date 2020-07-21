@@ -94,6 +94,7 @@ type
     btnVisualizarSumula: TBitBtn;
     Label1: TLabel;
     edtTemporada: TDBEdit;
+    cbWo: TDBCheckBox;
     procedure BtnEstadioClick(Sender: TObject);
     procedure BtnCompeticaoClick(Sender: TObject);
     procedure DtDataChange(Sender: TObject);
@@ -148,6 +149,7 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btnVisualizarSumulaClick(Sender: TObject);
     procedure edtTemporadaEnter(Sender: TObject);
+    procedure cbWoClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -361,7 +363,6 @@ begin
     BtnExcluirJogadores.Enabled := false;
     BtnSubstituicao.Enabled := false;
     BtnExcluirReservas.Enabled := false;
-    EdtWo.Text := '1';
   end
   else
   begin
@@ -370,7 +371,6 @@ begin
     BtnExcluirJogadores.Enabled := true;
     BtnSubstituicao.Enabled := true;
     BtnExcluirReservas.Enabled := true;
-    EdtWo.Text := '0';
   end;
 end;
 
@@ -396,6 +396,17 @@ end;
 procedure TCA_JOGOS.CbxTaticaExit(Sender: TObject);
 begin
   f_gerais.MudaCor('Sai', Sender);
+end;
+
+procedure TCA_JOGOS.cbWoClick(Sender: TObject);
+begin
+    if cbWo.Checked then
+    begin
+        CbEscalacoDisp.Checked := True;
+        CbEscalacoDispClick(Self);
+    end
+    else
+        CbEscalacoDisp.Checked := false;
 end;
 
 procedure TCA_JOGOS.DbGridReservasDrawColumnCell(Sender: TObject;
@@ -887,7 +898,6 @@ begin
       end;
     end;
   end;
-
 end;
 
 procedure TCA_JOGOS.fraBotoesBtnIncluirClick(Sender: TObject);
@@ -897,6 +907,8 @@ begin
   cbPortaoFechado.Checked := False;
   estadoDosBotoesdeCadastro();
   EdtData.SetFocus;
+  BtnTempoGols.Enabled := False;
+  cbWo.Checked := False;
 end;
 
 procedure TCA_JOGOS.fraBotoesBtnPesquisarClick(Sender: TObject);
@@ -1001,6 +1013,7 @@ begin
     EdtPenaltyMandante.Enabled := false;
     EdtPenaltyVisitante.Enabled := false;
     CbEscalacoDisp.Enabled := false;
+    cbWo.Enabled := False;
 
     LblNomeEstadio.Caption := '';
     LblCidade.Caption := '';
@@ -1058,6 +1071,7 @@ begin
     EdtVisitante.Clear;
     CbEscalacoDisp.Checked := false;
     CbEscalacoDisp.Enabled := true;
+    cbWo.Enabled := True;
 
     estadoDosBotoesdeJogadores();
   end;

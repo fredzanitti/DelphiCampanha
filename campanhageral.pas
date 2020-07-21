@@ -6,7 +6,11 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
   System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Grids, Vcl.DBGrids,
-  Vcl.ExtCtrls;
+  Vcl.ExtCtrls, VclTee.TeeGDIPlus, FireDAC.Stan.Intf, FireDAC.Stan.Option,
+  FireDAC.Stan.Param, FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf,
+  FireDAC.DApt.Intf, FireDAC.Stan.Async, FireDAC.DApt, Data.DB,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, VCLTee.TeEngine, VCLTee.Series,
+  VCLTee.TeeProcs, VCLTee.Chart, VCLTee.DBChart;
 
 type
   Tr_campanhageral = class(TForm)
@@ -58,6 +62,12 @@ type
     LblPiorResultado3: TLabel;
     LblCodMelhorResult3: TLabel;
     LblCodPiorResultado3: TLabel;
+    Label8: TLabel;
+    qryGolsPorPeriodo: TFDQuery;
+    qryGolsPorPeriodoGols: TIntegerField;
+    qryGolsPorPeriodoIntervalo: TWideStringField;
+    DBChart1: TDBChart;
+    Series1: THorizBarSeries;
     procedure CbxAnosChange(Sender: TObject);
     procedure FormActivate(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
@@ -95,6 +105,22 @@ procedure Tr_campanhageral.CbxAnosChange(Sender: TObject);
 begin
   f_gerais.preencherGridsCampanhaGeral(r_campanhageral.CbxAnos.Text);
   r_campanhageral.Caption := 'CAMPANHA GERAL POR ANO - ' + CbxAnos.Text;
+
+  if qryGolsPorPeriodo.Active then
+     qryGolsPorPeriodo.Close;
+
+  if CbxAnos.Text = 'Geral' then
+  begin
+     f_gerais.buscaImagemPorCodigo(r_campanhageral.ImgSeutime, '0', '0');
+     qryGolsPorPeriodo.Params.ParamByName('Temporada').Value := 0;
+  end
+  else
+  begin
+     f_gerais.buscaImagemPorCodigo(r_campanhageral.ImgSeutime, '0', CbxAnos.Text);
+     qryGolsPorPeriodo.Params.ParamByName('Temporada').Value := StrToInt(CbxAnos.Text);
+  end;
+  qryGolsPorPeriodo.Open;
+
   r_jogospadrao.numerorelatorio := '28';
   r_jogospadrao.codauxiliar1 := r_campanhageral.CbxAnos.Text;
 end;

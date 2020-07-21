@@ -3,7 +3,7 @@ object r_campanhageral: Tr_campanhageral
   Top = 0
   BorderStyle = bsToolWindow
   Caption = 'r_campanhageral'
-  ClientHeight = 671
+  ClientHeight = 725
   ClientWidth = 854
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
@@ -19,9 +19,9 @@ object r_campanhageral: Tr_campanhageral
   PixelsPerInch = 96
   TextHeight = 13
   object LblCidade: TLabel
-    Left = 181
-    Top = 218
-    Width = 125
+    Left = 191
+    Top = 217
+    Width = 115
     Height = 16
     Alignment = taRightJustify
     Caption = 'Campanha em Casa'
@@ -29,13 +29,13 @@ object r_campanhageral: Tr_campanhageral
     Font.Color = cl3DDkShadow
     Font.Height = -13
     Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
+    Font.Style = []
     ParentFont = False
   end
   object Label1: TLabel
-    Left = 152
-    Top = 248
-    Width = 154
+    Left = 165
+    Top = 241
+    Width = 141
     Height = 16
     Alignment = taRightJustify
     Caption = 'Campanha Fora de Casa'
@@ -43,13 +43,13 @@ object r_campanhageral: Tr_campanhageral
     Font.Color = cl3DDkShadow
     Font.Height = -13
     Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
+    Font.Style = []
     ParentFont = False
   end
   object Label2: TLabel
-    Left = 202
+    Left = 211
     Top = 190
-    Width = 104
+    Width = 95
     Height = 16
     Alignment = taRightJustify
     Caption = 'Campanha Geral'
@@ -57,7 +57,7 @@ object r_campanhageral: Tr_campanhageral
     Font.Color = cl3DDkShadow
     Font.Height = -13
     Font.Name = 'Tahoma'
-    Font.Style = [fsBold]
+    Font.Style = []
     ParentFont = False
   end
   object Shape1: TShape
@@ -76,8 +76,8 @@ object r_campanhageral: Tr_campanhageral
     Stretch = True
   end
   object LblDtIniSeq1: TLabel
-    Left = 345
-    Top = 526
+    Left = 778
+    Top = 403
     Width = 60
     Height = 13
     Caption = 'LblDtIniSeq1'
@@ -90,8 +90,8 @@ object r_campanhageral: Tr_campanhageral
     Visible = False
   end
   object LblDtFimSeq1: TLabel
-    Left = 345
-    Top = 545
+    Left = 778
+    Top = 410
     Width = 64
     Height = 13
     Caption = 'LblDtFimSeq1'
@@ -104,13 +104,12 @@ object r_campanhageral: Tr_campanhageral
     Visible = False
   end
   object LblSequencia1: TLabel
-    Left = 22
-    Top = 534
+    Left = 455
+    Top = 420
     Width = 365
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a lista dos jogos'
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = 'LblSequencia1'
     Font.Charset = DEFAULT_CHARSET
@@ -124,8 +123,8 @@ object r_campanhageral: Tr_campanhageral
     OnClick = LblSequencia1Click
   end
   object Label3: TLabel
-    Left = 22
-    Top = 512
+    Left = 455
+    Top = 401
     Width = 180
     Height = 16
     Caption = 'Maior Sequ'#234'ncia de Vit'#243'rias'
@@ -137,8 +136,8 @@ object r_campanhageral: Tr_campanhageral
     ParentFont = False
   end
   object LblDtIniSeq2: TLabel
-    Left = 347
-    Top = 577
+    Left = 780
+    Top = 455
     Width = 60
     Height = 13
     Caption = 'LblDtIniSeq1'
@@ -151,8 +150,8 @@ object r_campanhageral: Tr_campanhageral
     Visible = False
   end
   object LblDtFimSeq2: TLabel
-    Left = 347
-    Top = 600
+    Left = 780
+    Top = 463
     Width = 64
     Height = 13
     Caption = 'LblDtFimSeq1'
@@ -165,13 +164,12 @@ object r_campanhageral: Tr_campanhageral
     Visible = False
   end
   object LblSequencia2: TLabel
-    Left = 22
-    Top = 585
+    Left = 455
+    Top = 469
     Width = 365
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = 'LblSequencia1'
     Font.Charset = DEFAULT_CHARSET
@@ -185,8 +183,8 @@ object r_campanhageral: Tr_campanhageral
     OnClick = LblSequencia2Click
   end
   object Label6: TLabel
-    Left = 22
-    Top = 563
+    Left = 455
+    Top = 449
     Width = 115
     Height = 16
     Caption = 'Sequ'#234'ncia Invicta'
@@ -199,7 +197,7 @@ object r_campanhageral: Tr_campanhageral
   end
   object LblDtIniSeq3: TLabel
     Left = 742
-    Top = 522
+    Top = 639
     Width = 60
     Height = 13
     Caption = 'LblDtIniSeq1'
@@ -213,7 +211,7 @@ object r_campanhageral: Tr_campanhageral
   end
   object LblDtFimSeq3: TLabel
     Left = 742
-    Top = 514
+    Top = 631
     Width = 64
     Height = 13
     Caption = 'LblDtFimSeq1'
@@ -227,12 +225,11 @@ object r_campanhageral: Tr_campanhageral
   end
   object LblSequencia3: TLabel
     Left = 453
-    Top = 534
+    Top = 648
     Width = 368
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = 'LblSequencia1'
     Font.Charset = DEFAULT_CHARSET
@@ -247,7 +244,7 @@ object r_campanhageral: Tr_campanhageral
   end
   object Label7: TLabel
     Left = 453
-    Top = 512
+    Top = 629
     Width = 188
     Height = 16
     Caption = 'Maior Sequ'#234'ncia de Derrotas'
@@ -260,7 +257,7 @@ object r_campanhageral: Tr_campanhageral
   end
   object LblDtIniSeq4: TLabel
     Left = 742
-    Top = 577
+    Top = 691
     Width = 60
     Height = 13
     Caption = 'LblDtIniSeq1'
@@ -274,7 +271,7 @@ object r_campanhageral: Tr_campanhageral
   end
   object LblDtFimSeq4: TLabel
     Left = 742
-    Top = 569
+    Top = 683
     Width = 64
     Height = 13
     Caption = 'LblDtFimSeq1'
@@ -288,12 +285,11 @@ object r_campanhageral: Tr_campanhageral
   end
   object LblSequencia4: TLabel
     Left = 453
-    Top = 585
+    Top = 697
     Width = 368
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     AutoSize = False
     Caption = 'LblSequencia1'
     Font.Charset = DEFAULT_CHARSET
@@ -308,7 +304,7 @@ object r_campanhageral: Tr_campanhageral
   end
   object Label11: TLabel
     Left = 453
-    Top = 563
+    Top = 677
     Width = 187
     Height = 16
     Caption = 'Maior Sequ'#234'ncia Sem Vencer'
@@ -320,16 +316,16 @@ object r_campanhageral: Tr_campanhageral
     ParentFont = False
   end
   object Shape11: TShape
-    Left = 18
-    Top = 506
+    Left = 451
+    Top = 395
     Width = 376
     Height = 3
     Brush.Color = clBtnShadow
     Pen.Color = clWhite
   end
   object Shape12: TShape
-    Left = 18
-    Top = 557
+    Left = 451
+    Top = 443
     Width = 376
     Height = 3
     Brush.Color = clBtnShadow
@@ -337,7 +333,7 @@ object r_campanhageral: Tr_campanhageral
   end
   object Shape14: TShape
     Left = 451
-    Top = 506
+    Top = 623
     Width = 376
     Height = 3
     Brush.Color = clBtnShadow
@@ -345,15 +341,15 @@ object r_campanhageral: Tr_campanhageral
   end
   object Shape15: TShape
     Left = 451
-    Top = 557
+    Top = 671
     Width = 376
     Height = 3
     Brush.Color = clBtnShadow
     Pen.Color = clWhite
   end
   object Shape4: TShape
-    Left = 15
-    Top = 313
+    Left = 448
+    Top = 269
     Width = 374
     Height = 28
     Brush.Color = cl3DDkShadow
@@ -361,8 +357,8 @@ object r_campanhageral: Tr_campanhageral
     Shape = stRoundRect
   end
   object Label4: TLabel
-    Left = 29
-    Top = 319
+    Left = 462
+    Top = 275
     Width = 346
     Height = 13
     Alignment = taCenter
@@ -378,7 +374,7 @@ object r_campanhageral: Tr_campanhageral
   end
   object Shape5: TShape
     Left = 448
-    Top = 315
+    Top = 499
     Width = 374
     Height = 28
     Brush.Color = clMaroon
@@ -387,7 +383,7 @@ object r_campanhageral: Tr_campanhageral
   end
   object Label5: TLabel
     Left = 462
-    Top = 319
+    Top = 503
     Width = 346
     Height = 13
     Alignment = taCenter
@@ -402,13 +398,12 @@ object r_campanhageral: Tr_campanhageral
     Transparent = True
   end
   object LblMelhorResult1: TLabel
-    Left = 23
-    Top = 379
+    Left = 456
+    Top = 325
     Width = 82
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     Caption = 'LblSequencia1'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = cl3DDkShadow
@@ -421,8 +416,8 @@ object r_campanhageral: Tr_campanhageral
     OnClick = LblMelhorResult1Click
   end
   object Label10: TLabel
-    Left = 23
-    Top = 357
+    Left = 456
+    Top = 303
     Width = 135
     Height = 16
     Caption = 'Melhores Resultados'
@@ -435,12 +430,11 @@ object r_campanhageral: Tr_campanhageral
   end
   object LblPiorResultado1: TLabel
     Left = 454
-    Top = 379
+    Top = 553
     Width = 60
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     Caption = 'N'#227'o houve'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = cl3DDkShadow
@@ -454,7 +448,7 @@ object r_campanhageral: Tr_campanhageral
   end
   object Label15: TLabel
     Left = 454
-    Top = 357
+    Top = 531
     Width = 116
     Height = 16
     Caption = 'Piores Resultados'
@@ -466,8 +460,8 @@ object r_campanhageral: Tr_campanhageral
     ParentFont = False
   end
   object LblCodMelhorResult1: TLabel
-    Left = 331
-    Top = 379
+    Left = 764
+    Top = 325
     Width = 64
     Height = 13
     Caption = 'LblDtFimSeq1'
@@ -481,7 +475,7 @@ object r_campanhageral: Tr_campanhageral
   end
   object LblCodPiorResultado1: TLabel
     Left = 757
-    Top = 379
+    Top = 553
     Width = 64
     Height = 13
     Caption = 'LblDtFimSeq1'
@@ -494,13 +488,12 @@ object r_campanhageral: Tr_campanhageral
     Visible = False
   end
   object LblMelhorResult2: TLabel
-    Left = 22
-    Top = 408
+    Left = 455
+    Top = 347
     Width = 82
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     Caption = 'LblSequencia1'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = cl3DDkShadow
@@ -514,12 +507,11 @@ object r_campanhageral: Tr_campanhageral
   end
   object LblPiorResultado2: TLabel
     Left = 453
-    Top = 408
+    Top = 575
     Width = 60
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     Caption = 'N'#227'o houve'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = cl3DDkShadow
@@ -532,8 +524,8 @@ object r_campanhageral: Tr_campanhageral
     OnClick = LblPiorResultado2Click
   end
   object LblCodMelhorResult2: TLabel
-    Left = 330
-    Top = 408
+    Left = 763
+    Top = 347
     Width = 64
     Height = 13
     Caption = 'LblDtFimSeq1'
@@ -547,7 +539,7 @@ object r_campanhageral: Tr_campanhageral
   end
   object LblCodPiorResultado2: TLabel
     Left = 756
-    Top = 408
+    Top = 575
     Width = 64
     Height = 13
     Caption = 'LblDtFimSeq1'
@@ -560,13 +552,12 @@ object r_campanhageral: Tr_campanhageral
     Visible = False
   end
   object LblMelhorResult3: TLabel
-    Left = 23
-    Top = 435
+    Left = 456
+    Top = 371
     Width = 82
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     Caption = 'LblSequencia1'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = cl3DDkShadow
@@ -580,12 +571,11 @@ object r_campanhageral: Tr_campanhageral
   end
   object LblPiorResultado3: TLabel
     Left = 454
-    Top = 435
+    Top = 599
     Width = 60
     Height = 16
     Cursor = crHandPoint
     Hint = 'Clique aqui para ver a s'#250'mula do jogo'
-    CustomHint = FrmPrincipal.BalloonHint1
     Caption = 'N'#227'o houve'
     Font.Charset = DEFAULT_CHARSET
     Font.Color = cl3DDkShadow
@@ -598,8 +588,8 @@ object r_campanhageral: Tr_campanhageral
     OnClick = LblPiorResultado3Click
   end
   object LblCodMelhorResult3: TLabel
-    Left = 331
-    Top = 435
+    Left = 764
+    Top = 371
     Width = 64
     Height = 13
     Caption = 'LblDtFimSeq1'
@@ -613,7 +603,7 @@ object r_campanhageral: Tr_campanhageral
   end
   object LblCodPiorResultado3: TLabel
     Left = 757
-    Top = 435
+    Top = 599
     Width = 64
     Height = 13
     Caption = 'LblDtFimSeq1'
@@ -625,9 +615,23 @@ object r_campanhageral: Tr_campanhageral
     ParentFont = False
     Visible = False
   end
+  object Label8: TLabel
+    Left = 8
+    Top = 277
+    Width = 425
+    Height = 16
+    AutoSize = False
+    Caption = 'Distribui'#231#227'o dos gols por per'#237'odos'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = cl3DDkShadow
+    Font.Height = -12
+    Font.Name = 'Tahoma'
+    Font.Style = [fsBold]
+    ParentFont = False
+  end
   object DbGridCasa: TDBGrid
     Left = 319
-    Top = 217
+    Top = 216
     Width = 505
     Height = 24
     BorderStyle = bsNone
@@ -639,7 +643,7 @@ object r_campanhageral: Tr_campanhageral
     Font.Style = []
     Options = [dgRowLines, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ParentFont = False
-    TabOrder = 0
+    TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -778,7 +782,7 @@ object r_campanhageral: Tr_campanhageral
     Font.Style = []
     Options = [dgTitles, dgRowLines, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ParentFont = False
-    TabOrder = 1
+    TabOrder = 2
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -924,7 +928,7 @@ object r_campanhageral: Tr_campanhageral
   end
   object DbGridFora: TDBGrid
     Left = 319
-    Top = 247
+    Top = 240
     Width = 505
     Height = 24
     BorderStyle = bsNone
@@ -936,7 +940,7 @@ object r_campanhageral: Tr_campanhageral
     Font.Style = []
     Options = [dgRowLines, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ParentFont = False
-    TabOrder = 2
+    TabOrder = 3
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -1075,7 +1079,7 @@ object r_campanhageral: Tr_campanhageral
     Font.Style = []
     Options = [dgTitles, dgRowLines, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ParentFont = False
-    TabOrder = 3
+    TabOrder = 4
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText
     TitleFont.Height = -11
@@ -1248,7 +1252,59 @@ object r_campanhageral: Tr_campanhageral
     Font.Name = 'Tahoma'
     Font.Style = []
     ParentFont = False
-    TabOrder = 4
+    TabOrder = 0
     OnChange = CbxAnosChange
+  end
+  object DBChart1: TDBChart
+    Left = 8
+    Top = 299
+    Width = 418
+    Height = 414
+    Legend.Visible = False
+    View3D = False
+    TabOrder = 5
+    DefaultCanvas = 'TGDIPlusCanvas'
+    ColorPaletteIndex = 13
+    object Series1: THorizBarSeries
+      BarBrush.Gradient.Direction = gdLeftRight
+      ColorEachPoint = True
+      Marks.Frame.Visible = False
+      Marks.Style = smsPercent
+      DataSource = qryGolsPorPeriodo
+      PercentFormat = '##0.# %'
+      XLabelsSource = 'Intervalo'
+      Gradient.Direction = gdLeftRight
+      XValues.Name = 'Bar'
+      XValues.Order = loNone
+      XValues.ValueSource = 'Gols'
+      YValues.Name = 'Y'
+      YValues.Order = loAscending
+    end
+  end
+  object qryGolsPorPeriodo: TFDQuery
+    Connection = FrmDm.BDMySQL
+    SQL.Strings = (
+      'CALL sp_gols_por_periodo(:Temporada)')
+    Left = 40
+    Top = 304
+    ParamData = <
+      item
+        Name = 'TEMPORADA'
+        DataType = ftInteger
+        Precision = 10
+        ParamType = ptInput
+        Size = 4
+      end>
+    object qryGolsPorPeriodoGols: TIntegerField
+      AutoGenerateValue = arDefault
+      FieldName = 'Gols'
+      Origin = 'Gols'
+    end
+    object qryGolsPorPeriodoIntervalo: TWideStringField
+      AutoGenerateValue = arDefault
+      FieldName = 'Intervalo'
+      Origin = 'Intervalo'
+      Size = 50
+    end
   end
 end

@@ -35,7 +35,7 @@ uses login, home, informacao, funcoes;
 
 procedure TFrmSplash.FormActivate(Sender: TObject);
 begin
-  versao := 'Versão 8.5 Julho/2020';
+  versao := 'Versão 8.6 Julho/2020';
   LblVersao.Caption := versao;
   FrmPrincipal.LblVersao.Caption := versao;
   FrmPrincipal.StbSistema.Panels[cVersao].Text := versao;

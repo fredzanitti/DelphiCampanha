@@ -4220,6 +4220,7 @@ begin
     10- Jogadores com mais hattriks marcados
     11- Jogadroes que mais atuaram com técnicos
     12- Maiores zagueiros artilheiros
+    13- Maiores artilheiros em finais
     ======================================================================
   }
 
@@ -4312,6 +4313,12 @@ begin
           [2].AsString;
         r_dezmais.LblTitulos.Caption := 'MAIORES ZAGUEIROS ARTILHEIROS';
       end;
+    13:
+      begin
+        r_dezmais.LblEstatistica1.Caption := 'Gols: ' + QrEstat.Fields
+          [2].AsString;
+        r_dezmais.LblTitulos.Caption := 'MAIORES ARTILHEIROS EM FINAIS';
+      end;
   end; // fim do case
 
   QrEstat.Next;
@@ -4399,6 +4406,12 @@ begin
           r_dezmais.LblTitEst.Caption := 'Jogos';
         end;
       12:
+        begin
+          (r_dezmais.FindComponent('LblEstatistica' + IntToStr(i)) as TLabel)
+            .Caption := QrEstat.Fields[2].AsString;
+          r_dezmais.LblTitEst.Caption := 'Gols';
+        end;
+      13:
         begin
           (r_dezmais.FindComponent('LblEstatistica' + IntToStr(i)) as TLabel)
             .Caption := QrEstat.Fields[2].AsString;

@@ -4665,6 +4665,19 @@ object CA_JOGOS: TCA_JOGOS
     TabOrder = 19
     OnClick = btnVisualizarSumulaClick
   end
+  object cbWo: TDBCheckBox
+    Left = 723
+    Top = 559
+    Width = 97
+    Height = 17
+    Caption = ' W.O.'
+    DataField = 'wo'
+    DataSource = FrmDm.DtsJogos
+    TabOrder = 20
+    ValueChecked = '1'
+    ValueUnchecked = '0'
+    OnClick = cbWoClick
+  end
   object MainMenu: TMainMenu
     Left = 8
     Top = 600

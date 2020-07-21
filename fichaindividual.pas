@@ -51,9 +51,9 @@ type
     qryGolsPorTipogols: TLargeintField;
     qryGolsPorTipotipo: TWideStringField;
     dbcEstatisticas: TDBChart;
-    lblTituloGrafico: TLabel;
-    Series1: TPieSeries;
     lblSemGols: TLabel;
+    Series1: THorizBarSeries;
+    lblTituloGrafico: TLabel;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure BtnPesquisarClick(Sender: TObject);
     procedure LblEstreiaClick(Sender: TObject);
@@ -138,7 +138,7 @@ begin
     btnCarreira.Visible := true;
 
   dbcEstatisticas.Title.Caption := '';
-  lblTituloGrafico.Caption := 'Gols por tipo';
+  lblTituloGrafico.Caption := 'Distribuição dos gols';
   if qryGolsPorTipo.Active then
      qryGolsPorTipo.Close;
   qryGolsPorTipo.Params.ParamByName('CodigoJogador').DataType := ftInteger;

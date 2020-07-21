@@ -15250,65 +15250,69 @@ object FrmPrincipal: TFrmPrincipal
         object MnDezMais: TMenuItem
           Caption = 'Os 15 mais'
           ImageIndex = 5
-          object Os10Mais6: TMenuItem
+          object mitEstrangeirosMaisAtuaram: TMenuItem
             Caption = 'Estrangeiros que mais atuaram'
             ImageIndex = 6
-            OnClick = Os10Mais6Click
+            OnClick = mitEstrangeirosMaisAtuaramClick
           end
-          object Os10Mais7: TMenuItem
+          object mitEstrangeirosMaisMarcaram: TMenuItem
             Caption = 'Estrangeiros que mais marcaram'
             ImageIndex = 6
-            OnClick = Os10Mais7Click
+            OnClick = mitEstrangeirosMaisMarcaramClick
           end
-          object Goleirosquemaisatuaram1: TMenuItem
+          object mitGoleirosquemaisatuaram: TMenuItem
             Caption = 'Goleiros que mais atuaram'
             ImageIndex = 6
-            OnClick = Goleirosquemaisatuaram1Click
+            OnClick = mitGoleirosquemaisatuaramClick
           end
-          object MnHattricks: TMenuItem
+          object mitJogadoresMaisHattricks: TMenuItem
             Caption = 'Jogadores com mais hattricks'
             ImageIndex = 6
-            OnClick = MnHattricksClick
+            OnClick = mitJogadoresMaisHattricksClick
           end
-          object Os10Mais5: TMenuItem
+          object mitJogadoresamaisdisciplinados: TMenuItem
             Caption = 'Jogadores mais indisciplinados'
             ImageIndex = 6
-            OnClick = Os10Mais5Click
+            OnClick = mitJogadoresamaisdisciplinadosClick
           end
-          object Os10Mais3: TMenuItem
+          object mitJogadoresMaisAtuaram: TMenuItem
             Caption = 'Jogadores que mais atuaram'
             ImageIndex = 6
-            OnClick = Os10Mais3Click
+            OnClick = mitJogadoresMaisAtuaramClick
           end
-          object MnJogosComTecnico: TMenuItem
+          object mitJogosComTecnico: TMenuItem
             Caption = 'Jogadores que mais atuaram com t'#233'cnicos'
             ImageIndex = 6
-            OnClick = MnJogosComTecnicoClick
+            OnClick = mitJogosComTecnicoClick
           end
-          object Os10Mais1: TMenuItem
+          object mitMaioresartilheiros: TMenuItem
             Caption = 'Mairoes artilheiros'
             ImageIndex = 6
-            OnClick = Os10Mais1Click
+            OnClick = mitMaioresartilheirosClick
           end
-          object Os10Mais2: TMenuItem
+          object mitArtilheirosportemporada: TMenuItem
             Caption = 'Maiores artilheiros por temporada'
             ImageIndex = 6
-            OnClick = Os10Mais2Click
+            OnClick = mitArtilheirosportemporadaClick
           end
-          object Maioresartilheiroscontrarivais1: TMenuItem
+          object mitMaioresartilheiroscontrarivais: TMenuItem
             Caption = 'Maiores artilheiros contra rivais'
             ImageIndex = 6
-            OnClick = Maioresartilheiroscontrarivais1Click
+            OnClick = mitMaioresartilheiroscontrarivaisClick
           end
-          object Maioreszagueirosartilheiros1: TMenuItem
+          object mitMaioresartilheirosemfinais: TMenuItem
+            Caption = 'Maiores artilheiros em finais'
+            OnClick = mitMaioresartilheirosemfinaisClick
+          end
+          object mitMaioreszagueirosartilheiros: TMenuItem
             Caption = 'Maiores zagueiros artilheiros'
             ImageIndex = 6
-            OnClick = Maioreszagueirosartilheiros1Click
+            OnClick = mitMaioreszagueirosartilheirosClick
           end
-          object Os10Mais4: TMenuItem
+          object mitTecnicosMaisTreinaram: TMenuItem
             Caption = 'T'#233'cnicos que mais treinaram'
             ImageIndex = 6
-            OnClick = Os10Mais4Click
+            OnClick = mitTecnicosMaisTreinaramClick
           end
         end
         object MnJogadores10: TMenuItem
@@ -15479,7 +15483,7 @@ object FrmPrincipal: TFrmPrincipal
     Left = 224
     Top = 24
     Bitmap = {
-      494C010114003800E80010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010114003800F00010001000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000400000006000000001002000000000000060
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000
@@ -16284,7 +16288,7 @@ object FrmPrincipal: TFrmPrincipal
     Left = 272
     Top = 24
     Bitmap = {
-      494C010107000C00440020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
+      494C010107000C004C0020002000FFFFFFFFFF10FFFFFFFFFFFFFFFF424D3600
       0000000000003600000028000000800000004000000001002000000000000080
       0000000000000000000000000000000000000000000000000000000000000000
       0000000000000000000000000000000000000000000000000000000000000000

@@ -398,6 +398,22 @@ object h_fichaindividual: Th_fichaindividual
     ParentFont = False
     Transparent = True
   end
+  object lblTituloGrafico: TLabel
+    Left = 545
+    Top = 388
+    Width = 415
+    Height = 17
+    Alignment = taCenter
+    AutoSize = False
+    Caption = 'lblTituloGrafico'
+    Font.Charset = DEFAULT_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -12
+    Font.Name = 'Calibri'
+    Font.Style = [fsBold]
+    ParentFont = False
+    WordWrap = True
+  end
   object DbGridEstatisticas: TDBGrid
     Left = 8
     Top = 411
@@ -1181,6 +1197,8 @@ object h_fichaindividual: Th_fichaindividual
     Legend.Alignment = laBottom
     Legend.TextStyle = ltsValue
     Legend.Title.Alignment = taCenter
+    Legend.Visible = False
+    View3D = False
     View3DOptions.Elevation = 315
     View3DOptions.Orthogonal = False
     View3DOptions.Perspective = 0
@@ -1188,22 +1206,6 @@ object h_fichaindividual: Th_fichaindividual
     TabOrder = 3
     DefaultCanvas = 'TGDIPlusCanvas'
     ColorPaletteIndex = 13
-    object lblTituloGrafico: TLabel
-      Left = -8
-      Top = 14
-      Width = 415
-      Height = 35
-      Alignment = taCenter
-      AutoSize = False
-      Caption = 'lblTituloGrafico'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -12
-      Font.Name = 'Calibri'
-      Font.Style = [fsBold]
-      ParentFont = False
-      WordWrap = True
-    end
     object lblSemGols: TLabel
       Left = -8
       Top = 32
@@ -1220,31 +1222,19 @@ object h_fichaindividual: Th_fichaindividual
       ParentFont = False
       WordWrap = True
     end
-    object Series1: TPieSeries
+    object Series1: THorizBarSeries
+      BarBrush.Gradient.Direction = gdLeftRight
+      ColorEachPoint = True
+      Marks.Frame.Visible = False
+      Marks.Style = smsValue
       DataSource = qryGolsPorTipo
       XLabelsSource = 'tipo'
-      XValues.Order = loAscending
-      YValues.Name = 'Pie'
-      YValues.Order = loNone
-      YValues.ValueSource = 'gols'
-      Frame.InnerBrush.BackColor = clRed
-      Frame.InnerBrush.Gradient.EndColor = clGray
-      Frame.InnerBrush.Gradient.MidColor = clWhite
-      Frame.InnerBrush.Gradient.StartColor = 4210752
-      Frame.InnerBrush.Gradient.Visible = True
-      Frame.MiddleBrush.BackColor = clYellow
-      Frame.MiddleBrush.Gradient.EndColor = 8553090
-      Frame.MiddleBrush.Gradient.MidColor = clWhite
-      Frame.MiddleBrush.Gradient.StartColor = clGray
-      Frame.MiddleBrush.Gradient.Visible = True
-      Frame.OuterBrush.BackColor = clGreen
-      Frame.OuterBrush.Gradient.EndColor = 4210752
-      Frame.OuterBrush.Gradient.MidColor = clWhite
-      Frame.OuterBrush.Gradient.StartColor = clSilver
-      Frame.OuterBrush.Gradient.Visible = True
-      Frame.Width = 4
-      ExplodeBiggest = 30
-      OtherSlice.Legend.Visible = False
+      Gradient.Direction = gdLeftRight
+      XValues.Name = 'Bar'
+      XValues.Order = loNone
+      XValues.ValueSource = 'gols'
+      YValues.Name = 'Y'
+      YValues.Order = loAscending
     end
   end
   object qryGolsPorTipo: TFDQuery
@@ -1254,7 +1244,8 @@ object h_fichaindividual: Th_fichaindividual
       'FROM es_gols'
       'INNER JOIN es_tipogol ON es_tipogol.codtipo = es_gols.codtipogol'
       'WHERE es_gols.codjogador = :CodigoJogador'
-      'GROUP BY es_tipogol.tipo')
+      'GROUP BY es_tipogol.tipo'
+      'ORDER BY gols, tipo DESC')
     Left = 560
     Top = 416
     ParamData = <
